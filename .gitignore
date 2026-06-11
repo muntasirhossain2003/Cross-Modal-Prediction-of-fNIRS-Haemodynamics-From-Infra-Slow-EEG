@@ -1,0 +1,18 @@
+# Datasets (too large for GitHub)
+dataset/
+
+# IDE / tool internals
+.claude/
+.qodo/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
