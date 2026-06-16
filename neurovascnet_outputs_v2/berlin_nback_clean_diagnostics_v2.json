@@ -1,0 +1,302 @@
+{
+  "dataset": "TU Berlin EEG+NIRS nback",
+  "task_labels": {
+    "0": "0-back",
+    "1": "2-back",
+    "2": "3-back"
+  },
+  "windows": {
+    "eeg_seconds": [
+      0,
+      30
+    ],
+    "nirs_baseline_seconds": [
+      -5,
+      0
+    ],
+    "nirs_response_seconds": [
+      5,
+      45
+    ]
+  },
+  "shapes": {
+    "X_blocks": [
+      702,
+      330
+    ],
+    "Y_mean": [
+      702,
+      72
+    ],
+    "Y_peak": [
+      702,
+      72
+    ],
+    "Y_scalar": [
+      702
+    ],
+    "n_subjects": 26,
+    "label_counts": {
+      "0": 234,
+      "1": 234,
+      "2": 234
+    }
+  },
+  "audit": [
+    {
+      "subject": 1,
+      "status": "ok",
+      "eeg_sessions": 27,
+      "nirs_sessions": 27,
+      "seq_equal": true,
+      "kept": 27
+    },
+    {
+      "subject": 2,
+      "status": "ok",
+      "eeg_sessions": 27,
+      "nirs_sessions": 27,
+      "seq_equal": true,
+      "kept": 27
+    },
+    {
+      "subject": 3,
+      "status": "ok",
+      "eeg_sessions": 27,
+      "nirs_sessions": 27,
+      "seq_equal": true,
+      "kept": 27
+    },
+    {
+      "subject": 4,
+      "status": "ok",
+      "eeg_sessions": 27,
+      "nirs_sessions": 27,
+      "seq_equal": true,
+      "kept": 27
+    },
+    {
+      "subject": 5,
+      "status": "ok",
+      "eeg_sessions": 27,
+      "nirs_sessions": 27,
+      "seq_equal": true,
+      "kept": 27
+    },
+    {
+      "subject": 6,
+      "status": "ok",
+      "eeg_sessions": 27,
+      "nirs_sessions": 27,
+      "seq_equal": true,
+      "kept": 27
+    },
+    {
+      "subject": 7,
+      "status": "ok",
+      "eeg_sessions": 27,
+      "nirs_sessions": 27,
+      "seq_equal": true,
+      "kept": 27
+    },
+    {
+      "subject": 8,
+      "status": "ok",
+      "eeg_sessions": 27,
+      "nirs_sessions": 27,
+      "seq_equal": true,
+      "kept": 27
+    },
+    {
+      "subject": 9,
+      "status": "ok",
+      "eeg_sessions": 27,
+      "nirs_sessions": 27,
+      "seq_equal": true,
+      "kept": 27
+    },
+    {
+      "subject": 10,
+      "status": "ok",
+      "eeg_sessions": 27,
+      "nirs_sessions": 27,
+      "seq_equal": true,
+      "kept": 27
+    },
+    {
+      "subject": 11,
+      "status": "ok",
+      "eeg_sessions": 27,
+      "nirs_sessions": 27,
+      "seq_equal": true,
+      "kept": 27
+    },
+    {
+      "subject": 12,
+      "status": "ok",
+      "eeg_sessions": 27,
+      "nirs_sessions": 27,
+      "seq_equal": true,
+      "kept": 27
+    },
+    {
+      "subject": 13,
+      "status": "ok",
+      "eeg_sessions": 27,
+      "nirs_sessions": 27,
+      "seq_equal": true,
+      "kept": 27
+    },
+    {
+      "subject": 14,
+      "status": "ok",
+      "eeg_sessions": 27,
+      "nirs_sessions": 27,
+      "seq_equal": true,
+      "kept": 27
+    },
+    {
+      "subject": 15,
+      "status": "ok",
+      "eeg_sessions": 27,
+      "nirs_sessions": 27,
+      "seq_equal": true,
+      "kept": 27
+    },
+    {
+      "subject": 16,
+      "status": "ok",
+      "eeg_sessions": 27,
+      "nirs_sessions": 27,
+      "seq_equal": true,
+      "kept": 27
+    },
+    {
+      "subject": 17,
+      "status": "ok",
+      "eeg_sessions": 27,
+      "nirs_sessions": 27,
+      "seq_equal": true,
+      "kept": 27
+    },
+    {
+      "subject": 18,
+      "status": "ok",
+      "eeg_sessions": 27,
+      "nirs_sessions": 27,
+      "seq_equal": true,
+      "kept": 27
+    },
+    {
+      "subject": 19,
+      "status": "ok",
+      "eeg_sessions": 27,
+      "nirs_sessions": 27,
+      "seq_equal": true,
+      "kept": 27
+    },
+    {
+      "subject": 20,
+      "status": "ok",
+      "eeg_sessions": 27,
+      "nirs_sessions": 27,
+      "seq_equal": true,
+      "kept": 27
+    },
+    {
+      "subject": 21,
+      "status": "ok",
+      "eeg_sessions": 27,
+      "nirs_sessions": 27,
+      "seq_equal": true,
+      "kept": 27
+    },
+    {
+      "subject": 22,
+      "status": "ok",
+      "eeg_sessions": 27,
+      "nirs_sessions": 27,
+      "seq_equal": true,
+      "kept": 27
+    },
+    {
+      "subject": 23,
+      "status": "ok",
+      "eeg_sessions": 27,
+      "nirs_sessions": 27,
+      "seq_equal": true,
+      "kept": 27
+    },
+    {
+      "subject": 24,
+      "status": "ok",
+      "eeg_sessions": 27,
+      "nirs_sessions": 27,
+      "seq_equal": true,
+      "kept": 27
+    },
+    {
+      "subject": 25,
+      "status": "ok",
+      "eeg_sessions": 27,
+      "nirs_sessions": 27,
+      "seq_equal": true,
+      "kept": 27
+    },
+    {
+      "subject": 26,
+      "status": "ok",
+      "eeg_sessions": 27,
+      "nirs_sessions": 27,
+      "seq_equal": true,
+      "kept": 27
+    }
+  ],
+  "eeg_to_task_accuracy": {
+    "logreg_C0.01": 0.43447293447293445,
+    "logreg_C0.1": 0.4515669515669516,
+    "logreg_C1": 0.45726495726495725,
+    "random_block_cv_subject_mixed": 0.5484599797365755
+  },
+  "task_to_nirs_scalar": {
+    "pearson": -0.12955158804207206,
+    "mae": 0.0015615427833858173
+  },
+  "eeg_to_nirs": {
+    "ridge_mean_vector": {
+      "pearson": 0.1378355096273775,
+      "mae": 0.0012455899733060283,
+      "pred_std": 0.0010227668271697663,
+      "target_std": 0.0018710835138335824
+    },
+    "ridge_peak_vector": {
+      "pearson": 0.5723300608509577,
+      "mae": 0.0031961526245451875,
+      "pred_std": 0.005909242703090165,
+      "target_std": 0.006035797763615847
+    },
+    "ridge_scalar": {
+      "pearson": 0.06627575845990512,
+      "mae": 0.001684973937924827,
+      "pred_std": 0.0009473164677956157,
+      "target_std": 0.0020334883684744115
+    },
+    "pls3_mean_vector": {
+      "pearson": 0.035030186754777495,
+      "mae": 0.0011961654115589019,
+      "pred_std": 0.0005147254467440497,
+      "target_std": 0.0018710835138335824
+    },
+    "pls3_scalar": {
+      "pearson": -0.0722168843240627,
+      "mae": 0.0016366384738632379,
+      "pred_std": 0.0006403940354669118,
+      "target_std": 0.0020334883684744115
+    },
+    "cca_mean_vector": {
+      "mean_first_canonical_corr": 0.07559301678430125,
+      "median_first_canonical_corr": 0.1134741632595973,
+      "n_folds": 26
+    }
+  }
+}

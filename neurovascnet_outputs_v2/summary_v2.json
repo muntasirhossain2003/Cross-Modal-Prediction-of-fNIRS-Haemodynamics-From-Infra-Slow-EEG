@@ -1,0 +1,118 @@
+{
+  "experiment": "NeuroVascNet_E2E_v2",
+  "selection_policy": "Tune only on Stroop fNIRS and ds002336 fMRI internal validation; external sets are final tests.",
+  "external_loader_status": {
+    "tuberlin_fnirs": "synthetic placeholder unless generate_eeg_fnirs_tuberlin is replaced above",
+    "ds002739_fmri": "synthetic placeholder unless generate_eeg_fmri_ds002739 is replaced above"
+  },
+  "best_internal": {
+    "stage1": {
+      "score": -0.012361912444854777,
+      "epoch": 4
+    },
+    "stage2": {
+      "score": -0.00792190603290995,
+      "epoch": 3
+    }
+  },
+  "internal_validation": {
+    "stroop_fnirs": {
+      "mae": 0.7772600054740906,
+      "rmse": 0.9381472578464348,
+      "pearson": -0.009300043806433678,
+      "peak_xcorr": 0.026127105578780174
+    },
+    "ds002336_fmri": {
+      "mae": 0.7335125207901001,
+      "rmse": 0.8758815003593888,
+      "pearson": -0.004997464828193188,
+      "peak_xcorr": 0.5224817991256714
+    }
+  },
+  "external_tests": {
+    "tuberlin_fnirs": {
+      "mae": 0.916531503200531,
+      "rmse": 0.9975119275022922,
+      "pearson": 0.030376560986042023,
+      "peak_xcorr": 0.061908017843961716
+    },
+    "ds002739_fmri": {
+      "mae": 0.6621536612510681,
+      "rmse": 0.7859992820163777,
+      "pearson": 0.3413800895214081,
+      "peak_xcorr": 0.6329547166824341
+    }
+  },
+  "reliability": {
+    "internal_corr": -0.03616267999750304,
+    "external_corr": -0.36029428298287935,
+    "ece_raw_external": 0.4898473178346952,
+    "ece_calibrated_external": 0.43414390285809834
+  },
+  "downstream_transfer": {
+    "hemodynamic_aware_acc": 0.53125,
+    "scratch_acc": 0.53125
+  },
+  "ablations": [
+    {
+      "name": "full_v2",
+      "best_stage1": {
+        "score": 0.0026173533648640537,
+        "epoch": 1
+      },
+      "best_stage2": {
+        "score": -0.013707387338702878,
+        "epoch": 1
+      },
+      "fnirs_int_pearson": -0.004332595504820347,
+      "fnirs_ext_pearson": 0.07344776391983032,
+      "fmri_int_pearson": -0.022406285628676414,
+      "fmri_ext_pearson": 0.07691334187984467
+    },
+    {
+      "name": "no_pearson",
+      "best_stage1": {
+        "score": 0.005648203271751602,
+        "epoch": 1
+      },
+      "best_stage2": {
+        "score": -0.003996355924755335,
+        "epoch": 1
+      },
+      "fnirs_int_pearson": 0.008615830913186073,
+      "fnirs_ext_pearson": 0.0972176343202591,
+      "fmri_int_pearson": -0.01586160808801651,
+      "fmri_ext_pearson": 0.07820293307304382
+    },
+    {
+      "name": "no_bandpower",
+      "best_stage1": {
+        "score": -0.008031680209872624,
+        "epoch": 1
+      },
+      "best_stage2": {
+        "score": -0.011240267520406633,
+        "epoch": 1
+      },
+      "fnirs_int_pearson": -0.005719946697354317,
+      "fnirs_ext_pearson": 0.052461300045251846,
+      "fmri_int_pearson": -0.016132362186908722,
+      "fmri_ext_pearson": 0.11119984835386276
+    },
+    {
+      "name": "no_smoothing",
+      "best_stage1": {
+        "score": -0.0002866276384641728,
+        "epoch": 1
+      },
+      "best_stage2": {
+        "score": -0.009084839917098481,
+        "epoch": 1
+      },
+      "fnirs_int_pearson": -0.0034620328806340694,
+      "fnirs_ext_pearson": 0.03480697050690651,
+      "fmri_int_pearson": -0.014064810238778591,
+      "fmri_ext_pearson": 0.14032992720603943
+    }
+  ]
+}

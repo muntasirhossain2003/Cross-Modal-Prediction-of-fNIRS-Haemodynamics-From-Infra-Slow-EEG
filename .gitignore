@@ -13,6 +13,13 @@ __pycache__/
 # Jupyter checkpoints
 .ipynb_checkpoints/
 
+# Local experimental notebooks / extracted helpers
+NeuroVascNet_E2E_trialscale.ipynb
+NeuroVascNet_E2E_v2.ipynb
+NeuroVascNet_E2E_trialscale.py
+_ext_loaders.txt
+mendeley_simple_eeg_fnirs_baseline.py
+
 # OS
 .DS_Store
 Thumbs.db

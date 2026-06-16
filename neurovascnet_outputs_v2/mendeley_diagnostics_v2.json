@@ -1,0 +1,66 @@
+{
+  "dataset": "Mendeley simultaneous EEG-fNIRS implicit learning",
+  "feature_cache": "neurovascnet_outputs_v2\\mendeley_trial_features_v2.npz",
+  "shapes": {
+    "X_eeg": [
+      17193,
+      165
+    ],
+    "Y_fnirs_oxy_deoxy": [
+      17193,
+      96
+    ],
+    "subjects": 30,
+    "trials": 17193,
+    "group_counts_trial_level": {
+      "no_implicit_learning": 13113,
+      "yes_implicit_learning": 4080
+    },
+    "group_counts_subject_level": {
+      "no_implicit_learning": 21,
+      "yes_implicit_learning": 9
+    }
+  },
+  "qc": {
+    "ok_segments": 38,
+    "skipped_segments": 0,
+    "usable_subjects": 30,
+    "usable_yes_subjects": 9,
+    "usable_no_subjects": 21,
+    "usable_trials_total": 17193,
+    "usable_trials_min_per_subject": 204,
+    "usable_trials_median_per_subject": 700.0,
+    "usable_trials_max_per_subject": 923,
+    "skipped": []
+  },
+  "loso_subject_classification": {
+    "eeg_bandpower_to_group": {
+      "subjects": 30,
+      "accuracy": 0.6666666666666666,
+      "balanced_accuracy": 0.6031746031746031,
+      "positive_rate_pred": 0.3,
+      "auc": 0.6296296296296297
+    },
+    "fnirs_response_to_group": {
+      "subjects": 30,
+      "accuracy": 0.6,
+      "balanced_accuracy": 0.5555555555555556,
+      "positive_rate_pred": 0.36666666666666664,
+      "auc": 0.5767195767195767
+    },
+    "eeg_plus_fnirs_to_group": {
+      "subjects": 30,
+      "accuracy": 0.6666666666666666,
+      "balanced_accuracy": 0.6031746031746031,
+      "positive_rate_pred": 0.3,
+      "auc": 0.6243386243386243
+    }
+  },
+  "loso_eeg_to_fnirs": {
+    "ridge_vector_oxy_deoxy_pearson": 0.00016270449850708246,
+    "ridge_vector_oxy_only_pearson": 0.0003385641612112522,
+    "ridge_scalar_oxy_mean_pearson": 0.019358793273568153,
+    "pls_vector_oxy_only_pearson": -0.003651586128398776,
+    "target_oxy_scalar_std": 0.7828956246376038
+  }
+}

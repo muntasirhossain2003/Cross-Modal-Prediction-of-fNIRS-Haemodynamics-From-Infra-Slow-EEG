@@ -1,0 +1,210 @@
+{
+  "shapes": {
+    "trial_features": [
+      1339,
+      196
+    ],
+    "block_features": [
+      84,
+      196
+    ],
+    "fNIRS_mean_target": [
+      84,
+      40
+    ],
+    "fNIRS_peak_target": [
+      84,
+      40
+    ]
+  },
+  "condition_effect": {
+    "HbO_mean": {
+      "neutral_mean": -3.711087629199028e-05,
+      "incongruent_mean": -0.0001054325548466295,
+      "diff_I_minus_N": -6.832168583059683e-05,
+      "cohens_dz": -0.18527235558945035,
+      "paired_t_p": 0.4059157633181367
+    },
+    "HbO_peak": {
+      "neutral_mean": 0.0011542084394022822,
+      "incongruent_mean": 0.000938812387175858,
+      "diff_I_minus_N": -0.00021539608133025467,
+      "cohens_dz": -0.457686289538479,
+      "paired_t_p": 0.048872763430801935
+    },
+    "Hb_mean": {
+      "neutral_mean": 3.421506698941812e-05,
+      "incongruent_mean": 8.501686534145847e-05,
+      "diff_I_minus_N": 5.080179471406154e-05,
+      "cohens_dz": 0.1478450827496022,
+      "paired_t_p": 0.5058442290707411
+    },
+    "Hb_peak": {
+      "neutral_mean": 0.0010529319988563657,
+      "incongruent_mean": 0.0009771358454599977,
+      "diff_I_minus_N": -7.579625525977463e-05,
+      "cohens_dz": -0.2860214571785792,
+      "paired_t_p": 0.20480629825585717
+    }
+  },
+  "eeg_to_condition_accuracy": {
+    "logreg_C0.01": 0.5227781926811053,
+    "logreg_C0.1": 0.5056011949215833,
+    "logreg_C1": 0.5018670649738611,
+    "random_trial_cv_subject_mixed": 0.539985465928783
+  },
+  "condition_to_fnirs_scalar": {
+    "pearson": -0.1539340236535378,
+    "mae": 0.00044648027630089576
+  },
+  "eeg_to_fnirs": {
+    "ridge_mean_vector": {
+      "pearson": 0.022498494063467333,
+      "mae": 0.0005903598539377428,
+      "pred_std": 0.00021250332181232032,
+      "target_std": 0.0009266934357583523
+    },
+    "ridge_peak_vector": {
+      "pearson": -0.06358266164677884,
+      "mae": 0.001222121758988711,
+      "pred_std": 0.0011698943102321376,
+      "target_std": 0.0014297969173640013
+    },
+    "ridge_scalar": {
+      "pearson": 0.00018475699385737954,
+      "mae": 0.0004490676855571759,
+      "pred_std": 0.00011476297484843677,
+      "target_std": 0.0006350816322988105
+    },
+    "pls2_mean_vector": {
+      "pearson": 0.060793582580482994,
+      "mae": 0.0005869290671230314,
+      "pred_std": 0.00021511019544406305,
+      "target_std": 0.0009266934357583523
+    },
+    "pls2_scalar": {
+      "pearson": -0.05549453362306486,
+      "mae": 0.0004904023590143387,
+      "pred_std": 0.00022322682236003495,
+      "target_std": 0.0006350816322988105
+    },
+    "cca_mean_vector": {
+      "mean_first_canonical_corr": -0.06109178760599796,
+      "median_first_canonical_corr": -0.024930802516181738,
+      "n_folds": 21
+    },
+    "within_subject_scalar_ridge": {
+      "n_subjects": 21,
+      "mean_pearson": -0.047619047619047616,
+      "median_pearson": -1.0,
+      "mean_mae": 0.011598945734866513,
+      "rows": [
+        {
+          "subject_id": 1,
+          "pearson": -1.0,
+          "mae": 0.00017942053273145575
+        },
+        {
+          "subject_id": 2,
+          "pearson": -1.0,
+          "mae": 0.001237446369486861
+        },
+        {
+          "subject_id": 3,
+          "pearson": 1.0,
+          "mae": 0.0005614380061160773
+        },
+        {
+          "subject_id": 4,
+          "pearson": -1.0,
+          "mae": 0.0014326893433462828
+        },
+        {
+          "subject_id": 5,
+          "pearson": 1.0,
+          "mae": 0.0005252036935416982
+        },
+        {
+          "subject_id": 6,
+          "pearson": 1.0,
+          "mae": 5.5628976042498834e-05
+        },
+        {
+          "subject_id": 7,
+          "pearson": 1.0,
+          "mae": 0.002628078538691625
+        },
+        {
+          "subject_id": 8,
+          "pearson": -1.0,
+          "mae": 0.002133671223418787
+        },
+        {
+          "subject_id": 9,
+          "pearson": 1.0,
+          "mae": 0.0005626913480227813
+        },
+        {
+          "subject_id": 10,
+          "pearson": -1.0,
+          "mae": 0.0003113725506409537
+        },
+        {
+          "subject_id": 11,
+          "pearson": -1.0,
+          "mae": 0.0009566579683450982
+        },
+        {
+          "subject_id": 12,
+          "pearson": -1.0,
+          "mae": 0.0007847407141525764
+        },
+        {
+          "subject_id": 13,
+          "pearson": -1.0,
+          "mae": 0.0004725977451016661
+        },
+        {
+          "subject_id": 14,
+          "pearson": 1.0,
+          "mae": 0.003747485536223394
+        },
+        {
+          "subject_id": 15,
+          "pearson": -1.0,
+          "mae": 0.0015227513504214585
+        },
+        {
+          "subject_id": 16,
+          "pearson": -1.0,
+          "mae": 0.00033591858664294705
+        },
+        {
+          "subject_id": 17,
+          "pearson": 1.0,
+          "mae": 0.2212835652171634
+        },
+        {
+          "subject_id": 18,
+          "pearson": 1.0,
+          "mae": 0.001480551600252511
+        },
+        {
+          "subject_id": 19,
+          "pearson": 1.0,
+          "mae": 0.0013069026172161102
+        },
+        {
+          "subject_id": 20,
+          "pearson": -1.0,
+          "mae": 0.00042171715904260054
+        },
+        {
+          "subject_id": 21,
+          "pearson": 1.0,
+          "mae": 0.0016373313555959612
+        }
+      ]
+    }
+  }
+}

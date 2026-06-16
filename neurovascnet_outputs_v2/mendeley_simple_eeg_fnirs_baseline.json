@@ -1,0 +1,567 @@
+{
+  "input_cache": "neurovascnet_outputs_v2\\mendeley_trial_features_v2.npz",
+  "method": "Simple EEG bandpower to fNIRS Oxy/Deoxy ridge baseline with slower chunk aggregation",
+  "note": "No neural decoder; this tests whether the EEG feature space contains predictable fNIRS response structure.",
+  "results": {
+    "1": {
+      "shape": {
+        "X": [
+          17193,
+          165
+        ],
+        "Y": [
+          17193,
+          96
+        ],
+        "subjects": 30,
+        "segments": 38
+      },
+      "alpha_results": {
+        "10.0": {
+          "cross_subject": {
+            "vector_oxy_deoxy_pearson": -0.0003764332504943013,
+            "vector_oxy_pearson": -0.0007973473984748125,
+            "vector_deoxy_pearson": 0.001201421720907092,
+            "mean_channel_oxy_pearson": 0.002997377775500354,
+            "scalar_oxy_mean_pearson": 0.014896698296070099
+          },
+          "subject_adapted_25pct": {
+            "subjects": 30,
+            "vector_oxy_deoxy_pearson": -0.0008053440833464265,
+            "vector_oxy_pearson": -0.001243306789547205,
+            "vector_deoxy_pearson": 0.0008378613274544477,
+            "mean_channel_oxy_pearson": 0.003479595966685641,
+            "scalar_oxy_mean_pearson": 0.011491084471344948
+          },
+          "within_subject": {
+            "vector_oxy_deoxy_pearson": 0.0008454917697235942,
+            "vector_oxy_pearson": 0.0006348321912810206,
+            "vector_deoxy_pearson": 0.0016331719234585762,
+            "mean_channel_oxy_pearson": 0.011513024633131863,
+            "scalar_oxy_mean_pearson": 0.0029637364204972982
+          }
+        },
+        "100.0": {
+          "cross_subject": {
+            "vector_oxy_deoxy_pearson": -0.0006566117517650127,
+            "vector_oxy_pearson": -0.000989840249530971,
+            "vector_deoxy_pearson": 0.0005943919532001019,
+            "mean_channel_oxy_pearson": 0.0034472502081068037,
+            "scalar_oxy_mean_pearson": 0.0141864363104105
+          },
+          "subject_adapted_25pct": {
+            "subjects": 30,
+            "vector_oxy_deoxy_pearson": -0.0010024006478488445,
+            "vector_oxy_pearson": -0.0013319030404090881,
+            "vector_deoxy_pearson": 0.00023604556918144226,
+            "mean_channel_oxy_pearson": 0.004076306222790056,
+            "scalar_oxy_mean_pearson": 0.010187412612140179
+          },
+          "within_subject": {
+            "vector_oxy_deoxy_pearson": -0.0008654111297801137,
+            "vector_oxy_pearson": -0.0015509221702814102,
+            "vector_deoxy_pearson": 0.0017182265873998404,
+            "mean_channel_oxy_pearson": 0.01429340719278116,
+            "scalar_oxy_mean_pearson": 0.0014389605494216084
+          }
+        },
+        "1000.0": {
+          "cross_subject": {
+            "vector_oxy_deoxy_pearson": -0.001164236105978489,
+            "vector_oxy_pearson": -0.0012699747458100319,
+            "vector_deoxy_pearson": -0.0007654173532500863,
+            "mean_channel_oxy_pearson": 0.004016431645491518,
+            "scalar_oxy_mean_pearson": 0.01196765061467886
+          },
+          "subject_adapted_25pct": {
+            "subjects": 30,
+            "vector_oxy_deoxy_pearson": -0.0013931479770690203,
+            "vector_oxy_pearson": -0.0014167401241138577,
+            "vector_deoxy_pearson": -0.0013040602207183838,
+            "mean_channel_oxy_pearson": 0.004786691782101116,
+            "scalar_oxy_mean_pearson": 0.008256830275058746
+          },
+          "within_subject": {
+            "vector_oxy_deoxy_pearson": -0.002764487871900201,
+            "vector_oxy_pearson": -0.0031619835644960403,
+            "vector_deoxy_pearson": -0.0012634929735213518,
+            "mean_channel_oxy_pearson": 0.013737748403097308,
+            "scalar_oxy_mean_pearson": -0.00459112785756588
+          }
+        },
+        "10000.0": {
+          "cross_subject": {
+            "vector_oxy_deoxy_pearson": -0.0020122057758271694,
+            "vector_oxy_pearson": -0.002173717599362135,
+            "vector_deoxy_pearson": -0.001410359749570489,
+            "mean_channel_oxy_pearson": 0.003644282322663154,
+            "scalar_oxy_mean_pearson": 0.007456508930772543
+          },
+          "subject_adapted_25pct": {
+            "subjects": 30,
+            "vector_oxy_deoxy_pearson": -0.002108240034431219,
+            "vector_oxy_pearson": -0.0020832642912864685,
+            "vector_deoxy_pearson": -0.002201475203037262,
+            "mean_channel_oxy_pearson": 0.0038629123955615796,
+            "scalar_oxy_mean_pearson": 0.004536814987659454
+          },
+          "within_subject": {
+            "vector_oxy_deoxy_pearson": -0.0036225863732397556,
+            "vector_oxy_pearson": -0.003696875413879752,
+            "vector_deoxy_pearson": -0.003331530373543501,
+            "mean_channel_oxy_pearson": 0.009948952613437237,
+            "scalar_oxy_mean_pearson": -0.0053598517552018166
+          }
+        }
+      }
+    },
+    "4": {
+      "shape": {
+        "X": [
+          4292,
+          165
+        ],
+        "Y": [
+          4292,
+          96
+        ],
+        "subjects": 30,
+        "segments": 38
+      },
+      "alpha_results": {
+        "10.0": {
+          "cross_subject": {
+            "vector_oxy_deoxy_pearson": -0.004169594496488571,
+            "vector_oxy_pearson": -0.003659050678834319,
+            "vector_deoxy_pearson": -0.006090525537729263,
+            "mean_channel_oxy_pearson": 0.002272751577644764,
+            "scalar_oxy_mean_pearson": -0.00729538407176733
+          },
+          "subject_adapted_25pct": {
+            "subjects": 30,
+            "vector_oxy_deoxy_pearson": -0.004982535727322102,
+            "vector_oxy_pearson": -0.004850589204579592,
+            "vector_deoxy_pearson": -0.005480826832354069,
+            "mean_channel_oxy_pearson": -0.00012155211394807945,
+            "scalar_oxy_mean_pearson": -0.00614455109462142
+          },
+          "within_subject": {
+            "vector_oxy_deoxy_pearson": -0.00441931514069438,
+            "vector_oxy_pearson": -0.0038384271319955587,
+            "vector_deoxy_pearson": -0.0066973925568163395,
+            "mean_channel_oxy_pearson": -0.0005974377903233593,
+            "scalar_oxy_mean_pearson": -0.03935876116156578
+          }
+        },
+        "100.0": {
+          "cross_subject": {
+            "vector_oxy_deoxy_pearson": -0.0045599499717354774,
+            "vector_oxy_pearson": -0.004177911207079887,
+            "vector_deoxy_pearson": -0.005995612591505051,
+            "mean_channel_oxy_pearson": 0.004131836763311488,
+            "scalar_oxy_mean_pearson": -0.002970614470541477
+          },
+          "subject_adapted_25pct": {
+            "subjects": 30,
+            "vector_oxy_deoxy_pearson": -0.005898594856262207,
+            "vector_oxy_pearson": -0.00581909017637372,
+            "vector_deoxy_pearson": -0.006198972463607788,
+            "mean_channel_oxy_pearson": 0.002029254278265095,
+            "scalar_oxy_mean_pearson": -0.0007557608187198639
+          },
+          "within_subject": {
+            "vector_oxy_deoxy_pearson": -0.007632114924490452,
+            "vector_oxy_pearson": -0.007239125669002533,
+            "vector_deoxy_pearson": -0.009186484850943089,
+            "mean_channel_oxy_pearson": 0.005331781547890084,
+            "scalar_oxy_mean_pearson": -0.04126090183854103
+          }
+        },
+        "1000.0": {
+          "cross_subject": {
+            "vector_oxy_deoxy_pearson": -0.0032603596337139606,
+            "vector_oxy_pearson": -0.003101700684055686,
+            "vector_deoxy_pearson": -0.003854688722640276,
+            "mean_channel_oxy_pearson": 0.006133495631123272,
+            "scalar_oxy_mean_pearson": 0.0016833457630127668
+          },
+          "subject_adapted_25pct": {
+            "subjects": 30,
+            "vector_oxy_deoxy_pearson": -0.0037630849983543158,
+            "vector_oxy_pearson": -0.003480359446257353,
+            "vector_deoxy_pearson": -0.004827681463211775,
+            "mean_channel_oxy_pearson": 0.004803958184008176,
+            "scalar_oxy_mean_pearson": 0.006588997319340706
+          },
+          "within_subject": {
+            "vector_oxy_deoxy_pearson": -0.011281352490186691,
+            "vector_oxy_pearson": -0.011323453858494759,
+            "vector_deoxy_pearson": -0.011159735731780529,
+            "mean_channel_oxy_pearson": 0.01015914137527337,
+            "scalar_oxy_mean_pearson": -0.025112636387348175
+          }
+        },
+        "10000.0": {
+          "cross_subject": {
+            "vector_oxy_deoxy_pearson": -0.0005670665996149182,
+            "vector_oxy_pearson": -0.00046843744348734617,
+            "vector_deoxy_pearson": -0.0009398863185197115,
+            "mean_channel_oxy_pearson": 0.004692190477120069,
+            "scalar_oxy_mean_pearson": -0.007736573927104473
+          },
+          "subject_adapted_25pct": {
+            "subjects": 30,
+            "vector_oxy_deoxy_pearson": 0.00039992493111640215,
+            "vector_oxy_pearson": 0.0008864051778800786,
+            "vector_deoxy_pearson": -0.0014439568622037768,
+            "mean_channel_oxy_pearson": 0.0034788572520483285,
+            "scalar_oxy_mean_pearson": -0.0017338655889034271
+          },
+          "within_subject": {
+            "vector_oxy_deoxy_pearson": -0.013148421421647072,
+            "vector_oxy_pearson": -0.013642044737935066,
+            "vector_deoxy_pearson": -0.0112947141751647,
+            "mean_channel_oxy_pearson": 0.0011769549873861251,
+            "scalar_oxy_mean_pearson": -0.02016807720065117
+          }
+        }
+      }
+    },
+    "8": {
+      "shape": {
+        "X": [
+          2136,
+          165
+        ],
+        "Y": [
+          2136,
+          96
+        ],
+        "subjects": 30,
+        "segments": 38
+      },
+      "alpha_results": {
+        "10.0": {
+          "cross_subject": {
+            "vector_oxy_deoxy_pearson": -0.0025649627204984426,
+            "vector_oxy_pearson": -0.0033395495265722275,
+            "vector_deoxy_pearson": 0.00033714657183736563,
+            "mean_channel_oxy_pearson": -0.001577817223733291,
+            "scalar_oxy_mean_pearson": -0.03993816673755646
+          },
+          "subject_adapted_25pct": {
+            "subjects": 30,
+            "vector_oxy_deoxy_pearson": -0.003287308383733034,
+            "vector_oxy_pearson": -0.0035271598026156425,
+            "vector_deoxy_pearson": -0.0023916359059512615,
+            "mean_channel_oxy_pearson": -0.0053568309619246674,
+            "scalar_oxy_mean_pearson": -0.04080509394407272
+          },
+          "within_subject": {
+            "vector_oxy_deoxy_pearson": 0.007526613771915436,
+            "vector_oxy_pearson": 0.009316377341747284,
+            "vector_deoxy_pearson": 0.0007098909700289369,
+            "mean_channel_oxy_pearson": -0.005905668264366189,
+            "scalar_oxy_mean_pearson": 0.024006888270378113
+          }
+        },
+        "100.0": {
+          "cross_subject": {
+            "vector_oxy_deoxy_pearson": -0.006247282959520817,
+            "vector_oxy_pearson": -0.007731621153652668,
+            "vector_deoxy_pearson": -0.0007260739803314209,
+            "mean_channel_oxy_pearson": -0.0002754556286769609,
+            "scalar_oxy_mean_pearson": -0.061512671411037445
+          },
+          "subject_adapted_25pct": {
+            "subjects": 30,
+            "vector_oxy_deoxy_pearson": -0.0069054835475981236,
+            "vector_oxy_pearson": -0.0080755315721035,
+            "vector_deoxy_pearson": -0.002544834977015853,
+            "mean_channel_oxy_pearson": -0.0028175015710682296,
+            "scalar_oxy_mean_pearson": -0.05125971511006355
+          },
+          "within_subject": {
+            "vector_oxy_deoxy_pearson": -0.005650539882481098,
+            "vector_oxy_pearson": -0.004695599433034658,
+            "vector_deoxy_pearson": -0.00920907873660326,
+            "mean_channel_oxy_pearson": -0.008065606554737315,
+            "scalar_oxy_mean_pearson": 0.020343013107776642
+          }
+        },
+        "1000.0": {
+          "cross_subject": {
+            "vector_oxy_deoxy_pearson": -0.0072307889349758625,
+            "vector_oxy_pearson": -0.00902224238961935,
+            "vector_deoxy_pearson": -0.0005943756550550461,
+            "mean_channel_oxy_pearson": 0.0020652677436980107,
+            "scalar_oxy_mean_pearson": -0.06446261703968048
+          },
+          "subject_adapted_25pct": {
+            "subjects": 30,
+            "vector_oxy_deoxy_pearson": -0.007170190569013357,
+            "vector_oxy_pearson": -0.00871411245316267,
+            "vector_deoxy_pearson": -0.0014750987756997347,
+            "mean_channel_oxy_pearson": 0.00039312625691915554,
+            "scalar_oxy_mean_pearson": -0.04784952104091644
+          },
+          "within_subject": {
+            "vector_oxy_deoxy_pearson": -0.018644850701093674,
+            "vector_oxy_pearson": -0.01936139538884163,
+            "vector_deoxy_pearson": -0.01590035855770111,
+            "mean_channel_oxy_pearson": -0.011162408360784562,
+            "scalar_oxy_mean_pearson": -0.014299425296485424
+          }
+        },
+        "10000.0": {
+          "cross_subject": {
+            "vector_oxy_deoxy_pearson": -0.003934093285351992,
+            "vector_oxy_pearson": -0.0046812910586595535,
+            "vector_deoxy_pearson": -0.001112146652303636,
+            "mean_channel_oxy_pearson": -0.0002603836959072699,
+            "scalar_oxy_mean_pearson": -0.04367620125412941
+          },
+          "subject_adapted_25pct": {
+            "subjects": 30,
+            "vector_oxy_deoxy_pearson": -0.0036683171056210995,
+            "vector_oxy_pearson": -0.004273604601621628,
+            "vector_deoxy_pearson": -0.00143716880120337,
+            "mean_channel_oxy_pearson": -0.0031162133624699586,
+            "scalar_oxy_mean_pearson": -0.031336523592472076
+          },
+          "within_subject": {
+            "vector_oxy_deoxy_pearson": -0.024779532104730606,
+            "vector_oxy_pearson": -0.02706296555697918,
+            "vector_deoxy_pearson": -0.016081970185041428,
+            "mean_channel_oxy_pearson": -0.016811284993309528,
+            "scalar_oxy_mean_pearson": -0.040657155215740204
+          }
+        }
+      }
+    },
+    "16": {
+      "shape": {
+        "X": [
+          1060,
+          165
+        ],
+        "Y": [
+          1060,
+          96
+        ],
+        "subjects": 30,
+        "segments": 38
+      },
+      "alpha_results": {
+        "10.0": {
+          "cross_subject": {
+            "vector_oxy_deoxy_pearson": 0.012559168040752411,
+            "vector_oxy_pearson": 0.015269664116203785,
+            "vector_deoxy_pearson": 0.0021836243104189634,
+            "mean_channel_oxy_pearson": 0.017803085395523038,
+            "scalar_oxy_mean_pearson": 0.021839922294020653
+          },
+          "subject_adapted_25pct": {
+            "subjects": 30,
+            "vector_oxy_deoxy_pearson": 0.01473371870815754,
+            "vector_oxy_pearson": 0.017917899414896965,
+            "vector_deoxy_pearson": 0.002466375008225441,
+            "mean_channel_oxy_pearson": 0.013710721546279577,
+            "scalar_oxy_mean_pearson": 0.028093453496694565
+          },
+          "within_subject": {
+            "vector_oxy_deoxy_pearson": 0.009501789696514606,
+            "vector_oxy_pearson": 0.010368306189775467,
+            "vector_deoxy_pearson": 0.006628741044551134,
+            "mean_channel_oxy_pearson": 0.014173926496975279,
+            "scalar_oxy_mean_pearson": 0.011375844478607178
+          }
+        },
+        "100.0": {
+          "cross_subject": {
+            "vector_oxy_deoxy_pearson": 0.006217644549906254,
+            "vector_oxy_pearson": 0.008908236399292946,
+            "vector_deoxy_pearson": -0.004288969561457634,
+            "mean_channel_oxy_pearson": 0.024302621498160686,
+            "scalar_oxy_mean_pearson": 0.018081344664096832
+          },
+          "subject_adapted_25pct": {
+            "subjects": 30,
+            "vector_oxy_deoxy_pearson": 0.010065864771604538,
+            "vector_oxy_pearson": 0.012877200730144978,
+            "vector_deoxy_pearson": -0.001006749807856977,
+            "mean_channel_oxy_pearson": 0.019808137893657356,
+            "scalar_oxy_mean_pearson": 0.030746672302484512
+          },
+          "within_subject": {
+            "vector_oxy_deoxy_pearson": 0.006979584693908691,
+            "vector_oxy_pearson": 0.007796367630362511,
+            "vector_deoxy_pearson": 0.004539852496236563,
+            "mean_channel_oxy_pearson": 0.0060773141085519455,
+            "scalar_oxy_mean_pearson": 0.03827735036611557
+          }
+        },
+        "1000.0": {
+          "cross_subject": {
+            "vector_oxy_deoxy_pearson": 0.0008789899293333292,
+            "vector_oxy_pearson": 0.003831838723272085,
+            "vector_deoxy_pearson": -0.010875299572944641,
+            "mean_channel_oxy_pearson": 0.027689409190012764,
+            "scalar_oxy_mean_pearson": 0.02087996155023575
+          },
+          "subject_adapted_25pct": {
+            "subjects": 30,
+            "vector_oxy_deoxy_pearson": 0.008179944939911366,
+            "vector_oxy_pearson": 0.011675076559185982,
+            "vector_deoxy_pearson": -0.005860494449734688,
+            "mean_channel_oxy_pearson": 0.023009322428454954,
+            "scalar_oxy_mean_pearson": 0.03865378350019455
+          },
+          "within_subject": {
+            "vector_oxy_deoxy_pearson": -0.012467660009860992,
+            "vector_oxy_pearson": -0.014605237171053886,
+            "vector_deoxy_pearson": -0.0037836534902453423,
+            "mean_channel_oxy_pearson": -0.022975653384492034,
+            "scalar_oxy_mean_pearson": -0.004897662904113531
+          }
+        },
+        "10000.0": {
+          "cross_subject": {
+            "vector_oxy_deoxy_pearson": -0.0011842558160424232,
+            "vector_oxy_pearson": 0.001176625955849886,
+            "vector_deoxy_pearson": -0.010797694325447083,
+            "mean_channel_oxy_pearson": 0.01460206046855698,
+            "scalar_oxy_mean_pearson": 0.014279227703809738
+          },
+          "subject_adapted_25pct": {
+            "subjects": 30,
+            "vector_oxy_deoxy_pearson": 0.005584707483649254,
+            "vector_oxy_pearson": 0.008815193548798561,
+            "vector_deoxy_pearson": -0.007845422253012657,
+            "mean_channel_oxy_pearson": 0.00700671729282476,
+            "scalar_oxy_mean_pearson": 0.03515291213989258
+          },
+          "within_subject": {
+            "vector_oxy_deoxy_pearson": -0.03274548798799515,
+            "vector_oxy_pearson": -0.03744447976350784,
+            "vector_deoxy_pearson": -0.014680087566375732,
+            "mean_channel_oxy_pearson": -0.03230600919778226,
+            "scalar_oxy_mean_pearson": -0.055060192942619324
+          }
+        }
+      }
+    },
+    "32": {
+      "shape": {
+        "X": [
+          523,
+          165
+        ],
+        "Y": [
+          523,
+          96
+        ],
+        "subjects": 30,
+        "segments": 38
+      },
+      "alpha_results": {
+        "10.0": {
+          "cross_subject": {
+            "vector_oxy_deoxy_pearson": 0.012257581576704979,
+            "vector_oxy_pearson": 0.017193295061588287,
+            "vector_deoxy_pearson": -0.007179921492934227,
+            "mean_channel_oxy_pearson": 0.016315233913095046,
+            "scalar_oxy_mean_pearson": 0.013873465359210968
+          },
+          "subject_adapted_25pct": {
+            "subjects": 30,
+            "vector_oxy_deoxy_pearson": 0.006060169078409672,
+            "vector_oxy_pearson": 0.00996425747871399,
+            "vector_deoxy_pearson": -0.0094370786100626,
+            "mean_channel_oxy_pearson": 0.00791489422772429,
+            "scalar_oxy_mean_pearson": 0.02393476851284504
+          },
+          "within_subject": {
+            "vector_oxy_deoxy_pearson": -0.02254394441843033,
+            "vector_oxy_pearson": -0.019955657422542572,
+            "vector_deoxy_pearson": -0.03260387107729912,
+            "mean_channel_oxy_pearson": -0.007173039251938462,
+            "scalar_oxy_mean_pearson": 0.0271390862762928
+          }
+        },
+        "100.0": {
+          "cross_subject": {
+            "vector_oxy_deoxy_pearson": 0.006620537489652634,
+            "vector_oxy_pearson": 0.01328841969370842,
+            "vector_deoxy_pearson": -0.020126966759562492,
+            "mean_channel_oxy_pearson": 0.01262379327575521,
+            "scalar_oxy_mean_pearson": 0.029284227639436722
+          },
+          "subject_adapted_25pct": {
+            "subjects": 30,
+            "vector_oxy_deoxy_pearson": 0.008942700922489166,
+            "vector_oxy_pearson": 0.014540445059537888,
+            "vector_deoxy_pearson": -0.013832850381731987,
+            "mean_channel_oxy_pearson": 0.0051540645605806885,
+            "scalar_oxy_mean_pearson": 0.05124970152974129
+          },
+          "within_subject": {
+            "vector_oxy_deoxy_pearson": -0.03453623130917549,
+            "vector_oxy_pearson": -0.03730792924761772,
+            "vector_deoxy_pearson": -0.023417333140969276,
+            "mean_channel_oxy_pearson": -0.033319165309270225,
+            "scalar_oxy_mean_pearson": 0.021976487711071968
+          }
+        },
+        "1000.0": {
+          "cross_subject": {
+            "vector_oxy_deoxy_pearson": -0.0006605754606425762,
+            "vector_oxy_pearson": 0.005416317842900753,
+            "vector_deoxy_pearson": -0.025321954861283302,
+            "mean_channel_oxy_pearson": 0.0035768578921609637,
+            "scalar_oxy_mean_pearson": -0.005540209822356701
+          },
+          "subject_adapted_25pct": {
+            "subjects": 30,
+            "vector_oxy_deoxy_pearson": 0.004421444144099951,
+            "vector_oxy_pearson": 0.010169616900384426,
+            "vector_deoxy_pearson": -0.01922447234392166,
+            "mean_channel_oxy_pearson": -0.004587173883919604,
+            "scalar_oxy_mean_pearson": 0.030734645202755928
+          },
+          "within_subject": {
+            "vector_oxy_deoxy_pearson": -0.046020328998565674,
+            "vector_oxy_pearson": -0.05288766324520111,
+            "vector_deoxy_pearson": -0.018597764894366264,
+            "mean_channel_oxy_pearson": -0.056521121955787144,
+            "scalar_oxy_mean_pearson": -0.034871362149715424
+          }
+        },
+        "10000.0": {
+          "cross_subject": {
+            "vector_oxy_deoxy_pearson": 0.002350522205233574,
+            "vector_oxy_pearson": 0.005905089899897575,
+            "vector_deoxy_pearson": -0.012352499179542065,
+            "mean_channel_oxy_pearson": -0.023314414749620482,
+            "scalar_oxy_mean_pearson": -0.05874550715088844
+          },
+          "subject_adapted_25pct": {
+            "subjects": 30,
+            "vector_oxy_deoxy_pearson": 0.002227614400908351,
+            "vector_oxy_pearson": 0.005306031554937363,
+            "vector_deoxy_pearson": -0.01077190786600113,
+            "mean_channel_oxy_pearson": -0.035627319322278105,
+            "scalar_oxy_mean_pearson": -0.020978398621082306
+          },
+          "within_subject": {
+            "vector_oxy_deoxy_pearson": -0.04114806652069092,
+            "vector_oxy_pearson": -0.047614336013793945,
+            "vector_deoxy_pearson": -0.01587698794901371,
+            "mean_channel_oxy_pearson": -0.03712245604644219,
+            "scalar_oxy_mean_pearson": -0.048105206340551376
+          }
+        }
+      }
+    }
+  }
+}
