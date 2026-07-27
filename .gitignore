@@ -23,3 +23,16 @@ mendeley_simple_eeg_fnirs_baseline.py
 # OS
 .DS_Store
 Thumbs.db
+
+# Generated data caches (GB-scale, regenerable from dataset/ via the loaders)
+neurovascnet_outputs/cache/
+neurovascnet_outputs/cache_v3/
+neurovascnet_outputs/cache_v3_bp/
+neurovascnet_outputs/cache_v4/
+neurovascnet_outputs_v2/
+*.npz
+*.pt
+
+# QC audit bulk artifacts (regenerable via qc/run_qc.py); tables + report are kept
+qc_outputs/arrays/
+qc_outputs/figures/
