@@ -1,0 +1,3 @@
+,modality,comparison,montage_alignment,internal_r,external_r,p,drop_pct,external_ceiling,pct_of_external_ceiling,subjects,trials
+HEFMI,fnirs,pooled to mean HbO / mean HbR (montages differ),"spherical-spline interpolation, 32 -> 30 ch",0.1636455878141955,0.007645579963595804,0.056943056943056944,95.32796449588568,0.2882,2.65,37,2940
+ds002739,fmri,ROI by ROI (same atlas),channels paired BY INDEX (no electrode names) -- weak,0.03476390393441519,0.00010608891952346554,0.4805194805194805,99.69483024770862,0.3864,0.03,24,4678

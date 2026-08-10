@@ -1,0 +1,5 @@
+protocol,r
+1. trial-level split (subject on both sides),0.29739540422293353
+2. + subject-wise CV,0.16779824429922777
+3. + no-EEG baseline made explicit,0.053277384231285696
+4. + subject demeaning  <-- HONEST,0.1636455878141955

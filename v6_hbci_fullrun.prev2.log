@@ -1,0 +1,33 @@
+START 2026-08-09 17:20:39  NeuroVascNet_v6_hBCI_trains.ipynb
+23 code cells
+
+=== cell 0/22 OK  6.2s  (total 0.1 min)
+=== cell 1/22 OK  0.0s  (total 0.1 min)
+numpy 1.26.4 | torch 2.7.1+cu118 | device cuda
+
++==============================================================+
+|                       RUNNING: FULL RUN                      |
+|  All subjects, 30 epochs, 1000 permutations.                 |
+|  These are the numbers you report.                           |
++==============================================================+
+=== cell 2/22 OK  0.0s  (total 0.1 min)
+fNIRS configuration: hBCI trains, HEFMI validates
+
+  [ok  ] TRAIN    fNIRS  hBCI
+  [ok  ] TRAIN    fMRI   ds002336
+  [ok  ] EXTERNAL fNIRS  HEFMI
+  [ok  ] EXTERNAL fMRI   ds002739
+  [ok  ] CLINICAL        ICH vs controls
+
+outputs -> G:\research_bio_medical\neurovascnet_v6_outputs
+=== cell 3/22 OK  0.0s  (total 0.1 min)
+=== cell 4/22 OK  0.0s  (total 0.1 min)
+=== cell 5/22 OK  0.0s  (total 0.1 min)
+=== cell 6/22 OK  0.0s  (total 0.1 min)
+=== cell 7/22 OK  0.0s  (total 0.1 min)
+loading TRAIN FNIRS (hbci) ...
+forrtl: error (200): program aborting due to window-CLOSE event
+Image              PC                Routine            Line        Source             
+KERNELBASE.dll     00007FFDF3023E3D  Unknown               Unknown  Unknown
+KERNEL32.DLL       00007FFDF3E7E957  Unknown               Unknown  Unknown
+ntdll.dll          00007FFDF56EAD6C  Unknown               Unknown  Unknown
