@@ -1,7 +1,7 @@
-START 2026-08-10 01:40:38  NeuroVascNet_v6_hBCI_trains.ipynb
+START 2026-08-24 20:40:22  NeuroVascNet_v6_hBCI_trains.ipynb
 23 code cells
 
-=== cell 0/22 OK  4.0s  (total 0.1 min)
+=== cell 0/22 OK  5.9s  (total 0.1 min)
 === cell 1/22 OK  0.0s  (total 0.1 min)
 numpy 1.26.4 | torch 2.7.1+cu118 | device cuda
 
@@ -41,15 +41,15 @@ loading EXTERNAL FNIRS (hefmi) ...
    montage: 32 sources, 30 detectors, 90 S-D pairs, [730, 850] nm (cm)
 loading EXTERNAL fMRI (ds002739) ...
 
-loaded 4 datasets in 12.1 min
-=== cell 8/22 OK  723.4s  (total 12.1 min)
+loaded 4 datasets in 13.2 min
+=== cell 8/22 OK  790.5s  (total 13.3 min)
 reliability = does the target reproduce itself; ceiling = sqrt(reliability)
 hbo_hbr     = must be NEGATIVE for a real evoked response
   !! HEFMI: HbO/HbR is +0.920 -- systemic-dominated, not brain-driven
-=== cell 9/22 OK  13.0s  (total 12.3 min)
-=== cell 10/22 OK  0.0s  (total 12.3 min)
-=== cell 11/22 OK  0.0s  (total 12.3 min)
-=== cell 12/22 OK  0.0s  (total 12.3 min)
+=== cell 9/22 OK  13.4s  (total 13.5 min)
+=== cell 10/22 OK  0.0s  (total 13.5 min)
+=== cell 11/22 OK  0.0s  (total 13.5 min)
+=== cell 12/22 OK  0.0s  (total 13.5 min)
 training on: TU Berlin hBCI (MI+MA) (fnirs), ds002336 (fmri)
 
 --- cross-subject CV, evaluating on TU Berlin hBCI (MI+MA)
@@ -68,7 +68,7 @@ training on: TU Berlin hBCI (MI+MA) (fnirs), ds002336 (fmri)
   fold 4: raw +0.1623 | no-EEG +0.1767 | demeaned +0.0386 | subject x task +0.0386
     demeaned r = +0.0348   p = 0.0020
 
-=== cell 13/22 OK  621.9s  (total 22.7 min)
+=== cell 13/22 OK  777.9s  (total 26.5 min)
   seed 0: cross-modal +0.1535 | single +0.1825 | mean per-subject diff -0.0290
   seed 1: cross-modal +0.1744 | single +0.1783 | mean per-subject diff -0.0039
   seed 2: cross-modal +0.2050 | single +0.1761 | mean per-subject diff +0.0289
@@ -80,10 +80,32 @@ training on: TU Berlin hBCI (MI+MA) (fnirs), ds002336 (fmri)
   subjects favouring cross-modal  3/5
   VERDICT: NOT CONFIRMED
   (pooled-by-seed difference, n = 3 seeds: -0.0013)
-=== cell 14/22 OK  255.7s  (total 27.0 min)
+=== scored on the fNIRS cohort ===
+  single                 seed 0: r = +0.1633 over 5 folds
+  single                 seed 1: r = +0.1735 over 5 folds
+  joint                  seed 0: r = +0.1631 over 5 folds
+  joint                  seed 1: r = +0.1542 over 5 folds
+  joint_shuffled         seed 0: r = +0.1624 over 5 folds
+  joint_shuffled         seed 1: r = +0.1592 over 5 folds
+
+=== scored on the fMRI cohort ===
+  single                 seed 0: r = +0.0662 over 5 folds
+  single                 seed 1: r = +0.0516 over 5 folds
+  joint                  seed 0: r = +0.0349 over 5 folds
+  joint                  seed 1: r = +0.0583 over 5 folds
+
+  [fnirs] joint - single               -0.0090  CI [-0.0179, -0.0004]  p=0.0575   13/29
+  [fnirs] joint - joint_shuffled       -0.0018  CI [-0.0084, +0.0047]  p=0.6064   14/29
+  [fnirs] joint_shuffled - single      -0.0073  CI [-0.0157, +0.0013]  p=0.1101   11/29
+  [fmri ] joint - single               -0.0125  CI [-0.0248, +0.0005]  p=0.1035   2/10
+
+real fMRI targets vs shuffled: -0.0018 (NOT distinguishable)
+shuffled vs single-modality:   -0.0073 (within noise, as expected)
+fMRI cohort, joint - fMRI-only: -0.0125 (NEGATIVE transfer)
+=== cell 14/22 OK  2897.7s  (total 74.8 min)
 
 within-subject r = +0.0975   cross-subject r = +0.1636
-=== cell 15/22 OK  72.0s  (total 28.2 min)
+=== cell 15/22 OK  84.1s  (total 76.2 min)
 
 BOUNDED head:
   widening the window moved the delay by 1.94 s,
@@ -98,7 +120,7 @@ FREE head (unbounded, full lag search, no clamp):
 VERDICT: FAILS
   freed of the bound, the delay leaves the physiological range
   delays barely differ between people -> a constant, not a marker
-=== cell 16/22 OK  175.7s  (total 31.1 min)
+=== cell 16/22 OK  221.3s  (total 79.8 min)
 training the final joint model on all training data ...
    epoch  10  pearson=0.7536  hetero=1.3557  smooth=0.1883
    epoch  20  pearson=0.5612  hetero=0.2475  smooth=0.2355
@@ -134,10 +156,11 @@ EXTERNAL VALIDATION: FAILS
   HEFMI              r = +0.0076  p = 0.0569  (not significant)
   ds002739           r = +0.0001  p = 0.4805  (not significant)
   the effect does not retain significance on unseen cohorts
-=== cell 17/22 OK  100.4s  (total 32.8 min)
+=== cell 17/22 OK  105.8s  (total 81.6 min)
 accuracy rises as coverage falls: False  -> gate is NOT informative
-corr(uncertainty, error) = -0.0135   [normalised MSE]
-                           -0.0746   [single-trial correlation -- noisier]
+corr(uncertainty, error) = -0.0135   [full waveform, normalised MSE]
+                           -0.0746   [full waveform, single-trial correlation]
+                           -0.0580   [COMPACT response: HbO/HbR mean, peak, trough]
   -> no useful ranking
 
 ECE 0.2194 -> 0.0277 (Platt scaling, held out)
@@ -145,15 +168,15 @@ ECE 0.2194 -> 0.0277 (Platt scaling, held out)
 
 RELIABILITY GATING: FAILS
   accuracy does not improve as low-confidence trials are dropped
-=== cell 18/22 OK  65.4s  (total 33.9 min)
+=== cell 18/22 OK  74.7s  (total 82.9 min)
   vs SHUFFLED-target control    +0.0059
   vs random init (untrained)    -0.0135
   vs raw band-power             +0.0389
 VERDICT: FAILS
-=== cell 19/22 OK  180.5s  (total 36.9 min)
+=== cell 19/22 OK  200.0s  (total 86.2 min)
 
 inflation from protocol alone: 1.82x (+0.2974 -> +0.1636)
-=== cell 20/22 OK  28.0s  (total 37.3 min)
+=== cell 20/22 OK  28.8s  (total 86.7 min)
 clinical data: G:\research_bio_medical\dataset\HEFMI-ICH EEG+FNRI
   98 recordings -> 37 people (17 controls, 20 patients)
 
@@ -161,7 +184,7 @@ clinical data: G:\research_bio_medical\dataset\HEFMI-ICH EEG+FNRI
 Group difference in: hbo_hbr
 Artefact controls do NOT differ -> the difference is not
 explained by movement or signal amplitude.
-=== cell 21/22 OK  155.5s  (total 39.9 min)
+=== cell 21/22 OK  183.0s  (total 89.7 min)
 ==================================================================
 SUMMARY OF FINDINGS
 ==================================================================
@@ -264,6 +287,7 @@ SUMMARY OF FINDINGS
     "calibrates": true,
     "corr_unc_err": -0.0135,
     "corr_unc_err_trialcorr": -0.0746,
+    "corr_unc_err_compact": -0.058,
     "ece_before": 0.2194,
     "ece_after": 0.0277,
     "method": "Platt scaling, fit/score split",
@@ -372,7 +396,7 @@ SUMMARY OF FINDINGS
 }
 
 outputs -> G:\research_bio_medical\neurovascnet_v6_outputs
-=== cell 22/22 OK  0.0s  (total 39.9 min)
+=== cell 22/22 OK  0.0s  (total 89.7 min)
 
-ALL CELLS COMPLETED in 39.9 min
-END 2026-08-10 02:20:33
+ALL CELLS COMPLETED in 89.7 min
+END 2026-08-24 22:10:05

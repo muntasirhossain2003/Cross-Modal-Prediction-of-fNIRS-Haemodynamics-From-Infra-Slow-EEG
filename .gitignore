@@ -58,3 +58,7 @@ dataset_archives/
 # Notebook run outputs (CSVs are small but the caches are not)
 neurovascnet_outputs_local/
 outputs/
+.claude/settings.local.json
+
+# Report build intermediates (regenerate with scripts/build_report_pdf.py)
+report_build/

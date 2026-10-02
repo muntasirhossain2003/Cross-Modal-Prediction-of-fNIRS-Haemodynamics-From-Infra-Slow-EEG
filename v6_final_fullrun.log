@@ -1,0 +1,129 @@
+START 2026-08-29 00:05:51  NeuroVascNet_FINAL.ipynb
+23 code cells
+
+=== cell 0/22 OK  2.0s  (total 0.0 min)
+=== cell 1/22 OK  0.0s  (total 0.0 min)
+numpy 1.26.4 | torch 2.7.1+cu118 | device cuda
+
++==============================================================+
+|                       RUNNING: FULL RUN                      |
+|  All subjects, 30 epochs, 1000 permutations.                 |
+|  These are the numbers you report.                           |
++==============================================================+
+=== cell 2/22 OK  0.0s  (total 0.0 min)
+fNIRS configuration: hBCI trains, HEFMI validates
+fMRI  configuration: ds002336 trains, ds002739 validates
+fMRI  target       : motor (sensorimotor subset)
+
+  [ok  ] TRAIN    fNIRS  hBCI
+  [ok  ] TRAIN    fMRI   ds002336
+  [ok  ] EXTERNAL fNIRS  HEFMI
+  [ok  ] EXTERNAL fMRI   ds002739
+  [ok  ] CLINICAL        ICH vs controls
+
+outputs -> G:\research_bio_medical\neurovascnet_v6_outputs
+
+environment
+  python  3.12.0
+  numpy   1.26.4   scipy 1.16.1
+  torch   2.7.1+cu118   device cuda
+  gpu     NVIDIA GeForce RTX 3060 Ti
+  seed    1337   cudnn.deterministic=True  benchmark=False
+=== cell 3/22 OK  0.0s  (total 0.0 min)
+=== cell 4/22 OK  0.0s  (total 0.0 min)
+=== cell 5/22 OK  0.0s  (total 0.0 min)
+=== cell 6/22 OK  0.0s  (total 0.0 min)
+=== cell 7/22 OK  0.0s  (total 0.0 min)
+loading TRAIN FNIRS (hbci) ...
+   pooled MI (1740 trials) + MA (1740 trials) = 3480 trials from 29 people
+loading TRAIN FMRI (ds002336) ...
+[fetch_atlas_harvard_oxford] Dataset directory found: 
+C:\Users\munta\nilearn_data\fsl
+loading EXTERNAL FNIRS (hefmi) ...
+   montage: 32 sources, 30 detectors, 90 S-D pairs, [730, 850] nm (cm)
+loading EXTERNAL FMRI (ds002739) ...
+
+loaded 4 datasets in 12.6 min
+=== cell 8/22 OK  754.8s  (total 12.6 min)
+   figure -> neurovascnet_v6_outputs\figures\fig1_target_quality.png
+   A model can never exceed the ceiling of the target it is scored against.
+reliability = does the target reproduce itself; ceiling = sqrt(reliability)
+hbo_hbr     = must be NEGATIVE for a real evoked response
+  !! HEFMI: HbO/HbR is +0.920 -- systemic-dominated, not brain-driven
+=== cell 9/22 OK  13.4s  (total 12.8 min)
+=== cell 10/22 OK  0.0s  (total 12.8 min)
+=== cell 11/22 OK  0.0s  (total 12.8 min)
+=== cell 12/22 OK  0.0s  (total 12.8 min)
+training on: TU Berlin hBCI (MI+MA) (fnirs), ds002336 (fmri)
+
+--- cross-subject CV, evaluating on TU Berlin hBCI (MI+MA)
+  fold 0: raw +0.1441 | no-EEG +0.0743 | demeaned +0.1343 | subject x task +0.1353
+  fold 1: raw +0.1424 | no-EEG +0.0578 | demeaned +0.1344 | subject x task +0.1351
+  fold 2: raw +0.2361 | no-EEG +0.0324 | demeaned +0.2402 | subject x task +0.2351
+  fold 3: raw +0.1530 | no-EEG +0.0610 | demeaned +0.1391 | subject x task +0.1391
+  fold 4: raw +0.1466 | no-EEG +0.0410 | demeaned +0.1437 | subject x task +0.1430
+    demeaned r = +0.1580   p = 0.0010
+
+   figure -> neurovascnet_v6_outputs\figures\fig2_cross_subject_cv.png
+   Subject demeaning drives a constant predictor to zero, so any gap is EEG.
+--- cross-subject CV, evaluating on ds002336
+  fold 0: raw +0.2491 | no-EEG +0.2508 | demeaned +0.0376 | subject x task +0.0376
+  fold 1: raw +0.2356 | no-EEG +0.2209 | demeaned +0.1173 | subject x task +0.1173
+  fold 2: raw +0.2167 | no-EEG +0.2783 | demeaned +0.0399 | subject x task +0.0399
+  fold 3: raw +0.2343 | no-EEG +0.1710 | demeaned +0.0915 | subject x task +0.0915
+  fold 4: raw +0.1944 | no-EEG +0.2335 | demeaned +0.0251 | subject x task +0.0251
+    demeaned r = +0.0638   p = 0.0010
+
+   figure -> neurovascnet_v6_outputs\figures\fig2_cross_subject_cv.png
+   Subject demeaning drives a constant predictor to zero, so any gap is EEG.
+=== cell 13/22 OK  647.6s  (total 23.6 min)
+  seed 0: cross-modal +0.1658 | single +0.1825 | mean per-subject diff -0.0167
+  seed 1: cross-modal +0.1547 | single +0.1783 | mean per-subject diff -0.0236
+  seed 2: cross-modal +0.1626 | single +0.1761 | mean per-subject diff -0.0135
+
+  SUBJECT-LEVEL (n = 5 people, seeds averaged within subject)
+  mean per-subject difference -0.0179
+  95% CI (subject bootstrap)  [-0.0353, -0.0003]
+  sign-flip p                 0.2403
+  subjects favouring cross-modal  1/5
+  VERDICT: NOT CONFIRMED
+  (pooled-by-seed difference, n = 3 seeds: -0.0179)
+=== scored on the fNIRS cohort ===
+  single                 seed 0: r = +0.1633 over 5 folds
+  single                 seed 1: r = +0.1735 over 5 folds
+  joint                  seed 0: r = +0.1583 over 5 folds
+  joint                  seed 1: r = +0.1624 over 5 folds
+  joint_shuffled         seed 0: r = +0.1539 over 5 folds
+  joint_shuffled         seed 1: r = +0.1552 over 5 folds
+
+=== scored on the fMRI cohort ===
+  single                 seed 0: r = +0.0621 over 5 folds
+  single                 seed 1: r = +0.1003 over 5 folds
+  joint                  seed 0: r = +0.0623 over 5 folds
+  joint                  seed 1: r = +0.0753 over 5 folds
+
+  [fnirs] joint - single               -0.0072  CI [-0.0172, +0.0029]  p=0.1775   11/29
+  [fnirs] joint - joint_shuffled       +0.0060  CI [-0.0022, +0.0148]  p=0.1841   19/29
+  [fnirs] joint_shuffled - single      -0.0132  CI [-0.0203, -0.0058]  p=0.0020*  6/29
+  [fmri ] joint - single               -0.0117  CI [-0.0364, +0.0144]  p=0.4089   4/10
+
+real fMRI targets vs shuffled: +0.0060 (NOT distinguishable)
+shuffled vs single-modality:   -0.0132 (extra training alone shifts it)
+
+=== loss-weight grid search (blueprint 7.6) ===
+  selection split: 5 validation subjects, 24 for training
+  w_fmri 1.00   joint +0.1554  single +0.1473  diff +0.0081
+  w_fmri 0.50   joint +0.1512  single +0.1473  diff +0.0040
+  w_fmri 0.25   joint +0.1392  single +0.1473  diff -0.0081
+  w_fmri 0.10   joint +0.1278  single +0.1473  diff -0.0195
+
+  selected w_fmri = 1.0 (best on VALIDATION subjects)
+
+=== claim 1 re-scored at w_fmri = 1.0 ===
+  single                 seed 0: r = +0.1633 over 5 folds
+  single                 seed 1: r = +0.1735 over 5 folds
+forrtl: error (200): program aborting due to window-CLOSE event
+Image              PC                Routine            Line        Source             
+KERNELBASE.dll     00007FFA5BBA3BDD  Unknown               Unknown  Unknown
+KERNEL32.DLL       00007FFA5C55CCB7  Unknown               Unknown  Unknown
+ntdll.dll          00007FFA5E68AD6C  Unknown               Unknown  Unknown

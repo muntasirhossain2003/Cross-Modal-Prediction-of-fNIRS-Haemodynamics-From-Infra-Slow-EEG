@@ -1,0 +1,437 @@
+START 2026-08-27 00:57:12  NeuroVascNet_FINAL.ipynb
+23 code cells
+
+=== cell 0/22 OK  11.7s  (total 0.2 min)
+=== cell 1/22 OK  0.0s  (total 0.2 min)
+numpy 1.26.4 | torch 2.7.1+cu118 | device cuda
+
++==============================================================+
+|                       RUNNING: FULL RUN                      |
+|  All subjects, 30 epochs, 1000 permutations.                 |
+|  These are the numbers you report.                           |
++==============================================================+
+=== cell 2/22 OK  0.0s  (total 0.2 min)
+fNIRS configuration: hBCI trains, HEFMI validates
+fMRI  configuration: ds002739 trains, ds002336 validates
+
+  [ok  ] TRAIN    fNIRS  hBCI
+  [ok  ] TRAIN    fMRI   ds002739
+  [ok  ] EXTERNAL fNIRS  HEFMI
+  [ok  ] EXTERNAL fMRI   ds002336
+  [ok  ] CLINICAL        ICH vs controls
+
+outputs -> G:\research_bio_medical\neurovascnet_v6_outputs
+
+environment
+  python  3.12.0
+  numpy   1.26.4   scipy 1.16.1
+  torch   2.7.1+cu118   device cuda
+  gpu     NVIDIA GeForce RTX 3060 Ti
+  seed    1337   cudnn.deterministic=True  benchmark=False
+=== cell 3/22 OK  0.0s  (total 0.2 min)
+=== cell 4/22 OK  0.0s  (total 0.2 min)
+=== cell 5/22 OK  0.0s  (total 0.2 min)
+=== cell 6/22 OK  0.0s  (total 0.2 min)
+=== cell 7/22 OK  0.0s  (total 0.2 min)
+loading TRAIN FNIRS (hbci) ...
+   pooled MI (1740 trials) + MA (1740 trials) = 3480 trials from 29 people
+loading TRAIN FMRI (ds002739) ...
+[fetch_atlas_harvard_oxford] Dataset directory found: 
+C:\Users\munta\nilearn_data\fsl
+loading EXTERNAL FNIRS (hefmi) ...
+   montage: 32 sources, 30 detectors, 90 S-D pairs, [730, 850] nm (cm)
+loading EXTERNAL FMRI (ds002336) ...
+
+loaded 4 datasets in 13.5 min
+=== cell 8/22 OK  808.0s  (total 13.7 min)
+reliability = does the target reproduce itself; ceiling = sqrt(reliability)
+hbo_hbr     = must be NEGATIVE for a real evoked response
+  !! HEFMI: HbO/HbR is +0.920 -- systemic-dominated, not brain-driven
+=== cell 9/22 OK  15.4s  (total 13.9 min)
+=== cell 10/22 OK  0.0s  (total 13.9 min)
+=== cell 11/22 OK  0.0s  (total 13.9 min)
+=== cell 12/22 OK  0.0s  (total 13.9 min)
+training on: TU Berlin hBCI (MI+MA) (fnirs), ds002739 (fmri)
+
+--- cross-subject CV, evaluating on TU Berlin hBCI (MI+MA)
+  fold 0: raw +0.1629 | no-EEG +0.0743 | demeaned +0.1555 | subject x task +0.1584
+  fold 1: raw +0.1647 | no-EEG +0.0578 | demeaned +0.1525 | subject x task +0.1531
+  fold 2: raw +0.2146 | no-EEG +0.0324 | demeaned +0.2146 | subject x task +0.2084
+  fold 3: raw +0.1493 | no-EEG +0.0610 | demeaned +0.1407 | subject x task +0.1373
+  fold 4: raw +0.1507 | no-EEG +0.0410 | demeaned +0.1510 | subject x task +0.1508
+    demeaned r = +0.1620   p = 0.0010
+
+--- cross-subject CV, evaluating on ds002739
+  fold 0: raw -0.0020 | no-EEG +0.0224 | demeaned -0.0005 | subject x task -0.0005
+  fold 1: raw +0.0116 | no-EEG +0.0184 | demeaned +0.0063 | subject x task +0.0063
+  fold 2: raw +0.0004 | no-EEG +0.0106 | demeaned -0.0039 | subject x task -0.0039
+  fold 3: raw -0.0007 | no-EEG +0.0140 | demeaned -0.0028 | subject x task -0.0028
+  fold 4: raw +0.0032 | no-EEG +0.0163 | demeaned +0.0016 | subject x task +0.0016
+    demeaned r = +0.0001   p = 0.4895
+
+=== cell 13/22 OK  1065.1s  (total 31.7 min)
+  seed 0: cross-modal +0.1658 | single +0.1825 | mean per-subject diff -0.0167
+  seed 1: cross-modal +0.1744 | single +0.1783 | mean per-subject diff -0.0039
+  seed 2: cross-modal +0.1670 | single +0.1761 | mean per-subject diff -0.0091
+
+  SUBJECT-LEVEL (n = 5 people, seeds averaged within subject)
+  mean per-subject difference -0.0099
+  95% CI (subject bootstrap)  [-0.0350, +0.0247]
+  sign-flip p                 0.6257
+  subjects favouring cross-modal  2/5
+  VERDICT: NOT CONFIRMED
+  (pooled-by-seed difference, n = 3 seeds: -0.0099)
+=== scored on the fNIRS cohort ===
+  single                 seed 0: r = +0.1633 over 5 folds
+  single                 seed 1: r = +0.1735 over 5 folds
+  joint                  seed 0: r = +0.1629 over 5 folds
+  joint                  seed 1: r = +0.1533 over 5 folds
+  joint_shuffled         seed 0: r = +0.1561 over 5 folds
+  joint_shuffled         seed 1: r = +0.1672 over 5 folds
+
+=== scored on the fMRI cohort ===
+  single                 seed 0: r = -0.0023 over 5 folds
+  single                 seed 1: r = -0.0021 over 5 folds
+  joint                  seed 0: r = +0.0001 over 5 folds
+  joint                  seed 1: r = -0.0029 over 5 folds
+
+  [fnirs] joint - single               -0.0097  CI [-0.0211, +0.0023]  p=0.1183   9/29
+  [fnirs] joint - joint_shuffled       -0.0034  CI [-0.0120, +0.0066]  p=0.5296   9/29
+  [fnirs] joint_shuffled - single      -0.0064  CI [-0.0151, +0.0038]  p=0.2102   9/29
+  [fmri ] joint - single               +0.0008  CI [-0.0030, +0.0048]  p=0.7156   13/24
+
+real fMRI targets vs shuffled: -0.0034 (NOT distinguishable)
+shuffled vs single-modality:   -0.0064 (within noise, as expected)
+
+=== bottleneck sweep: joint vs single at each trunk width ===
+  width 1024  single   r = +0.1804
+  width 1024  joint    r = +0.1701
+  width  256  single   r = +0.1678
+  width  256  joint    r = +0.1547
+  width   64  single   r = +0.1640
+  width   64  joint    r = +0.1705
+  width   16  single   r = +0.1505
+  width   16  joint    r = +0.1194
+
+  best joint-single gap +0.0065 at width 64
+  -> cross-modal supervision is inert at every width tested
+fMRI cohort, joint - fMRI-only: +0.0008 (no negative transfer)
+=== cell 14/22 OK  5471.2s  (total 122.9 min)
+
+within-subject r = +0.0975   cross-subject r = +0.1620
+=== cell 15/22 OK  79.0s  (total 124.2 min)
+measuring the delay model-free (EEG beta envelope vs HbO) ...
+
+  people with repeat sessions  36  (2.69 each)
+  mean delay                   6.39 s   INSIDE the 2-8 s band
+  between-subject SD           1.063 s
+  test-retest ICC(2,1)         0.531   >= 0.50
+  surrogate p                  0.0005   (chance ICC -0.003)
+  -> a physiological delay IS present and reproducible in the data
+
+BOUNDED head:
+  widening the window moved the delay by 1.94 s,
+  but its position within the range moved only 0.002
+  between-subject SD = 0.003 s
+  -> the answer follows the BOUND we chose, not the physiology
+
+FREE head (unbounded, full lag search, no clamp):
+  mean delay          0.09 s   OUTSIDE the 2-8 s physiological band
+  between-subject SD  0.012 s   collapsed to a constant
+
+physiological delay present and reproducible (model-free): True
+learned module recovers it: False
+VERDICT: HOLDS
+  the delay is real and reproduces across sessions (ICC 0.531);
+  the learned module does not find it -- that is a result about the module,
+  not about the physiology.
+  freed of the bound, the delay leaves the physiological range
+  delays barely differ between people -> a constant, not a marker
+=== cell 16/22 OK  397.4s  (total 130.8 min)
+training the final joint model on all training data ...
+   epoch  10  pearson=1.4637  hetero=5.3480  smooth=0.3662
+   epoch  20  pearson=1.3237  hetero=4.4560  smooth=0.3536
+   epoch  30  pearson=1.1033  hetero=4.0579  smooth=0.2461
+  montage      spherical-spline interpolation, 32 -> 30 ch
+
+=== EXTERNAL FNIRS: HEFMI ===
+  comparison    pooled to mean HbO / mean HbR (montages differ)
+  internal  r = +0.1620   (TU Berlin hBCI (MI+MA), ceiling 0.7085, 22.9% of it)
+  EXTERNAL  r = +0.0069   p = 0.1049   (ceiling 0.2882, 2.4% of it)
+  drop        = 96% of the internal correlation
+  VERDICT: FAILS -- does not retain significance on unseen people
+  CAUTION: HEFMI has a low ceiling (0.2882). A null
+  result here is ambiguous -- the target may be too noisy to
+  measure transfer at all. Do not read this as the encoder
+  failing to generalise.
+  CAUTION: HbO/HbR is +0.920 on this set (should be negative);
+  its fNIRS is systemic-dominated, not an evoked response.
+  montage      channels paired BY INDEX (no electrode names) -- weak
+
+=== EXTERNAL FMRI: ds002336 ===
+  comparison    ROI by ROI (same atlas)
+  internal  r = +0.0001   (ds002739, ceiling 0.3864, 0.0% of it)
+  EXTERNAL  r = +0.0038   p = 0.3137   (ceiling 0.8207, 0.5% of it)
+  drop        = -4538% of the internal correlation
+  VERDICT: FAILS -- does not retain significance on unseen people
+
+EXTERNAL VALIDATION: FAILS
+  HEFMI              r = +0.0069  p = 0.1049  (not significant)
+  ds002336           r = +0.0038  p = 0.3137  (not significant)
+  the effect does not retain significance on unseen cohorts
+=== cell 17/22 OK  142.8s  (total 133.2 min)
+accuracy rises as coverage falls: False  -> gate is NOT informative
+corr(uncertainty, error)
+  per trial   MC-dropout only     -0.0358
+  per trial   combined (6.5)      -0.0295
+  per trial   single-trial corr   -0.0985
+  per trial   compact response    -0.0955
+  PER SUBJECT MC-dropout only     -0.1000   (n = 5)
+  PER SUBJECT combined (6.5)      -0.1000   (n = 5)
+  -> no useful ranking
+
+ECE 0.2291 -> 0.0368 (Platt scaling, held out)
+  -> calibration improved the gate
+
+RELIABILITY GATING: FAILS
+  accuracy does not improve as low-confidence trials are dropped
+=== cell 18/22 OK  116.4s  (total 135.1 min)
+  vs SHUFFLED-target control    +0.0345
+  vs random init (untrained)    +0.0186
+  vs raw band-power             +0.0675
+VERDICT: HOLDS
+=== cell 19/22 OK  220.3s  (total 138.8 min)
+
+inflation from protocol alone: 1.84x (+0.2974 -> +0.1620)
+=== cell 20/22 OK  28.5s  (total 139.3 min)
+clinical data: G:\research_bio_medical\dataset\HEFMI-ICH EEG+FNRI
+  98 recordings -> 37 people (17 controls, 20 patients)
+
+4 primary measures tested; p_holm is the corrected p-value.
+Group difference in: hbo_hbr
+Artefact controls do NOT differ -> the difference is not
+explained by movement or signal amplitude.
+=== cell 21/22 OK  0.1s  (total 139.3 min)
+==================================================================
+SUMMARY OF FINDINGS
+==================================================================
+  [NOT CONF]  cross-modal supervision beats single-modality
+  [FAILS ]  transfers to held-out cohorts with a bounded drop
+  [HOLDS ]  recovers physiological, subject-varying delays
+  [HOLDS ]  improves a downstream EEG-only task
+  [FAILS ]  reliability gating tracks real error
+==================================================================
+2 of 5 supported
+
+{
+  "mode": "FULL RUN",
+  "scorecard": {
+    "claim1": "NOT CONFIRMED",
+    "claim2": "FAILS",
+    "claim3": "HOLDS",
+    "claim4": "HOLDS",
+    "claim5": "FAILS"
+  },
+  "device": "cuda",
+  "datasets": {
+    "train_fnirs": {
+      "name": "TU Berlin hBCI (MI+MA)",
+      "modality": "fnirs",
+      "subjects": 29,
+      "trials": 3480
+    },
+    "train_fmri": {
+      "name": "ds002739",
+      "modality": "fmri",
+      "subjects": 24,
+      "trials": 4678
+    },
+    "external_fnirs": {
+      "name": "HEFMI",
+      "modality": "fnirs",
+      "subjects": 37,
+      "trials": 2940
+    },
+    "external_fmri": {
+      "name": "ds002336",
+      "modality": "fmri",
+      "subjects": 10,
+      "trials": 384
+    }
+  },
+  "internal": {
+    "TU Berlin hBCI (MI+MA)": {
+      "r_demeaned": 0.162,
+      "p": 0.001
+    },
+    "ds002739": {
+      "r_demeaned": 0.0001,
+      "p": 0.48951
+    }
+  },
+  "claim1": {
+    "unit": "subject",
+    "n_subjects": 5,
+    "mean_diff": -0.009891306484418166,
+    "ci_low": -0.03499844908785896,
+    "ci_high": 0.024682970733854864,
+    "p_signflip": 0.6257374262573743,
+    "n_subjects_positive": 2,
+    "pooled_by_seed_diff": -0.00989130648441817,
+    "verdict": "NOT CONFIRMED"
+  },
+  "claim2": {
+    "per_dataset": {
+      "HEFMI": {
+        "r": 0.0069,
+        "p": 0.1049
+      },
+      "ds002336": {
+        "r": 0.0038,
+        "p": 0.31369
+      }
+    },
+    "verdict": "FAILS"
+  },
+  "claim3": {
+    "model_free_mean_s": 6.394,
+    "model_free_icc": 0.5314,
+    "model_free_surrogate_p": 0.0005,
+    "model_free_between_subject_sd": 1.0625,
+    "bounded_sec_moved": 1.938,
+    "bounded_frac_moved": 0.002,
+    "bounded_between_subject_sd": 0.0032,
+    "free_mean_s": 0.088,
+    "free_between_subject_sd": 0.0125,
+    "free_in_physiological_band": false,
+    "verdict": "HOLDS"
+  },
+  "claim4": {
+    "supervised": 0.3966,
+    "vs_shuffled-target": 0.0345,
+    "vs_random": 0.0186,
+    "vs_raw": 0.0675,
+    "verdict": "HOLDS"
+  },
+  "claim5": {
+    "ranks": false,
+    "calibrates": true,
+    "corr_unc_err": -0.0358,
+    "corr_unc_err_trialcorr": -0.0985,
+    "corr_unc_err_compact": -0.0955,
+    "corr_trial_combined": -0.0295,
+    "corr_subject_mc": -0.1,
+    "corr_subject_combined": -0.1,
+    "n_subjects_ranked": 5,
+    "ece_before": 0.2291,
+    "ece_after": 0.0368,
+    "method": "Platt scaling, fit/score split",
+    "verdict": "FAILS"
+  },
+  "gate": {
+    "informative": false
+  },
+  "calibration": {
+    "method": "Platt scaling",
+    "ece_before": 0.2291,
+    "ece_after": 0.0368,
+    "improved": true,
+    "corr_unc_err": -0.0358
+  },
+  "within_subject": {
+    "within_r": 0.0975,
+    "cross_r": 0.162
+  },
+  "clinical": {
+    "coupling_r": {
+      "controls": 0.1303,
+      "patients": 0.1077,
+      "p": 0.09672,
+      "p_holm": 0.29016,
+      "kind": "primary"
+    },
+    "coupling_lag_s": {
+      "controls": 6.4415,
+      "patients": 6.3536,
+      "p": 0.74897,
+      "p_holm": 1.0,
+      "kind": "primary"
+    },
+    "reliability": {
+      "controls": -0.004,
+      "patients": -0.0349,
+      "p": 0.65856,
+      "p_holm": 1.0,
+      "kind": "primary"
+    },
+    "hbo_hbr": {
+      "controls": 0.6446,
+      "patients": 0.8103,
+      "p": 0.00085,
+      "p_holm": 0.0034,
+      "kind": "primary"
+    },
+    "motion_frac": {
+      "controls": 0.0017,
+      "patients": 0.0017,
+      "p": 0.63666,
+      "p_holm": null,
+      "kind": "artefact control"
+    },
+    "hbo_amp": {
+      "controls": 0.0,
+      "patients": 0.0,
+      "p": 0.11653,
+      "p_holm": null,
+      "kind": "artefact control"
+    },
+    "eeg_amp": {
+      "controls": 1012.2499,
+      "patients": 1475.5954,
+      "p": 0.68076,
+      "p_holm": null,
+      "kind": "artefact control"
+    },
+    "n_trials": {
+      "controls": 30.0,
+      "patients": 30.0,
+      "p": 1.0,
+      "p_holm": null,
+      "kind": "artefact control"
+    }
+  },
+  "external": {
+    "HEFMI": {
+      "modality": "fnirs",
+      "comparison": "pooled to mean HbO / mean HbR (montages differ)",
+      "montage_alignment": "spherical-spline interpolation, 32 -> 30 ch",
+      "internal_r": 0.162,
+      "external_r": 0.0069,
+      "p": 0.1049,
+      "drop_pct": 95.7618,
+      "external_ceiling": 0.2882,
+      "pct_of_external_ceiling": 2.38,
+      "subjects": 37,
+      "trials": 2940
+    },
+    "ds002336": {
+      "modality": "fmri",
+      "comparison": "ROI by ROI (same atlas)",
+      "montage_alignment": "channels paired BY INDEX (no electrode names) -- weak",
+      "internal_r": 0.0001,
+      "external_r": 0.0038,
+      "p": 0.3137,
+      "drop_pct": -4537.6111,
+      "external_ceiling": 0.8207,
+      "pct_of_external_ceiling": 0.47,
+      "subjects": 10,
+      "trials": 384
+    }
+  }
+}
+
+outputs -> G:\research_bio_medical\neurovascnet_v6_outputs
+=== cell 22/22 OK  0.0s  (total 139.3 min)
+
+ALL CELLS COMPLETED in 139.3 min
+END 2026-08-27 03:16:28

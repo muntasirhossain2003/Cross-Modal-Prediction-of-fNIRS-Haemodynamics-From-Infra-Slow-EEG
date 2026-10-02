@@ -2,8 +2,8 @@
   "mode": "FULL RUN",
   "scorecard": {
     "claim1": "NOT CONFIRMED",
-    "claim2": "FAILS",
-    "claim3": "FAILS",
+    "claim2": "PARTIAL",
+    "claim3": "HOLDS",
     "claim4": "FAILS",
     "claim5": "FAILS"
   },
@@ -36,61 +36,73 @@
   },
   "internal": {
     "TU Berlin hBCI (MI+MA)": {
-      "r_demeaned": 0.1636,
+      "r_demeaned": 0.158,
       "p": 0.001
     },
     "ds002336": {
-      "r_demeaned": 0.0348,
-      "p": 0.002
+      "r_demeaned": 0.0638,
+      "p": 0.001
     }
   },
   "claim1": {
     "unit": "subject",
     "n_subjects": 5,
-    "mean_diff": -0.0013271078470387687,
-    "ci_low": -0.013295871106009275,
-    "ci_high": 0.007896755510833476,
-    "p_signflip": 0.8734126587341265,
-    "n_subjects_positive": 3,
-    "pooled_by_seed_diff": -0.0013271078470387758,
+    "mean_diff": -0.01793513549908675,
+    "ci_low": -0.035327470311927,
+    "ci_high": -0.00025827885457724574,
+    "p_signflip": 0.24027597240275972,
+    "n_subjects_positive": 1,
+    "pooled_by_seed_diff": -0.017935135499086752,
     "verdict": "NOT CONFIRMED"
   },
   "claim2": {
     "per_dataset": {
       "HEFMI": {
-        "r": 0.0076,
-        "p": 0.05694
+        "r": 0.0124,
+        "p": 0.00999
       },
       "ds002739": {
-        "r": 0.0001,
-        "p": 0.48052
+        "r": -0.0001,
+        "p": 0.51149
       }
     },
-    "verdict": "FAILS"
+    "verdict": "PARTIAL"
   },
   "claim3": {
+    "model_free_mean_s": 6.394,
+    "model_free_icc": 0.5314,
+    "model_free_surrogate_p": 0.0005,
+    "model_free_between_subject_sd": 1.0625,
     "bounded_sec_moved": 1.938,
     "bounded_frac_moved": 0.002,
     "bounded_between_subject_sd": 0.0032,
     "free_mean_s": 0.088,
     "free_between_subject_sd": 0.0125,
     "free_in_physiological_band": false,
-    "verdict": "FAILS"
+    "verdict": "HOLDS"
   },
   "claim4": {
-    "supervised": 0.368,
-    "vs_shuffled-target": 0.0059,
-    "vs_random": -0.0135,
-    "vs_raw": 0.0389,
+    "supervised": 0.3735,
+    "vs_shuffled-target": 0.0115,
+    "vs_random": -0.0079,
+    "vs_raw": 0.0444,
+    "vs_fine-tuned": -0.0993,
     "verdict": "FAILS"
   },
   "claim5": {
     "ranks": false,
     "calibrates": true,
-    "corr_unc_err": -0.0135,
-    "corr_unc_err_trialcorr": -0.0746,
-    "ece_before": 0.2194,
-    "ece_after": 0.0277,
+    "corr_unc_err": 0.0227,
+    "corr_unc_err_trialcorr": -0.064,
+    "corr_unc_err_compact": -0.0076,
+    "corr_trial_combined": -0.0054,
+    "corr_subject_mc": -0.0788,
+    "corr_subject_combined": -0.2798,
+    "corr_subject_domain": -0.3325,
+    "corr_trial_domain": -0.0057,
+    "n_subjects_ranked": 29,
+    "ece_before": 0.2707,
+    "ece_after": 0.0208,
     "method": "Platt scaling, fit/score split",
     "verdict": "FAILS"
   },
@@ -99,14 +111,14 @@
   },
   "calibration": {
     "method": "Platt scaling",
-    "ece_before": 0.2194,
-    "ece_after": 0.0277,
+    "ece_before": 0.2707,
+    "ece_after": 0.0208,
     "improved": true,
-    "corr_unc_err": -0.0135
+    "corr_unc_err": 0.0227
   },
   "within_subject": {
     "within_r": 0.0975,
-    "cross_r": 0.1636
+    "cross_r": 0.158
   },
   "clinical": {
     "coupling_r": {
@@ -171,12 +183,12 @@
       "modality": "fnirs",
       "comparison": "pooled to mean HbO / mean HbR (montages differ)",
       "montage_alignment": "spherical-spline interpolation, 32 -> 30 ch",
-      "internal_r": 0.1636,
-      "external_r": 0.0076,
-      "p": 0.0569,
-      "drop_pct": 95.328,
+      "internal_r": 0.158,
+      "external_r": 0.0124,
+      "p": 0.01,
+      "drop_pct": 92.1818,
       "external_ceiling": 0.2882,
-      "pct_of_external_ceiling": 2.65,
+      "pct_of_external_ceiling": 4.29,
       "subjects": 37,
       "trials": 2940
     },
@@ -184,12 +196,12 @@
       "modality": "fmri",
       "comparison": "ROI by ROI (same atlas)",
       "montage_alignment": "channels paired BY INDEX (no electrode names) -- weak",
-      "internal_r": 0.0348,
-      "external_r": 0.0001,
-      "p": 0.4805,
-      "drop_pct": 99.6948,
-      "external_ceiling": 0.3864,
-      "pct_of_external_ceiling": 0.03,
+      "internal_r": 0.0638,
+      "external_r": -0.0001,
+      "p": 0.5115,
+      "drop_pct": 100.1061,
+      "external_ceiling": 0.4344,
+      "pct_of_external_ceiling": -0.02,
       "subjects": 24,
       "trials": 4678
     }

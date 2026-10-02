@@ -1,0 +1,5 @@
+role,dataset,modality,subjects,trials,eeg_ch,targets,reliability,ceiling,hbo_hbr
+train_fnirs,TU Berlin hBCI (MI+MA),fnirs,6,720,30,72,0.4484,0.6696,-0.514
+train_fmri,ds002336,fmri,3,103,63,48,0.5063,0.7116,
+external_fnirs,HEFMI,fnirs,6,510,32,180,0.1985,0.4455,0.919
+external_fmri,ds002739,fmri,3,585,63,48,0.1658,0.4072,
