@@ -1,0 +1,170 @@
+[12:29:54] complete already: [1337, 20260726]
+[12:29:54] to run now      : [7, 42, 2718]
+C:\Users\munta\AppData\Roaming\Python\Python312\site-packages\zmq\_future.py:718: RuntimeWarning: Proactor event loop does not implement add_reader family of methods required for zmq. Registering an additional selector thread for add_reader support via tornado. Use `asyncio.set_event_loop_policy(WindowsSelectorEventLoopPolicy())` to avoid this warning.
+  self._get_loop()
+[12:29:56] seed 7  cell 2/81  ###fix 8 -- explicit local data folder, set BEFORE anything else runs.
+[12:29:56] seed 7  cell 6/81  # === CELL 3 ===  Import all libraries (torch, scipy, sklearn, nilearn
+[12:30:05] seed 7  cell 7/81  # === CELL 4 ===  Set random seed and pick GPU/CPU device.
+[12:30:05] seed 7  cell 8/81  ###fix 9 -- the original bootstrap mounted Google Drive, pip-installed
+[12:30:05] seed 7  cell 10/81  # CELL 6 - CONFIG dataclass. Single source of truth for Colab/local ru
+[12:30:05] seed 7  cell 12/81  # === CELL 8 === canonical_hrf - the textbook blood-flow response shap
+[12:30:05] seed 7  cell 13/81  # (Removed: synthetic generate_paired_eeg_hemo - all loaders are now r
+[12:30:05] seed 7  cell 17/81  # ###gggg: Codex audit update; preserve all prior loader comments.
+[12:30:05] seed 7  cell 18/81  # ###gggg: lightweight OpenNeuro loader smoke tests; run this before t
+[12:30:28] seed 7  cell 19/81  # ###gggg: Codex audit update; preserve prior split/cache comments.
+[12:46:37] seed 7  cell 20/81  # === CHANNEL VERIFICATION === Show and confirm which electrodes v3 tr
+[12:46:38] seed 7  cell 22/81  # ###gggg: Codex audit update; corrected the stale preprocessing comme
+[12:46:38] seed 7  cell 23/81  # === CELL 14 ===  Apply the preprocessing to all 6 splits.
+[12:47:48] seed 7  cell 24/81  # === CELL 15 === Plot one sample (EEG / fNIRS / fMRI).
+[12:47:48] seed 7  cell 25/81  ###sssss CLUSTER-3 FIX (audit S4.4) -- EEG<->hemodynamic ALIGNMENT VER
+[12:48:48] seed 7  cell 26/81  # === CELL 15b ===  STAGE-1 IMPROVEMENT: band-power envelope inputs + 
+[12:49:13] seed 7  cell 28/81  # === v2.3 PERSONALIZED PHYSIOLOGICAL TARGET + STRONG BASELINES ===
+[12:49:19] seed 7  cell 30/81  # === CELL 17 === PairedHemoDataset wraps arrays as a PyTorch Dataset.
+[12:49:19] seed 7  cell 31/81  # === CELL 18 ===  collate function + DataLoaders (batching).
+[12:49:22] seed 7  cell 33/81  # === CELL 20 ===  Shared EEG encoder (EEGNet front-end + TCN).
+[12:49:22] seed 7  cell 35/81  # === CELL 22 === Hemodynamic heads (predict mean + uncertainty).
+[12:49:22] seed 7  cell 37/81  # === CELL 24 ===  DelayModule - learns a physiological 2-8 s lag.
+[12:49:22] seed 7  cell 39/81  # === CELL 26 ===  DomainConfidence - input-distance reliability signa
+[12:49:22] seed 7  cell 41/81  # === CELL 28 ===  NeuroVascNet - assembles encoder + heads + delay + 
+[12:49:22] seed 7  cell 43/81  # === CELL 30 ===  Loss functions: heteroscedastic (value+uncertainty)
+[12:49:22] seed 7  cell 44/81  # === CELL 31 ===  compute_modality_loss - combine the loss terms for 
+[12:49:22] seed 7  cell 46/81  # === CELL 33 ===  build_model + iter_balanced (alternate two loaders)
+[12:49:22] seed 7  cell 47/81  # === CELL 34 ===  move_batch + stage1_train - Stage 1 joint supervise
+[12:49:22] seed 7  cell 48/81  # === CELL 35 ===  stage2_align - Stage 2 cross-modal latent alignment
+[12:49:22] seed 7  cell 49/81  # === CELL 36 ===  RUN training (Stage 1 then Stage 2).  <<slow>>
+[12:50:04] seed 7  cell 51/81  # === CELL 38 ===  evaluate_modality - metrics on a loader.
+[12:50:04] seed 7  cell 52/81  # === CELL 39 ===  Run evaluation on internal + external sets.
+[13:51:14] seed 7  cell 53/81  # ffff AMPLITUDE EVAL (see explain247.md) -- measures the RECOVERABLE 
+[13:51:20] seed 7  cell 54/81  # === DIAGNOSTIC: can the model FIT EEG->fNIRS at all? (capacity vs si
+[13:56:18] seed 7  cell 55/81  # cccc CLUSTER-1 TIER-1 WORDING FIX (see explain247.md) -- "cross-subj
+[13:56:21] seed 7  cell 57/81  # cccc === CLUSTER-1 FIX === Full cross-subject LOSO -- see explain247
+[13:56:27] seed 7  cell 58/81  # === CELL 40 === Plot predicted vs measured blood-flow.
+[13:56:27] seed 7  cell 59/81  # === CELL 41 ===  Plot the bounded delay parameter distributions.
+[13:56:27] seed 7  cell 60/81  # === HbO/HbR PREDICTION - RELATIVE EVALUATION (blueprint S4.3, S8.1) 
+[14:09:04] seed 7  cell 62/81  # === CELL 43 ===  mc_dropout_predictions - uncertainty via dropout pa
+[14:09:04] seed 7  cell 63/81  # === CELL 44 ===  compute_reliability + LEARNED gating (blueprint S6.
+[14:09:04] seed 7  cell 64/81  # === CELL 45 ===  Learned gate -> TEMPERATURE scaling -> isotonic (bl
+[14:10:31] seed 7  cell 65/81  # === CELL 46 ===  Expected Calibration Error (raw vs calibrated).
+[14:10:31] seed 7  cell 66/81  # === CELL 47 ===  Selective-prediction curve + LOCKED abstention rule
+[14:10:31] seed 7  cell 67/81  # === INFERENCE WITH ABSTENTION (blueprint S3.1) ===
+[14:10:32] seed 7  cell 68/81  ###sssss CLUSTER-6 FIX (audit S9) -- DELAY VALIDATION. The audit's ver
+[14:10:41] seed 7  cell 69/81  ###sssss CLUSTER-7 FIX (audit S11 last bullet, S14.12) -- THE PER-PRED
+[14:11:39] seed 7  cell 71/81  # === CELL 49 ===  LinearProbe + extract_features (downstream EEG-only
+[14:11:39] seed 7  cell 72/81  # === CELL 50 ===  Secondary transfer analysis policy.
+[14:11:39] seed 7  cell 74/81  # === CELL 52 ===  run_ablation - train a model variant with a part re
+[14:11:39] seed 7  cell 75/81  # === CELL 53 ===  Secondary ablation policy (disabled in the default 
+[14:11:39] seed 7  cell 77/81  # === CELL 55 ===  Build summary.json of all results.
+[14:11:40] seed 7  cell 78/81  # === CELL 56 ===  Save the trained model checkpoint (.pt).
+[14:11:40] seed 7  cell 80/81  # === LOW-RESOURCE FIVE-SEED CHECKER / AGGREGATOR ===
+[14:11:42] seed 7 finished in 101.8 min; executed copy: G:\research_bio_medical\output\executed_seed_notebooks\NeuroVascNet_v3_1_maisha_RUNNABLE_v2_3_IMPROVED_seed7.ipynb
+[14:11:44] seed 42  cell 2/81  ###fix 8 -- explicit local data folder, set BEFORE anything else runs.
+[14:11:44] seed 42  cell 6/81  # === CELL 3 ===  Import all libraries (torch, scipy, sklearn, nilearn
+[14:11:47] seed 42  cell 7/81  # === CELL 4 ===  Set random seed and pick GPU/CPU device.
+[14:11:47] seed 42  cell 8/81  ###fix 9 -- the original bootstrap mounted Google Drive, pip-installed
+[14:11:48] seed 42  cell 10/81  # CELL 6 - CONFIG dataclass. Single source of truth for Colab/local ru
+[14:11:48] seed 42  cell 12/81  # === CELL 8 === canonical_hrf - the textbook blood-flow response shap
+[14:11:48] seed 42  cell 13/81  # (Removed: synthetic generate_paired_eeg_hemo - all loaders are now r
+[14:11:48] seed 42  cell 17/81  # ###gggg: Codex audit update; preserve all prior loader comments.
+[14:11:48] seed 42  cell 18/81  # ###gggg: lightweight OpenNeuro loader smoke tests; run this before t
+[14:12:15] seed 42  cell 19/81  # ###gggg: Codex audit update; preserve prior split/cache comments.
+[14:12:58] seed 42  cell 20/81  # === CHANNEL VERIFICATION === Show and confirm which electrodes v3 tr
+[14:12:59] seed 42  cell 22/81  # ###gggg: Codex audit update; corrected the stale preprocessing comme
+[14:12:59] seed 42  cell 23/81  # === CELL 14 ===  Apply the preprocessing to all 6 splits.
+[14:14:05] seed 42  cell 24/81  # === CELL 15 === Plot one sample (EEG / fNIRS / fMRI).
+[14:14:05] seed 42  cell 25/81  ###sssss CLUSTER-3 FIX (audit S4.4) -- EEG<->hemodynamic ALIGNMENT VER
+[14:15:05] seed 42  cell 26/81  # === CELL 15b ===  STAGE-1 IMPROVEMENT: band-power envelope inputs + 
+[14:15:28] seed 42  cell 28/81  # === v2.3 PERSONALIZED PHYSIOLOGICAL TARGET + STRONG BASELINES ===
+[14:15:33] seed 42  cell 30/81  # === CELL 17 === PairedHemoDataset wraps arrays as a PyTorch Dataset.
+[14:15:33] seed 42  cell 31/81  # === CELL 18 ===  collate function + DataLoaders (batching).
+[14:15:39] seed 42  cell 33/81  # === CELL 20 ===  Shared EEG encoder (EEGNet front-end + TCN).
+[14:15:39] seed 42  cell 35/81  # === CELL 22 === Hemodynamic heads (predict mean + uncertainty).
+[14:15:39] seed 42  cell 37/81  # === CELL 24 ===  DelayModule - learns a physiological 2-8 s lag.
+[14:15:39] seed 42  cell 39/81  # === CELL 26 ===  DomainConfidence - input-distance reliability signa
+[14:15:39] seed 42  cell 41/81  # === CELL 28 ===  NeuroVascNet - assembles encoder + heads + delay + 
+[14:15:39] seed 42  cell 43/81  # === CELL 30 ===  Loss functions: heteroscedastic (value+uncertainty)
+[14:15:39] seed 42  cell 44/81  # === CELL 31 ===  compute_modality_loss - combine the loss terms for 
+[14:15:39] seed 42  cell 46/81  # === CELL 33 ===  build_model + iter_balanced (alternate two loaders)
+[14:15:39] seed 42  cell 47/81  # === CELL 34 ===  move_batch + stage1_train - Stage 1 joint supervise
+[14:15:39] seed 42  cell 48/81  # === CELL 35 ===  stage2_align - Stage 2 cross-modal latent alignment
+[14:15:39] seed 42  cell 49/81  # === CELL 36 ===  RUN training (Stage 1 then Stage 2).  <<slow>>
+[14:16:21] seed 42  cell 51/81  # === CELL 38 ===  evaluate_modality - metrics on a loader.
+[14:16:21] seed 42  cell 52/81  # === CELL 39 ===  Run evaluation on internal + external sets.
+[15:17:15] seed 42  cell 53/81  # ffff AMPLITUDE EVAL (see explain247.md) -- measures the RECOVERABLE 
+[15:17:22] seed 42  cell 54/81  # === DIAGNOSTIC: can the model FIT EEG->fNIRS at all? (capacity vs si
+[15:22:23] seed 42  cell 55/81  # cccc CLUSTER-1 TIER-1 WORDING FIX (see explain247.md) -- "cross-subj
+[15:22:26] seed 42  cell 57/81  # cccc === CLUSTER-1 FIX === Full cross-subject LOSO -- see explain247
+[15:22:32] seed 42  cell 58/81  # === CELL 40 === Plot predicted vs measured blood-flow.
+[15:22:32] seed 42  cell 59/81  # === CELL 41 ===  Plot the bounded delay parameter distributions.
+[15:22:32] seed 42  cell 60/81  # === HbO/HbR PREDICTION - RELATIVE EVALUATION (blueprint S4.3, S8.1) 
+[15:35:11] seed 42  cell 62/81  # === CELL 43 ===  mc_dropout_predictions - uncertainty via dropout pa
+[15:35:11] seed 42  cell 63/81  # === CELL 44 ===  compute_reliability + LEARNED gating (blueprint S6.
+[15:35:11] seed 42  cell 64/81  # === CELL 45 ===  Learned gate -> TEMPERATURE scaling -> isotonic (bl
+[15:36:39] seed 42  cell 65/81  # === CELL 46 ===  Expected Calibration Error (raw vs calibrated).
+[15:36:39] seed 42  cell 66/81  # === CELL 47 ===  Selective-prediction curve + LOCKED abstention rule
+[15:36:39] seed 42  cell 67/81  # === INFERENCE WITH ABSTENTION (blueprint S3.1) ===
+[15:36:40] seed 42  cell 68/81  ###sssss CLUSTER-6 FIX (audit S9) -- DELAY VALIDATION. The audit's ver
+[15:36:51] seed 42  cell 69/81  ###sssss CLUSTER-7 FIX (audit S11 last bullet, S14.12) -- THE PER-PRED
+[15:37:49] seed 42  cell 71/81  # === CELL 49 ===  LinearProbe + extract_features (downstream EEG-only
+[15:37:49] seed 42  cell 72/81  # === CELL 50 ===  Secondary transfer analysis policy.
+[15:37:49] seed 42  cell 74/81  # === CELL 52 ===  run_ablation - train a model variant with a part re
+[15:37:49] seed 42  cell 75/81  # === CELL 53 ===  Secondary ablation policy (disabled in the default 
+[15:37:49] seed 42  cell 77/81  # === CELL 55 ===  Build summary.json of all results.
+[15:37:49] seed 42  cell 78/81  # === CELL 56 ===  Save the trained model checkpoint (.pt).
+[15:37:49] seed 42  cell 80/81  # === LOW-RESOURCE FIVE-SEED CHECKER / AGGREGATOR ===
+[15:37:51] seed 42 finished in 86.1 min; executed copy: G:\research_bio_medical\output\executed_seed_notebooks\NeuroVascNet_v3_1_maisha_RUNNABLE_v2_3_IMPROVED_seed42.ipynb
+[15:37:53] seed 2718  cell 2/81  ###fix 8 -- explicit local data folder, set BEFORE anything else runs.
+[15:37:53] seed 2718  cell 6/81  # === CELL 3 ===  Import all libraries (torch, scipy, sklearn, nilearn
+[15:37:56] seed 2718  cell 7/81  # === CELL 4 ===  Set random seed and pick GPU/CPU device.
+[15:37:56] seed 2718  cell 8/81  ###fix 9 -- the original bootstrap mounted Google Drive, pip-installed
+[15:37:57] seed 2718  cell 10/81  # CELL 6 - CONFIG dataclass. Single source of truth for Colab/local ru
+[15:37:57] seed 2718  cell 12/81  # === CELL 8 === canonical_hrf - the textbook blood-flow response shap
+[15:37:57] seed 2718  cell 13/81  # (Removed: synthetic generate_paired_eeg_hemo - all loaders are now r
+[15:37:57] seed 2718  cell 17/81  # ###gggg: Codex audit update; preserve all prior loader comments.
+[15:37:57] seed 2718  cell 18/81  # ###gggg: lightweight OpenNeuro loader smoke tests; run this before t
+[15:38:20] seed 2718  cell 19/81  # ###gggg: Codex audit update; preserve prior split/cache comments.
+[15:39:02] seed 2718  cell 20/81  # === CHANNEL VERIFICATION === Show and confirm which electrodes v3 tr
+[15:39:03] seed 2718  cell 22/81  # ###gggg: Codex audit update; corrected the stale preprocessing comme
+[15:39:03] seed 2718  cell 23/81  # === CELL 14 ===  Apply the preprocessing to all 6 splits.
+[15:40:09] seed 2718  cell 24/81  # === CELL 15 === Plot one sample (EEG / fNIRS / fMRI).
+[15:40:09] seed 2718  cell 25/81  ###sssss CLUSTER-3 FIX (audit S4.4) -- EEG<->hemodynamic ALIGNMENT VER
+[15:41:09] seed 2718  cell 26/81  # === CELL 15b ===  STAGE-1 IMPROVEMENT: band-power envelope inputs + 
+[15:41:32] seed 2718  cell 28/81  # === v2.3 PERSONALIZED PHYSIOLOGICAL TARGET + STRONG BASELINES ===
+[15:41:37] seed 2718  cell 30/81  # === CELL 17 === PairedHemoDataset wraps arrays as a PyTorch Dataset.
+[15:41:37] seed 2718  cell 31/81  # === CELL 18 ===  collate function + DataLoaders (batching).
+[15:41:42] seed 2718  cell 33/81  # === CELL 20 ===  Shared EEG encoder (EEGNet front-end + TCN).
+[15:41:42] seed 2718  cell 35/81  # === CELL 22 === Hemodynamic heads (predict mean + uncertainty).
+[15:41:42] seed 2718  cell 37/81  # === CELL 24 ===  DelayModule - learns a physiological 2-8 s lag.
+[15:41:42] seed 2718  cell 39/81  # === CELL 26 ===  DomainConfidence - input-distance reliability signa
+[15:41:42] seed 2718  cell 41/81  # === CELL 28 ===  NeuroVascNet - assembles encoder + heads + delay + 
+[15:41:43] seed 2718  cell 43/81  # === CELL 30 ===  Loss functions: heteroscedastic (value+uncertainty)
+[15:41:43] seed 2718  cell 44/81  # === CELL 31 ===  compute_modality_loss - combine the loss terms for 
+[15:41:43] seed 2718  cell 46/81  # === CELL 33 ===  build_model + iter_balanced (alternate two loaders)
+[15:41:43] seed 2718  cell 47/81  # === CELL 34 ===  move_batch + stage1_train - Stage 1 joint supervise
+[15:41:43] seed 2718  cell 48/81  # === CELL 35 ===  stage2_align - Stage 2 cross-modal latent alignment
+[15:41:43] seed 2718  cell 49/81  # === CELL 36 ===  RUN training (Stage 1 then Stage 2).  <<slow>>
+[15:42:24] seed 2718  cell 51/81  # === CELL 38 ===  evaluate_modality - metrics on a loader.
+[15:42:24] seed 2718  cell 52/81  # === CELL 39 ===  Run evaluation on internal + external sets.
+[16:46:16] seed 2718  cell 53/81  # ffff AMPLITUDE EVAL (see explain247.md) -- measures the RECOVERABLE 
+[16:46:23] seed 2718  cell 54/81  # === DIAGNOSTIC: can the model FIT EEG->fNIRS at all? (capacity vs si
+[16:51:23] seed 2718  cell 55/81  # cccc CLUSTER-1 TIER-1 WORDING FIX (see explain247.md) -- "cross-subj
+[16:51:26] seed 2718  cell 57/81  # cccc === CLUSTER-1 FIX === Full cross-subject LOSO -- see explain247
+[16:51:33] seed 2718  cell 58/81  # === CELL 40 === Plot predicted vs measured blood-flow.
+[16:51:33] seed 2718  cell 59/81  # === CELL 41 ===  Plot the bounded delay parameter distributions.
+[16:51:33] seed 2718  cell 60/81  # === HbO/HbR PREDICTION - RELATIVE EVALUATION (blueprint S4.3, S8.1) 
+[17:04:17] seed 2718  cell 62/81  # === CELL 43 ===  mc_dropout_predictions - uncertainty via dropout pa
+[17:04:17] seed 2718  cell 63/81  # === CELL 44 ===  compute_reliability + LEARNED gating (blueprint S6.
+[17:04:17] seed 2718  cell 64/81  # === CELL 45 ===  Learned gate -> TEMPERATURE scaling -> isotonic (bl
+[17:05:37] seed 2718  cell 65/81  # === CELL 46 ===  Expected Calibration Error (raw vs calibrated).
+[17:05:37] seed 2718  cell 66/81  # === CELL 47 ===  Selective-prediction curve + LOCKED abstention rule
+[17:05:38] seed 2718  cell 67/81  # === INFERENCE WITH ABSTENTION (blueprint S3.1) ===
+[17:05:38] seed 2718  cell 68/81  ###sssss CLUSTER-6 FIX (audit S9) -- DELAY VALIDATION. The audit's ver
+[17:05:51] seed 2718  cell 69/81  ###sssss CLUSTER-7 FIX (audit S11 last bullet, S14.12) -- THE PER-PRED
+[17:06:54] seed 2718  cell 71/81  # === CELL 49 ===  LinearProbe + extract_features (downstream EEG-only
+[17:06:54] seed 2718  cell 72/81  # === CELL 50 ===  Secondary transfer analysis policy.
+[17:06:54] seed 2718  cell 74/81  # === CELL 52 ===  run_ablation - train a model variant with a part re
+[17:06:54] seed 2718  cell 75/81  # === CELL 53 ===  Secondary ablation policy (disabled in the default 
+[17:06:54] seed 2718  cell 77/81  # === CELL 55 ===  Build summary.json of all results.
+[17:06:54] seed 2718  cell 78/81  # === CELL 56 ===  Save the trained model checkpoint (.pt).
+[17:06:54] seed 2718  cell 80/81  # === LOW-RESOURCE FIVE-SEED CHECKER / AGGREGATOR ===
+[17:06:57] seed 2718 finished in 89.1 min; executed copy: G:\research_bio_medical\output\executed_seed_notebooks\NeuroVascNet_v3_1_maisha_RUNNABLE_v2_3_IMPROVED_seed2718.ipynb
+[17:06:57] all five seeds complete. Aggregate: G:\research_bio_medical\output\multi_seed_summary_v3.1-v2.3-personalized-physio-fixed-delay.json

@@ -1,0 +1,198 @@
+{
+  "mode": "SMOKE TEST",
+  "scorecard": {
+    "claim1": "NOT CONFIRMED",
+    "claim2": "FAILS",
+    "claim3": "FAILS",
+    "claim4": "HOLDS",
+    "claim5": "FAILS"
+  },
+  "device": "cuda",
+  "datasets": {
+    "train_fnirs": {
+      "name": "TU Berlin hBCI (MI+MA)",
+      "modality": "fnirs",
+      "subjects": 6,
+      "trials": 720
+    },
+    "train_fmri": {
+      "name": "ds002336",
+      "modality": "fmri",
+      "subjects": 3,
+      "trials": 103
+    },
+    "external_fnirs": {
+      "name": "HEFMI",
+      "modality": "fnirs",
+      "subjects": 6,
+      "trials": 510
+    },
+    "external_fmri": {
+      "name": "ds002739",
+      "modality": "fmri",
+      "subjects": 3,
+      "trials": 585
+    }
+  },
+  "internal": {
+    "TU Berlin hBCI (MI+MA)": {
+      "r_demeaned": 0.0258,
+      "p": 0.00498
+    },
+    "ds002336": {
+      "r_demeaned": 0.0361,
+      "p": 0.03483
+    }
+  },
+  "claim1": {
+    "unit": "subject",
+    "n_subjects": 2,
+    "mean_diff": -0.01671163320525877,
+    "ci_low": -0.017199185545057782,
+    "ci_high": -0.016224080865459754,
+    "p_signflip": 0.49955004499550043,
+    "n_subjects_positive": 0,
+    "pooled_by_seed_diff": -0.01671163320525877,
+    "verdict": "NOT CONFIRMED"
+  },
+  "claim2": {
+    "per_dataset": {
+      "HEFMI": {
+        "r": 0.0011,
+        "p": 0.39303
+      },
+      "ds002739": {
+        "r": -0.0004,
+        "p": 0.64179
+      }
+    },
+    "verdict": "FAILS"
+  },
+  "claim3": {
+    "bounded_sec_moved": 0.546,
+    "bounded_frac_moved": 0.064,
+    "bounded_between_subject_sd": 0.0077,
+    "free_mean_s": 3.831,
+    "free_between_subject_sd": 0.109,
+    "free_in_physiological_band": true,
+    "verdict": "FAILS"
+  },
+  "claim4": {
+    "supervised": 0.3375,
+    "vs_shuffled-target": 0.0153,
+    "vs_random": 0.0583,
+    "vs_raw": 0.025,
+    "verdict": "HOLDS"
+  },
+  "claim5": {
+    "ranks": false,
+    "calibrates": true,
+    "corr_unc_err": 0.1032,
+    "corr_unc_err_trialcorr": -0.0704,
+    "corr_unc_err_compact": -0.0415,
+    "ece_before": 0.1059,
+    "ece_after": 0.0246,
+    "method": "Platt scaling, fit/score split",
+    "verdict": "FAILS"
+  },
+  "gate": {
+    "informative": false
+  },
+  "calibration": {
+    "method": "Platt scaling",
+    "ece_before": 0.1059,
+    "ece_after": 0.0246,
+    "improved": true,
+    "corr_unc_err": 0.1032
+  },
+  "within_subject": {
+    "within_r": 0.0601,
+    "cross_r": 0.0258
+  },
+  "clinical": {
+    "coupling_r": {
+      "controls": 0.1303,
+      "patients": 0.1077,
+      "p": 0.09672,
+      "p_holm": 0.29016,
+      "kind": "primary"
+    },
+    "coupling_lag_s": {
+      "controls": 6.4415,
+      "patients": 6.3536,
+      "p": 0.74897,
+      "p_holm": 1.0,
+      "kind": "primary"
+    },
+    "reliability": {
+      "controls": -0.004,
+      "patients": -0.0349,
+      "p": 0.65856,
+      "p_holm": 1.0,
+      "kind": "primary"
+    },
+    "hbo_hbr": {
+      "controls": 0.6446,
+      "patients": 0.8103,
+      "p": 0.00085,
+      "p_holm": 0.0034,
+      "kind": "primary"
+    },
+    "motion_frac": {
+      "controls": 0.0017,
+      "patients": 0.0017,
+      "p": 0.63666,
+      "p_holm": null,
+      "kind": "artefact control"
+    },
+    "hbo_amp": {
+      "controls": 0.0,
+      "patients": 0.0,
+      "p": 0.11653,
+      "p_holm": null,
+      "kind": "artefact control"
+    },
+    "eeg_amp": {
+      "controls": 1012.2499,
+      "patients": 1475.5954,
+      "p": 0.68076,
+      "p_holm": null,
+      "kind": "artefact control"
+    },
+    "n_trials": {
+      "controls": 30.0,
+      "patients": 30.0,
+      "p": 1.0,
+      "p_holm": null,
+      "kind": "artefact control"
+    }
+  },
+  "external": {
+    "HEFMI": {
+      "modality": "fnirs",
+      "comparison": "pooled to mean HbO / mean HbR (montages differ)",
+      "montage_alignment": "spherical-spline interpolation, 32 -> 30 ch",
+      "internal_r": 0.0258,
+      "external_r": 0.0011,
+      "p": 0.393,
+      "drop_pct": 95.9325,
+      "external_ceiling": 0.4455,
+      "pct_of_external_ceiling": 0.24,
+      "subjects": 6,
+      "trials": 510
+    },
+    "ds002739": {
+      "modality": "fmri",
+      "comparison": "ROI by ROI (same atlas)",
+      "montage_alignment": "channels paired BY INDEX (no electrode names) -- weak",
+      "internal_r": 0.0361,
+      "external_r": -0.0004,
+      "p": 0.6418,
+      "drop_pct": 101.2359,
+      "external_ceiling": 0.4072,
+      "pct_of_external_ceiling": -0.11,
+      "subjects": 3,
+      "trials": 585
+    }
+  }
+}

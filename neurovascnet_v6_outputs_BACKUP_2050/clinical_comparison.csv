@@ -1,0 +1,9 @@
+measure,kind,controls,patients,p,sig,p_holm,survives_correction
+coupling_r,primary,0.1303,0.1077,0.09672,,0.29016,False
+coupling_lag_s,primary,6.4415,6.3536,0.74897,,1.0,False
+reliability,primary,-0.004,-0.0349,0.65856,,1.0,False
+hbo_hbr,primary,0.6446,0.8103,0.00085,*,0.0034,True
+motion_frac,artefact control,0.0017,0.0017,0.63666,,,False
+hbo_amp,artefact control,0.0,0.0,0.11653,,,False
+eeg_amp,artefact control,1012.2499,1475.5954,0.68076,,,False
+n_trials,artefact control,30.0,30.0,1.0,,,False

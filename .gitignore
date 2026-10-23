@@ -36,3 +36,29 @@ neurovascnet_outputs_v2/
 # QC audit bulk artifacts (regenerable via qc/run_qc.py); tables + report are kept
 qc_outputs/arrays/
 qc_outputs/figures/
+
+# Generated caches and model outputs -- these are large, regenerable, and were
+# the cause of a 74 GB .git blowup on 2026-08-07: they are rewritten on every
+# build, and each rewrite was hashed into .git/objects as a new ~0.74 GB blob.
+output/
+neurovascnet_outputs/
+neurovascnet_outputs_v2/
+qc_outputs/
+*.npz
+*.pt
+*.hdf5
+
+# Directory junctions that point BACK at dataset/ -- without this git hashes
+# every dataset a second time through the junction (~40 GB of .mat files).
+dataset_v31/
+data/
+
+# Zipped dataset copies -- 15 GB, regenerable via build_dataset_archives.py
+dataset_archives/
+# Notebook run outputs (CSVs are small but the caches are not)
+neurovascnet_outputs_local/
+outputs/
+.claude/settings.local.json
+
+# Report build intermediates (regenerate with scripts/build_report_pdf.py)
+report_build/
