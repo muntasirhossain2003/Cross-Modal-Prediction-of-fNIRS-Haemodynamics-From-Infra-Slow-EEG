@@ -331,7 +331,7 @@ def fig_clinical():
     a.grid(axis="y", visible=False)
     panel(a, "A")
     a = ax[1]
-    names = {"coupling_r": "EEG–HbO coupling", "coupling_lag_s": "coupling delay", "reliability": "model reliability",
+    names = {"coupling_r": "EEG–HbO coupling", "coupling_lag_s": "coupling delay", "reliability": "response repeatability",
              "hbo_hbr": "HbO/HbR correlation", "motion_frac": "head motion*", "hbo_amp": "HbO amplitude*",
              "eeg_amp": "EEG amplitude*", "n_trials": "trial count*"}
     cl = cl.iloc[::-1]
