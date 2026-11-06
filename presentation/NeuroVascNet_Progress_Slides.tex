@@ -58,7 +58,8 @@
 \colhead{What worked}
 \begin{itemize}\setlength{\itemsep}{4pt}
   \item EEG can predict fNIRS in new people, but only a little (r = 0.16), and only with clean data.
-  \item The delay between brain activity and blood flow is about 6 seconds, and it stays the same for a person across sessions.
+  \item Measured directly from the data, the delay between brain activity and blood flow is about 6 seconds, and it stays the same for a person across sessions.
+  \item After a simple calibration, the model's confidence numbers are honest on average.
   \item Stroke patients' HbO and HbR move together more tightly than healthy people's (0.81 vs 0.64). The EEG--blood link itself was the same in both groups.
 \end{itemize}
 \end{column}
@@ -66,8 +67,9 @@
 \colhead{What didn't}
 \begin{itemize}\setlength{\itemsep}{4pt}
   \item Adding fMRI did not help. Random fMRI data gave the same result as real fMRI.
-  \item The model fails completely on a different dataset.
-  \item The model cannot tell when its own prediction is wrong.
+  \item On a different dataset it predicts almost nothing (r = 0.01).
+  \item The delay the model learns just follows the limits we set it.
+  \item Its confidence can't pick out which predictions are wrong.
   \item Splitting the data the usual way made our score look almost twice as good as it really is.
 \end{itemize}
 \end{column}
@@ -128,7 +130,7 @@
 \begin{itemize}\setlength{\itemsep}{4pt}
   \item For a new person, the model does no better than guessing that person's usual level.
   \item Adding fMRI made things worse in 4 out of 5 runs.
-  \item Nothing carried over to the other datasets.
+  \item Nothing carried over to the other datasets, and there the confidence score gets it backwards.
   \item Personalising helped, but mostly because it learned the person's average, not because of EEG.
 \end{itemize}
 \end{column}

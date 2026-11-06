@@ -60,5 +60,9 @@ neurovascnet_outputs_local/
 outputs/
 .claude/settings.local.json
 
+# Merged notebook cache and run outputs (regenerable; *.npy arrays are GB-scale)
+neurovascnet_merge_v1_cache/
+neurovascnet_merge_v1_outputs/
+
 # Report build intermediates (regenerate with scripts/build_report_pdf.py)
 report_build/

@@ -231,3 +231,12 @@ The merged notebook adds EEG filtering, which can change results. To confirm not
   - the capacity test
 - **The claim guard** checks Claim 1's consistency and lists restrictions. It does **not** certify the loaders or the absence of leakage; Section 4's checks do that.
 - **Claim 4 numbers are not comparable with Muntasir's saved ones**: his encoder had seen the probe's test people; the merged notebook's does not.
+- **Claim 4 is split into 4a and 4b** (post-merge fix):
+  - **4a, frozen features:** judged only against raw band-power, random init and shuffled targets. Before the fix the frozen probe also had to beat the two fine-tuned encoders, which made HOLDS unreachable, and both fine-tuned rows were saved under the same key (`vs_fine-tuned`), so one overwrote the other.
+  - **4b, initialisation:** fine-tuned from the supervised encoder vs fine-tuned from scratch, on the same folds. HOLDS when the gain is above 0.01 for that seed **and** the fine-tuned accuracy beats both chance and raw band-power by 0.01 (a gain between two below-chance models is noise); the five-seed mean of `c4_finetune_gain` decides.
+  - **The probe uses motor-imagery trials only** when MI and MA are pooled. With all four classes most of the accuracy came from telling MI from MA apart. The encoders are still trained on every trial.
+- **HEFMI loader fixed** (post-merge, found in the first smoke run):
+  - **Timing:** each HEFMI epoch is cue − 10 s to rest + 15 s (≈ 37.2 s, `MakeDatasetFromRaw.m`). The old loader squeezed the whole epoch onto the 30 s grid, so HEFMI time ran 1.24× fast against hBCI. Now the −2…+28 s window is cut around the cue at the native rate (256 Hz EEG, 11 Hz fNIRS) and then resampled; the last ~0.8 s, past the end of the epoch, repeats the final sample.
+  - **Units:** HEFMI concentrations are stored about 10⁶ smaller than hBCI's µmol/L (mol/L). They are now multiplied by 10⁶; before, every external HEFMI trial counted as "wrong" in Claim 5. Correlations (Claim 2) were not affected.
+  - The clinical section is unchanged: it uses its own loader at native rates.
+- **ds002336 now carries `task_ids`** (its 6 paradigms) and `rec_ids`, so fMRI results are demeaned by subject × task like hBCI. The same-person probe now splits early/late trials inside each task instead of training on early tasks and testing on later ones. Some subjects have no MIpre/MIpost recordings in the dataset itself.
