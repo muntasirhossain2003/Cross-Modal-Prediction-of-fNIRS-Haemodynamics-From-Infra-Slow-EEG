@@ -1,0 +1,26 @@
+# Analysis scripts for FINAL_PLAN P2–P4
+
+These are copies of the scripts that produced the results in `merge/FINAL_PLAN.md` and
+`merge/RESULTS_SUMMARY.md`. The raw result files are in `results/`. The scripts read the notebook caches in
+`merge/neurovascnet_merge_v1_cache/`, and several of them execute cells of `Neurovascnet_marge_v1.ipynb` to
+reuse its loaders and statistics. A few scripts expect sibling scripts to sit in the same folder, because
+they `exec` part of another script (for example `trf_delay.py` reads `continuous_lag.py`).
+
+| Plan section | Script | Notes |
+|---|---|---|
+| Step 7 reproduction, T1/T2 bands | `run_step7.py`, `run_bands.py` | |
+| T5 person-specificity | `person_specific.py` | argument `trials` \| `runs` \| `runs_detrend` |
+| T3/T4 topography, EOG | `topo_eog.py` | |
+| T6 epoch lag | `lag_test.py` | |
+| R replication (mental workload) | `replicate_mw.py` | builds `replication_tuberlin_mw` |
+| P2.1 full notebook, slow band kept | `run_p2_full.py`, `dump_outputs.py` | |
+| P2.3 continuous lag (+ sanity) | `continuous_lag.py`, `lag_sanity.py` | |
+| P2.5 / P2.5b calibration | `calibration.py` | env `TARGET=raw\|local\|global`; cohort names as arguments |
+| P2.6 evoked timing | `evoked_timing.py` | |
+| P3.1 / P3.1b / P3.1c Claim 1 | `claim1_linear.py`, `claim1_shared.py`, `claim1_within.py` | |
+| P4.1 Claim 1 with 27 fMRI people | `build_ds002338.py`, `claim1_shared27.py`, `claim1_within27.py` | env `FMRI_SET=pooled\|ds002336\|ds002338`, `RANK_OVERRIDE` (exploratory) |
+| P3.2 Claim 2 | `external_claim2.py`, `external_claim2_class.py` | |
+| P3.3 / P4.3 Claim 3 | `trf_delay.py` | `shard K N` then `merge`; env `COHORT=finemi`, `EEG_HP=0.01`, `REREF=lm` |
+| P3.4 / P4.4 Claim 4 | `downstream_claim4.py`, `downstream_finemi.py` | |
+| P3.5 Claim 5 | `reliability_claim5.py` | |
+| P4 FineMI | `build_finemi.py`, `replicate_finemi.py`, `external_finemi.py` | env `REREF=lm`, `DETREND=1` |

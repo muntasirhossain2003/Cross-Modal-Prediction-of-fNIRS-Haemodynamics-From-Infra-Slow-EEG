@@ -1,0 +1,43 @@
+{
+ "internal": {
+  "base_rate_correct": 0.5,
+  "ece_raw": 0.008155159721103058,
+  "ece_temp": 0.008102686304569437,
+  "ece_iso": 0.021088257508781086,
+  "rank_trial": 0.10997541551430018,
+  "rank_subject": 0.21871921182266005,
+  "coverage": 0.7474137931034482,
+  "risk_answered": 1.2625474964020844,
+  "risk_all": 1.2469917871495741,
+  "violations_answered": 0.47949405902644693,
+  "selective_curve_err": [
+   1.2469917871495741,
+   1.2654203243988533,
+   1.2630973998787987,
+   1.2482194512548244,
+   1.2004256467189758
+  ],
+  "error_falls_with_abstention": false
+ },
+ "external": {
+  "base_rate_correct": 0.40551181102362205,
+  "ece_raw": 0.10019296781565483,
+  "ece_temp": 0.10020089116946468,
+  "ece_iso": 0.10087114218628915,
+  "rank_trial": -0.013489348985507663,
+  "rank_subject": -0.26837606837606837,
+  "coverage": 0.7690288713910761,
+  "risk_answered": 1.6160451085670247,
+  "risk_all": 1.5361663647444594,
+  "violations_answered": 0.5836177474402731,
+  "selective_curve_err": [
+   1.53616636474446,
+   1.6111754039438901,
+   1.6037106872470601,
+   1.7298510680056427,
+   2.0407012118763106
+  ],
+  "error_falls_with_abstention": false
+ },
+ "verdict": "PARTIAL (internal only)"
+}

@@ -1,0 +1,32 @@
+{
+ "hbci_to_mental_workload": {
+  "r_subject": 0.2088418001521251,
+  "ci_low": 0.13510005681288814,
+  "ci_high": 0.28080981288688134,
+  "null_mean": -0.0004275272264890293,
+  "p_pairing": 0.000999000999000999,
+  "p_signflip": 0.00019998000199980003,
+  "n_subjects": 26,
+  "n_positive": 21,
+  "verdict": "detectable",
+  "alpha": 1000.0,
+  "claim2_pass": true,
+  "r_HbO": 0.2428811262886392,
+  "r_HbR": 0.07033625407549214
+ },
+ "mental_workload_to_hbci": {
+  "r_subject": 0.18924874199970199,
+  "ci_low": 0.15469653624890817,
+  "ci_high": 0.2244086776654558,
+  "null_mean": 6.040619839082936e-05,
+  "p_pairing": 0.000999000999000999,
+  "p_signflip": 9.999000099990002e-05,
+  "n_subjects": 29,
+  "n_positive": 29,
+  "verdict": "detectable",
+  "alpha": 3162.2776601683795,
+  "claim2_pass": true,
+  "r_HbO": 0.20983307863336825,
+  "r_HbR": 0.0379036840528686
+ }
+}

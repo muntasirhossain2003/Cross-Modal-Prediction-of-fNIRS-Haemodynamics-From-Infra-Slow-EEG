@@ -1,0 +1,80 @@
+{
+ "hbci_to_finemi": {
+  "r_subject": -0.022555349293845502,
+  "ci_low": -0.04970640389138633,
+  "ci_high": 0.004178671746900347,
+  "null_mean": 0.0002460441401114868,
+  "p_pairing": 1.0,
+  "p_signflip": 0.12988701129887012,
+  "n_subjects": 18,
+  "n_positive": 6,
+  "verdict": "not distinguishable from the null",
+  "alpha": 1000.0,
+  "claim2_pass": false,
+  "r_HbO": -0.009752171608779895,
+  "r_HbR": -0.06490453584451054,
+  "calibration_k2": {
+   "baseline": 0.06748526330623746,
+   "personal": 0.1194013392448429,
+   "hybrid_external": -0.0263810776107591,
+   "frozen_external": -0.026381268841592934,
+   "hybrid_minus_baseline": -0.09386634091699655,
+   "hybrid_minus_baseline_ci": [
+    -0.12096961564221728,
+    -0.0677633937552352
+   ]
+  }
+ },
+ "mental_workload_to_finemi": {
+  "r_subject": 0.0008013940516656709,
+  "ci_low": -0.026190655042431996,
+  "ci_high": 0.029742936591932174,
+  "null_mean": 0.0006010625217273604,
+  "p_pairing": 0.46853146853146854,
+  "p_signflip": 0.9894010598940106,
+  "n_subjects": 18,
+  "n_positive": 6,
+  "verdict": "not distinguishable from the null",
+  "alpha": 1000.0,
+  "claim2_pass": false,
+  "r_HbO": 0.024535130897651355,
+  "r_HbR": -0.026914737403969147,
+  "calibration_k2": {
+   "baseline": 0.06748526330623746,
+   "personal": 0.12248178613367704,
+   "hybrid_external": -0.0016726455526381537,
+   "frozen_external": -0.00173498680987087,
+   "hybrid_minus_baseline": -0.0691579088588756,
+   "hybrid_minus_baseline_ci": [
+    -0.10252739564170998,
+    -0.03629696359162466
+   ]
+  }
+ },
+ "finemi_to_hbci": {
+  "r_subject": -0.05889621126636479,
+  "ci_low": -0.11870345052797901,
+  "ci_high": -0.005440887018130355,
+  "null_mean": -0.0002464160891840383,
+  "p_pairing": 1.0,
+  "p_signflip": 0.059694030596940305,
+  "n_subjects": 29,
+  "n_positive": 11,
+  "verdict": "not distinguishable from the null",
+  "alpha": 3162.2776601683795,
+  "claim2_pass": false,
+  "r_HbO": -0.04241992957728333,
+  "r_HbR": -0.05044078378972988,
+  "calibration_k2": {
+   "baseline": 0.0961591540505464,
+   "personal": 0.3370788378309292,
+   "hybrid_external": 0.29932833980815565,
+   "frozen_external": 0.09615910429174032,
+   "hybrid_minus_baseline": 0.2031691857576092,
+   "hybrid_minus_baseline_ci": [
+    0.1585174010261173,
+    0.2515479480322563
+   ]
+  }
+ }
+}
