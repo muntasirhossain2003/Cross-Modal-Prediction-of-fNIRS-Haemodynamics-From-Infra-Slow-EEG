@@ -844,6 +844,8 @@ Training on 10 people is too little for the fMRI output; training on 17 transfer
 at the −10 s edge of the lag range, so the split-half agreement reflects edge-pinned noise. -> **3a FAIL**
 ("exists" needs a majority). Peak local r per person 0.006–0.05 (hBCI 0.37). FineMI shows no continuous
 EEG–HbO coupling under any EEG chain tried.
+Secondary, linked mastoids + emulation: 8/18 beat null, median −1 s, IQR [−4.5, +4.5], split-half r +0.41
+(perm p 0.073), 17/36 half estimates at the edge -> 3a FAIL.
 
 **P5.7 Claim 5 trial-level calibrated form**: primary −OOD within-person Spearman hBCI −0.007 [−0.063, +0.048],
 MW +0.234 [+0.086, +0.369], FineMI +0.042 [−0.018, +0.101] -> **FAIL** (hBCI). Secondary predicted-signal energy:
