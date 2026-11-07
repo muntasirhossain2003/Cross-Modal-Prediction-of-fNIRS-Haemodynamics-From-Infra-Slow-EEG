@@ -858,6 +858,50 @@ hBCI +0.216 [0.152, 0.278], MW +0.060, FineMI +0.164 [0.093, 0.236] — positive
 - P5.4 (raw target), calibration-run seeds 1337–1341: **holds 5/5** (rule: hBCI and at least one external).
   hBCI passes 5/5 (0.60–0.79), FineMI 5/5 (0.84–0.90), mental workload 4/5 (0.28–0.66; seed 1340 CI crosses 0).
 
+## P6 — third round on the claims still failing (declared 2026-11-07, before running any P6 test)
+
+User instruction: try to solve the remaining failures too. Each P6 test is written here before it is run. All are
+motivated by P5 results already seen, so they are a third confirmatory round; the declared earlier forms remain the
+primary record. No new test is declared for Claim 4 (refuted in four forms; a fifth would be fishing) or for the
+trial-level form of Claim 5 (P5.7 already committed to "no further trial-level score").
+
+### P6.1 — Claim 2 into FineMI with paradigm and montage harmonisation
+
+Two differences between the labs were not yet matched. (1) Trial timing: FineMI cues come every ~19 s, TU Berlin
+every ~25 s, so the 30 s FineMI epoch (−2..28 s) contains the next trial's cue and response, while the TU Berlin
+epoch does not. (2) Target montage: FineMI NIRS covers only the left fronto-central motor area (24 channels, nearest
+10-05 sites FFC1h..C5h); the P4.2 target is the mean over all hBCI channels (frontal + occipital + both motor areas).
+Harmonised version: features and target restricted to the first 20 bins (−2..18 s, before the next FineMI cue) in
+both cohorts; hBCI target = mean of its 12 left-motor channels (C5CP5 … C1CP1, file order 12–23) per chromophore;
+FineMI target = mean of all its channels (unchanged). Model, features, z-scoring, demeaning, alpha grid: as P4.2.
+- **Primary: hBCI -> FineMI, both harmonisations, P4 native-reference cache. Claim 2 into FineMI passes**: notebook
+  rule (CI > 0, p < 0.05, r >= 0.05).
+- Secondary, same rule (reported, not used for the verdict): the same on the P5.2 hardware-emulated cache; window
+  only; montage only; MW -> FineMI (window only — MW has no matching left-motor layout); FineMI -> hBCI (both).
+
+### P6.2 — Claim 2, calibrated-transfer form
+
+Question: when a person in the new lab gives the two calibration runs of the deployment protocol, does the model
+frozen in the other lab add anything to their own personal model? Per FineMI person: two calibration runs drawn
+once (seed 1337), all other runs are test runs. Personal model = ridge on the calibration runs (as P5.4). The
+frozen external model (P4.2, hBCI-trained) and the personal model are stacked: one gain per model per person,
+fitted by least squares on the calibration runs, the personal model's calibration predictions cross-fitted (train
+on one calibration run, predict the other). The gains absorb the unit difference and any per-person sign. The
+comparison is the same stacking with the personal model only. Score: test-run trial correlation (raw target).
+- **Claim 2 (calibrated-transfer form) passes**: mean over people of r(personal + external) − r(personal) > 0 with
+  95% subject-level bootstrap CI > 0, hBCI -> FineMI (P4 native cache). Secondary: hardware-emulated cache;
+  MW -> FineMI; hBCI -> MW (within lab, reference).
+
+### P6.3 — Claim 1, fMRI supervision on the local fNIRS target
+
+The shared space is dominated by the global (systemic) fNIRS signal, which fMRI ROI targets do not share. On the
+local target (each NIRS channel minus the mean over that chromophore's channels, per trial and bin; P2.5b) the
+remaining signal is cortical, where fMRI could carry information. P5.1 rerun unchanged (rank 32, same folds, same
+27-person fMRI arm) with the local fNIRS target.
+- **Claim 1 (P3.1 form, local target) passes**: joint − single > 0 with 95% CI > 0 AND joint − joint-shuffled > 0
+  with 95% CI > 0, mental workload (primary). FineMI and hBCI reported with the same numbers. The shared-space
+  (P3.1b) numbers are reported too.
+
 ## What will NOT be done
 
 - No change of band edges, targets or metric after seeing T1/T2.
