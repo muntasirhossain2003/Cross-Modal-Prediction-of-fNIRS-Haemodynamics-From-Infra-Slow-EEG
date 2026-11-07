@@ -998,6 +998,51 @@ own null, the delay stays at +6 s and remains reproducible within person, and pe
 the cues. In mental workload and FineMI, most people still beat their null after the task is removed, but the
 personal delay does not repeat between halves, as in P6.4.
 
+## P7 — fourth round on Claims 3 and 2 (declared 2026-11-08, before running any P7 test)
+
+User instruction: try the failing Claims 3 and 2 again. These are new tests with new rules. They do not replace
+P6.4 / P6.4b / P6.1 / P6.2, which stay the primary record of those declared tests.
+
+### P7.1 — Claim 3, within-person reproducibility of the coupling kernel
+
+Why a new statistic: the P6.4 reproducibility check is the across-person Pearson r between first-half and
+second-half delays. That measures whether people *differ* reliably in delay. If everyone has a similar delay, that
+r is near 0 even when each person's coupling repeats perfectly. P7.1 asks the direct question: does a person's
+lag curve in the first half of their recording look like their lag curve in the second half, more than chance?
+
+- Data, features, target, model and lags exactly as P6.4: band power theta–gamma -> local HbO, lags −10..+20 s,
+  leave-one-run-out ridge. Each run is split into a first and second half as in P6.4.
+- Per person: curves c_A (first halves) and c_B (second halves); k = Pearson r of c_A and c_B over the 31 lags.
+  Null: 20 surrogates, each recomputing c_B after a circular shift of HbO in every second-half run (shift ≥ 60 s);
+  k_null = r(c_A, c_B surrogate). Person score d = k − mean(k_null).
+- Cohort rule: **kernel reproducible** if median d > 0 and one-sided Wilcoxon signed-rank p < 0.05 on d.
+  **Claim 3a′ passes** in a cohort if the coupling exists there (P6.4: more than half the people beat their own
+  null, already measured) and the kernel is reproducible. **Claim 3 (kernel form) supported** if 3a′ passes in
+  hBCI and at least one other cohort.
+- Secondary, same rule, on the P6.4b task-residual data (env `RESID=1`): coupling beyond the task.
+- Descriptive: fraction of people with |delay_A − delay_B| ≤ 2 s, against chance from pairing each first half
+  with other people's second halves.
+
+### P7.2 — Claim 2, transfer of a frozen band-power coupling kernel across labs
+
+Why: every Claim 2 failure into FineMI used infra-slow EEG. That band depends on the amplifier's DC / high-pass
+behaviour, which differs between labs (P5.2). Band power at 4–45 Hz does not. P6.4 found the global HbO response
+following EEG band power by 7–9 s in all three cohorts.
+
+- Source: all 29 hBCI people, continuous runs. Features are the P6.4 band power (4 bands × 30 hBCI electrodes),
+  z-scored per run. Target cohorts' raw EEG is first mapped onto the hBCI electrodes with the notebook's
+  spherical-spline `interpolation_matrix`, then turned into band power the same way.
+- Target: global HbO (mean over all NIRS channels, 0.01–0.1 Hz), z-scored per run. It is montage-independent, so
+  no NIRS channel matching is needed. It includes systemic haemodynamics, and is reported as such.
+- Model: one ridge (RidgeCV, alphas 10^0..10^6) with EEG lags 0, 2, 4, …, 14 s (EEG earlier), fitted once on all
+  hBCI people and frozen. No refitting, rescaling or sign choice on the target cohort.
+- Score: per run, Pearson r between prediction and global HbO; person r = mean over runs. Person null: 200
+  circular shifts of HbO per run (≥ 60 s), with the mean over runs.
+- Rule: **transfer passes into a cohort** if mean person r > 0 with bootstrap (5000) 95% CI lower bound > 0, and
+  more than half of the people beat their own null (p < 0.05). **Primary: hBCI -> FineMI (cross-lab).**
+  Reference: hBCI -> mental workload (same lab). Descriptive: MW -> FineMI, and a leave-one-person-out
+  within-hBCI score.
+
 ## What will NOT be done
 
 - No change of band edges, targets or metric after seeing T1/T2.
