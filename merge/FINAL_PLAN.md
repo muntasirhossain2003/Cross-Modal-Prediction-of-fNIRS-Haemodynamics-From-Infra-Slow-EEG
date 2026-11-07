@@ -344,6 +344,88 @@ at/near the left mastoid, while slow-potential topographies are reference-depend
 EOG re-referenced to linked mastoids ((M1 + M2)/2) in the loader, then P4.2 (transfer, with and without the
 P4.A detrend) and P4.3 (lag, with P4.A high-pass) rerun. Post hoc; same verdict rules.
 
+## P5 — further routes to the failing claims (declared 2026-11-07, before running any P5 test)
+
+User instruction: keep trying every route to the five claims. Every P5 test below is written before it is run.
+P5 tests come after the P3/P4 results were seen, so they are a second confirmatory round: each one either uses
+data never used for that claim (fresh cohort) or fixes its settings from earlier, already-reported results.
+Exploratory follow-ups are labelled as such when added.
+
+### P5.1 — Claim 1 confirmatory test on fresh fNIRS cohorts (rank fixed at 32)
+
+Rank 32 is fixed from the hBCI exploratory sweep (P4.1). The fNIRS side is a cohort never used for Claim 1:
+mental workload (26 people, primary) and FineMI (18, secondary). fMRI arm = ds002336 + ds002338 pooled (27).
+Slow EEG as P3.1 (< 0.5 Hz, 1 s bins, z-scored per person). The fMRI arm's EEG is mapped onto the fNIRS
+cohort's own montage (spherical splines). Targets: every NIRS channel × 30 s (MW 72 × 30; FineMI 48 × 30) and
+BOLD 5 ROIs × 15, demeaned by subject × task. fNIRS side: 5 person folds (seed 1337), joint space built with all
+27 fMRI people; fMRI side: leave-one-person-out over 27, joint space built with all fNIRS-cohort people.
+- **P3.1b form (shared space serves both outputs)**: both outputs work (fNIRS r_subject CI > 0, p < 0.05,
+  r >= 0.05; fMRI CI > 0, p < 0.05) AND no cost (shared − specific 90% CI lower bound > −0.02, each modality).
+  **Claim 1 (shared-space form) confirmed** if it holds in mental workload; FineMI reported as a replication.
+- **P3.1 form (fMRI supervision improves fNIRS)**, same rank 32: joint − single > 0 with 95% subject-level CI > 0
+  AND joint − joint-shuffled (fMRI targets shuffled within person) > 0 with CI > 0. Reported for MW, FineMI,
+  and hBCI (hBCI is not fresh at rank 32 — descriptive).
+- **P5.1b data-scarce P3.1 form** (added 2026-11-07 after the P5.1 results, before running): same rank 32 and
+  cohorts, but each fNIRS fold trains on only 5 people (fixed random choice of the training fold, seed 1337);
+  the fMRI map uses all 27. Same rule (joint − single CI > 0 AND joint − joint-shuffled CI > 0), MW primary.
+
+### P5.2 — Claim 2 into FineMI by hardware emulation
+
+The TU Berlin EEG passed a BrainAmp hardware high-pass (first order, time constant 10 s); FineMI is DC-coupled.
+P4.A detrending is not the same operation (it removes a line, not the causal filter's phase and shape).
+FineMI continuous EEG and EOG are passed through a first-order causal high-pass with time constant 10 s
+(`scipy.signal.lfilter`, bilinear) before epoching; the rest of the P4 loader is unchanged (native reference).
+P4.2 is rerun unchanged on this cache (hBCI -> FineMI primary; MW -> FineMI, FineMI -> hBCI secondary).
+- **Claim 2 into FineMI passes**: the notebook rule on hBCI -> FineMI.
+- Secondary, same rule: (a) the same plus linked-mastoid reference; (b) Euclidean alignment — each person's
+  slow-EEG features whitened by that person's own spatial covariance (unsupervised; no target used), applied to
+  every cohort and reported for hBCI <-> MW as well.
+
+### P5.3 — Claim 4 data-scarce form
+
+Same as P3.4/P4.4 (features A, B, S, R; same classifier; 3 person folds), but the classifier is trained on the
+labelled trials of only 5 training people per fold (fixed random choice, seed 1337), while the virtual-
+hemodynamics ridge uses the hemodynamics of all training-fold people (hemodynamics need no task labels).
+This is the semi-supervised setting the blueprint's downstream claim implies. Primary: hBCI MI left/right.
+- **Claim 4 (data-scarce form) passes**: B − A >= 0.02 with CI > 0 AND B − S > 0 with CI > 0 AND B − R > 0 with
+  CI > 0. Secondary: hBCI MA, MW n-back, FineMI 8-class, same numbers.
+
+### P5.3b — Claim 4 representation form (written 2026-11-07 after P3.4/P4.4/P5.3 results, before running)
+
+Post-hoc-motivated: the hemo-only accuracies (virtual hemodynamics alone) were visible in the P3.4/P4.4/P5.3
+outputs; this form was not declared before them and is labelled as such. Question: is the EEG representation
+learned under haemodynamic supervision a better compact code for the downstream task than unsupervised codes of
+the same size from the same slow EEG? Same folds, classifier and features as P3.4, but band power is NOT added:
+V = virtual hemodynamics alone (one value per NIRS channel, 5–15 s); Rp = random projection of the slow-EEG
+features to the same dimension; PC = principal components of the slow-EEG features (fitted on training people)
+to the same dimension; Full = all slow-EEG features (reference). Both regimes: all labelled training people
+(primary) and 5 labelled people (P5.3 regime).
+- **Claim 4 (representation form) passes**: V − Rp > 0 with CI > 0 AND V − PC > 0 with CI > 0 on hBCI MI,
+  primary regime. Other tasks/cohorts reported with the same numbers.
+
+### P5.4 — Claim 5 at the person level, in the calibrated-deployment setting
+
+P3.5 passed only at person level internally and failed externally. Deployment (P2.5) gives each new person two
+calibration runs, so their reliability can be measured, not guessed: reliability score = the person's own
+leave-one-calibration-run-out r of the k = 2 hybrid model (computed on the two calibration runs only).
+Error = 1 − mean test-run r of the hybrid model on the remaining runs. Cohorts: hBCI (internal), MW and FineMI
+(external — nothing fitted across cohorts; the score is computed the same way).
+- **Claim 5 (person-level, calibrated form) holds**: Spearman(score, −error) > 0.2 with 95% bootstrap CI > 0 in
+  hBCI AND in at least one external cohort.
+- Robustness (added 2026-11-07 after the raw-target P5.4 result, before running it): the same test on the local
+  target (P2.5b: each channel minus the channel mean), to check that the ranking is not only the systemic signal.
+- EEG-specific check (added 2026-11-07 after the raw and local P5.4 results, before running it): score and outcome
+  both taken as the hybrid's gain over the no-EEG personal mean (calibration-run gain vs test-run gain), so the
+  ranking must come from the EEG part, not from how stereotyped a person's haemodynamics are. Same rule.
+
+### Claim 3
+
+No new hBCI / mental-workload variant is declared: P3.3/P4.A already used the full data with both band choices;
+a third variant chosen now would be fishing. The group-level delay is already reported.
+- **P5.2c** (written 2026-11-07, before running): the P4.3 lag test (declared settings, no extra 0.01 Hz high-pass)
+  rerun on the P5.2 hardware-emulated FineMI continuous data (native reference; linked mastoids secondary).
+  Claim 3a rule unchanged. Reason: same as P5.2 — make FineMI's EEG chain match the cohorts where 3a passed.
+
 ## Results so far (2026-11-04, seed 1337, hBCI)
 
 | Test | Result | Rule outcome |
@@ -646,6 +728,111 @@ subject-varying delay") is robust only in hBCI; the group-level delay (−1 to �
 (DC-coupled, motor-only NIRS) shows no reliable continuous coupling.
 
 Also observed: a pooled cross-person ridge on slow EEG (0.197) beats the deep model on the same band (0.155).
+
+### P5.5 — seed robustness of the P5 passes (written 2026-11-07 after P5.1/P5.4 passed, before running)
+
+P5.1 (MW, shared-space form) rerun with person-fold seeds 1338–1341; P5.4 (raw target) rerun with the
+calibration-run choice drawn with seeds 1338–1341. Reported: how many of the 5 seeds (1337 included) pass the
+same rule. Robust = at least 4 of 5.
+
+### P5.6 — Claim 2 on the fMRI output (written 2026-11-07, before running)
+
+ds002336 (XP1, 10 people) and ds002338 (XP2, 17 other people) were recorded separately. A slow-EEG ridge
+(features as P3.1, mapped onto hBCI positions, z-scored per person; target BOLD 5 ROIs × 15, subject × task
+demeaned) is trained on all of one study and tested frozen on the other. Primary: ds002336 -> ds002338 (larger
+test set). Also the shared-space model of P5.1 (rank 32 space from all hBCI fNIRS + the training study's fMRI;
+fMRI head on the training study) frozen and tested the same way. Notebook rule (CI > 0, p < 0.05, r >= 0.05).
+- **Claim 2 holds for the fMRI output**: notebook rule on ds002336 -> ds002338 for the plain ridge.
+
+### P5 results — 2026-11-07 (seed 1337)
+
+**P5.1 Claim 1, rank 32, fresh fNIRS cohorts (fMRI arm pooled 27)**
+
+| fNIRS cohort | fNIRS full / specific / shared | fNIRS shared − specific (90% CI) | fMRI specific / shared | fMRI shared − specific (90% CI) | both work | no cost | shared-space form |
+|---|---|---|---|---|---|---|---|
+| **mental workload (primary, fresh)** | 0.132 / 0.130 / **0.123** [0.080, 0.170] | −0.006 [−0.014, +0.001] | 0.067 / **0.068** [0.043, 0.095] p 0.0001 | +0.001 [−0.003, +0.005] | yes | yes | **HOLDS** |
+| FineMI (replication, fresh) | 0.196 / 0.176 / **0.180** [0.141, 0.226] | +0.004 [+0.002, +0.005] | 0.064 / 0.063 | −0.000 [−0.004, +0.004] | yes | yes | **HOLDS** |
+| hBCI (not fresh at rank 32, descriptive) | 0.182 / 0.174 / 0.178 | +0.004 [+0.001, +0.007] | 0.067 / 0.068 | +0.001 [−0.003, +0.005] | yes | yes | (holds) |
+
+P3.1 form at rank 32 (fMRI supervision improves fNIRS): joint − single MW −0.006 [−0.015, +0.002], FineMI
++0.004 [+0.002, +0.006], hBCI +0.004 [+0.001, +0.008]; joint − joint-shuffled MW −0.001, FineMI +0.003
+[−0.001, +0.007], hBCI +0.001 [−0.001, +0.003] -> **FAILS in every cohort** (real fMRI no better than shuffled).
+
+Rule outcome: **Claim 1, shared-space form, CONFIRMED** on a fresh cohort with a rank fixed in advance (and
+replicated in FineMI): one EEG-derived space of rank 32 predicts fNIRS and fMRI on unseen people at no cost to
+either. The stronger form — fMRI supervision *improves* fNIRS — is not supported: the small joint − single gain
+in FineMI/hBCI is matched by shuffled fMRI targets, i.e. it is extra capacity, not fMRI information. Caveat: the fMRI arm (27) is the one used in P4.1; only the fNIRS
+side of this confirmation is fresh.
+P5.1b data-scarce (5 fNIRS training people per fold): joint − single MW −0.000 [−0.003, +0.003], FineMI +0.005
+[+0.003, +0.007]; joint − shuffled MW −0.001, FineMI −0.000 [−0.003, +0.002] -> **FAILS**; scarcity does not
+make the fMRI information useful.
+
+**P5.2b Claim 2, Euclidean alignment (secondary)**: hBCI -> FineMI −0.027 [−0.054, +0.001]; MW -> FineMI −0.005;
+FineMI -> hBCI −0.046; hBCI -> MW 0.192 [0.126, 0.260] (pass); MW -> hBCI 0.143 [0.111, 0.174] (pass).
+Alignment does not rescue FineMI transfer.
+
+**P5.2 Claim 2, FineMI with emulated BrainAmp hardware high-pass (primary of P5.2)**: hBCI -> FineMI
+**−0.064 [−0.094, −0.037]**, p 0.0006, 3/18 positive -> **FAIL**; MW -> FineMI −0.028; FineMI -> hBCI −0.114
+[−0.171, −0.058]. Linked mastoids + emulation: −0.070 / −0.026 / −0.113. hBCI <-> MW unchanged (0.205 / 0.177).
+Matching the hardware filter makes the transfer *reliably negative* rather than null. Check run afterwards (not a
+claim test): blink polarity is normal in every cohort (positive skew of 1–10 Hz EEG at frontal-pole channels in
+29/29 hBCI, 26/26 MW, 18/18 FineMI people), so the sign reversal is not a recording-polarity error; the
+EEG-to-haemodynamics mapping itself differs between the labs' set-ups (motor-only 24-channel NIRS, 19 s trials,
+different cap and amplifier). **Claim 2 holds within one lab's hardware only.**
+Descriptive side result (exploratory): Euclidean alignment raises the *within-person* k = 2 personal model
+(raw score) from 0.337 to 0.407 in hBCI and from 0.119 to 0.167 in FineMI.
+
+**P5.3 Claim 4, data-scarce form (5 labelled people)**
+
+| Task | A | B | S | R | B − A | B − S | B − R | rule |
+|---|---|---|---|---|---|---|---|---|
+| hBCI MI (primary) | 0.587 | 0.615 | 0.529 | 0.657 | +0.028 [−0.012, +0.067] | +0.086 [+0.043, +0.129] | −0.042 [−0.076, −0.011] | **FAIL** |
+| hBCI MA | 0.595 | 0.630 | 0.539 | 0.597 | +0.035 [+0.012, +0.059] | +0.091 [+0.053, +0.130] | +0.033 [−0.008, +0.072] | fail |
+| MW n-back | 0.370 | 0.409 | 0.326 | 0.427 | +0.039 [−0.003, +0.080] | +0.083 [+0.048, +0.121] | −0.019 [−0.051, +0.014] | fail |
+| FineMI 8-class | 0.131 | 0.129 | 0.128 | 0.122 | −0.002 | +0.001 | +0.007 [−0.002, +0.015] | fail |
+
+Fewer labels do not make the haemodynamic supervision useful: the random projection still matches or beats it.
+
+**P5.3b Claim 4, representation form (post-hoc-motivated)** — classifier on a compact code alone, no band power:
+
+| Task | regime | V (virtual hemo) | Rp (random) | PC (PCA) | Full slow EEG | V − Rp | V − PC | rule |
+|---|---|---|---|---|---|---|---|---|
+| hBCI MI (primary) | all labels | 0.697 | 0.707 | **0.760** | 0.722 | −0.010 [−0.034, +0.013] | −0.064 [−0.089, −0.039] | **FAIL** |
+| hBCI MI | 5 labelled | 0.612 | 0.654 | 0.692 | 0.679 | −0.043 | −0.081 | fail |
+| hBCI MA | all labels | 0.675 | 0.636 | 0.668 | 0.672 | +0.039 [+0.006, +0.067] | +0.007 [−0.021, +0.036] | fail |
+| MW n-back | all labels | 0.413 | 0.423 | 0.453 | 0.467 | −0.010 | −0.040 | fail |
+| FineMI 8-class | all labels | 0.153 | 0.143 | 0.161 | 0.156 | +0.010 [−0.003, +0.023] | −0.009 | fail |
+
+**Claim 4 is refuted in every form tried**: an unsupervised PCA code of the same slow EEG is as good or better
+than the haemodynamically supervised code. The downstream benefit is the slow band itself (A 0.61 -> PC 0.76 on
+hBCI MI, cross-person).
+
+**P5.4 Claim 5, person-level calibrated form (raw target)**
+
+| Cohort | Spearman(calibration-run score, test r) [95% CI] | rule |
+|---|---|---|
+| hBCI (29) | **+0.680 [0.370, 0.865]** | pass |
+| mental workload (26, external) | **+0.558 [0.221, 0.783]** | pass |
+| FineMI (18, external) | **+0.899 [0.689, 0.971]** | pass |
+
+Rule outcome: **Claim 5, person-level calibrated form, HOLDS**: two calibration runs tell in advance how well the
+EEG model will work for that person, in every cohort. This is a person-level reliability statement; the
+trial-level form (P3.5) still fails.
+Robustness, local target: hBCI +0.575 [0.262, 0.807], MW +0.605 [0.249, 0.815], FineMI +0.837 [0.574, 0.946] -> holds.
+EEG-specific check (score and outcome = hybrid gain over the no-EEG personal mean): hBCI +0.712 [0.380, 0.914],
+MW +0.833 [0.664, 0.915], FineMI +0.868 [0.627, 0.956] -> holds. The calibration runs predict how much the EEG
+model will add for that person, not only how stereotyped their haemodynamics are.
+
+**P5.6 Claim 2 on the fMRI output**: ds002336 -> ds002338 ridge +0.017 [−0.009, +0.042], p 0.22 (11/17) -> **FAIL**;
+shared-space model +0.026 [−0.006, +0.056]. Reverse ds002338 -> ds002336: ridge +0.039 [+0.018, +0.058], p 0.011
+(9/10), shared space +0.041 [+0.021, +0.061] -> detectable but below practical_r 0.05 ("negligible size").
+Training on 10 people is too little for the fMRI output; training on 17 transfers, weakly.
+
+**P5.5 seed robustness**
+- P5.1 (MW shared-space form), person-fold seeds 1337–1341: **holds 5/5**. fNIRS shared r 0.114–0.123; fNIRS
+  shared − specific −0.002 … −0.010, 90% lower bounds −0.008 … −0.016 (all > −0.02); fMRI shared 0.068.
+- P5.4 (raw target), calibration-run seeds 1337–1341: **holds 5/5** (rule: hBCI and at least one external).
+  hBCI passes 5/5 (0.60–0.79), FineMI 5/5 (0.84–0.90), mental workload 4/5 (0.28–0.66; seed 1340 CI crosses 0).
 
 ## What will NOT be done
 

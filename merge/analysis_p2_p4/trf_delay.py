@@ -21,7 +21,7 @@ from sklearn.linear_model import RidgeCV
 
 COH = os.environ.get("COHORT", "")                         # "" = hbci + mental workload, "finemi" = P4.3
 EEG_HP = float(os.environ.get("EEG_HP", "0"))              # P4.A: 0.01 = match the HbO band
-TAG = (COH or "") + ("_lm" if os.environ.get("REREF") else "") + ("_hp" if EEG_HP else "")
+TAG = (COH or "") + os.environ.get("FINEMI_TAG", "") + ("_lm" if os.environ.get("REREF") else "") + ("_hp" if EEG_HP else "")
 OUT = HERE / ("trf_delay_results.json" if not TAG else f"trf_delay_{TAG}_results.json")
 SHARDP = "trf_shard" if not TAG else f"trf_{TAG}_shard"
 LAGS = np.arange(-10, 21)
@@ -105,7 +105,7 @@ def person(pairs, rng):
 
 
 def finemi_people():
-    z = np.load(Path("G:/research_bio_medical/merge/neurovascnet_merge_v1_cache/replication_finemi" + ("_lm" if os.environ.get("REREF") else "") + "/continuous.npz"))
+    z = np.load(Path("G:/research_bio_medical/merge/neurovascnet_merge_v1_cache/replication_finemi" + os.environ.get("FINEMI_TAG", "") + ("_lm" if os.environ.get("REREF") else "") + "/continuous.npz"))
     subs = sorted({int(k.split("_")[0][1:]) for k in z.files})
     for s_ in subs:
         runs = sorted({int(k.split("_")[1][1:]) for k in z.files if k.startswith(f"s{s_}_")})

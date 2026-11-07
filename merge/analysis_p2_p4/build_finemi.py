@@ -20,7 +20,9 @@ mne.set_log_level("ERROR")
 NB = Path(r"G:\research_bio_medical\merge\Neurovascnet_marge_v1.ipynb")
 ROOT = Path(r"G:\research_bio_medical\dataset\Multi-joint Upper-Limb EEG+FNIR\FineMI\FineMI")
 REREF = os.environ.get("REREF", "")                       # "lm" = linked mastoids (P4.B)
-CACHE = Path(r"G:\research_bio_medical\merge\neurovascnet_merge_v1_cache\replication_finemi" + ("_lm" if REREF else ""))
+HWHP = os.environ.get("HWHP", "")                         # "1" = emulate BrainAmp 10 s first-order high-pass (P5.2)
+CACHE = Path(r"G:\research_bio_medical\merge\neurovascnet_merge_v1_cache\replication_finemi"
+             + ("_hw" if HWHP else "") + ("_lm" if REREF else ""))
 FS = 200.0
 EOG = ("HEO", "VEO")
 DROP = {"M1", "M2", "CB1", "CB2", "EKG", "EMG"} | set(EOG)
@@ -65,6 +67,9 @@ def read_block(s, name):
     x = e.get_data()
     if REREF:
         x = x[:-2] - x[-2:].mean(0, keepdims=True)
+    if HWHP:                                              # causal first-order high-pass, time constant 10 s
+        bh, ah = sps.butter(1, 1.0 / (2 * np.pi * 10.0), btype="high", fs=FS)
+        x = sps.lfilter(bh, ah, x, axis=-1, zi=sps.lfilter_zi(bh, ah)[None, :] * x[:, :1])[0]
     x = x.astype(np.float32)
     n = mne.io.read_raw_nirx(ROOT / f"subject{s}" / "fNIRS" / name, preload=True)
     tn, ln = events(n)

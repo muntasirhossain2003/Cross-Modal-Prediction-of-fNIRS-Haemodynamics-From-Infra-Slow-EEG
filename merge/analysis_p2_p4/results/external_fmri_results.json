@@ -1,0 +1,46 @@
+{
+ "ds002336_to_ds002338_ridge": {
+  "r_subject": 0.016638010293375707,
+  "ci_low": -0.009188649509982457,
+  "ci_high": 0.04188238350797677,
+  "null_mean": -0.000656362175557823,
+  "p_pairing": 0.03596403596403597,
+  "p_signflip": 0.2181781821817818,
+  "n_subjects": 17,
+  "n_positive": 11,
+  "verdict": "not distinguishable from the null"
+ },
+ "ds002336_to_ds002338_shared_space": {
+  "r_subject": 0.02560955306464233,
+  "ci_low": -0.005504753015064463,
+  "ci_high": 0.056384136021551505,
+  "null_mean": -0.0005972356450151177,
+  "p_pairing": 0.005994005994005994,
+  "p_signflip": 0.12068793120687932,
+  "n_subjects": 17,
+  "n_positive": 10,
+  "verdict": "not distinguishable from the null"
+ },
+ "ds002338_to_ds002336_ridge": {
+  "r_subject": 0.038950858352547815,
+  "ci_low": 0.017945477049973804,
+  "ci_high": 0.05824157259626477,
+  "null_mean": -0.0006565373472683664,
+  "p_pairing": 0.002997002997002997,
+  "p_signflip": 0.010998900109989001,
+  "n_subjects": 10,
+  "n_positive": 9,
+  "verdict": "detectable, negligible size"
+ },
+ "ds002338_to_ds002336_shared_space": {
+  "r_subject": 0.04094481155998515,
+  "ci_low": 0.021148259897580658,
+  "ci_high": 0.06077550023706038,
+  "null_mean": -0.00044980283206818596,
+  "p_pairing": 0.002997002997002997,
+  "p_signflip": 0.009099090090990901,
+  "n_subjects": 10,
+  "n_positive": 8,
+  "verdict": "detectable, negligible size"
+ }
+}

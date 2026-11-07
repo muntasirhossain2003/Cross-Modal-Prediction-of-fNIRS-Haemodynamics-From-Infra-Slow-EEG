@@ -15,8 +15,9 @@ from sklearn.linear_model import RidgeCV
 
 NB = Path(r"G:\research_bio_medical\merge\Neurovascnet_marge_v1.ipynb")
 ROOT = NB.parent / "neurovascnet_merge_v1_cache"
-CACHES = {"hbci": ROOT / "train_fnirs_a2133f5d6a71ec34", "mental_workload": ROOT / "replication_tuberlin_mw", "finemi": ROOT / ("replication_finemi" + ("_lm" if os.environ.get("REREF") else ""))}
-OUT = Path(__file__).with_name("external_finemi" + ("_lm" if os.environ.get("REREF") else "") + ("_detrend" if os.environ.get("DETREND") else "") + "_results.json")
+CACHES = {"hbci": ROOT / "train_fnirs_a2133f5d6a71ec34", "mental_workload": ROOT / "replication_tuberlin_mw", "finemi": ROOT / ("replication_finemi" + os.environ.get("FINEMI_TAG", "") + ("_lm" if os.environ.get("REREF") else ""))}
+EA = bool(os.environ.get("EA"))                        # P5.2b Euclidean alignment
+OUT = Path(__file__).with_name("external_finemi" + os.environ.get("FINEMI_TAG", "") + ("_ea" if os.environ.get("EA") else "") + ("_lm" if os.environ.get("REREF") else "") + ("_detrend" if os.environ.get("DETREND") else "") + "_results.json")
 FS, SEED = 200.0, 1337
 ALPHAS = np.logspace(0, 6, 13)
 
@@ -51,6 +52,19 @@ def load(name):
             "tid": np.load(cache / "task_ids.npy"), "rec": np.load(cache / "rec_ids.npy")}
 
 
+def ea_person(F, sid):
+    """Whiten each person's (n, ch, t) slow features by that person's mean spatial covariance (unsupervised)."""
+    F = F.copy()
+    for s in np.unique(sid):
+        m = sid == s
+        X = F[m] - F[m].mean(-1, keepdims=True)
+        C = np.einsum("nct,ndt->cd", X, X) / (X.shape[0] * X.shape[2])
+        C += 1e-3 * np.trace(C) / len(C) * np.eye(len(C))
+        w, V = np.linalg.eigh(C)
+        F[m] = np.einsum("cd,ndt->nct", V @ np.diag(w ** -0.5) @ V.T, F[m])
+    return F
+
+
 def zs_person(F, sid):
     F = F.reshape(len(F), -1).copy()
     for s in np.unique(sid):
@@ -79,14 +93,15 @@ for k, d in D.items():
 
 res = {}
 DIRS = (("hbci", "finemi"), ("mental_workload", "finemi"), ("finemi", "hbci"))
-if os.environ.get("DETREND"):
+if os.environ.get("DETREND") or EA or os.environ.get("FINEMI_TAG"):
     DIRS += (("hbci", "mental_workload"), ("mental_workload", "hbci"))
 for src, dst in DIRS:
     a, b = D[src], D[dst]
     W = interpolation_matrix(b["ch"], a["ch"])                       # dst montage -> src positions
     assert W is not None, "interpolation matrix unavailable"
     Fb = np.einsum("ij,njt->nit", W, b["F"])
-    Fa_z, Fb_z = zs_person(a["F"], a["sid"]), zs_person(Fb, b["sid"])
+    Fa_, Fb = (ea_person(a["F"], a["sid"]), ea_person(Fb, b["sid"])) if EA else (a["F"], Fb)
+    Fa_z, Fb_z = zs_person(Fa_, a["sid"]), zs_person(Fb, b["sid"])
     Ya = demean(a["Y"], a["sid"] * 1000 + a["tid"])                   # train on within-person-task variation
     mdl = RidgeCV(alphas=ALPHAS).fit(Fa_z, Ya)
     g = b["sid"].astype(np.int64) * 1000 + b["tid"]
