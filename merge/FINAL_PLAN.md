@@ -928,6 +928,61 @@ residuals (same lags, null, split-half, rules). Cohorts as P6.4.
 - **Coupling beyond the task**: Claim 3a (P6.4 rule) passes on the residuals in hBCI and at least one other cohort.
   If P6.4 passes but P6.4b fails, the coupling is reported as task-evoked only.
 
+### P6 results — 2026-11-07 (seed 1337)
+
+**P6.1 Claim 2 into FineMI, harmonised trial window (−2..18 s) and NIRS montage (hBCI left motor)**
+
+| Direction | setting | P4 native cache | hardware-emulated cache |
+|---|---|---|---|
+| **hBCI -> FineMI (primary)** | window + montage | **−0.010 [−0.041, +0.021]**, p 0.53 (8/18) -> FAIL | −0.058 [−0.091, −0.025] (4/18) |
+| hBCI -> FineMI | window only | −0.019 | −0.066 |
+| hBCI -> FineMI | montage only | −0.013 | −0.056 |
+| MW -> FineMI | window only | +0.002 | −0.033 |
+| FineMI -> hBCI | window + montage | −0.055 | −0.124 |
+| hBCI -> MW (within-lab reference) | window + montage | **+0.230 [0.156, 0.309]** pass | — |
+
+Harmonising the trial window and the NIRS montage does not rescue cross-lab transfer; it only moves the native-cache
+result from slightly negative to null. The within-lab transfer stays strong under the same harmonisation.
+
+**P6.2 Claim 2, calibrated-transfer form** (frozen external model stacked on the person's own k = 2 model)
+
+| Direction | baseline | personal | personal + external | difference [95% CI] | rule |
+|---|---|---|---|---|---|
+| **hBCI -> FineMI (primary)** | 0.067 | 0.103 | 0.103 | **−0.0001 [−0.003, +0.003]** (10/18) | **FAIL** |
+| MW -> FineMI | 0.067 | 0.105 | 0.105 | +0.0000 | fail |
+| hBCI -> FineMI, hardware-emulated | 0.067 | 0.103 | 0.105 | +0.0026 [−0.0007, +0.0067] | fail |
+| hBCI -> MW (within lab) | 0.243 | 0.319 | **0.378** | **+0.059 [0.023, 0.095]** (18/26) | pass |
+
+Within one lab the frozen population model adds +0.059 to a person's own calibration; across labs it adds nothing,
+even with a per-person gain and sign. **Claim 2 holds within a lab's hardware only, in every form tried.**
+
+**P6.3 Claim 1 on the local fNIRS target (rank 32)**
+
+| fNIRS cohort | single / joint / joint-shuffled | joint − single [95% CI] | joint − shuffled [95% CI] | P3.1 form | shared-space form |
+|---|---|---|---|---|---|
+| **mental workload (primary)** | 0.074 / 0.078 / 0.075 | +0.003 [−0.001, +0.007] | +0.002 [−0.003, +0.008] | **FAIL** | holds (fMRI 0.071) |
+| FineMI | 0.116 / 0.119 / 0.119 | +0.003 [+0.001, +0.005] | +0.000 [−0.003, +0.004] | fail | holds |
+| hBCI | 0.072 / 0.070 / 0.071 | −0.002 | −0.000 | fail | holds |
+
+fMRI supervision does not improve the local (cortical) fNIRS target either. The shared-space form of Claim 1
+holds on the local target in all three cohorts (new robustness result: the shared space is not only the systemic signal).
+
+**P6.4 Claim 3, classical neurovascular coupling (EEG band power -> local HbO, continuous runs)**
+
+| Cohort | beat own null | median delay, EEG first [IQR] | Wilcoxon p | split-half delay r (perm p) | median peak r | global-HbO median delay | 3a | physiological |
+|---|---|---|---|---|---|---|---|---|
+| **hBCI (primary)** | **29/29 (100%)** | **+6 s [2, 8]** | < 0.0001 | **+0.39 (0.020)** | 0.191 | +9 s | **PASS** | **YES** |
+| mental workload | 21/26 (81%) | +4 s [1, 8.75] | 0.0014 | −0.15 (0.77) | 0.135 | +7 s | fail (not reproducible) | yes |
+| FineMI | 16/18 (89%) | +3 s [−2.25, 5.5] | 0.31 | +0.12 (0.32) | 0.053 | +7.5 s | fail (not reproducible) | no |
+
+Band shares of the ridge weights are flat (theta 0.29–0.33, alpha 0.27–0.29, beta 0.21–0.23, gamma 0.17–0.20).
+Rule outcome: **the classical coupling claim is NOT SUPPORTED as declared** (3a passes in hBCI only). What holds:
+(1) in hBCI, EEG band power predicts local HbO 6 s later in every person, with a reproducible personal delay —
+the classical neurovascular order, opposite to the infra-slow result (slow EEG follows HbO by 1–2 s);
+(2) the coupling **exists** (most people beat their own null) in all three cohorts, including FineMI, where the
+infra-slow EEG showed none (P4.3, P5.2c); (3) the group delay is EEG-first in MW (+4 s, p 0.001). What fails:
+outside hBCI, a person's delay estimate does not repeat between the two halves of their recording.
+
 ## What will NOT be done
 
 - No change of band edges, targets or metric after seeing T1/T2.
