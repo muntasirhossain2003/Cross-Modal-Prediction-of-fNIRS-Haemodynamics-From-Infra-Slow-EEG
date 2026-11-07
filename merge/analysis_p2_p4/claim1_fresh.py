@@ -20,7 +20,8 @@ COH = os.environ.get("FNIRS_COHORT", "mental_workload")   # mental_workload | fi
 FNIRS = {"hbci": FNIRS, "mental_workload": ROOT / "replication_tuberlin_mw", "finemi": ROOT / "replication_finemi"}[COH]
 SEED = int(os.environ.get("SEED", "1337"))
 SCARCE = int(os.environ.get("SCARCE", "0"))               # P5.1b: fNIRS training people per fold
-OUT = Path(__file__).with_name(f"claim1_fresh_{COH}" + (f"_scarce{SCARCE}" if SCARCE else "") + (f"_seed{SEED}" if SEED != 1337 else "") + "_results.json")
+LOCAL = os.environ.get("TARGET", "") == "local"           # P6.3: fNIRS channels minus channel mean
+OUT = Path(__file__).with_name(f"claim1_fresh_{COH}" + (f"_scarce{SCARCE}" if SCARCE else "") + (f"_seed{SEED}" if SEED != 1337 else "") + ("_local" if LOCAL else "") + "_results.json")
 FS, RANK = 200.0, 32
 ALPHAS = np.logspace(0, 6, 13)
 
@@ -38,7 +39,7 @@ def _bins(x, nb_):
     return x.reshape(*x.shape[:-1], nb_, -1).mean(-1)
 
 
-def load(cache):
+def load(cache, local=False):
     eeg = np.load(cache / "eeg.npy", mmap_mode="r")
     sos = sps.butter(4, 0.5, btype="low", fs=FS, output="sos")
     F = np.concatenate([_bins(sps.sosfiltfilt(sos, np.asarray(eeg[i:i + 120], np.float64), axis=-1), 30)
@@ -46,6 +47,10 @@ def load(cache):
     hemo = np.load(cache / "hemo.npy").astype(np.float64)
     if hemo.shape[-1] == 300:
         hemo = _bins(hemo, 30)
+    if local:
+        k_ = hemo.shape[1] // 2
+        hemo = np.concatenate([hemo[:, :k_] - hemo[:, :k_].mean(1, keepdims=True),
+                               hemo[:, k_:] - hemo[:, k_:].mean(1, keepdims=True)], 1)
     sid, tid = np.load(cache / "subject_ids.npy"), np.load(cache / "task_ids.npy")
     meta = json.loads((cache / "meta.json").read_text())
     return {"F": F, "Y": hemo.reshape(len(hemo), -1), "sid": sid, "tid": tid, "rec": np.load(cache / "rec_ids.npy"),
@@ -77,7 +82,7 @@ def boot_ci(v, rng):
     return [float(x) for x in np.percentile([v[rng.integers(0, len(v), len(v))].mean() for _ in range(5000)], [2.5, 97.5])]
 
 
-a = load(FNIRS)
+a = load(FNIRS, local=LOCAL)
 WHICH = os.environ.get("FMRI_SET", "pooled")             # pooled | ds002338 | ds002336
 parts = []
 SETS = {"ds002336": [(0, FMRI)], "ds002338": [(100, ROOT / "replication_ds002338")]}

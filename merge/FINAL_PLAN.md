@@ -918,6 +918,16 @@ Cohorts: hBCI (primary), MW, FineMI (raw CNT, native reference, same runs as P4)
   Coupling claim (classical form) supported if 3a passes in hBCI and in at least one other cohort.
 - Descriptive: the same with the global HbO target; the per-band share of the ridge weights.
 
+### P6.4b — coupling beyond the task (written 2026-11-07 after the first 8 hBCI people of P6.4, before the rest)
+
+A cue makes EEG power drop at once and HbO rise ~5–7 s later, so a +5..+7 s delay can arise from the shared task
+response alone, without ongoing coupling. Control: in each continuous run, the cue-locked average response (finite
+impulse response regression, one regressor per second 0–29 s after every cue, all cue types pooled, plus an
+intercept) is removed from every EEG band-power feature and every HbO channel; P6.4 is rerun unchanged on the
+residuals (same lags, null, split-half, rules). Cohorts as P6.4.
+- **Coupling beyond the task**: Claim 3a (P6.4 rule) passes on the residuals in hBCI and at least one other cohort.
+  If P6.4 passes but P6.4b fails, the coupling is reported as task-evoked only.
+
 ## What will NOT be done
 
 - No change of band edges, targets or metric after seeing T1/T2.
