@@ -744,6 +744,17 @@ test set). Also the shared-space model of P5.1 (rank 32 space from all hBCI fNIR
 fMRI head on the training study) frozen and tested the same way. Notebook rule (CI > 0, p < 0.05, r >= 0.05).
 - **Claim 2 holds for the fMRI output**: notebook rule on ds002336 -> ds002338 for the plain ridge.
 
+### P5.7 — Claim 5 trial-level form in the calibrated deployment (written 2026-11-07, before running)
+
+Same deployment as P5.4 (two calibration runs per person drawn with seed 1337, k = 2 hybrid, raw target). For each
+test trial: error = 1 − trial correlation of the hybrid prediction with the measured haemodynamics.
+Reliability scores fixed now: (primary) −OOD = minus the mean squared z of the trial's slow-EEG features against
+the person's own calibration-run distribution; (secondary) predicted-signal energy = norm of the hybrid's
+predicted deviation from the personal mean. Score: Spearman(score, −error) within each person, then the mean
+over people with a subject-level bootstrap CI.
+- **Claim 5 trial-level form holds**: primary mean within-person Spearman > 0.2 with CI > 0 in hBCI AND in at least
+  one external cohort (MW, FineMI). Secondary reported with the same numbers.
+
 ### P5 results — 2026-11-07 (seed 1337)
 
 **P5.1 Claim 1, rank 32, fresh fNIRS cohorts (fMRI arm pooled 27)**
@@ -827,6 +838,17 @@ model will add for that person, not only how stereotyped their haemodynamics are
 shared-space model +0.026 [−0.006, +0.056]. Reverse ds002338 -> ds002336: ridge +0.039 [+0.018, +0.058], p 0.011
 (9/10), shared space +0.041 [+0.021, +0.061] -> detectable but below practical_r 0.05 ("negligible size").
 Training on 10 people is too little for the fMRI output; training on 17 transfers, weakly.
+
+**P5.2c Claim 3 on hardware-emulated FineMI (native reference)**: 8/18 beat their own null (44%); median delay
++1 s, IQR [−5, +10], Wilcoxon p 0.42; split-half r +0.69 (perm p 0.006), but 19 of 36 half-run estimates sit
+at the −10 s edge of the lag range, so the split-half agreement reflects edge-pinned noise. -> **3a FAIL**
+("exists" needs a majority). Peak local r per person 0.006–0.05 (hBCI 0.37). FineMI shows no continuous
+EEG–HbO coupling under any EEG chain tried.
+
+**P5.7 Claim 5 trial-level calibrated form**: primary −OOD within-person Spearman hBCI −0.007 [−0.063, +0.048],
+MW +0.234 [+0.086, +0.369], FineMI +0.042 [−0.018, +0.101] -> **FAIL** (hBCI). Secondary predicted-signal energy:
+hBCI +0.216 [0.152, 0.278], MW +0.060, FineMI +0.164 [0.093, 0.236] — positive in two cohorts but at or below
+0.2. Reliability is solid per person, weak per trial. No further trial-level score will be tried.
 
 **P5.5 seed robustness**
 - P5.1 (MW shared-space form), person-fold seeds 1337–1341: **holds 5/5**. fNIRS shared r 0.114–0.123; fNIRS

@@ -28,5 +28,7 @@ they `exec` part of another script (for example `trf_delay.py` reads `continuous
 | P5.2 / P5.2c FineMI hardware emulation | `build_finemi.py` (env `HWHP=1`), `external_finemi.py`, `trf_delay.py` | env `FINEMI_TAG=_hw`; `EA=1` = Euclidean alignment (P5.2b) |
 | P5.3 / P5.3b Claim 4 data-scarce and representation forms | `downstream_scarce.py`, `downstream_repr.py` | env `N_LAB` (0 = all labelled people) |
 | P5.4 / P5.5 Claim 5 person-level calibrated form | `calib_reliability.py` | env `TARGET=local`, `GAIN=1`, `SEED` |
+| P5.6 Claim 2, fMRI output across studies | `external_fmri.py` | |
+| P5.7 Claim 5 trial-level calibrated form | `trial_reliability.py` | |
 
 New scripts write their JSON next to themselves; the copies in `results/` are the reported ones.
