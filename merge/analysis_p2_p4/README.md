@@ -35,5 +35,7 @@ they `exec` part of another script (for example `trf_delay.py` reads `continuous
 | P6.3 Claim 1 on the local target | `claim1_fresh.py` | env `TARGET=local` (plus the P5.1 env vars) |
 | P6.4 Claim 3 classical band-power coupling | `nvc_bandpower.py` | `shard K N` then `merge`; env `NSURR`, `SMOKE`, `COHORTS`; needs `continuous_lag.py` |
 | P6.4b coupling beyond the task | `nvc_residual.py` | `shard K 6` then `merge`; needs `nvc_bandpower.py` |
+| P7.1 Claim 3 kernel reproducibility | `nvc_kernel.py` | `shard K N` then `merge`; env `RESID=1` (task-residual data), `NK` (surrogates, default 20) |
+| P7.2 Claim 2 band-power coupling transfer | `nvc_transfer.py` | single run; needs `nvc_bandpower.py`, `continuous_lag.py` |
 
 New scripts write their JSON next to themselves; the copies in `results/` are the reported ones.

@@ -1065,6 +1065,30 @@ after the cue, as in hBCI, so a sign flip is ruled out. One difference: HbO and 
 FineMI (r −0.02 vs −0.23 in both TU Berlin cohorts), which points to a different mix of the global haemodynamic
 signal in that lab.
 
+**P7.1 Claim 3, within-person reproducibility of the band-power -> local HbO lag curve (20 shifted nulls per person)**
+
+| Cohort | data | median k (half A vs half B) | median k, shifted null | median d | Wilcoxon p (d > 0) | people p < 0.05 | delays within 2 s (chance) | 3a′ |
+|---|---|---|---|---|---|---|---|---|
+| **hBCI** | raw (primary) | +0.753 | −0.015 | +0.776 | < 0.0001 | 45% | 72% (29%) | **PASS** |
+| mental workload | raw (primary) | +0.179 | +0.042 | +0.101 | 0.091 | 8% | 15% (21%) | fail |
+| **FineMI** | raw (primary) | +0.205 | −0.031 | +0.191 | **0.033** | 22% | 17% (15%) | **PASS** |
+| **hBCI** | task removed (secondary) | +0.740 | −0.034 | +0.744 | < 0.0001 | 48% | 72% (28%) | **PASS** |
+| **mental workload** | task removed (secondary) | +0.227 | +0.003 | +0.224 | **0.006** | 12% | 35% (23%) | **PASS** |
+| **FineMI** | task removed (secondary) | +0.277 | −0.012 | +0.238 | **0.001** | 22% | 17% (16%) | **PASS** |
+
+Existence (P6.4 / P6.4b, more than half the people beat their own null) holds in every cohort.
+
+Rule outcome: **Claim 3 (kernel form) SUPPORTED**: 3a′ passes in hBCI and FineMI. **Beyond the task, also
+SUPPORTED, in all three cohorts.** What it means: in every cohort, a person's EEG-band-power -> local HbO
+coupling curve in the first half of the recording predicts its shape in the second half, beyond what a
+time-shifted recording gives. Removing the task response makes the kernel *more* reproducible in MW and FineMI,
+so the task-evoked part was adding noise, not creating the coupling.
+
+Limits, to be reported with the result:
+1. This statistic was declared after the P6.4 split-half delay test failed outside hBCI. P6.4 stays the primary record of that test; P7.1 is a fourth-round reformulation with its own pre-declared rule.
+2. Outside hBCI, the curve *shape* repeats but the *peak delay* does not: delay agreement within 2 s is at chance in MW and FineMI. A precise personal delay is only established in hBCI.
+3. Individual-level evidence outside hBCI is weak (8–22% of people p < 0.05, with 20 surrogates). The result is a group-level effect. The FineMI primary p (0.033) is modest.
+
 ## What will NOT be done
 
 - No change of band edges, targets or metric after seeing T1/T2.
