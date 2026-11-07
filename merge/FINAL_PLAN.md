@@ -902,6 +902,22 @@ remaining signal is cortical, where fMRI could carry information. P5.1 rerun unc
   with 95% CI > 0, mental workload (primary). FineMI and hBCI reported with the same numbers. The shared-space
   (P3.1b) numbers are reported too.
 
+### P6.4 — Claim 3, classical neurovascular coupling from EEG band power (written 2026-11-07, before running)
+
+User instruction (2026-11-07): the target is the coupling. Every Claim 3 test so far used infra-slow EEG, whose
+coupling runs the "wrong" way (slow EEG follows HbO by 1–2 s). The classical neurovascular coupling — EEG power
+changes leading the haemodynamic response by seconds — was never tested on the continuous recordings. Band power is
+also unaffected by the hardware high-pass that made FineMI's slow band incomparable.
+Features: per EEG channel, log power in theta 4–8, alpha 8–13, beta 13–30 and gamma 30–45 Hz (band-pass at the
+native rate, squared, 1 s means, log), then band-passed 0.01–0.1 Hz at 1 Hz to match the HbO band (P4.A lesson),
+z-scored per run. Target: local HbO (channels minus channel mean), as P3.3. Model, lags (−10..+20 s, positive =
+EEG earlier), leave-one-run-out, 100 circular-shift surrogates (min shift 60 s), split-half and all rules: as P3.3.
+Cohorts: hBCI (primary), MW, FineMI (raw CNT, native reference, same runs as P4).
+- **Claim 3a (classical form) passes** in a cohort: more than half the people beat their own null (p < 0.05) AND
+  split-half delay r > 0 with permutation p < 0.05. **Physiological**: median delay 2–10 s with Wilcoxon p < 0.05.
+  Coupling claim (classical form) supported if 3a passes in hBCI and in at least one other cohort.
+- Descriptive: the same with the global HbO target; the per-band share of the ridge weights.
+
 ## What will NOT be done
 
 - No change of band edges, targets or metric after seeing T1/T2.
