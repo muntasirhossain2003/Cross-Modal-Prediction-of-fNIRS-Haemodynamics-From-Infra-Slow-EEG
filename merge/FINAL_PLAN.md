@@ -1043,6 +1043,28 @@ following EEG band power by 7–9 s in all three cohorts.
   Reference: hBCI -> mental workload (same lab). Descriptive: MW -> FineMI, and a leave-one-person-out
   within-hBCI score.
 
+### P7 results — 2026-11-08 (seed 1337)
+
+**P7.2 Claim 2, frozen band-power -> global HbO kernel (hBCI, EEG lags 0–14 s)**
+
+| Direction | mean person r [95% CI] | people r > 0 | beat own null | verdict |
+|---|---|---|---|---|
+| within hBCI, leave one person out (descriptive) | +0.148 | — | 76% | — |
+| hBCI -> mental workload (same lab, reference) | +0.098 [+0.071, +0.124] | 23/26 | 54% | **PASS** |
+| **hBCI -> FineMI (other lab, primary)** | **−0.053 [−0.071, −0.034]** | 2/18 | 0% | **FAIL** |
+| MW -> FineMI (descriptive) | −0.008 [−0.027, +0.011] | 8/18 | 0% | fail |
+
+The frozen model's alpha was 1, the lowest value on the declared grid, for both source fits. Kernel weight is
+spread over EEG lags 2–12 s (6% at 0 s, 7% at 14 s).
+
+Rule outcome: **Claim 2 cross-lab transfer FAILS again**, and is reliably negative (7/18 FineMI people below
+their null's 5th percentile). Transfer within the TU Berlin lab passes with a different EEG band and a different
+target. So the failure into FineMI does not depend on the infra-slow band or on the amplifier's high-pass filter.
+Post-hoc check (not a declared test): FineMI's HbO sign is normal. The trial-average HbO peaks positive 9–12 s
+after the cue, as in hBCI, so a sign flip is ruled out. One difference: HbO and HbR are almost uncorrelated in
+FineMI (r −0.02 vs −0.23 in both TU Berlin cohorts), which points to a different mix of the global haemodynamic
+signal in that lab.
+
 ## What will NOT be done
 
 - No change of band edges, targets or metric after seeing T1/T2.
