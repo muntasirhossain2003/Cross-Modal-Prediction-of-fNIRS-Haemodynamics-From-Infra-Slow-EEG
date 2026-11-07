@@ -983,6 +983,21 @@ the classical neurovascular order, opposite to the infra-slow result (slow EEG f
 infra-slow EEG showed none (P4.3, P5.2c); (3) the group delay is EEG-first in MW (+4 s, p 0.001). What fails:
 outside hBCI, a person's delay estimate does not repeat between the two halves of their recording.
 
+**P6.4b coupling beyond the task (pooled cue-locked FIR response, 0–29 s, removed from EEG features and HbO)**
+
+| Cohort | beat own null | median delay, EEG first [IQR] | Wilcoxon p | split-half delay r (perm p) | median peak r | global-HbO median delay | 3a | physiological |
+|---|---|---|---|---|---|---|---|---|
+| **hBCI (primary)** | **29/29 (100%)** | **+6 s [2, 8]** | < 0.0001 | **+0.33 (0.041)** | 0.164 | +8 s | **PASS** | **YES** |
+| mental workload | 22/26 (85%) | +2 s [1, 7.75] | 0.0016 | −0.10 (0.70) | 0.094 | +4.5 s | fail (not reproducible) | yes |
+| FineMI | 15/18 (83%) | +1.5 s [−4.75, 6] | 0.52 | +0.22 (0.18; 4 half-estimates at the lag edge) | 0.061 | +2 s | fail (not reproducible) | no |
+
+Rule outcome: **coupling beyond the task is NOT SUPPORTED as declared** (passes in hBCI only, same as P6.4).
+In hBCI the coupling survives removal of the task response almost unchanged: every person still beats their
+own null, the delay stays at +6 s and remains reproducible within person, and peak r falls only from 0.191 to
+0.164. So the hBCI result is ongoing (spontaneous) neurovascular coupling, not two signals that both follow
+the cues. In mental workload and FineMI, most people still beat their null after the task is removed, but the
+personal delay does not repeat between halves, as in P6.4.
+
 ## What will NOT be done
 
 - No change of band edges, targets or metric after seeing T1/T2.

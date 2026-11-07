@@ -30,5 +30,10 @@ they `exec` part of another script (for example `trf_delay.py` reads `continuous
 | P5.4 / P5.5 Claim 5 person-level calibrated form | `calib_reliability.py` | env `TARGET=local`, `GAIN=1`, `SEED` |
 | P5.6 Claim 2, fMRI output across studies | `external_fmri.py` | |
 | P5.7 Claim 5 trial-level calibrated form | `trial_reliability.py` | |
+| P6.1 Claim 2 harmonised window + montage | `harmonised_transfer.py` | env `FINEMI_TAG=_hw` (hardware-emulated cache) |
+| P6.2 Claim 2 calibrated-transfer stacking | `calibrated_transfer.py` | env `FINEMI_TAG` |
+| P6.3 Claim 1 on the local target | `claim1_fresh.py` | env `TARGET=local` (plus the P5.1 env vars) |
+| P6.4 Claim 3 classical band-power coupling | `nvc_bandpower.py` | `shard K N` then `merge`; env `NSURR`, `SMOKE`, `COHORTS`; needs `continuous_lag.py` |
+| P6.4b coupling beyond the task | `nvc_residual.py` | `shard K 6` then `merge`; needs `nvc_bandpower.py` |
 
 New scripts write their JSON next to themselves; the copies in `results/` are the reported ones.
