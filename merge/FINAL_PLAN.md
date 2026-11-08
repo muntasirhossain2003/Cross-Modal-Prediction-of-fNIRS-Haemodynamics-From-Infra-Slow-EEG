@@ -1282,6 +1282,22 @@ Rule outcome: the hBCI personal delay stays reproducible at both matched lengths
 
 P9.1 cannot tell these two causes apart. The MW and FineMI delay results stand as negative, not underpowered.
 
+### P9.4 — Claim 2 diagnostic: what differs between the labs? (declared 2026-11-08, after P9.1–P9.3, before running it)
+
+This is a diagnostic only; it cannot change any verdict. It has two parts.
+
+(a) **Reverse direction.** The pooled FineMI kernel (same model as P9.2, hBCI electrode space) is scored on hBCI
+and on mental workload with the P7.2 score. If it is negative too, the inversion is symmetric between the labs and
+not a defect of the hBCI kernel.
+
+(b) **Broadband power.** For each person, the broadband EEG power at lag L is the mean of all z-scored band-power
+features at that lag. It is correlated with global HbO for L = 0, 2, …, 14 s (EEG first), and the mean over lags
+and runs gives one value per person. The cohort mean has a bootstrap 95% CI.
+
+Prediction declared now: the sign is opposite between TU Berlin (hBCI, MW) and FineMI. If it is, the broadband
+power–haemodynamics relation, which is plausibly systemic or tied to the amplifier and reference, explains the
+P7.2 / P9.2 inversion.
+
 ## What will NOT be done
 
 - No change of band edges, targets or metric after seeing T1/T2.
