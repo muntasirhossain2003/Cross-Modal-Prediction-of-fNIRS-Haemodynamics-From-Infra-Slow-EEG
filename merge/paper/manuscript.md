@@ -179,8 +179,14 @@ Within each lab, a band-power kernel learned from other people predicted a new p
 
 Between labs, the frozen hBCI kernel was reliably *negative* in FineMI (r = −0.053 [−0.071, −0.034]). The
 inversion was broadband: each of theta, alpha, beta and gamma alone transferred negatively into FineMI and
-positively into the second TU Berlin cohort. It is therefore not an artefact of one band. [TODO: P9.4 reverse
-direction and broadband-power result.]
+positively into the second TU Berlin cohort. It is therefore not an artefact of one band.
+
+The inversion was symmetric. A kernel learned on FineMI was negative on hBCI (r = −0.029 [−0.056, −0.000]).
+Its common factor is the overall EEG power level: averaged over all bands and electrodes, EEG power correlated
+negatively with global HbO at TU Berlin (hBCI −0.038 [−0.055, −0.022]) and positively in FineMI
+(+0.044 [+0.023, +0.067], 15/18 people). This sign was predicted before the analysis was run. The
+person-specific coupling shape is shared within each lab. The sign of the broadband term, which is plausibly
+systemic, tied to the amplifier or reference, or tied to the paradigm, differs between labs.
 
 ### 3.7 No downstream benefit (Claim 4)
 
@@ -195,7 +201,7 @@ band power gives 0.61, infra-slow EEG features 0.70–0.76.
 - **Main message.** The haemodynamic information in scalp EEG sits in a band that standard preprocessing removes. Cross-modal work that high-pass filters EEG at 0.5–1 Hz cannot find it.
 - **Two signals, two orders.** Infra-slow potentials *follow* HbO by 1–2 s; band power *leads* local HbO by about 6 s. This fits two mechanisms: a vascular or BBB potential that tracks blood volume, and classical neurovascular coupling.
 - **Personalisation is the practical route.** Cross-person and cross-lab models are weak or fail. Two calibration runs give EEG-only monitoring whose reliability is known in advance.
-- **Lab specificity.** The inversion of the coupling kernel is broadband and symmetric [TODO P9.4]. It points to differences in hardware, reference or systemic physiology, not to one frequency band. Kernels should be calibrated per site.
+- **Lab specificity.** The inversion of the coupling kernel is broadband and symmetric. It follows an opposite-signed relation between overall EEG power and global HbO in the two labs. It points to differences in hardware, reference or systemic physiology, not to one frequency band. Kernels should be calibrated per site.
 - **Limitations:**
   - two labs only;
   - a possible participant overlap between the TU Berlin cohorts;

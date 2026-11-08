@@ -1298,6 +1298,19 @@ Prediction declared now: the sign is opposite between TU Berlin (hBCI, MW) and F
 power–haemodynamics relation, which is plausibly systemic or tied to the amplifier and reference, explains the
 P7.2 / P9.2 inversion.
 
+**P9.4 lab-difference diagnostic**
+
+| | hBCI | mental workload | FineMI |
+|---|---|---|---|
+| (a) FineMI pooled kernel scored on | −0.029 [−0.056, −0.000], 10/29 > 0 | −0.021 [−0.060, +0.019], 10/26 > 0 | — |
+| (b) broadband EEG power vs global HbO, mean r over lags 0–14 s | **−0.038 [−0.055, −0.022]**, 5/29 > 0 | −0.035 [−0.077, +0.008], 9/26 > 0 | **+0.044 [+0.023, +0.067]**, 15/18 > 0 |
+
+Diagnostic outcome: **the declared prediction holds.**
+- (a) The inversion is **symmetric**: FineMI's kernel is negative on TU Berlin data, just as the TU Berlin kernel is negative on FineMI data. Neither kernel is defective; the labs differ.
+- (b) The overall EEG power level relates to global HbO with **opposite sign** in the two labs: negative at TU Berlin (clearly so in hBCI) and positive in FineMI (CI > 0). That broadband term is the common factor behind the inversion seen in every band (P9.2).
+
+Plausible sources are differences in amplifier and reference, in electrode impedance or motion, or in how systemic physiology (arousal, blood pressure) drives both signals in the two paradigms. These data cannot separate them. Practical consequence: band-power -> haemodynamics kernels must be calibrated per site (P8.3) and cannot be frozen across labs.
+
 ## What will NOT be done
 
 - No change of band edges, targets or metric after seeing T1/T2.
