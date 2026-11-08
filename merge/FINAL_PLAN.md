@@ -1169,6 +1169,21 @@ lacks, once one gain per person is set on that person's calibration runs. Limits
 P8.3 is repeated unchanged with calibration-run seeds 1–5 (seed 1337 was the primary). Rule: the P8.3 cross-lab
 pass is called **robust** if FineMI passes the P8.3 rule for at least 4 of the 5 seeds. MW is reported as reference.
 
+**P8.3b results**
+
+| Seed | FineMI diff [95% CI] | better | negative gain | FineMI | MW diff [95% CI] | MW |
+|---|---|---|---|---|---|---|
+| 1 | +0.031 [+0.001, +0.071] | 13/18 | 72% | pass | +0.045 [+0.008, +0.088] | pass |
+| 2 | +0.015 [+0.004, +0.025] | 15/18 | 78% | pass | +0.027 [−0.013, +0.074] | fail |
+| 3 | +0.023 [+0.010, +0.039] | 14/18 | 78% | pass | +0.036 [+0.011, +0.064] | pass |
+| 4 | +0.024 [+0.012, +0.040] | 16/18 | 83% | pass | +0.035 [+0.006, +0.065] | pass |
+| 5 | +0.020 [+0.004, +0.036] | 16/18 | 89% | pass | +0.026 [−0.004, +0.057] | fail |
+
+Rule outcome: **FineMI passes 5/5 seeds -> the P8.3 cross-lab pass is ROBUST.** The diff is positive in every seed
+for both cohorts. The MW reference fails the CI criterion in 2 seeds; MW has only 3 runs per person, so only one
+test run. The negative external gain in FineMI (72–89%) is stable across seeds. The sign inversion is a property
+of the FineMI cohort, not of the draw.
+
 ## What will NOT be done
 
 - No change of band edges, targets or metric after seeing T1/T2.

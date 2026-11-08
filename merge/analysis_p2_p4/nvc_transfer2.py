@@ -243,17 +243,32 @@ def show_cal(name, s):
           f"-> {'PASS' if s['pass'] else 'FAIL'}", flush=True)
 
 
+CAL_SEEDS = [int(s) for s in os.environ.get("CAL_SEEDS", "").split(",") if s]    # P8.3b
+if CAL_SEEDS:
+    OUT = HERE / "nvc_transfer2_seeds_results.json"
 rng = np.random.default_rng(SEED)
 res = {}
 H = load("hbci")
 models = {}
-for tgt in ("hbo", "cbsi"):
+for tgt in (("hbo",) if CAL_SEEDS else ("hbo", "cbsi")):
     X = np.concatenate([x for runs in H.values() for x, _ in runs])
     y = np.concatenate([ys[tgt] for runs in H.values() for _, ys in runs])
     models[tgt] = RidgeCV(alphas=ALPHAS).fit(X, y)
     print(f"hBCI {tgt} kernel: {len(y)} s, alpha {models[tgt].alpha_:g}", flush=True)
     del X, y
 del H
+if CAL_SEEDS:
+    for cohort in ("mental_workload", "finemi"):
+        P = load(cohort)
+        for sd in CAL_SEEDS:
+            res[f"calibrated | {cohort} | seed {sd}"] = calibrated(models["hbo"], P, np.random.default_rng(sd))
+            show_cal(f"P8.3b seed {sd} calibrated transfer into {cohort}", res[f"calibrated | {cohort} | seed {sd}"])
+        del P
+        OUT.write_text(json.dumps(res, indent=1))
+    n_pass = sum(res[f"calibrated | finemi | seed {sd}"]["pass"] for sd in CAL_SEEDS)
+    print(f"P8.3b FineMI passes {n_pass}/{len(CAL_SEEDS)} seeds -> {'ROBUST' if n_pass >= 4 else 'NOT ROBUST'}")
+    print("DONE")
+    sys.exit(0)
 for cohort in ("mental_workload", "finemi"):
     P = load(cohort)
     for tgt in ("hbo", "cbsi"):
