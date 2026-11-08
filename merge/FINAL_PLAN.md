@@ -1089,6 +1089,39 @@ Limits, to be reported with the result:
 2. Outside hBCI, the curve *shape* repeats but the *peak delay* does not: delay agreement within 2 s is at chance in MW and FineMI. A precise personal delay is only established in hBCI.
 3. Individual-level evidence outside hBCI is weak (8–22% of people p < 0.05, with 20 surrogates). The result is a group-level effect. The FineMI primary p (0.033) is modest.
 
+## P8 — improving Claims 3 and 2 (declared 2026-11-08, before running any P8 test)
+
+User instruction: try to improve these results. No new reproducibility statistic is introduced for Claim 3.
+P7.1 stays as declared. P8 addresses the open caveat of P7.1 and tests the one lead left from P7.2.
+
+### P8.1 — Claim 3, a smoothed personal delay (computed from the P7.1 half curves already saved)
+
+The 1 s lag-curve argmax is noisy when the curve is broad. Delay estimator: argmax of the half curve after a 5-lag
+centred moving average (edge lags averaged over the available points). For each cohort and both P7.1 data
+versions, report (a) the fraction of people with |delay_A − delay_B| ≤ 2 s against the pairing-with-others
+chance level (one-sided permutation p over 10 000 shuffles of the second halves), and (b) the P6.4 across-person
+split-half r with its permutation p. **Personal delay reproducible** in a cohort if (a) is above chance with p < 0.05.
+This is a delay-estimator change only; the reported delays are descriptive outside this rule.
+
+### P8.2 — Claim 2, harmonised haemodynamic target (CBSI)
+
+P7.2 showed a different HbO–HbR relation in FineMI (r −0.02 vs −0.23). The correlation-based signal improvement
+(CBSI; Cui et al. 2010) removes the HbO component that moves with HbR in the same direction, mostly systemic,
+and applies the same definition in every lab. Per channel and run, on the 0.01–0.1 Hz 1 Hz signals:
+CBSI = (HbO − α·HbR)/2 with α = std(HbO)/std(HbR); target = mean over channels, z-scored per run. Everything else
+as P7.2 (features, interpolation, lags 0–14 s, frozen RidgeCV on all hBCI people, score, null, rule).
+**Primary: hBCI -> FineMI.** Reference: hBCI -> MW. The P7.2 global-HbO result is recomputed in the same run as a check.
+
+### P8.3 — Claim 2, calibrated transfer of the band-power kernel (P6.2 logic)
+
+For each target person with ≥ 3 runs, 2 calibration runs are drawn (seed 1337). Personal model: the same
+band-power FIR ridge fitted on the two calibration runs, cross-fitted between them for the stacking gains.
+External: the frozen hBCI kernel. Stacking gains are fitted by least squares on the calibration runs, for
+personal only and for personal + external. Score: mean test-run r. Target: global HbO (as P7.2).
+**Rule: the external model adds** if mean [r(personal + external) − r(personal)] > 0 with bootstrap 95% CI > 0.
+**Primary: FineMI.** Reference: MW. Descriptive: the calibrated external model alone (gain fitted on the
+calibration runs).
+
 ## What will NOT be done
 
 - No change of band edges, targets or metric after seeing T1/T2.
