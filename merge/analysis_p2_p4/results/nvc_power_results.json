@@ -1,0 +1,63 @@
+{
+ "durations": {
+  "mental_workload": {
+   "median_total_s": 1878.0,
+   "median_runs": 3.0,
+   "n": 26
+  },
+  "finemi": {
+   "median_total_s": 6111.0,
+   "median_runs": 8.0,
+   "n": 18
+  },
+  "hbci": {
+   "median_total_s": 3604.0,
+   "median_runs": 6.0,
+   "n": 29
+  }
+ },
+ "levels": {
+  "mental_workload": {
+   "runs": 3,
+   "s_per_run": 626
+  },
+  "finemi": {
+   "runs": 6,
+   "s_per_run": 1018
+  }
+ },
+ "hbci matched to mental_workload": {
+  "n": 29,
+  "agree_2s": 0.3448275862068966,
+  "chance": 0.18719211822660095,
+  "p_agree": 0.027697230276972302,
+  "split_half_r": -0.22280305317735943,
+  "p_r": 0.8728127187281272,
+  "median_delay_s": 6.0,
+  "iqr_delay_s": [
+   1.25,
+   10.75
+  ],
+  "reproducible": true,
+  "median_d": 0.14222252817489406,
+  "wilcoxon_p": 0.019315840676426888,
+  "kernel_reproducible": true
+ },
+ "hbci matched to finemi": {
+  "n": 29,
+  "agree_2s": 0.6551724137931034,
+  "chance": 0.2881773399014778,
+  "p_agree": 9.999000099990002e-05,
+  "split_half_r": 0.35251818645179916,
+  "p_r": 0.032996700329967,
+  "median_delay_s": 5.0,
+  "iqr_delay_s": [
+   2.0,
+   8.0
+  ],
+  "reproducible": true,
+  "median_d": 0.7432352036801303,
+  "wilcoxon_p": 5.587935447692871e-09,
+  "kernel_reproducible": true
+ }
+}

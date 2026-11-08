@@ -39,5 +39,7 @@ they `exec` part of another script (for example `trf_delay.py` reads `continuous
 | P7.2 Claim 2 band-power coupling transfer | `nvc_transfer.py` | single run; needs `nvc_bandpower.py`, `continuous_lag.py` |
 | P8.1 Claim 3 smoothed personal delay | `nvc_delay_smooth.py` | reads the P7.1 kernel shard files |
 | P8.2 / P8.3 / P8.3b Claim 2 CBSI target, calibrated transfer, seeds | `nvc_transfer2.py` | env `CAL_SEEDS=1,2,3,4,5` runs P8.3b only |
+| P9.1 Claim 3 recording-length diagnostic | `nvc_power.py` | `durations`, then `shard K N`, then `merge`; needs `nvc_bandpower.py`, `nvc_delay_smooth.py` |
+| P9.2 / P9.3 Claim 2 band diagnostic, FineMI LOPO, alpha + beta kernel | `nvc_bands.py` | single run; needs `nvc_transfer2.py` |
 
 New scripts write their JSON next to themselves; the copies in `results/` are the reported ones.

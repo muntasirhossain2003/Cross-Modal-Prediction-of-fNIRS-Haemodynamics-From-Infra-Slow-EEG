@@ -1227,6 +1227,61 @@ run, so the P9.2 result cannot choose it.
 
 The primary rule is the P7.2 rule for hBCI -> FineMI: mean r > 0, 95% CI > 0 and more than half of the people beating their null. The secondary rule is the P8.3 calibrated rule for FineMI. MW is reported as the within-lab reference.
 
+### P9 results — 2026-11-08
+
+**P9.2 Claim 2 diagnostic: single-band frozen hBCI kernels (global HbO, P7.2 score)**
+
+| Kernel | hBCI -> mental workload | hBCI -> FineMI |
+|---|---|---|
+| all bands (P7.2 check) | +0.098 [+0.071, +0.124] | −0.053 [−0.071, −0.034] |
+| theta only | +0.074 [+0.039, +0.112] | −0.034 [−0.050, −0.018] |
+| alpha only | +0.072 [+0.040, +0.103] | −0.019 [−0.035, −0.002] |
+| beta only | +0.074 [+0.037, +0.110] | −0.043 [−0.065, −0.020] |
+| gamma only | +0.100 [+0.070, +0.129] | −0.048 [−0.073, −0.023] |
+| FineMI leave-one-person-out (FineMI's own kernel) | — | **+0.074 [+0.047, +0.105], 16/18 > 0, 67% beat null** |
+
+The sum of pooled-kernel coefficients per band (theta / alpha / beta / gamma) is:
+- hBCI −0.136 / +0.002 / −0.045 / −0.002;
+- MW +0.082 / +0.003 / −0.011 / −0.015;
+- FineMI +0.052 / −0.096 / +0.024 / +0.212.
+
+The features are strongly correlated, so these sums are only descriptive.
+
+Diagnostic outcome:
+1. The inversion into FineMI is **broadband**: every single band transfers with a negative sign into FineMI and with a positive sign into MW. It is not caused by one artefact-prone band. Something shared by all bands differs between the labs, for example broadband EEG power, amplifier or reference, or its relation to systemic haemodynamics.
+2. FineMI people **share a cross-person kernel of their own** (LOPO passes the P7.2 rule). Band-power coupling therefore generalises across people within each lab: hBCI LOPO +0.148 (P7.2), FineMI LOPO +0.074. The *kernel itself is lab-specific*.
+
+**P9.3 Claim 2 confirmatory: frozen hBCI alpha + beta kernel**
+
+| Direction | frozen (P7.2 rule) | calibrated (P8.3 rule) | negative external gain |
+|---|---|---|---|
+| hBCI -> mental workload (reference) | +0.089 [+0.051, +0.128], beat null 54%: pass | +0.065 [+0.024, +0.114]: pass | 23% |
+| **hBCI -> FineMI (primary)** | **−0.050 [−0.070, −0.030], beat null 0%: FAIL** | +0.015 [−0.003, +0.035]: **FAIL** | 72% |
+
+Rule outcome: the classical alpha + beta restriction does not rescue frozen cross-lab transfer, and its calibrated
+form is weaker than the all-band P8.3 pass. **P9.3 FAILS.** The P8.3 all-band calibrated pass stays the only cross-lab pass.
+
+**P9.1 Claim 3 diagnostic: hBCI cut to the other cohorts' recording length**
+
+Per person, the median recorded length is:
+- hBCI 3604 s in 6 runs;
+- mental workload 1878 s in 3 runs;
+- FineMI 6111 s in 8 runs.
+
+FineMI therefore has *more* data per person than hBCI, and the FineMI-matched level leaves hBCI almost uncut
+(6 runs × 1018 s is longer than an hBCI run).
+
+| hBCI cut to | kernel (P7.1): median d, Wilcoxon p | smoothed delay within 2 s (P8.1): agree, chance, p | delay |
+|---|---|---|---|
+| mental workload length (3 runs × 626 s) | +0.142, p 0.019 | 34%, 19%, p 0.028 | **reproducible** |
+| FineMI length (6 runs × 1018 s, about uncut) | +0.743, p < 0.0001 | 66%, 29%, p 0.0001 | **reproducible** |
+
+Rule outcome: the hBCI personal delay stays reproducible at both matched lengths, although it is weaker at the MW length. **Recording length does not explain the delay failures** in MW or FineMI. Under the declared rule, the remaining causes are:
+- **weaker coupling.** Median peak local r is hBCI 0.191, MW 0.135 and FineMI 0.053. This is the most likely cause in FineMI, where the coupling is under a third of hBCI's.
+- **a personal delay that really is less stable** in those cohorts.
+
+P9.1 cannot tell these two causes apart. The MW and FineMI delay results stand as negative, not underpowered.
+
 ## What will NOT be done
 
 - No change of band edges, targets or metric after seeing T1/T2.
