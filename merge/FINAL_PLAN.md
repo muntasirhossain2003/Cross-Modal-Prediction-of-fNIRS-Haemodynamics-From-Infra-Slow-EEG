@@ -1122,6 +1122,53 @@ personal only and for personal + external. Score: mean test-run r. Target: globa
 **Primary: FineMI.** Reference: MW. Descriptive: the calibrated external model alone (gain fitted on the
 calibration runs).
 
+### P8 results — 2026-11-08
+
+**P8.1 smoothed personal delay (5-lag moving average of the P7.1 half curves)**
+
+| Cohort | data | delays within 2 s (chance, perm p) | split-half r (perm p) | median delay [IQR] | personal delay |
+|---|---|---|---|---|---|
+| **hBCI** | raw | **66% (29%, p 0.0003)** | +0.35 (0.033) | +5 s [2, 8] | **reproducible** |
+| mental workload | raw | 23% (21%, p 0.48) | −0.16 (0.78) | +5 s [1, 9.25] | not |
+| FineMI | raw | 17% (15%, p 0.53) | +0.25 (0.16) | −2 s [−5.5, 4.5] | not |
+| **hBCI** | task removed | **69% (30%, p 0.0001)** | +0.19 (0.16) | +5.5 s [2, 8] | **reproducible** |
+| mental workload | task removed | 15% (20%, p 0.80) | −0.17 (0.79) | +4 s [1, 10.25] | not |
+| FineMI | task removed | 11% (15%, p 0.79) | +0.19 (0.23) | −1.5 s [−5.75, 4.25] | not |
+
+Rule outcome: smoothing does not rescue the personal delay outside hBCI. The P7.1 caveat stands: in mental
+workload and FineMI a person's coupling *kernel shape* repeats (P7.1), but its peak delay does not. In hBCI the
+personal delay of about 5–6 s (EEG first) repeats under both estimators.
+
+**P8.2 harmonised CBSI target (frozen hBCI band-power kernel)**
+
+| Direction | global HbO (P7.2 check) | CBSI | CBSI verdict |
+|---|---|---|---|
+| hBCI -> mental workload (reference) | +0.098 [+0.071, +0.124], beat null 54% | +0.062 [+0.029, +0.096], 19/26 > 0, beat null 31% | fail (null criterion) |
+| **hBCI -> FineMI (primary)** | −0.053 [−0.071, −0.034] | **−0.055 [−0.081, −0.032]**, 2/18 > 0, beat null 0% | **FAIL** |
+
+The global-HbO numbers reproduce P7.2. CBSI does not remove the negative transfer into FineMI, so the
+different HbO–HbR relation in FineMI does not explain the failure. With CBSI the transfer is weaker even within
+the TU Berlin lab, so part of what transfers there is the systemic component.
+
+**P8.3 calibrated transfer of the band-power kernel (global HbO, 2 calibration runs, seed 1337)**
+
+| Cohort | personal (2 runs) | personal + frozen hBCI | frozen hBCI alone, calibrated gain | diff [95% CI] | better | negative external gain | verdict |
+|---|---|---|---|---|---|---|---|
+| mental workload (reference) | +0.107 | +0.173 | +0.116 | +0.066 [+0.028, +0.110] | 19/26 | 12% | **PASS** |
+| **FineMI (primary)** | +0.027 | +0.046 | +0.044 | **+0.020 [+0.004, +0.039]** | 11/18 | **78%** | **PASS** |
+
+Rule outcome: **Claim 2 calibrated-transfer form PASSES across labs** (first cross-lab pass, after P3–P8). What it
+means: the frozen hBCI kernel carries information about FineMI haemodynamics that a person's own two-run model
+lacks, once one gain per person is set on that person's calibration runs. Limits, to be reported with it:
+1. In 78% of FineMI people the fitted external gain is negative, so the kernel transfers *up to its sign*. The sign of the EEG band power -> global HbO relation is inverted in FineMI. That matches P7.2's reliably negative frozen transfer.
+2. The effect is small (+0.020) and the CI lower bound is close to 0 (+0.004).
+3. One seed was used for the calibration-run choice. Robustness: P8.3b below.
+
+### P8.3b — seed robustness of P8.3 (declared 2026-11-08, after P8.3 and before running it)
+
+P8.3 is repeated unchanged with calibration-run seeds 1–5 (seed 1337 was the primary). Rule: the P8.3 cross-lab
+pass is called **robust** if FineMI passes the P8.3 rule for at least 4 of the 5 seeds. MW is reported as reference.
+
 ## What will NOT be done
 
 - No change of band edges, targets or metric after seeing T1/T2.
