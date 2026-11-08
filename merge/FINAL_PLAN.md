@@ -1184,6 +1184,49 @@ for both cohorts. The MW reference fails the CI criterion in 2 seeds; MW has onl
 test run. The negative external gain in FineMI (72–89%) is stable across seeds. The sign inversion is a property
 of the FineMI cohort, not of the draw.
 
+## P9 — fifth round: why do Claims 3 and 2 fail outside TU Berlin? (declared 2026-11-08, before running any P9 test)
+
+P9 is the fifth round on these claims. P9.1 and P9.2 are **diagnostics**: they say why the earlier tests failed, and
+none of them can turn a failed claim into a pass. P9.3 is one confirmatory test with a restriction justified from the
+literature. All three are labelled fifth-round in the scorecard. The P6–P8 tests remain the primary record.
+
+Known before P9 (from the P6.4 shards): the local band-power coupling is much weaker outside hBCI. Median peak local
+r is hBCI 0.191, mental workload 0.135 and FineMI 0.053.
+
+### P9.1 — Claim 3 diagnostic: is the personal delay failure a recording-length effect?
+
+The hBCI recordings are cut down to the per-person length of the other cohorts, and the P7.1 / P8.1 analysis is
+repeated on hBCI alone. Each hBCI person keeps their first `n` runs, with `n` = min(6, median run count of the
+target cohort). Each run is cut to (target cohort median total seconds per person) / `n` seconds. There are two
+levels, matched to mental workload and to FineMI. The pipeline, lags, nulls (NK = 20) and statistics are the same
+as in P7.1 (kernel k vs shifted null, Wilcoxon) and P8.1 (smoothed peak, agreement within 2 s vs permutation).
+
+Interpretation rule:
+- If the hBCI personal delay stays reproducible under the P8.1 rule at a matched length, recording length does not
+  explain the failure in that cohort. The cause is then weaker coupling, as the peak r above shows, or a delay that
+  is really unstable.
+- If it does not stay reproducible, recording length alone can explain the failure. The MW / FineMI delay results
+  are then **inconclusive (underpowered)** rather than negative.
+
+### P9.2 — Claim 2 diagnostic: which EEG band carries the sign inversion into FineMI?
+
+Each cohort gets its own pooled kernel: band power -> global HbO, the same model as P7.2 and the same hBCI
+electrode space. For each kernel, the coefficients are summed per band over lags and electrodes, and the signs are
+compared across cohorts. Two transfer scores are also computed:
+- the frozen hBCI kernel restricted to each single band, scored hBCI -> FineMI and hBCI -> MW;
+- a FineMI leave-one-person-out kernel, scored on held-out FineMI people with the P7.2 score.
+
+The LOPO score tests whether FineMI people share a cross-person relation of their own.
+
+### P9.3 — Claim 2 confirmatory: classical alpha + beta kernel
+
+In the literature, alpha and beta power are the bands that consistently relate inversely to cortical
+haemodynamics. Gamma is the band most open to muscle artefact, and theta to ocular artefact. P9.3 therefore
+refits the frozen hBCI kernel on **alpha + beta features only**. The restriction is fixed here, before P9.2 is
+run, so the P9.2 result cannot choose it.
+
+The primary rule is the P7.2 rule for hBCI -> FineMI: mean r > 0, 95% CI > 0 and more than half of the people beating their null. The secondary rule is the P8.3 calibrated rule for FineMI. MW is reported as the within-lab reference.
+
 ## What will NOT be done
 
 - No change of band edges, targets or metric after seeing T1/T2.
