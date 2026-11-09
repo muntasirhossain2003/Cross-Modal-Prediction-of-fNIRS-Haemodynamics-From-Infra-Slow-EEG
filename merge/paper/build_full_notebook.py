@@ -126,7 +126,7 @@ SECTIONS = [
     ("9. Claim 2: external validation", [("external_claim2", ["external_claim2()"]),
                                          ("external_finemi", ["external_finemi()"] + [f'run_with_env(external_finemi, {e})' for e in ('DETREND="1"', 'REREF="lm"', 'EA="1"', 'FINEMI_TAG="_hw"')]),
                                          ("harmonised_transfer", ["harmonised_transfer()"]), ("calibrated_transfer", ["calibrated_transfer()"])]),
-    ("10. Continuous-recording loaders and band-power coupling", [("continuous_lag", []), ("nvc_bandpower", ["nvc_bandpower()"])]),
+    ("10. Continuous-recording loaders and band-power coupling", [("continuous_lag", ["continuous_lag()"]), ("nvc_bandpower", ["nvc_bandpower()"])]),
     ("11. Claim 2: coupling-kernel transfer", [("nvc_transfer", ["nvc_transfer()"]), ("nvc_transfer2", ["nvc_transfer2()", 'run_with_env(nvc_transfer2, CAL_SEEDS="1,2,3,4,5")']),
                                                ("nvc_bands", ["nvc_bands()"]), ("nvc_labdiff", ["nvc_labdiff()"]), ("nvc_broadband", ["nvc_broadband()"])]),
     ("12. Claim 3: coupling and delay", [("nvc_residual", ["nvc_residual()"]), ("nvc_kernel", ["nvc_kernel()", 'run_with_env(nvc_kernel, RESID="1")']), ("nvc_delay_smooth", ["nvc_delay_smooth()"]),
@@ -200,12 +200,6 @@ def run_with_env(fn, **env):
      md("## 4. FineMI cache"), code(script("build_finemi") + '\n\n\nif BUILD_CACHES:\n    build_finemi()\n    run_with_env(build_finemi, REREF="lm")\n    run_with_env(build_finemi, HWHP="1")'),
      md("## 5. Metrics"), code(clean(pipeline(PIPE.cells[19])))]
 
-for title, scripts in SECTIONS:
-    C.append(md(f"## {title}"))
-    for n, calls in scripts:
-        run = ("\n\n\n# RERUN: set RUN = {\"" + n + "\"} in section 2\nif should(\"" + n + "\"):\n" + "\n".join("    " + c for c in calls)) if calls else ""
-        C.append(code(script(n) + run))
-
 src = (HERE / "build_results_notebook.py").read_text(encoding="utf-8")
 ns = {"__file__": str(HERE / "build_results_notebook.py")}
 exec(src[:src.index("nb = nbf.v4.new_notebook(")], ns)
@@ -217,8 +211,124 @@ s = ns["C"][1].source
 a = 'where = lambda f: R / f\n'
 assert a in s
 s = s.replace(a, 'where = lambda f: NB_OUT / f if RUN and (NB_OUT / f).exists() else R / f\n')
-C += [md("## 15. Figures"), code(clean(figs)), md("# Results"), code(s)]
-C += ns["C"][2:]
+figs = re.sub(r"\bCOH\b", "FIG_COH", figs)
+figs = re.sub(r"\bOUT\b", "FIG_OUT", figs)
+figs = re.sub(r'\nprint\("figures written to".*\n', "\n", figs)
+_parts = re.split(r"^# Fig (\d) .*$", figs, flags=re.M)
+_prelude, FIGS = _parts[0], {int(_parts[i]): _parts[i + 1] for i in range(1, len(_parts), 2)}
+FNAME = {1: ("fig1_slow_band", 420), 2: ("fig2_coupling_lag", 520), 3: ("fig3_kernel_repro", 640), 4: ("fig4_kernel_transfer", 560), 5: ("fig5_deployment_reliability", 640)}
+
+
+def draw(n):
+    return f"def draw_fig{n}():\n" + clean(FIGS[n], 4) + f'\n\n\ndraw_fig{n}()\nfig("{FNAME[n][0]}", {FNAME[n][1]})'
+
+
+s += r"""
+
+
+def replication(d):
+    a = d["R1"]
+    table([[k, f"{a[k]['r_subject']:+.3f}", ci(*a[k]["ci"]), f"{a[k]['p_signflip']:.4f}", a[k]["n_positive"]] for k in ("slow_lt0.5", "slow_lt0.1", "slow_0.1-0.5", "bandpower_1-45", "eog_slow_lt0.5")],
+          ["EEG features", "r", "95% CI", "p", "People with r > 0"])
+    table([[k, f"{v['r_subject']:+.3f}", ci(*v["ci"])] for k, v in d["R3"].items()], ["Target", "r", "95% CI"])
+    table([[k, f"{v['diag']:.3f}", f"{v['offdiag']:.3f}", f"{v['diff']:+.3f} {ci(*v['ci'])}", f"{v['identification']:.0%}", f"{v['chance']:.0%}"] for k, v in d["R2"].items()],
+          ["Features", "Own model", "Other people's models", "Difference", "Person identified", "Chance"])
+"""
+_src = {c.source: c for c in ns["C"] if c.cell_type == "code"}
+_find = lambda key: next(x for x in _src if key in x)
+_founding, _claim1, _claim4, _score, _surv = _find("mw, fm = J("), _find("c1h = J("), _find('d = J("downstream_repr_nlab0'), _find("c1m, c1f = J("), _find("from_attempts =")
+_founding = _founding.replace('fig("fig1_slow_band", 420)', draw(1))
+assert "draw_fig1()" in _founding
+
+_cal_row = """rows = []
+for label, g in (("raw HbO", J("calibration_results.json")), ("local HbO", J("calibration_results_local.json"))):
+    for c, n in COH.items():
+        for k in range(1, 6):
+            v = g[c]["gains"].get(f"k{k}_personal_minus_baseline")
+            if v and v.get("mean") is not None and v["mean"] == v["mean"]:
+                rows.append([label, n, k, f"{v['mean']:+.3f}", ci(*v["ci"]), f"{v['n_positive']}/{v['n']}"])
+table(rows, ["Target", "Cohort", "Calibration runs", "Gain over own mean", "95% CI", "People better"])"""
+
+RES = {
+    "person_specific": ("""d = J("person_specific_results_runs.json")
+table([[k, f"{v['diag_mean']:.3f}", f"{v['offdiag_mean']:.3f}", f"{v['diff_mean']:+.3f} {ci(*v['diff_ci'])}", f"{v['identification']:.0%}", f"{v['identification_chance']:.0%}"] for k, v in d.items()],
+      ["Features", "Own model", "Other people's models", "Difference", "Person identified", "Chance"])""", "**Result (hBCI).** Prediction with a person's own model against other people's models."),
+    "replicate_mw": ('replication(J("replication_results.json"))', "**Result (mental workload).** Signal by EEG band, by haemodynamic target, and how person-specific it is."),
+    "replicate_finemi": ('replication(J("replication_finemi_results.json"))\n' + _founding, "**Result (FineMI).** The same three tables, then all three cohorts side by side and Figure 1."),
+    "claim1_fresh": ('c1m, c1f = J("claim1_fresh_mental_workload_results.json"), J("claim1_fresh_finemi_results.json")\n' + _claim1, "**Result.** One EEG space predicts both outputs in unseen people. The cost column is the 90% CI lower bound, against a margin of −0.02 fixed in advance."),
+    "external_claim2": ("""d = J("external_claim2_results.json")
+table([[k.replace("_to_", " → "), f"{v['r_subject']:+.3f}", ci(v["ci_low"], v["ci_high"]), f"{v['p_signflip']:.4f}", f"{v['n_positive']}/{v['n_subjects']}", v["verdict"]] for k, v in d.items()],
+      ["Direction", "r", "95% CI", "p", "People with r > 0", "Verdict"])""", "**Result.** Transfer of the slow-EEG model within the TU Berlin lab."),
+    "external_finemi": ("""rows = []
+for n, f in (("plain", ""), ("detrend", "_detrend"), ("linked mastoids", "_lm"), ("Euclidean alignment", "_ea"), ("hardware emulation", "_hw")):
+    v = J(f"external_finemi{f}_results.json")["hbci_to_finemi"]
+    rows.append([n, f"{v['r_subject']:+.3f}", ci(v["ci_low"], v["ci_high"]), f"{v['n_positive']}/{v['n_subjects']}"])
+table(rows, ["hBCI → FineMI", "r", "95% CI", "People with r > 0"])""", "**Result.** Transfer of the slow-EEG model to the other lab, under each harmonisation."),
+    "harmonised_transfer": ("""d = J("harmonised_transfer_results.json")
+table([[k, f"{v['r_subject']:+.3f}", ci(v["ci_low"], v["ci_high"]), f"{v['p_signflip']:.4f}", f"{v['n_positive']}/{v['n_subjects']}", "pass" if v["pass"] else "fail"] for k, v in d.items()],
+      ["Test", "r", "95% CI", "p", "People with r > 0", "Rule"])""", "**Result.** Transfer after matching the time window and the electrode montage."),
+    "calibrated_transfer": ("""d = J("calibrated_transfer_results.json")
+table([[k.replace("_to_", " → "), f"{v['personal']:.3f}", f"{v['personal_plus_external']:.3f}", f"{v['diff']:+.4f}", ci(*v["ci"]), f"{v['n_better']}/{v['n']}", "pass" if v["pass"] else "fail"] for k, v in d.items()],
+      ["Direction", "Own model", "Own + external", "Gain", "95% CI", "People better", "Rule"])""", "**Result.** Gain from adding the frozen slow-EEG model to a person's own two-run model."),
+    "continuous_lag": ("""d = J("continuous_lag_results.json")
+table([[COH[c], f"{d[c]['frac_beating_null']:.0%}", f"{d[c]['median_lag_s']:+.1f} s", str(d[c]["iqr_lag_s"]), f"{d[c]['wilcoxon_p_vs_0']:.4f}"] for c in d], ["Cohort", "Beat null", "Median lag (positive = EEG first)", "IQR", "Wilcoxon p"])""", "**Result.** Lag between slow EEG and HbO in the simple single-channel form."),
+    "nvc_bandpower": ("""d = J("nvc_bandpower_results.json")
+table([[COH[c], f"{d[c]['frac_beating_null']:.0%}", f"{d[c]['median_delay_s']:+.1f} s", str(d[c]["iqr_delay_s"]), f"{d[c]['wilcoxon_p']:.1e}", f"{d[c]['split_half_r']:+.2f}", f"{d[c]['split_half_perm_p']:.3f}", f"{d[c]['median_peak_r']:.3f}"] for c in COH],
+      ["Cohort", "Beat null", "Median delay (positive = EEG first)", "IQR", "Wilcoxon p", "Split-half r", "p", "Peak local r"])
+""" + draw(2), "**Result and Figure 2.** Band-power coupling per cohort."),
+    "nvc_transfer": ("""d = J("nvc_transfer_results.json")
+table([["hBCI leave one person out", f"{d['within_hbci_lopo']['mean_r']:+.3f}", "—", f"{d['within_hbci_lopo']['frac_beating_null']:.0%}", "—"]] +
+      [[k.replace("_to_", " → "), f"{d[k]['mean_r']:+.3f}", ci(*d[k]["ci"]), f"{d[k]['frac_beating_null']:.0%}", "pass" if d[k]["pass"] else "fail"] for k in ("hbci_to_mental_workload", "hbci_to_finemi", "mental_workload_to_finemi")],
+      ["Test", "r", "95% CI", "Beat null", "Rule"])""", "**Result.** Frozen band-power kernel, within and between labs."),
+    "nvc_transfer2": ("""d, sd = J("nvc_transfer2_results.json"), J("nvc_transfer2_seeds_results.json")
+table([[k, f"{d[k]['mean_r']:+.3f}", ci(*d[k]["ci"]), f"{d[k]['frac_beating_null']:.0%}", "pass" if d[k]["pass"] else "fail"] for k in d if k.startswith("hbci_to_")], ["Frozen kernel", "r", "95% CI", "Beat null", "Rule"])
+all_ = {"seed 1337 | " + k.split(" | ")[1]: v for k, v in d.items() if k.startswith("calibrated")}
+all_.update({k.split(" | ")[2] + " | " + k.split(" | ")[1]: v for k, v in sd.items()})
+table([[k, f"{v['diff']:+.3f}", ci(*v["ci"]), f"{v['n_better']}/{v['n']}", f"{v['frac_negative_external_gain']:.0%}", "pass" if v["pass"] else "fail"] for k, v in all_.items()], ["Calibrated gain", "Gain", "95% CI", "People better", "Negative external gain", "Rule"])""", "**Result.** Frozen kernel with a CBSI target, then the calibrated form over six calibration-run seeds. The FineMI gain is nominal: see the summary at the end."),
+    "nvc_bands": ("""d = J("nvc_bands_results.json")
+table([[k.replace("hbci_to_", "hBCI → "), f"{v['mean_r']:+.3f}", ci(*v["ci"]), f"{v['frac_beating_null']:.0%}", "pass" if v["pass"] else "fail"] for k, v in d.items() if k.startswith("hbci_to_")] +
+      [["FineMI leave one person out", f"{d['lopo | finemi']['mean_r']:+.3f}", ci(*d["lopo | finemi"]["ci"]), f"{d['lopo | finemi']['frac_beating_null']:.0%}", "pass" if d["lopo | finemi"]["pass"] else "fail"]],
+      ["Kernel", "r", "95% CI", "Beat null", "Rule"])
+table([[k.split(" | ")[1], f"{v['diff']:+.3f}", ci(*v["ci"]), f"{v['n_better']}/{v['n']}", "pass" if v["pass"] else "fail"] for k, v in d.items() if k.startswith("calibrated")], ["Calibrated alpha + beta", "Gain", "95% CI", "People better", "Rule"])
+""" + draw(4), "**Result and Figure 4.** Every single band transfers with a negative sign into FineMI, while FineMI people share a kernel of their own."),
+    "nvc_labdiff": ("""d = J("nvc_labdiff_results.json")
+table([[k.replace("_to_", " → "), f"{v['mean_r']:+.3f}", ci(*v["ci"]), f"{v['n_positive']}/{v['n']}"] for k, v in d.items() if "_to_" in k] +
+      [[f"Overall EEG power vs global HbO, {COH[c]}", f"{d['broadband | ' + c]['mean_r']:+.3f}", ci(*d["broadband | " + c]["ci"]), f"{d['broadband | ' + c]['n_positive']}/{d['broadband | ' + c]['n']}"] for c in COH],
+      ["Test", "r", "95% CI", "People with r > 0"])""", "**Result.** The kernel flip in the reverse direction, and overall EEG power against global HbO."),
+    "nvc_broadband": ("""d = J("nvc_broadband_results.json")
+table([[k.split(" | ")[0].replace("hbci_to_", "hBCI → "), k.split(" | ")[1], f"{d[k]['mean_r']:+.3f}", ci(*d[k]["ci"]), f"{d[k]['frac_beating_null']:.0%}", "pass" if d[k]["pass"] else "fail"] for k in d if k.startswith("hbci_to_")], ["Direction", "Kernel", "r", "95% CI", "Beat null", "Rule"])
+table([[k, f"{v['diff']:+.3f}", ci(*v["ci"]), f"{v.get('signflip_p', v.get('signflip_p_removed')):.4f}"] for k, v in d.items() if k.startswith(("paired", "calibrated"))], ["Test", "Difference", "95% CI", "Sign-flip p"])""", "**Result.** Removing the broadband term shrinks the FineMI flip but does not remove it."),
+    "nvc_residual": ("""d = J("nvc_residual_results.json")
+table([[COH[c], f"{d[c]['frac_beating_null']:.0%}", f"{d[c]['median_delay_s']:+.1f} s", f"{d[c]['split_half_r']:+.2f}", f"{d[c]['split_half_perm_p']:.3f}", f"{d[c]['median_peak_r']:.3f}"] for c in COH], ["Cohort", "Beat null", "Median delay", "Split-half r", "p", "Peak local r"])""", "**Result.** Coupling after the cue-locked task response is removed."),
+    "nvc_kernel": ("""kr, kt = J("nvc_kernel_results.json"), J("nvc_kernel_resid_results.json")
+table([[COH[c], label, f"{d[c]['median_k']:+.3f}", f"{d[c]['median_k_null']:+.3f}", f"{d[c]['median_d']:+.3f}", f"{d[c]['wilcoxon_p_greater']:.1e}", "yes" if d[c]["kernel_reproducible"] else "no"] for c in COH for label, d in (("raw", kr), ("task removed", kt))],
+      ["Cohort", "Data", "Median half-to-half r", "Shifted null", "Difference", "Wilcoxon p", "Reproducible"])
+""" + draw(3), "**Result and Figure 3.** Does a person's coupling curve repeat between the two halves of the recording?"),
+    "nvc_delay_smooth": ("""d = J("nvc_delay_smooth_results.json")
+table([[k.split(" | ")[0], k.split(" | ")[1], f"{v['agree_2s']:.0%}", f"{v['chance']:.0%}", f"{v['p_agree']:.4f}", f"{v['median_delay_s']:+.1f} s", "yes" if v["reproducible"] else "no"] for k, v in d.items()], ["Cohort", "Data", "Halves agree within 2 s", "Chance", "p", "Median delay", "Reproducible"])""", "**Result.** The personal delay repeats in hBCI only."),
+    "nvc_power": ("""d = J("nvc_power_results.json")
+table([[k.replace("hbci matched to ", ""), f"{v['agree_2s']:.0%}", f"{v['chance']:.0%}", f"{v['p_agree']:.4f}", f"{v['wilcoxon_p']:.1e}", "yes" if v["reproducible"] else "no"] for k, v in d.items() if k.startswith("hbci matched")], ["hBCI cut to the length of", "Halves agree within 2 s", "Chance", "p", "Kernel Wilcoxon p", "Delay reproducible"])""", "**Result.** Recording length alone does not explain the delay failures."),
+    "nvc_snr": ("""d = J("nvc_snr_results.json")
+table([[k.replace("hbci at ", "").replace(" strength", ""), d["calibration"]["c"][k.split()[2]], f"{d['calibration']['median_peak'][k.split()[2]][str(d['calibration']['c'][k.split()[2]])]:.3f}", f"{v['agree_2s']:.0%}", f"{v['chance']:.0%}", f"{v['p_agree']:.4f}", "yes" if v["reproducible"] else "no"] for k, v in d.items() if k.startswith("hbci at")],
+      ["hBCI degraded to the strength of", "Noise level c", "Achieved peak r", "Halves agree within 2 s", "Chance", "p", "Delay reproducible"])""", "**Result.** At FineMI's coupling strength the hBCI delay no longer repeats, so the FineMI delay result is inconclusive rather than negative."),
+    "downstream_repr": (_claim4, "**Result.** Decoding accuracy from virtual haemodynamics against same-size unsupervised codes."),
+    "calibration": (_cal_row, "**Result.** Gain over a person's own mean response, by number of calibration runs."),
+    "calib_reliability": ("""rel, loc = J("calib_reliability_results.json"), J("calib_reliability_local_results.json")
+table([[COH[c], f"{rel[c]['spearman_score_vs_minus_error']:.2f}", ci(*rel[c]["ci95"]), f"{loc[c]['spearman_score_vs_minus_error']:.2f}", ci(*loc[c]["ci95"]), "pass" if rel[c]["passes"] else "fail"] for c in COH], ["Cohort", "Spearman ρ, raw", "95% CI", "ρ, local", "95% CI", "Rule"])
+""" + draw(5), "**Result and Figure 5.** Calibration-run score against later accuracy, with the deployment gain."),
+    "trial_reliability": ("""d = J("trial_reliability_results.json")
+table([[COH[c], f"{d[c]['ood']['mean']:+.3f}", ci(*d[c]["ood"]["ci"]), f"{d[c]['energy']['mean']:+.3f}", ci(*d[c]["energy"]["ci"]), "pass" if d[c]["passes"] else "fail"] for c in COH], ["Cohort", "Out-of-distribution score", "95% CI", "Predicted-signal energy", "95% CI", "Rule"])""", "**Result.** The declared rule requires hBCI, which fails, so the claim fails at trial level. Mental workload passes on its own."),
+}
+assert set(RES) == {n for _, sc in SECTIONS for n, _ in sc}, set(RES) ^ {n for _, sc in SECTIONS for n, _ in sc}
+
+C += [md("## 6. Display helpers"), code(clean(_prelude)), code(s)]
+for title, scripts in SECTIONS:
+    C.append(md(f"## {title}"))
+    for n, calls in scripts:
+        run = ("\n\n\n# RERUN: set RUN = {\"" + n + "\"} in section 2\nif should(\"" + n + "\"):\n" + "\n".join("    " + c for c in calls)) if calls else ""
+        C.append(code(script(n) + run))
+        C.append(code(RES[n][0], metadata={"desc": RES[n][1]}))
+C += [md("## 15. Summary of all claims"), code(_score), code('kr, kt = J("nvc_kernel_results.json"), J("nvc_kernel_resid_results.json")\n' + _surv)]
 
 DESCRIBE = {
     "person_specific": "Tests whether the link between slow EEG and fNIRS is specific to each person. Each person's model is scored on their own held-out run and on every other person. Output: `person_specific_results_runs.json`. Rerun name: `person_specific`.",
@@ -229,7 +339,7 @@ DESCRIBE = {
     "external_finemi": "Claim 2 across labs. The same frozen model is tested on FineMI, with five versions of the data: plain, detrended, linked-mastoid reference, Euclidean alignment and emulated hardware filter. Output: `external_finemi*_results.json`. Rerun name: `external_finemi`.",
     "harmonised_transfer": "Claim 2 across labs, after matching the time window and the electrode montage between cohorts. Output: `harmonised_transfer_results.json`. Rerun name: `harmonised_transfer`.",
     "calibrated_transfer": "Claim 2 across labs, calibrated form: does the frozen slow-EEG model add to a person's own two-run model? Output: `calibrated_transfer_results.json`. Rerun name: `calibrated_transfer`.",
-    "continuous_lag": "Loaders for the continuous hBCI and mental-workload recordings, and the helpers that align EEG with fNIRS at 1 Hz. The analyses below reuse them. This cell runs nothing by itself.",
+    "continuous_lag": "Loaders for the continuous hBCI and mental-workload recordings, helpers that align EEG with fNIRS at 1 Hz, and the lag between slow EEG and HbO. The analyses below reuse the loaders. Output: `continuous_lag_results.json`. Rerun name: `continuous_lag`.",
     "nvc_bandpower": "Claim 3. Classical neurovascular coupling: lagged ridge from EEG band power (theta to gamma) to local HbO, at lags from −10 to +20 s, with each person compared to their own time-shifted null. Also holds the FineMI loader. Output: `nvc_bandpower_results.json`. Rerun name: `nvc_bandpower`.",
     "nvc_transfer": "Claim 2. A band-power coupling kernel is frozen on hBCI and tested on the other cohorts, plus leave-one-person-out within hBCI. Output: `nvc_transfer_results.json`. Rerun name: `nvc_transfer`.",
     "nvc_transfer2": "Claim 2. The frozen kernel with a CBSI target, and the calibrated form: does it add to a person's own two-run model? The second call repeats the calibrated form over five seeds. Output: `nvc_transfer2_results.json`, `nvc_transfer2_seeds_results.json`. Rerun name: `nvc_transfer2`.",
@@ -259,8 +369,8 @@ PIPE_TEXT = {2: "Checks the Python packages (installs any that are missing), the
              19: "Subject-level statistics used throughout: correlations, sign-flip tests, permutation nulls and verdict text."}
 OTHER = (("HOW TO RERUN", "**This is the only cell you need to edit.** Leave `RUN = set()` to view the saved results. Change it to `RUN = ALL` to recompute everything."),
          ("def should(name)", "Two small helpers: `should` decides whether an analysis runs, and `run_with_env` runs one with temporary settings."),
-         ("fig1_slow_band", "Draws the five figures from the result files and saves them in `paper/figures/`."),
-         ("def table(rows", "Helpers that read the result files and draw the tables below."),
+         ("def save(fig, name)", "Figure style and helpers. Each figure is drawn under the analysis it belongs to and saved in `paper/figures/`."),
+         ("def table(rows", "Helpers that read the result files and draw the tables shown under each analysis."),
          ("c1m, c1f = J(", "The best result for each of the five claims and its verdict."),
          ("mw, fm = J(", "Where the EEG information about haemodynamics lies, per cohort. Slow EEG carries it and 1-45 Hz band power does not."),
          ("c1h = J(", "One EEG space predicts both fNIRS and fMRI in unseen people. The cost column is the 90% CI lower bound, against a margin of −0.02 fixed in advance."),
@@ -288,7 +398,7 @@ def describe(src):
 _out = []
 for c in C:
     if c.cell_type == "code":
-        txt = describe(c.source)
+        txt = c.metadata.pop("desc", None) or describe(c.source)
         if _out and _out[-1].cell_type == "markdown":
             _out[-1].source += "\n\n" + txt
         else:
