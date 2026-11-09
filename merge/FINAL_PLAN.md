@@ -1450,6 +1450,29 @@ A result that fails any part is reported as failed, and nominal p-values are lab
 
 Limits: 15 people, a different task (implicit learning), different hardware, and "runs" that are consecutive segments of one recording. 14 of the 15 are from the no-implicit-learning group. A failure with n = 15 is weak evidence of absence, but this was the declared test and the verdict stands. **Stroop stays reserved and unused.**
 
+**Correction to the P12 declaration (2026-11-10).** The declaration says Mendeley and Stroop "had never been used in any analysis" and that no EEG–fNIRS relation had been computed on them. That is wrong. `neurovascnet_outputs_v2/` (June 2026, committed in `aa65e37`) holds earlier diagnostics on both: on Mendeley a ridge baseline from trial-level EEG band-power features to fNIRS (`mendeley_simple_eeg_fnirs_baseline.json`, cross-person r about 0.00), and on Stroop a block-level ridge and PLS baseline (`stroop_clean_block_diagnostics_v2.json`, r 0.00 to 0.06). Those runs had no slow-EEG features, none of the P12 models, and played no part in setting the P12 rules, which were all carried over from earlier rounds. P12 is therefore a test on data that had not been used in this project's main analysis, not on data never touched. Stroop is not a fresh reserve.
+
+## P13 — can the P12.1 method detect the slow-EEG advantage at all? (declared 2026-11-10, before running)
+
+P12.1 failed, but it was not the same analysis as the founding results. The founding tests (T1, R1, P4) cut 30 s windows at task cues, z-score each window, and predict the channel-by-time HbO and HbR response. P12.1 used continuous segments, 1 Hz features with lags −12..+12 s, and a single global HbO target. So P12.1 may fail on the cohorts where the advantage is established. That has never been checked. Until it is, P12.1 cannot be read as a non-replication.
+
+**Tests (family of 7, α = 0.05 / 7 = 0.0071)**
+
+| Test | Cohort | Method | Pass rule |
+|---|---|---|---|
+| P13.1a–c | hBCI, mental workload, FineMI | The P12.1 code unchanged (continuous, leave one person out, slow EEG < 0.5 Hz against band power, global HbO), on each cohort's own runs | P12.1 rule: slow mean r > 0, sign-flip p < α, paired slow − band power 95% CI > 0 |
+| P13.2a–c | hBCI, mental workload, FineMI | R1 method (slow < 0.5 Hz in 30 bins, log band power in 5 bands and 10 bins, each window z-scored, HbO band-passed 0.01–0.2 Hz, 2 s baseline, all HbO channels in 30 bins, ridge grid 1 to 1e6, demeaned per person), on consecutive 30 s windows cut from the recording and **not aligned to any cue** | same rule |
+| P13.2d | Mendeley (the 15 people of P12) | same as P13.2a–c | same rule; **exploratory**, this cohort has been seen |
+
+HbO only, because the shared continuous loaders pass HbO only. The Mendeley run of P13.1 is repeated as a code check: it must reproduce P12.1 exactly.
+
+**Reading of the outcome, fixed now**
+- P13.1 passes in at least 2 of the 3 cohorts: the P12.1 method can show the advantage, and P12.1 stands as a real non-replication in the third lab.
+- P13.1 passes in 1 or 0: the P12.1 method does not show the advantage even where it is established. P12.1 stays recorded as failed, but it says nothing about whether the advantage exists in that lab, and the "does not replicate" wording is withdrawn.
+- P13.2a–c show whether the advantage needs cue alignment. P13.2d cannot replace P12.1 whatever it gives, because the data have been seen.
+
+No other test of the slow-EEG advantage on Mendeley will be run after this one.
+
 ## What will NOT be done
 
 - No change of band edges, targets or metric after seeing T1/T2.
