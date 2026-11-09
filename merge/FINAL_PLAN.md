@@ -1541,6 +1541,35 @@ The aim is to find out whether Claims 1, 2 and 5 survive their main weaknesses. 
 
 **Reading.** Claims 1, 2 and 5 do not depend on cue alignment. Claim 2 within-lab transfer does not rest on the most similar people across cohorts. Claim 5 does not reach its rule in the third lab, so it remains shown in two labs only.
 
+## P15 — improving the claims that hold (declared 2026-11-10, before running)
+
+P14 tested whether Claims 1, 2 and 5 survive their main weaknesses. P15 asks whether they can be made stronger on the data already on disk, using three things never tried: training on people from both TU Berlin cohorts (Claim 2), the timing of HbR against HbO (Claim 3), and turning the Claim 5 rank into a predicted accuracy that works in a cohort it was not fitted on. No earlier result is replaced. All earlier declared tests remain the primary record.
+
+**P15.1 Claim 2, more training people.** Cue-aligned windows, slow-EEG features, pooled HbO/HbR target and ridge grid of P3.2. Target cohort B, other cohort A, with B interpolated to A's montage as in P3.2. For each held-out person of B, three models are fitted: A only (the P3.2 frozen model), B only (the other people of B), and Pool (A plus the other people of B). A held-out person's flagged partner from P14.1, if any, is removed from A for that person, in A only and in Pool, so the five closest cross-cohort pairs cannot leak. Score: mean trial correlation per person after person-by-task demeaning, as in P3.2.
+- Tests: paired per-person difference, Pool − A only and Pool − B only. Mean, 95% bootstrap CI over people (5000 resamples, seed 1337), two-sided sign-flip p (10000 flips).
+- Rule: CI lower bound > 0. A target cohort counts as improved only if both differences pass. Mental workload is the primary target, hBCI the second. 4 tests.
+- Gate: A only with nobody removed must reproduce the saved P3.2 value in both directions.
+
+**P15.2 Claim 3, HbR timing.** HbR is known to peak 1–2 s after HbO. Coupling carried by a systemic or artefactual signal in phase across the two chromophores would not show this. P6.4 lag curve (EEG band power theta to gamma to the local target, lags −10..+20 s, leave one run out, per person), computed for local HbO and local HbR in hBCI, mental workload, FineMI and the 15 Mendeley people. The HbO curves must reproduce the saved P6.4 and P12 curves.
+- Statistic: mean the curves over people, smooth with a 3-point moving average, take the peak lag within 0..+15 s for each chromophore, and compute HbR peak − HbO peak.
+- Test: bootstrap over people (5000, seed 1337). Rule: 95% CI lower bound > 0. Two-sided bootstrap p. 4 tests, one per cohort.
+- Gate: the HbR group curve must peak above all 20 circular-shift surrogates (minimum shift 60 s), otherwise the cohort counts as uninformative and as not passed.
+- Reading, fixed now: the timing signature is supported if hBCI and at least one other cohort pass. P11 closed the personal-delay line, and this is a group-level test only.
+
+**P15.3 Claim 5, predicted accuracy in a cohort the mapping never saw.** The people, calibration scores and test scores saved by P14.3 and P14.4 (no cue alignment, raw form). Fit test = a + b × calibration score by least squares on the other cohorts: hBCI, mental workload and FineMI are each held out in turn with the other two as training, and Mendeley is held out with all three as training.
+- Test: per-person absolute error of the mapping against that of a constant equal to the training mean. Difference constant − mapping, 95% bootstrap CI (5000, seed 1337), two-sided bootstrap p. Rule: CI lower bound > 0. 4 tests.
+- Descriptive, no rule on p: coverage of an 80% interval, using the 80th percentile of the training absolute residuals as half-width. The acceptable range, fixed now, is 0.65–0.95.
+
+**P15.4 Claim 5, beyond trivial quality measures.** Does the calibration score still predict later accuracy after removing two measures that need no model? Both come from the calibration runs alone: log SD of the HbO target around its mean, and mean log EEG power 1–45 Hz. Partial Spearman of calibration score against test score (residuals of the ranks on the ranks of the two covariates), raw form, no cue alignment, hBCI, mental workload and FineMI. The calibration runs are the same ones P14.3 drew. Rule (P5.4): partial ρ > 0.2 and 95% bootstrap CI > 0. p from the t distribution with n − 4 degrees of freedom. 3 tests.
+
+**Multiplicity.** 15 tests: P15.1 (4), P15.2 (4), P15.3 (4), P15.4 (3). α = 0.05 / 15 = 0.0033. Each result is reported against its own pass rule and against this α.
+
+**P15.5, descriptive, not counted.** Median band-power delay and its bootstrap CI over people for the four cohorts side by side, from saved results. These values have all been seen.
+
+**Not in this round.** The P13 decision stands: no further test of the slow-EEG advantage on Mendeley. P15.2 and P15.3 use that cohort for other questions. No new cross-lab transfer test: 16 attempts are recorded in `TEST_LEDGER.md`. Claim 1 gets no new test, because its open point is a fresh fMRI cohort with slow EEG intact, and none is on disk.
+
+**Reading of the outcome, fixed now.** A failed test is reported and not retuned. The earlier P3.2 result remains the Claim 2 record; Pool is reported as an improvement only if the P15.1 rule is met.
+
 ## What will NOT be done
 
 - No change of band edges, targets or metric after seeing T1/T2.
