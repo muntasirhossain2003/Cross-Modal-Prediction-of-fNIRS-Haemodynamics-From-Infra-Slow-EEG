@@ -152,24 +152,27 @@ C = [md("""# NeuroVascNet: full analysis (infra-slow protocol)
 
 **Run All shows every current result from the saved files in `analysis_p2_p4/results/`. Nothing is recomputed.**
 
-**To rerun an analysis:** go to the `HOW TO RERUN` block in section 2 (Settings). Every analysis has a `# RERUN` line under its code with its name.
+**To rerun everything:** in section 2 (Settings), change `RUN = set()` to `RUN = ALL`, then Run All.
+
+**To rerun one analysis:** go to the `HOW TO RERUN` block in section 2. Every analysis has a `# RERUN` line under its code with its name.
 
 Open this notebook from the `merge/` folder. Rerunning needs the datasets in `dataset/` and the caches in `merge/neurovascnet_merge_v1_cache/`, neither of which is in git."""),
      md("## 1. Environment"), code(clean(pipeline(PIPE.cells[2]))),
-     md("## 2. Settings"),
+     md("## 2. Settings: `RUN = ALL` is set here"),
      code('''from pathlib import Path
 
 # ======================= HOW TO RERUN =======================
 # RUN = set()              show the saved results, recompute nothing (default)
 # RUN = {"calibration"}    rerun one analysis (names: see the "# RERUN" lines below each analysis)
 # RUN = {"calibration", "nvc_kernel"}    rerun several
-# RUN = {"all"}            rerun everything, one after another (rough estimate: a day or more)
+# RUN = ALL                rerun everything, one after another (rough estimate: a day or more)
 #
 # New results are written to merge/_nb_run/ and shown in the tables below.
 # The saved results in analysis_p2_p4/results/ are never changed.
 #
 # PROJECT_ROOT must be the folder that holds dataset/ and merge/.
 # Keep BUILD_CACHES = False: True overwrites the 60 GB cache in merge/neurovascnet_merge_v1_cache/, which is not in git.
+ALL = {"all"}
 RUN = set()
 BUILD_CACHES = False
 PROJECT_ROOT = Path.cwd().parent
@@ -216,6 +219,82 @@ assert a in s
 s = s.replace(a, 'where = lambda f: NB_OUT / f if RUN and (NB_OUT / f).exists() else R / f\n')
 C += [md("## 15. Figures"), code(clean(figs)), md("# Results"), code(s)]
 C += ns["C"][2:]
+
+DESCRIBE = {
+    "person_specific": "Tests whether the link between slow EEG and fNIRS is specific to each person. Each person's model is scored on their own held-out run and on every other person. Output: `person_specific_results_runs.json`. Rerun name: `person_specific`.",
+    "replicate_mw": "Repeats the founding tests on the mental-workload cohort: which EEG band carries the signal, whether EOG explains it, whether a local haemodynamic part remains, and how person-specific it is. Output: `replication_results.json`. Rerun name: `replicate_mw`.",
+    "replicate_finemi": "The same founding tests on FineMI, the cohort from a different lab. Output: `replication_finemi_results.json`. Rerun name: `replicate_finemi`.",
+    "claim1_fresh": "Claim 1. Fits one shared linear EEG space (rank 32, fixed in advance) that predicts both fNIRS and fMRI, and tests it on unseen people. It also checks whether real fMRI targets help fNIRS more than shuffled ones. Output: `claim1_fresh_<cohort>_results.json`. Rerun name: `claim1_fresh`.",
+    "external_claim2": "Claim 2 within one lab. A slow-EEG ridge model is frozen on hBCI and tested on mental workload, and the reverse. Output: `external_claim2_results.json`. Rerun name: `external_claim2`.",
+    "external_finemi": "Claim 2 across labs. The same frozen model is tested on FineMI, with five versions of the data: plain, detrended, linked-mastoid reference, Euclidean alignment and emulated hardware filter. Output: `external_finemi*_results.json`. Rerun name: `external_finemi`.",
+    "harmonised_transfer": "Claim 2 across labs, after matching the time window and the electrode montage between cohorts. Output: `harmonised_transfer_results.json`. Rerun name: `harmonised_transfer`.",
+    "calibrated_transfer": "Claim 2 across labs, calibrated form: does the frozen slow-EEG model add to a person's own two-run model? Output: `calibrated_transfer_results.json`. Rerun name: `calibrated_transfer`.",
+    "continuous_lag": "Loaders for the continuous hBCI and mental-workload recordings, and the helpers that align EEG with fNIRS at 1 Hz. The analyses below reuse them. This cell runs nothing by itself.",
+    "nvc_bandpower": "Claim 3. Classical neurovascular coupling: lagged ridge from EEG band power (theta to gamma) to local HbO, at lags from −10 to +20 s, with each person compared to their own time-shifted null. Also holds the FineMI loader. Output: `nvc_bandpower_results.json`. Rerun name: `nvc_bandpower`.",
+    "nvc_transfer": "Claim 2. A band-power coupling kernel is frozen on hBCI and tested on the other cohorts, plus leave-one-person-out within hBCI. Output: `nvc_transfer_results.json`. Rerun name: `nvc_transfer`.",
+    "nvc_transfer2": "Claim 2. The frozen kernel with a CBSI target, and the calibrated form: does it add to a person's own two-run model? The second call repeats the calibrated form over five seeds. Output: `nvc_transfer2_results.json`, `nvc_transfer2_seeds_results.json`. Rerun name: `nvc_transfer2`.",
+    "nvc_bands": "Diagnostic for the sign flip into FineMI: kernels restricted to single EEG bands, an alpha + beta kernel, and FineMI leave-one-person-out. Output: `nvc_bands_results.json`. Rerun name: `nvc_bands`.",
+    "nvc_labdiff": "Diagnostic: the FineMI kernel applied to TU Berlin data, and the correlation of overall EEG power with global HbO in each cohort. Output: `nvc_labdiff_results.json`. Rerun name: `nvc_labdiff`.",
+    "nvc_broadband": "Tests whether the overall EEG power term causes the sign flip, by refitting the kernel with that term removed and with that term alone. Output: `nvc_broadband_results.json`. Rerun name: `nvc_broadband`.",
+    "nvc_residual": "Claim 3 beyond the task. The coupling analysis repeated after removing the cue-locked average response, so a shared task response cannot explain it. Output: `nvc_residual_results.json`. Rerun name: `nvc_residual`.",
+    "nvc_kernel": "Claim 3. Does a person's coupling curve in the first half of the recording match the second half, more than after time-shifting? The second call uses the task-removed data. Output: `nvc_kernel_results.json`, `nvc_kernel_resid_results.json`. Rerun name: `nvc_kernel`.",
+    "nvc_delay_smooth": "Claim 3. Personal delay taken from smoothed half-recording curves, and how often the two halves agree within 2 s. Needs the output of `nvc_kernel`. Output: `nvc_delay_smooth_results.json`. Rerun name: `nvc_delay_smooth`.",
+    "nvc_power": "Diagnostic: hBCI recordings cut to the length of the other cohorts, to see whether the personal delay still repeats. Output: `nvc_power_results.json`. Rerun name: `nvc_power`.",
+    "nvc_snr": "Diagnostic: hBCI fNIRS degraded with added noise to the coupling strength of the other cohorts, to see whether the personal delay still repeats. Output: `nvc_snr_results.json`. Rerun name: `nvc_snr`.",
+    "downstream_repr": "Claim 4. Task decoding from EEG-predicted haemodynamics compared with PCA and random-projection codes of the same size. Output: `downstream_repr_nlab0_results.json`. Rerun name: `downstream_repr`.",
+    "calibration": "Deployment test. After `k` calibration runs with EEG and fNIRS together, does a person's EEG-only model beat replaying their own average response? Run on raw and local HbO. Output: `calibration_results.json`, `calibration_results_local.json`. Rerun name: `calibration`.",
+    "calib_reliability": "Claim 5, per person. Does a person's score on their two calibration runs predict how well the model works on their later runs? Output: `calib_reliability_results.json`, `calib_reliability_local_results.json`. Rerun name: `calib_reliability`.",
+    "trial_reliability": "Claim 5, per trial. Can single unreliable trials be identified in advance? Output: `trial_reliability_results.json`. Rerun name: `trial_reliability`.",
+    "build_finemi": "Builds the FineMI epoch cache from the raw files (plain, linked-mastoid and emulated-hardware versions). Runs only when `BUILD_CACHES = True`.",
+}
+PIPE_TEXT = {2: "Checks the Python packages (installs any that are missing), then sets the random seed and the device.",
+             4: "Settings from the merge notebook: dataset paths and pipeline options. `EEG_FILTER = False` keeps the infra-slow band.",
+             5: "Builds the configuration object and the run identifiers from those settings.",
+             6: "Checks that each dataset folder exists. On a machine without the datasets it prints `[BAD]`; this does not matter when only viewing results.",
+             8: "Shared signal helpers: filtering, resampling, montage interpolation, z-scoring, baseline correction and the Beer-Lambert conversion.",
+             9: "Loader for HEFMI. This dataset is excluded from the main analysis, because its published EEG has no power below 0.5 Hz.",
+             10: "Loader for the hBCI cohort (`load_hbci`), used to build the hBCI epoch cache.",
+             11: "Loaders for the fMRI datasets ds002336 and ds002739. ds002739 is excluded from the main analysis for the same reason as HEFMI.",
+             13: "Loads all four datasets and writes the shared cache. Runs only when `BUILD_CACHES = True`.",
+             19: "Subject-level statistics used throughout: correlations, sign-flip tests, permutation nulls and verdict text."}
+OTHER = (("HOW TO RERUN", "**This is the only cell you need to edit.** Leave `RUN = set()` to view the saved results. Change it to `RUN = ALL` to recompute everything."),
+         ("def should(name)", "Two small helpers: `should` decides whether an analysis runs, and `run_with_env` runs one with temporary settings."),
+         ("fig1_slow_band", "Draws the five figures from the result files and saves them in `paper/figures/`."),
+         ("def table(rows", "Helpers that read the result files and draw the tables below."),
+         ("c1m, c1f = J(", "The best result for each of the five claims and its verdict."),
+         ("mw, fm = J(", "Where the EEG information about haemodynamics lies, per cohort. Slow EEG carries it and 1-45 Hz band power does not."),
+         ("c1h = J(", "One EEG space predicts both fNIRS and fMRI in unseen people. The cost column is the 90% CI lower bound, against a margin of −0.02 fixed in advance."),
+         ("rev = J(", "Transfer within the TU Berlin lab, then every form tried into FineMI (best first), then the diagnostics for the sign flip."),
+         ("res, kr, kt = J(", "Coupling per cohort: share of people beating their null, delay, whether the kernel repeats between halves, and whether the delay repeats."),
+         ('d = J("downstream_repr_nlab0', "Decoding accuracy from virtual haemodynamics against PCA and random-projection codes."),
+         ("g, gl = J(", "Gain from two calibration runs over a person's own mean response, and how well reliability is known in advance."),
+         ("from_attempts =", "Which positive results survive Bonferroni correction across all attempts at the same claim, also when cohorts are counted as separate tests. Details: `TEST_LEDGER.md`."),
+         ('nvc_broadband_results.json").exists', "The most recent tests: the broadband term in the sign flip (P10.1) and the coupling-strength diagnostic for the delay (P10.2)."))
+
+
+def describe(src):
+    m = re.match(r"def (\w+)\(LIB=False", src)
+    if m:
+        return DESCRIBE[m.group(1)]
+    for i, txt in PIPE_TEXT.items():
+        if src == clean(pipeline(PIPE.cells[i])) or (i == 13 and src.startswith("if BUILD_CACHES:\n    LIMIT_PEOPLE")):
+            return txt
+    for key, txt in OTHER:
+        if key in src:
+            return txt
+    raise KeyError(src[:80])
+
+
+_out = []
+for c in C:
+    if c.cell_type == "code":
+        txt = describe(c.source)
+        if _out and _out[-1].cell_type == "markdown":
+            _out[-1].source += "\n\n" + txt
+        else:
+            _out.append(md(txt))
+    _out.append(c)
+C = _out
 
 for c in C:
     if c.cell_type == "code":
