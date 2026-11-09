@@ -1473,6 +1473,24 @@ HbO only, because the shared continuous loaders pass HbO only. The Mendeley run 
 
 No other test of the slow-EEG advantage on Mendeley will be run after this one.
 
+### P13 result (2026-11-10)
+
+| Cohort | Method | Slow EEG r [95% CI] | Band power r | Slow − band power [95% CI] | Rule (α = 0.0071) |
+|---|---|---|---|---|---|
+| hBCI (29) | continuous, P12.1 code | +0.289 [0.222, 0.358] | +0.137 | +0.152 [0.086, 0.220] | **pass** |
+| Mental workload (26) | continuous, P12.1 code | +0.183 [0.111, 0.251] | +0.122 | +0.061 [−0.018, 0.137] | fail |
+| FineMI (18) | continuous, P12.1 code | +0.029 [0.014, 0.046] | +0.055 | −0.026 [−0.060, 0.008] | fail |
+| hBCI | uncued 30 s windows | +0.203 [0.166, 0.241] | +0.070 | +0.133 [0.099, 0.170] | **pass** |
+| Mental workload | uncued 30 s windows | +0.147 [0.105, 0.193] | +0.063 | +0.084 [0.043, 0.128] | **pass** |
+| FineMI | uncued 30 s windows | +0.193 [0.153, 0.239] | +0.069 | +0.124 [0.082, 0.174] | **pass** |
+| Mendeley (15), exploratory | uncued 30 s windows | −0.003 [−0.015, 0.009] | +0.004 | −0.007 [−0.023, 0.007] | fail |
+
+The Mendeley run of the continuous method reproduced P12.1 (largest per-person difference 2e-8).
+
+**Reading, by the rule fixed before running.** P13.1 passes in 1 of 3 cohorts, so the P12.1 method does not show the advantage even where it is established. P12.1 stays recorded as failed, but it says nothing about whether the advantage exists in the third lab, and the "does not replicate" wording is withdrawn.
+
+P13.2a–c pass in all three cohorts: the slow-EEG advantage does not need windows aligned to task cues (HbO only; the windows still contain task periods, they are just not aligned to them). P13.2d is exploratory and cannot replace P12.1. On it, the method that works in the other three cohorts finds nothing in the third lab, for slow EEG or for band power. Whether that reflects the lab, the task, the hardware or the small sample is not known. No further test of this advantage on Mendeley will be run.
+
 ## What will NOT be done
 
 - No change of band edges, targets or metric after seeing T1/T2.

@@ -366,4 +366,23 @@ ax.set_ylabel("frozen hBCI kernel: r (95% CI)")
 ax.grid(axis="x", visible=False)
 save(fig, "fig15_third_lab")
 
+# Fig 16 — the slow-EEG advantage under two methods
+M16 = RJ("nvc_method_check_results.json")["cohorts"]
+N16 = (("hbci", "hBCI"), ("mental_workload", "Mental\nworkload"), ("finemi", "FineMI"), ("mendeley", "Third lab"))
+fig, axes = plt.subplots(1, 2, figsize=(7.8, 3.0), sharey=True)
+for ax, k, title in zip(axes, ("continuous", "windowed"), ("Continuous recording (P12.1 method)", "30 s windows, not aligned to cues")):
+    for i, (c, n) in enumerate(N16):
+        a, b = M16[c][k]["slow"], M16[c][k]["bandpower"]
+        ax.plot([i - 0.12] * 2, a["ci"], color="#2a78d6", lw=2)
+        ax.plot(i - 0.12, a["mean_r"], "o", ms=6, color="#2a78d6", mec=SURF, mew=1.2, label="slow EEG (< 0.5 Hz)" if i == 0 else None)
+        ax.plot([i + 0.12] * 2, b["ci"], color=NEUTRAL, lw=2)
+        ax.plot(i + 0.12, b["mean_r"], "s", ms=6, color=NEUTRAL, mec=SURF, mew=1.2, label="band power" if i == 0 else None)
+    ax.axhline(0, color=INK2, lw=0.8, ls="--")
+    ax.set_xticks(range(4), [n for _, n in N16], fontsize=8)
+    ax.set_title(title, fontsize=9, color=INK)
+    ax.grid(axis="x", visible=False)
+axes[0].set_ylabel("cross-person r with HbO (95% CI)")
+axes[0].legend(fontsize=7.5, loc="upper right")
+save(fig, "fig16_method_check")
+
 print("figures written to", OUT)

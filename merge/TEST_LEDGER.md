@@ -57,21 +57,33 @@ Within lab: 3 attempts (P3.2, P7.2-MW, P8.3-MW reference), α = 0.017. Across la
 | Person-level calibrated reliability (P5.4) | Spearman hBCI 0.68 (p ≈ 5e-5), MW 0.56 (p ≈ 0.003), FineMI 0.90 (p < 1e-6) | **yes, all three cohorts** |
 | Trial-level reliability | fails | — (negative) |
 
-## P12 — third-lab confirmation (own family: 6 tests, α = 0.0083; fresh data, n = 15)
+## P12 — third-lab confirmation (own family: 6 tests, α = 0.0083; n = 15; not used in the main analysis, but an early band-power baseline had been run on it)
 
 | Result | Evidence | Survives? |
 |---|---|---|
 | Band-power coupling exists | 9/15 beat their null | **yes** (declared rule) |
-| Slow EEG predicts HbO and beats band power | slow p 0.013; difference −0.008 | **no — fails** |
+| Slow EEG predicts HbO and beats band power | slow p 0.013; difference −0.008 | **no — fails; uninformative, see P13** |
 | Kernel repeats | p 0.10 | **no** |
 | Personal delay repeats | p 0.15 | **no** |
 | Frozen hBCI kernel transfers | −0.026 | **no — fails** |
 | Calibrated hBCI kernel transfers | −0.037 | **no — fails** |
 
+## P13 — method check (own family: 7 tests, α = 0.0071)
+
+| Result | Evidence | Survives? |
+|---|---|---|
+| P12.1 method recovers the advantage, hBCI | difference +0.152 [0.086, 0.220] | **yes** |
+| P12.1 method, mental workload | +0.061 [−0.018, 0.137] | **no** |
+| P12.1 method, FineMI | −0.026 [−0.060, 0.008] | **no** |
+| Uncued windows, hBCI | +0.133 [0.099, 0.170], slow p ≈ 5e-6 | **yes** |
+| Uncued windows, mental workload | +0.084 [0.043, 0.128], slow p ≈ 5e-6 | **yes** |
+| Uncued windows, FineMI | +0.124 [0.082, 0.174], slow p ≈ 5e-6 | **yes** |
+| Uncued windows, third lab (exploratory) | slow −0.003, difference −0.007 [−0.023, 0.007] | **no** |
+
 ## Bottom line for the paper
 
 Results that survive the correction across all attempts:
-1. Infra-slow EEG predicts fNIRS across people in three cohorts. These are the founding results (T1/T2, R, P4); they were tested once each and have p ≪ 0.001. **The slow-EEG advantage did not replicate in the third-lab cohort (P12.1).**
+1. Infra-slow EEG predicts fNIRS across people in three cohorts. These are the founding results (T1/T2, R, P4); they were tested once each and have p ≪ 0.001. The advantage also holds on windows not aligned to cues (P13.2). **In the third lab it is not established: the declared P12.1 method cannot detect it (P13.1), and an exploratory window analysis found nothing (P13.2d).**
 2. One EEG-derived shared space serves fNIRS and fMRI (Claim 1, shared-space form).
 3. Within-lab external validation (Claim 2, TU Berlin cohorts).
 4. Classical band-power -> HbO coupling in hBCI, with a reproducible personal kernel and a reproducible personal delay of about 6 s (EEG first). The kernel is also reproducible beyond the task in FineMI (Claim 3).
