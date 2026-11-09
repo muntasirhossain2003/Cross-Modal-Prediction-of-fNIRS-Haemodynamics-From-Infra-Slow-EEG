@@ -24,8 +24,8 @@ it, the same pipeline gave r = 0.158, and a plain ridge model on slow-EEG featur
 | Cross-person prediction of fNIRS (ridge, slow EEG < 0.5 Hz) | slow EEG | band power 1–45 Hz |
 |---|---|---|
 | hBCI | 0.155 (deep) / 0.197 (ridge) | ≈ 0.02 |
-| Mental workload | 0.136 [0.089, 0.183] | 0.006 (n.s.) |
-| FineMI | 0.203 [0.164, 0.248] | 0.046 |
+| Mental workload | 0.135 [0.089, 0.183] | 0.006 (n.s.) |
+| FineMI | 0.203 [0.164, 0.248] | 0.045 |
 
 These properties replicate in all three cohorts:
 - **Not ocular.** EOG channels carry little or nothing.

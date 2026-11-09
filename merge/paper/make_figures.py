@@ -46,8 +46,8 @@ def save(fig, name):
 
 # Fig 1 — where the information lives (RESULTS_SUMMARY, "The finding the paper is built on"; ridge, cross-person)
 fig, ax = plt.subplots(figsize=(4.2, 3.0))
-slow = {"hbci": 0.197, "mental_workload": 0.136, "finemi": 0.203}
-bp = {"hbci": 0.02, "mental_workload": 0.006, "finemi": 0.046}
+slow = {"hbci": 0.197, "mental_workload": 0.135, "finemi": 0.203}
+bp = {"hbci": 0.02, "mental_workload": 0.006, "finemi": 0.045}
 x = np.arange(3)
 ax.bar(x - 0.19, [slow[c] for c in COH], 0.36, color="#2a78d6", label="infra-slow EEG (< 0.5 Hz)")
 ax.bar(x + 0.19, [bp[c] for c in COH], 0.36, color=NEUTRAL, label="band power 1–45 Hz")

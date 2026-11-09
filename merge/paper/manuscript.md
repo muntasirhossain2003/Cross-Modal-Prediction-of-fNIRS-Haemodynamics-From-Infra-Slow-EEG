@@ -11,7 +11,7 @@ information about oxyhaemoglobin (HbO) lies almost entirely below 0.5 Hz, a band
 filter removes.
 
 Cross-person prediction of HbO from infra-slow EEG reaches r = 0.14–0.20 in each cohort. The same pipeline with
-band power gives r = 0.006–0.046, and with the conventional filter r = 0.019. The signal is not ocular, it is
+band power gives r = 0.006–0.045, and with the conventional filter r = 0.019. The signal is not ocular, it is
 strongly person-specific, and it keeps a local component after the systemic (global) haemodynamic signal is
 removed.
 
@@ -88,10 +88,10 @@ The five claims were attacked over up to five rounds. We therefore apply a Bonfe
 In hBCI, the conventional 0.5–45 Hz preprocessing gave a cross-person prediction of HbO of r = 0.019. Without it,
 the same deep pipeline gave r = 0.155, and ridge regression on infra-slow features gave r = 0.197. The result
 replicated in the two other cohorts:
-- mental workload: r = 0.136 [0.089, 0.183];
+- mental workload: r = 0.135 [0.089, 0.183];
 - FineMI, an independent lab: r = 0.203 [0.164, 0.248].
 
-Band power from 1–45 Hz carried little: r = 0.02, 0.006 (n.s.) and 0.046.
+Band power from 1–45 Hz carried little: r = 0.02, 0.006 (n.s.) and 0.045.
 
 Three properties replicated in all cohorts:
 1. EOG channels carried little or no information.
