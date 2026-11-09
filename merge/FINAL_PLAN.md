@@ -1440,7 +1440,7 @@ A result that fails any part is reported as failed, and nominal p-values are lab
 | P12.2 coupling exists | 60% (9/15) beat their null; median delay +7 s, EEG first, IQR [0, 11.5]; median peak local r 0.10 | **PASS** |
 | P12.3 kernel repeats | median d +0.10, Wilcoxon p 0.10 | **FAIL** |
 | P12.4 delay repeats | 33% within 2 s (chance 19%), p 0.15 | **FAIL** |
-| P12.5 frozen hBCI kernel | −0.027 [−0.059, +0.009], 5/15 > 0, beat null 7%, p 0.91 | **FAIL** |
+| P12.5 frozen hBCI kernel | −0.026 [−0.059, +0.009], 5/15 > 0, beat null 7%, p 0.91 | **FAIL** |
 | P12.6 calibrated hBCI kernel | −0.037 [−0.093, +0.004], 7/15 better, negative gain 60%, p 0.92 | **FAIL** |
 
 **Rule outcome: 1 of 6 passes.** What this changes:

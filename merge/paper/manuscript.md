@@ -199,7 +199,7 @@ band power gives 0.61, infra-slow EEG features 0.70–0.76.
 
 ### 3.8 Confirmation in a third laboratory
 
-All rules were fixed before any EEG–fNIRS relation was computed on this cohort (implicit-learning task, Nihon Kohden EEG, Hitachi fNIRS; 15 of 30 people passed the sync and length rules). One of six tests passed (α = 0.0083). Band-power coupling was present (9/15 people beat their null; median delay +7 s, EEG first). Slow EEG predicted global HbO weakly (r = 0.057 [0.014, 0.103], p = 0.013, above α) and was no better than band power (r = 0.065; difference −0.008 [−0.075, +0.052]). Kernel reproducibility (p = 0.10) and delay reproducibility (33% vs 19% chance, p = 0.15) failed, as did frozen (r = −0.027) and calibrated (−0.037) transfer of the hBCI kernel.
+All rules were fixed before any EEG–fNIRS relation was computed on this cohort (implicit-learning task, Nihon Kohden EEG, Hitachi fNIRS; 15 of 30 people passed the sync and length rules). One of six tests passed (α = 0.0083). Band-power coupling was present (9/15 people beat their null; median delay +7 s, EEG first). Slow EEG predicted global HbO weakly (r = 0.057 [0.014, 0.103], p = 0.013, above α) and was no better than band power (r = 0.065; difference −0.008 [−0.075, +0.052]). Kernel reproducibility (p = 0.10) and delay reproducibility (33% vs 19% chance, p = 0.15) failed, as did frozen (r = −0.026) and calibrated (−0.037) transfer of the hBCI kernel.
 
 ## 4. Discussion
 

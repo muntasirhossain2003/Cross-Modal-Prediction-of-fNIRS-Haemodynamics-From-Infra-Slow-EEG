@@ -65,7 +65,7 @@ Within lab: 3 attempts (P3.2, P7.2-MW, P8.3-MW reference), α = 0.017. Across la
 | Slow EEG predicts HbO and beats band power | slow p 0.013; difference −0.008 | **no — fails** |
 | Kernel repeats | p 0.10 | **no** |
 | Personal delay repeats | p 0.15 | **no** |
-| Frozen hBCI kernel transfers | −0.027 | **no — fails** |
+| Frozen hBCI kernel transfers | −0.026 | **no — fails** |
 | Calibrated hBCI kernel transfers | −0.037 | **no — fails** |
 
 ## Bottom line for the paper
