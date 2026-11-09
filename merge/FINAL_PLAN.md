@@ -1373,6 +1373,20 @@ Limits:
 - Added noise is not the same as weaker physiological coupling.
 - The peak-r statistic has a positive floor from taking a maximum over lags (about 0.035–0.045 at large c), and FineMI's 0.053 is close to it.
 
+## P11 — seventh round: a more sensitive delay estimator, with a positive control (declared 2026-11-09, before running it)
+
+P10.2 showed that the delay estimator cannot recover a known delay at FineMI's coupling strength. P11 tries one estimator that uses more information, and it must prove itself on a case with a known answer before it can say anything about FineMI. No new cross-lab Claim 2 test is added: sixteen attempts have been made, and more would mostly add false positives.
+
+**Estimator (template alignment).** It uses the half-recording lag curves already saved, after the P8.1 5-lag smoothing. For each person and half, the template is the mean of the smoothed, z-scored curves of all *other* people in the same cohort (both halves). The shift s in −8..+8 s that maximises the Pearson r between the person's curve and the shifted template, over the overlapping lags, is taken as the person's offset. The delay is the template's peak lag + s.
+
+**Statistics.** The P8.1 statistics are unchanged: the two halves agree within 2 s, compared with the between-person chance level and a 10,000-permutation p.
+
+**Positive control (first).** hBCI degraded to FineMI's coupling strength, using the saved P10.2 curves (level `finemi`, c = 2). The estimator is **valid** only if the P8.1 rule holds there (agreement > chance, p < 0.05).
+
+**Test.** Mental workload and FineMI, raw recordings (primary) and task removed (secondary).
+- If the control fails, these results are descriptive only and the P10.2 reading (inconclusive) stands.
+- If the control passes, a cohort's personal delay is called reproducible only at p < 0.05 / 14 = 0.0036, because this is Claim 3 attempt 14.
+
 ## What will NOT be done
 
 - No change of band edges, targets or metric after seeing T1/T2.
