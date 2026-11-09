@@ -142,7 +142,7 @@ assert "EEG_FILTER = True" in PIPE.cells[4].source
 PIPE.cells[4].source = PIPE.cells[4].source.replace("EEG_FILTER = True", "EEG_FILTER = False")
 _c6 = PIPE.cells[6].source.split("\n")
 _i = next(k for k, l in enumerate(_c6) if l.startswith("    raise FileNotFoundError("))
-_j = next(k for k in range(_i, len(_c6)) if _c6[k].rstrip().endswith('"\n".join(_lines))'))
+_j = next(k for k in range(_i, len(_c6)) if _c6[k].rstrip().endswith("join(_lines))"))
 _c6[_i:_j + 1] = ["    if RUN or BUILD_CACHES:"] + ["    " + l for l in _c6[_i:_j + 1]]
 PIPE.cells[6].source = "\n".join(_c6)
 
