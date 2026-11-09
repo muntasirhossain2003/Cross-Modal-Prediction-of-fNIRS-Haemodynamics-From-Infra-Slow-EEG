@@ -1402,6 +1402,34 @@ P10.2 showed that the delay estimator cannot recover a known delay at FineMI's c
 
 Rule outcome: **the estimator fails its positive control**, so it cannot recover a known delay at FineMI's coupling strength. The mental-workload and FineMI rows are descriptive only, and the P10.2 reading stands: **the personal delay outside hBCI is inconclusive**. P11 did not improve the result. No further delay estimators will be tried on these data: resolving this needs recordings with stronger coupling or more data, not another statistic.
 
+## P12 — confirmation on a fresh cohort from a third lab (declared 2026-11-09, before any EEG–fNIRS relation was computed on it)
+
+Two EEG + fNIRS datasets on disk had never been used in any analysis. **Mendeley "Learning Capability"** (30 people, implicit-learning task, Nihon Kohden EEG 1000 Hz, Hitachi fNIRS 10 Hz, about 40 min each) is a third, independent lab with different hardware. It is the primary cohort of P12. **Stroop** (21 people, only 4 min each) is too short for the coupling tests and stays **reserved and untouched**.
+
+Only feasibility was inspected before this declaration: file formats, recording length, marker counts, and EEG power below 0.5 Hz (raw EEG has no high-pass filter; slow-to-delta power ratio about 4–5 in the first person checked). No EEG–fNIRS relation was computed.
+
+Nothing is tuned on this cohort. Models, lags, nulls, ridge grids and pass rules are the existing ones.
+
+**Data rules, fixed in advance**
+- EEG: the 31 scalp channels in the file (dropped: `DC09`, `EEG Mark1`, `EEG Mark2`, `Events/Markers`, `E`), `Raw_*.edf`, resampled to 200 Hz.
+- fNIRS: Oxy and Deoxy of both probes, only the channels mapped to an electrode in the dataset's reference file. Channels marked `(-)` there are multiplied by −1, as that file instructs.
+- Sync: rising edges of the EEG trigger channel `DC09` against `Mark` onsets in the fNIRS file. The two sequences are aligned by the integer shift (−8..+8 events) with the smallest median absolute deviation of their time differences. The NIRS offset is the median difference.
+- A person is **excluded** if the MAD is above 0.15 s, fewer than 90% of matched events are within 0.3 s of the median, the drift over the recording is above 0.5 s, or the overlap is under 900 s. Exclusions are listed before any test is run.
+- The recording has no runs, so it is cut into 4 equal consecutive segments, which act as the "runs" of the existing code.
+
+**Tests (6 confirmatory tests: α = 0.05 / 6 = 0.0083)**
+
+| Test | Claim | Method | Pass rule |
+|---|---|---|---|
+| P12.1 | founding | Leave-one-person-out ridge to global HbO, lags −12..+12 s in 4 s steps, on slow EEG (< 0.5 Hz) and on band power | slow EEG mean r > 0 with sign-flip p < α, and paired slow − band power: 95% CI > 0 |
+| P12.2 | 3 | P6.4 coupling, local HbO, 100 shifted surrogates | more than half of the people beat their null |
+| P12.3 | 3 | P7.1 kernel, half against half, 20 surrogates | median d > 0, Wilcoxon p < α |
+| P12.4 | 3 | P8.1 personal delay | agreement > chance, permutation p < α |
+| P12.5 | 2 | P7.2 frozen hBCI band-power kernel | P7.2 rule (mean r > 0, CI > 0, more than half beat null) and sign-flip p < α |
+| P12.6 | 2 | P8.3 calibrated transfer, 2 of the 4 segments | P8.3 rule (diff > 0, CI > 0) and sign-flip p < α |
+
+A result that fails any part is reported as failed, and nominal p-values are labelled nominal. What this round can show: P12.5 and P12.6 say whether the kernel transfers to a third lab, and with which sign. That also tells whether the FineMI sign flip is special to FineMI.
+
 ## What will NOT be done
 
 - No change of band edges, targets or metric after seeing T1/T2.
