@@ -1491,6 +1491,33 @@ The Mendeley run of the continuous method reproduced P12.1 (largest per-person d
 
 P13.2a–c pass in all three cohorts: the slow-EEG advantage does not need windows aligned to task cues (HbO only; the windows still contain task periods, they are just not aligned to them). P13.2d is exploratory and cannot replace P12.1. On it, the method that works in the other three cohorts finds nothing in the third lab, for slow EEG or for band power. Whether that reflects the lab, the task, the hardware or the small sample is not known. No further test of this advantage on Mendeley will be run.
 
+## P14 — stress tests of the claims that hold (declared 2026-11-10, before running)
+
+The aim is to find out whether Claims 1, 2 and 5 survive their main weaknesses. Nothing already passed is re-tuned. Models, ridge grids and pass rules are the existing ones. Only one new statistic is defined here (the EEG fingerprint of P14.1).
+
+**P14.1 Claim 2: do the two TU Berlin cohorts share people?** This is caveat 2 of `RESULTS_SUMMARY.md`, and a shared person would leak identity into the within-lab transfer.
+- Fingerprint: log Welch power of each run (2 s segments, 1–45 Hz in 1 Hz bins), on the 10 electrodes the two cohorts have in common, averaged over a person's runs, with the cohort mean removed. Similarity is Pearson r.
+- Positive control: within each cohort, a fingerprint from a person's even runs must identify the same person from their odd runs in at least 80% of people. If not, the check is reported as uninformative.
+- Threshold T: 99th percentile of the similarities between different people within each cohort, pooled.
+- A cross-cohort pair is a **candidate** if the two are each other's best match and their similarity exceeds T.
+- Excluded from both cohorts: every candidate, plus the 5 most similar cross-cohort pairs (picked greedily, one to one), whether or not they exceed T.
+- Test: P3.2 hBCI → mental workload rerun without them. Same rule: verdict "detectable". The run with nobody excluded must reproduce the saved P3.2 value.
+- Limit: control and threshold come from recordings within one session. The same person recorded on another day may look less similar, so a clean result does not prove that no one is shared.
+
+**P14.2 Claim 2 without cues.** Frozen ridge, hBCI → mental workload, on the 30 s windows of P13.2 (not aligned to cues), slow EEG, global HbO target. Same verdict rule.
+
+**P14.3 Claim 5 without cues.** The P5.4 test (two calibration runs drawn with seed 1337, k = 2 hybrid, Spearman of calibration score against test score) on the P13.2 windows, in hBCI, mental workload and FineMI, in the raw form and in the EEG-specific gain form. P5.4 rule: Spearman > 0.2 and 95% CI > 0.
+
+**P14.4 Claim 5 in the third lab.** The same test on the 15 Mendeley people, with the 4 segments as runs, raw and gain forms. This claim has never been tested there. Same rule.
+
+**P14.5 Claim 1 without cues.** `claim1_fresh.py` with the fNIRS side taken from the P13.2 windows (HbO only), mental workload and FineMI. The fMRI side is unchanged. Rule: `claim1_shared_space_holds`.
+
+**Multiplicity.** 12 tests: P14.1 (1), P14.2 (1), P14.3 (6), P14.4 (2), P14.5 (2). α = 0.05 / 12 = 0.0042. Each result is reported against its own pass rule and against this α.
+
+**P14.6 Claim 3, post hoc, not counted.** The P6.4 physiological rule (median delay between +2 and +10 s, Wilcoxon p < 0.05) applied to the third-lab delays of P12.2. The value (+7 s) was already seen, so this is descriptive only. There is no new personal-delay test: P11 closed that line.
+
+**Reading of the outcome, fixed now.** A claim that fails one of these is narrowed in the write-up and not retested. Claim 5 "does not need cue alignment" requires hBCI plus at least one other cohort to pass, as in P5.4. The third-lab result is reported separately. Claim 1's fMRI side cannot be made fresh with the data on disk, and this round does not change that.
+
 ## What will NOT be done
 
 - No change of band edges, targets or metric after seeing T1/T2.

@@ -21,7 +21,8 @@ FNIRS = {"hbci": FNIRS, "mental_workload": ROOT / "replication_tuberlin_mw", "fi
 SEED = int(os.environ.get("SEED", "1337"))
 SCARCE = int(os.environ.get("SCARCE", "0"))               # P5.1b: fNIRS training people per fold
 LOCAL = os.environ.get("TARGET", "") == "local"           # P6.3: fNIRS channels minus channel mean
-OUT = Path(__file__).with_name(f"claim1_fresh_{COH}" + (f"_scarce{SCARCE}" if SCARCE else "") + (f"_seed{SEED}" if SEED != 1337 else "") + ("_local" if LOCAL else "") + "_results.json")
+UNCUED = bool(os.environ.get("UNCUED"))                   # P14.5: fNIRS side from 30 s windows not aligned to cues
+OUT = Path(__file__).with_name(f"claim1_fresh_{COH}" + (f"_scarce{SCARCE}" if SCARCE else "") + (f"_seed{SEED}" if SEED != 1337 else "") + ("_local" if LOCAL else "") + ("_uncued" if UNCUED else "") + "_results.json")
 FS, RANK = 200.0, 32
 ALPHAS = np.logspace(0, 6, 13)
 
@@ -57,6 +58,13 @@ def load(cache, local=False):
             "g": sid.astype(np.int64) * 1000 + tid, "ch": meta["info"]["ch_names"] if "info" in meta else meta["ch_names"]}
 
 
+def load_windows(name):
+    z = np.load(ROOT / "p14_windows" / f"{name}.npz")
+    sid = z["sid"].astype(np.int64)
+    return {"F": z["F"].astype(np.float64), "Y": z["Y"].astype(np.float64), "sid": sid, "tid": np.zeros(len(sid), int), "rec": z["rec"],
+            "g": sid * 1000, "ch": [str(c) for c in z["ch"]]}
+
+
 def zs_person(F, sid):
     F = F.reshape(len(F), -1).copy()
     for s in np.unique(sid):
@@ -82,7 +90,7 @@ def boot_ci(v, rng):
     return [float(x) for x in np.percentile([v[rng.integers(0, len(v), len(v))].mean() for _ in range(5000)], [2.5, 97.5])]
 
 
-a = load(FNIRS, local=LOCAL)
+a = load_windows(COH) if UNCUED else load(FNIRS, local=LOCAL)
 WHICH = os.environ.get("FMRI_SET", "pooled")             # pooled | ds002338 | ds002336
 parts = []
 SETS = {"ds002336": [(0, FMRI)], "ds002338": [(100, ROOT / "replication_ds002338")]}
