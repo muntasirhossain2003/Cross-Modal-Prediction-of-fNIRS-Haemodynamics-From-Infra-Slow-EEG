@@ -1430,6 +1430,8 @@ Nothing is tuned on this cohort. Models, lags, nulls, ridge grids and pass rules
 
 A result that fails any part is reported as failed, and nominal p-values are labelled nominal. What this round can show: P12.5 and P12.6 say whether the kernel transfers to a third lab, and with which sign. That also tells whether the FineMI sign flip is special to FineMI.
 
+**P12 amendment (2026-11-09, written after the first launch crashed and before any P12 result was looked at).** Six of the 15 included people have factory amplifier labels in `Raw_*.edf` (`EEG X1`, `EEG PG1`, ...) instead of electrode names. The dataset's own `Truncated_*.edf` for the same person lists the real names in the same channel order, so names are now taken from it by position. The declaration's "31 scalp channels" was a miscount: after the same exclusions there are 32. Runs started with the wrong labels were stopped and their output deleted without being inspected. Inclusions, sync rules, tests and alpha are unchanged. The sync check reads only `DC09`, so it is not affected.
+
 ## What will NOT be done
 
 - No change of band edges, targets or metric after seeing T1/T2.

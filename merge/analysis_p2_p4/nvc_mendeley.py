@@ -85,7 +85,11 @@ def load_person(s):
     tr = raw.get_data(picks=["DC09"])[0]
     b = tr > (tr.max() + tr.min()) / 2
     te = np.flatnonzero(b[1:] & ~b[:-1]) / fs
+    real = mne.io.read_raw_edf(next((s / "EEG").glob("Truncated_*.edf")), preload=False).ch_names
+    assert len(real) == len(raw.ch_names)
+    raw.rename_channels(dict(zip(raw.ch_names, real)))
     names = [c for c in raw.ch_names if c not in DROP]
+    assert len(names) == 32, len(names)
     raw.pick(names).resample(200.0, npad="auto")
     hbo, hbr, mark, n_fs = load_nirs(s)
     tn = np.flatnonzero((mark != 0) & (np.r_[0, mark[:-1]] != mark)) / n_fs
