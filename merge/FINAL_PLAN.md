@@ -1387,6 +1387,21 @@ P10.2 showed that the delay estimator cannot recover a known delay at FineMI's c
 - If the control fails, these results are descriptive only and the P10.2 reading (inconclusive) stands.
 - If the control passes, a cohort's personal delay is called reproducible only at p < 0.05 / 14 = 0.0036, because this is Claim 3 attempt 14.
 
+### P11 results — 2026-11-09
+
+| Data | halves agree within 2 s | chance | p | valid / passes |
+|---|---|---|---|---|
+| **Positive control: hBCI degraded to FineMI strength** | **28%** | 24% | **0.39** | **control FAILS** |
+| hBCI degraded to MW strength | 21% | 22% | 0.66 | fails |
+| hBCI, raw | 66% | 39% | 0.0025 | reproducible |
+| hBCI, task removed | 59% | 39% | 0.017 | p < 0.05 only |
+| mental workload, raw | 19% | 26% | 0.85 | descriptive |
+| mental workload, task removed | 27% | 25% | 0.49 | descriptive |
+| FineMI, raw | 17% | 24% | 0.85 | descriptive |
+| FineMI, task removed | 33% | 18% | 0.10 | descriptive |
+
+Rule outcome: **the estimator fails its positive control**, so it cannot recover a known delay at FineMI's coupling strength. The mental-workload and FineMI rows are descriptive only, and the P10.2 reading stands: **the personal delay outside hBCI is inconclusive**. P11 did not improve the result. No further delay estimators will be tried on these data: resolving this needs recordings with stronger coupling or more data, not another statistic.
+
 ## What will NOT be done
 
 - No change of band edges, targets or metric after seeing T1/T2.

@@ -9,7 +9,7 @@ this conservative. But an attempt often contains several cohort or condition tes
 individual p-values makes it **lenient** in that respect. It is not a guarantee against forking paths. Results that pass only
 nominally are reported as nominal or exploratory.
 
-**Sensitivity, counting cohorts as well as attempts** (attempts × 3 cohorts): Claim 3 α ≈ 0.0013, Claim 5 α ≈ 0.0042. The FineMI
+**Sensitivity, counting cohorts as well as attempts** (attempts × 3 cohorts): Claim 3 α ≈ 0.0012, Claim 5 α ≈ 0.0042. The FineMI
 task-removed kernel (p 0.00097) and the mental-workload reliability (p ≈ 0.003) then survive only narrowly and should be
 described as borderline. hBCI results (p ≤ 0.0003) and FineMI reliability are unaffected.
 
@@ -34,7 +34,7 @@ Within lab: 3 attempts (P3.2, P7.2-MW, P8.3-MW reference), α = 0.017. Across la
 | Every frozen cross-lab transfer | negative or null | — (negative) |
 | FineMI people share their own kernel (P9.2, diagnostic) | LOPO +0.074, sign-flip p 0.00006 | diagnostic, not an attempt; would survive |
 
-## Claim 3 — physiological delay / coupling (13 attempts: P2.1-3a, P2.1-3b, P2.3, P2.6, P3.3, P4.3, P4.A, P4.B, P5.2c-lag, P6.4, P6.4b, P7.1, P8.1; α = 0.0038)
+## Claim 3 — physiological delay / coupling (14 attempts: P2.1-3a, P2.1-3b, P2.3, P2.6, P3.3, P4.3, P4.A, P4.B, P5.2c-lag, P6.4, P6.4b, P7.1, P8.1, P11; α = 0.0036)
 
 | Result | Evidence | Survives? |
 |---|---|---|
@@ -45,7 +45,7 @@ Within lab: 3 attempts (P3.2, P7.2-MW, P8.3-MW reference), α = 0.017. Across la
 | Coupling kernel reproducible beyond the task, MW (P7.1) | p 0.006 | **no — nominal** |
 | Coupling kernel reproducible, FineMI raw (P7.1) | p 0.033 | **no — nominal** |
 | Personal delay split-half, hBCI (P6.4 / P6.4b) | p 0.020 / 0.041 | no on its own; superseded by P8.1 (p 0.0003) |
-| Slow EEG follows HbO by 1–2 s, TU Berlin (P3.3) | 29/29 and 26/26; group p 0.006 / 0.004 | group delay direction: **no — nominal** (0.006, 0.004 > 0.0038), and lost in MW under the P4.A amendment; per-person existence (29/29, 26/26) is not in doubt |
+| Slow EEG follows HbO by 1–2 s, TU Berlin (P3.3) | 29/29 and 26/26; group p 0.006 / 0.004 | group delay direction: **no — nominal** (0.006, 0.004 > 0.0036), and lost in MW under the P4.A amendment; per-person existence (29/29, 26/26) is not in doubt |
 | Personal delay outside hBCI | not shown in any form | — (inconclusive: P10.2 shows hBCI also fails at FineMI's coupling strength) |
 
 ## Claim 4 — downstream EEG-only task (5 attempts) — refuted in every form; nothing to correct.

@@ -44,6 +44,7 @@ they `exec` part of another script (for example `trf_delay.py` reads `continuous
 | P9.4 Claim 2 lab-difference diagnostic | `nvc_labdiff.py` | single run; needs `nvc_bands.py` |
 | P10.1 Claim 2 broadband term | `nvc_broadband.py` | single run; needs `nvc_bands.py` |
 | P10.2 Claim 3 coupling-strength diagnostic | `nvc_snr.py` | `calibrate K N`, `pick`, `shard K N`, `merge`; needs `nvc_bandpower.py`, `nvc_delay_smooth.py` |
+| P11 Claim 3 template-alignment delay | `nvc_woody.py` | single run; reads the kernel and P10.2 shard files |
 | Paper figures | `../paper/make_figures.py` | reads the result JSONs and shard files here |
 
 New scripts write their JSON next to themselves; the copies in `results/` are the reported ones.

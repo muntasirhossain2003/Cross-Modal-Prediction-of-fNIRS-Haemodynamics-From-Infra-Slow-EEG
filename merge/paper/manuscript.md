@@ -79,7 +79,7 @@ All main analyses use ridge regression; regularisation is chosen by internal cro
 
 Each test's pass rule was written into a dated analysis plan before the test was run. Tests rerun after a first look are labelled as amendments.
 
-The five claims were attacked over up to five rounds. We therefore apply a Bonferroni correction within each claim family over **all** attempts at that claim (8, 16, 13, 5 and 4 attempts). Results that pass only nominally are reported as such.
+The five claims were attacked over up to five rounds. We therefore apply a Bonferroni correction within each claim family over **all** attempts at that claim (8, 16, 14, 5 and 4 attempts). Results that pass only nominally are reported as such.
 
 ## 3. Results
 

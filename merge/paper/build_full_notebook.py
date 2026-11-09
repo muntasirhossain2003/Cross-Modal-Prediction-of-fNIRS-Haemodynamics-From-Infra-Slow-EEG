@@ -97,7 +97,7 @@ def script(name):
 
     while re.search(r"nbformat\.read\(", s):
         blk = s[s.index("nbformat.read("):]
-        s, ok = replace_block(s, r"nbformat\.read\(", r"os\.chdir\(cwd\)", "ns = globals()" if "ns = {" in blk[:blk.index("os.chdir(cwd)")] else "")
+        s, ok = replace_block(s, r"nbformat\.read\(", r"os\.chdir\(cwd\)", "ns = globals()" if "ns = {" in blk[:blk.index("os.chdir(cwd)")] else ('nbns = inner["ns"]' if "nbns = inner" in blk[:blk.index("os.chdir(cwd)")] else ""))
         assert ok
 
     if name == "continuous_lag":
@@ -131,7 +131,7 @@ SECTIONS = [
                                                ("nvc_bands", ["nvc_bands()"]), ("nvc_labdiff", ["nvc_labdiff()"]), ("nvc_broadband", ["nvc_broadband()"])]),
     ("12. Claim 3: coupling and delay", [("nvc_residual", ["nvc_residual()"]), ("nvc_kernel", ["nvc_kernel()", 'run_with_env(nvc_kernel, RESID="1")']), ("nvc_delay_smooth", ["nvc_delay_smooth()"]),
                                          ("nvc_power", ['nvc_power(MODE="durations")', 'nvc_power(MODE="shard")', 'nvc_power(MODE="merge")']),
-                                         ("nvc_snr", ['nvc_snr(MODE="calibrate")', 'nvc_snr(MODE="pick")', 'nvc_snr(MODE="shard")', 'nvc_snr(MODE="merge")'])]),
+                                         ("nvc_snr", ['nvc_snr(MODE="calibrate")', 'nvc_snr(MODE="pick")', 'nvc_snr(MODE="shard")', 'nvc_snr(MODE="merge")']), ("nvc_woody", ["nvc_woody()"])]),
     ("13. Claim 4: downstream task", [("downstream_repr", ['run_with_env(downstream_repr, N_LAB="0")'])]),
     ("14. Claim 5: calibration and reliability", [("calibration", ["calibration()", 'run_with_env(calibration, TARGET="local")']),
                                                   ("calib_reliability", ["calib_reliability()", 'run_with_env(calib_reliability, TARGET="local")']), ("trial_reliability", ["trial_reliability()"])]),
@@ -219,9 +219,9 @@ s = s.replace(a, 'where = lambda f: NB_OUT / f if RUN and (NB_OUT / f).exists() 
 figs = re.sub(r"\bCOH\b", "FIG_COH", figs)
 figs = re.sub(r"\bOUT\b", "FIG_OUT", figs)
 figs = re.sub(r'\nprint\("figures written to".*\n', "\n", figs)
-_parts = re.split(r"^# Fig (\d) .*$", figs, flags=re.M)
+_parts = re.split(r"^# Fig (\d+) .*$", figs, flags=re.M)
 _prelude, FIGS = _parts[0], {int(_parts[i]): _parts[i + 1] for i in range(1, len(_parts), 2)}
-FNAME = {1: ("fig1_slow_band", 420), 2: ("fig2_coupling_lag", 520), 3: ("fig3_kernel_repro", 640), 4: ("fig4_kernel_transfer", 560), 5: ("fig5_deployment_reliability", 640)}
+FNAME = {1: ("fig1_slow_band", 420), 2: ("fig2_coupling_lag", 520), 3: ("fig3_kernel_repro", 640), 4: ("fig4_kernel_transfer", 560), 5: ("fig5_deployment_reliability", 640), 6: ("fig6_slow_bands", 520), 7: ("fig7_person_matrix", 420), 8: ("fig8_calibration_runs", 500), 9: ("fig9_cross_lab", 620), 10: ("fig10_delay_halves", 860), 11: ("fig11_band_sign", 540), 12: ("fig12_downstream", 560), 13: ("fig13_multiplicity", 620), 14: ("fig14_reliability_people", 720)}
 
 
 def draw(n):
@@ -324,6 +324,9 @@ table([[COH[c], f"{rel[c]['spearman_score_vs_minus_error']:.2f}", ci(*rel[c]["ci
     "trial_reliability": ("""d = J("trial_reliability_results.json")
 table([[COH[c], f"{d[c]['ood']['mean']:+.3f}", ci(*d[c]["ood"]["ci"]), f"{d[c]['energy']['mean']:+.3f}", ci(*d[c]["energy"]["ci"]), "pass" if d[c]["passes"] else "fail"] for c in COH], ["Cohort", "Out-of-distribution score", "95% CI", "Predicted-signal energy", "95% CI", "Rule"])""", "**Result.** The declared rule requires hBCI, which fails, so the claim fails at trial level. Mental workload passes on its own."),
 }
+RES["nvc_woody"] = ('d = J("nvc_woody_results.json")\ntable([[k, f"{v[\'agree_2s\']:.0%}", f"{v[\'chance\']:.0%}", f"{v[\'p_agree\']:.4f}", f"{v[\'median_delay_s\']:+.1f} s"] for k, v in d.items() if isinstance(v, dict)], ["Data", "Halves agree within 2 s", "Chance", "p", "Median delay"])\nprint("Estimator passes its positive control:", d["estimator_valid"])', "**Result.** The estimator fails its positive control, so its mental-workload and FineMI rows are descriptive only and the personal delay there stays inconclusive.")
+for _n, _k in (("replicate_finemi", 6), ("person_specific", 7), ("calibration", 8), ("nvc_bands", 9), ("nvc_snr", 10), ("nvc_broadband", 11), ("downstream_repr", 12), ("calib_reliability", 14)):
+    RES[_n] = (RES[_n][0] + "\n" + draw(_k), RES[_n][1] + f" Figure {_k} is shown below.")
 assert set(RES) == {n for _, sc in SECTIONS for n, _ in sc}, set(RES) ^ {n for _, sc in SECTIONS for n, _ in sc}
 
 C += [md("## 6. Display helpers"), code(clean(_prelude)), code(s)]
@@ -333,7 +336,7 @@ for title, scripts in SECTIONS:
         run = ("\n\n\n# RERUN: set RUN = {\"" + n + "\"} in section 2\nif should(\"" + n + "\"):\n" + "\n".join("    " + c for c in calls)) if calls else ""
         C.append(code(script(n) + run))
         C.append(code(RES[n][0], metadata={"desc": RES[n][1]}))
-C += [md("## 15. Summary of all claims"), code(_score), code('kr, kt = J("nvc_kernel_results.json"), J("nvc_kernel_resid_results.json")\n' + _surv)]
+C += [md("## 15. Summary of all claims"), code(_score), code('kr, kt = J("nvc_kernel_results.json"), J("nvc_kernel_resid_results.json")\n' + _surv + "\n" + draw(13))]
 
 DESCRIBE = {
     "person_specific": "Tests whether the link between slow EEG and fNIRS is specific to each person. Each person's model is scored on their own held-out run and on every other person. Output: `person_specific_results_runs.json`. Rerun name: `person_specific`.",
@@ -356,6 +359,7 @@ DESCRIBE = {
     "nvc_delay_smooth": "Claim 3. Personal delay taken from smoothed half-recording curves, and how often the two halves agree within 2 s. Needs the output of `nvc_kernel`. Output: `nvc_delay_smooth_results.json`. Rerun name: `nvc_delay_smooth`.",
     "nvc_power": "Diagnostic: hBCI recordings cut to the length of the other cohorts, to see whether the personal delay still repeats. Output: `nvc_power_results.json`. Rerun name: `nvc_power`.",
     "nvc_snr": "Diagnostic: hBCI fNIRS degraded with added noise to the coupling strength of the other cohorts, to see whether the personal delay still repeats. Output: `nvc_snr_results.json`. Rerun name: `nvc_snr`.",
+    "nvc_woody": "One attempt at a more sensitive delay estimator (template alignment), which must first recover the delay in degraded hBCI. Needs the output of `nvc_kernel` and `nvc_snr`. Output: `nvc_woody_results.json`. Rerun name: `nvc_woody`.",
     "downstream_repr": "Claim 4. Task decoding from EEG-predicted haemodynamics compared with PCA and random-projection codes of the same size. Output: `downstream_repr_nlab0_results.json`. Rerun name: `downstream_repr`.",
     "calibration": "Deployment test. After `k` calibration runs with EEG and fNIRS together, does a person's EEG-only model beat replaying their own average response? Run on raw and local HbO. Output: `calibration_results.json`, `calibration_results_local.json`. Rerun name: `calibration`.",
     "calib_reliability": "Claim 5, per person. Does a person's score on their two calibration runs predict how well the model works on their later runs? Output: `calib_reliability_results.json`, `calib_reliability_local_results.json`. Rerun name: `calib_reliability`.",

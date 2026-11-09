@@ -132,7 +132,7 @@ table(rows, ["Cohort", "Gain, raw HbO", "Gain, local HbO", "Person reliability Ï
 fig("fig5_deployment_reliability", 640)'''))
 
 C.append(md("## What survives correction for all attempts"))
-C.append(code('''from_attempts = {"Claim 1": 8, "Claim 2 same lab": 3, "Claim 2 other lab": 16, "Claim 3": 13, "Claim 5": 4}
+C.append(code('''from_attempts = {"Claim 1": 8, "Claim 2 same lab": 3, "Claim 2 other lab": 16, "Claim 3": 14, "Claim 5": 4}
 p83 = signflip([v["personal_plus_external"] - v["personal"] for v in cal["people"].values()])
 items = [("Claim 1", "Shared space predicts fMRI", c1m["fmri"]["joint"]["p_signflip"]),
          ("Claim 2 same lab", "hBCI â†’ MW, slow EEG", ext["p_signflip"]),
