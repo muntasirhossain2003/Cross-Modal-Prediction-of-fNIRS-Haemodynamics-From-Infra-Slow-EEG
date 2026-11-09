@@ -18,7 +18,8 @@ from IPython.display import HTML, Image, display
 from scipy import stats
 
 R, FIG = Path("analysis_p2_p4/results"), Path("paper/figures")
-J = lambda f: json.loads((R / f).read_text())
+where = lambda f: R / f
+J = lambda f: json.loads(where(f).read_text())
 COH = {"hbci": "hBCI", "mental_workload": "Mental workload", "finemi": "FineMI"}
 ci = lambda a, b: f"[{a:+.3f}, {b:+.3f}]"
 def table(rows, cols=None):
@@ -42,7 +43,7 @@ cal = t2["calibrated | finemi"]
 table([
  ["1. Shared fNIRS + fMRI space", f"fNIRS MW {c1m['fnirs']['joint']['r_subject']:.3f}, FineMI {c1f['fnirs']['joint']['r_subject']:.3f}; fMRI {c1m['fmri']['joint']['r_subject']:.3f}", "<b>Holds</b> (shared-space form). fMRI supervision does not improve fNIRS."],
  ["2. External validation", f"Same lab {ext['r_subject']:+.3f} {ci(ext['ci_low'], ext['ci_high'])}; other lab, calibrated {cal['diff']:+.3f} {ci(*cal['ci'])}", "<b>Holds within lab.</b> Cross-lab: frozen fails, calibrated nominal only."],
- ["3. Delay / coupling", f"hBCI {bp['hbci']['frac_beating_null']:.0%} beat null, delay {bp['hbci']['median_delay_s']:+.0f} s (EEG first); delay repeats {sm['hbci | raw']['agree_2s']:.0%} vs {sm['hbci | raw']['chance']:.0%} chance", "<b>Holds in hBCI.</b> Kernel shape repeats in other cohorts; precise delay does not."],
+ ["3. Delay / coupling", f"hBCI {bp['hbci']['frac_beating_null']:.0%} beat null, delay {bp['hbci']['median_delay_s']:+.0f} s (EEG first); delay repeats {sm['hbci | raw']['agree_2s']:.0%} vs {sm['hbci | raw']['chance']:.0%} chance", "<b>Holds in hBCI.</b> Kernel shape repeats in other cohorts; precise delay there is inconclusive."],
  ["4. Downstream EEG-only task", f"Virtual haemodynamics {rep['V']:.3f} vs PCA {rep['PC']:.3f}", "<b>Refuted.</b>"],
  ["5. Calibrated reliability", "Spearman " + ", ".join(f"{COH[c]} {rel[c]['spearman_score_vs_minus_error']:.2f}" for c in COH), "<b>Holds per person</b>; fails per trial."],
 ], ["Claim", "Best result", "Verdict"])'''))
@@ -54,7 +55,8 @@ def row(name, d):
     a = d["R1"]
     return [name, f"{a['slow_lt0.5']['r_subject']:.3f} {ci(*a['slow_lt0.5']['ci'])}", f"{a['bandpower_1-45']['r_subject']:.3f}",
             f"{a['eog_slow_lt0.5']['r_subject']:.3f}", f"{d['R3']['HbO_local']['r_subject']:.3f}", f"{d['R2']['slow_lt0.5']['identification']:.0%}"]
-table([["hBCI (FINAL_PLAN T1, T2, T3)", "0.197 (ridge); 0.155 (deep)", "≈0.02", "14% of all-EEG score", "0.07–0.08", f"{ps['identification']:.0%}"],
+hb = J("bands_results.json")["lt0.5"]
+table([["hBCI", f"0.197 (ridge); {hb['r_subject']:.3f} (deep)", "≈0.02", "14% of all-EEG score", f"{hb['global_local']['HbO_local']['r_subject']:.3f}", f"{ps['identification']:.0%}"],
        row("Mental workload", mw), row("FineMI", fm)],
       ["Cohort", "Slow EEG &lt; 0.5 Hz", "Band power 1–45 Hz", "EOG", "Local HbO", "Person identification"])
 fig("fig1_slow_band", 420)'''))
@@ -149,16 +151,14 @@ for fam, name, p in items:
 table(rows, ["Family", "Result", "p", "Attempts", "α", "Survives", "Survives if cohorts counted too (×3)"])'''))
 
 C.append(md("## Latest round (P10)"))
-C.append(code('''f = R / "nvc_broadband_results.json"
-if not f.exists():
+C.append(code('''if not where("nvc_broadband_results.json").exists():
     print("P10.1 still running: no result yet.")
 else:
     d = J("nvc_broadband_results.json")
     table([[k.split(" | ")[0].replace("hbci_to_", "hBCI → "), k.split(" | ")[1], f"{d[k]['mean_r']:+.3f}", ci(*d[k]["ci"]), f"{d[k]['frac_beating_null']:.0%}", "pass" if d[k]["pass"] else "fail"]
            for k in d if k.startswith("hbci_to_")], ["Direction", "Kernel", "r", "95% CI", "Beat null", "P7.2 rule"])
     table([[k, f"{v['diff']:+.3f}", ci(*v["ci"]), f"{v.get('signflip_p', v.get('signflip_p_removed')):.4f}"] for k, v in d.items() if k.startswith(("paired", "calibrated"))], ["Test", "Diff", "95% CI", "Sign-flip p"])
-f = R / "nvc_snr_results.json"
-if not f.exists():
+if not where("nvc_snr_results.json").exists():
     print("P10.2 still running: no result yet.")
 else:
     d = J("nvc_snr_results.json")

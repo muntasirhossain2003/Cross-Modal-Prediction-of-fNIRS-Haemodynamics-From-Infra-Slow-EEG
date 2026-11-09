@@ -13,6 +13,12 @@ HERE = Path(__file__).parent
 A = HERE.parent / "analysis_p2_p4"
 OUT = HERE / "figures"
 OUT.mkdir(exist_ok=True)
+SAVED = HERE.parent / "analysis_p2_p4" / "results"
+
+
+def RJ(name):
+    p = A / name
+    return json.loads((p if p.exists() else SAVED / name).read_text())
 
 INK, INK2, GRID, SURF = "#0b0b0b", "#52514e", "#e4e3df", "#fcfcfb"
 COH = {"hbci": ("hBCI (TU Berlin)", "#2a78d6"), "mental_workload": ("Mental workload (TU Berlin)", "#eb6834"),
@@ -32,7 +38,9 @@ def boot_ci(v, rng=np.random.default_rng(1337), n=5000):
 
 def shards(pattern):
     d = {}
-    for f in sorted(glob.glob(str(A / pattern))):
+    roots = (A, HERE.parent / "analysis_p2_p4", SAVED / "shards")
+    files = next((g for g in (glob.glob(str(r / pattern)) for r in roots) if g), [])
+    for f in sorted(files):
         d.update(json.loads(Path(f).read_text()))
     return d
 
@@ -46,8 +54,9 @@ def save(fig, name):
 
 # Fig 1 — where the information lives (RESULTS_SUMMARY, "The finding the paper is built on"; ridge, cross-person)
 fig, ax = plt.subplots(figsize=(4.2, 3.0))
-slow = {"hbci": 0.197, "mental_workload": 0.135, "finemi": 0.203}
-bp = {"hbci": 0.02, "mental_workload": 0.006, "finemi": 0.045}
+R1 = {"mental_workload": RJ("replication_results.json")["R1"], "finemi": RJ("replication_finemi_results.json")["R1"]}
+slow = {"hbci": 0.197, **{c: v["slow_lt0.5"]["r_subject"] for c, v in R1.items()}}      # hBCI ridge: FINAL_PLAN P4.A
+bp = {"hbci": 0.02, **{c: v["bandpower_1-45"]["r_subject"] for c, v in R1.items()}}     # hBCI: FINAL_PLAN T1
 x = np.arange(3)
 ax.bar(x - 0.19, [slow[c] for c in COH], 0.36, color="#2a78d6", label="infra-slow EEG (< 0.5 Hz)")
 ax.bar(x + 0.19, [bp[c] for c in COH], 0.36, color=NEUTRAL, label="band power 1–45 Hz")
@@ -99,9 +108,9 @@ axes[0].set_ylabel("kernel reproducibility d\n(half-A vs half-B r, minus shifted
 save(fig, "fig3_kernel_repro")
 
 # Fig 4 — where the coupling kernel generalises (P7.2, P9.2, P8.3)
-tr = json.loads((A / "nvc_transfer_results.json").read_text())
-bd = json.loads((A / "nvc_bands_results.json").read_text())
-t2 = json.loads((A / "nvc_transfer2_results.json").read_text())
+tr = RJ("nvc_transfer_results.json")
+bd = RJ("nvc_bands_results.json")
+t2 = RJ("nvc_transfer2_results.json")
 lopo_h = tr["within_hbci_lopo"]
 lh_ci = lopo_h["ci"] if "ci" in lopo_h else boot_ci([q["r"] for q in lopo_h["people"].values()]) if "people" in lopo_h else [np.nan] * 2
 rows = [("hBCI -> hBCI, held-out person", lopo_h["mean_r"], lh_ci, "hbci"),
@@ -129,8 +138,8 @@ save(fig, "fig4_kernel_transfer")
 
 # Fig 5 — deployment value and person-level reliability (RESULTS_SUMMARY deployment table; P5.4)
 fig, axes = plt.subplots(1, 2, figsize=(6.6, 2.9))
-gain = {"hbci": (0.176, 0.135, 0.218, 0.103, 0.074, 0.136), "mental_workload": (0.059, 0.025, 0.099, 0.031, 0.013, 0.052),
-        "finemi": (0.067, 0.033, 0.112, 0.041, 0.014, 0.079)}
+G, GL = RJ("calibration_results.json"), RJ("calibration_results_local.json")
+gain = {c: tuple(x for d in (G, GL) for x in (d[c]["gains"]["k2_personal_minus_baseline"]["mean"], *d[c]["gains"]["k2_personal_minus_baseline"]["ci"])) for c in COH}
 ax = axes[0]
 for i, (c, (lab, col)) in enumerate(COH.items()):
     g = gain[c]
@@ -147,7 +156,8 @@ ax.set_title("EEG-only monitoring after 2 calibration runs", fontsize=9)
 ax.legend(fontsize=7, loc="upper right")
 ax.grid(axis="x", visible=False)
 ax = axes[1]
-rel = {"hbci": (0.68, 0.37, 0.86), "mental_workload": (0.56, 0.22, 0.78), "finemi": (0.90, 0.69, 0.97)}
+REL = RJ("calib_reliability_results.json")
+rel = {c: (REL[c]["spearman_score_vs_minus_error"], *REL[c]["ci95"]) for c in COH}
 for i, (c, (lab, col)) in enumerate(COH.items()):
     m, lo, hi = rel[c]
     ax.plot([i, i], [lo, hi], color=col, lw=2)

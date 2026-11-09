@@ -66,3 +66,6 @@ neurovascnet_merge_v1_outputs/
 
 # Report build intermediates (regenerate with scripts/build_report_pdf.py)
 report_build/
+
+# Working folder of NeuroVascNet_Full.ipynb
+merge/_nb_run/

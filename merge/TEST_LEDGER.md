@@ -1,6 +1,6 @@
 # NeuroVascNet test ledger and multiplicity check
 
-Written 2026-11-08, after round P9. Every confirmatory test was declared in `FINAL_PLAN.md` before it was run.
+Written 2026-11-08, updated 2026-11-09 after round P10. Every confirmatory test was declared in `FINAL_PLAN.md` before it was run.
 This ledger asks which positive results survive when one counts **every attempt** made at the same claim, across
 all rounds. Diagnostics (T-series, P9.1, P9.2, P9.4) are not counted as attempts, because they cannot pass a claim.
 
@@ -23,8 +23,8 @@ described as borderline. hBCI results (p ≤ 0.0003) and FineMI reliability are 
 
 ## Claim 2 — external validation
 
-Within lab: 3 attempts (P3.2, P7.2-MW, P8.3-MW reference), α = 0.017. Across labs or studies: 14 attempts
-(P2.1, P4.2, P4.A, P4.B, P5.2, P5.2b, P5.2c, P5.6, P6.1, P6.2, P7.2, P8.2, P8.3, P9.3), α = 0.0036.
+Within lab: 3 attempts (P3.2, P7.2-MW, P8.3-MW reference), α = 0.017. Across labs or studies: 16 attempts
+(P2.1, P4.2, P4.A, P4.B, P5.2, P5.2b, P5.2c, P5.6, P6.1, P6.2, P7.2, P8.2, P8.3, P9.3, P10.1 frozen, P10.1 calibrated), α = 0.0031.
 
 | Result | Evidence | Survives? |
 |---|---|---|
@@ -46,7 +46,7 @@ Within lab: 3 attempts (P3.2, P7.2-MW, P8.3-MW reference), α = 0.017. Across la
 | Coupling kernel reproducible, FineMI raw (P7.1) | p 0.033 | **no — nominal** |
 | Personal delay split-half, hBCI (P6.4 / P6.4b) | p 0.020 / 0.041 | no on its own; superseded by P8.1 (p 0.0003) |
 | Slow EEG follows HbO by 1–2 s, TU Berlin (P3.3) | 29/29 and 26/26; group p 0.006 / 0.004 | group delay direction: **no — nominal** (0.006, 0.004 > 0.0038), and lost in MW under the P4.A amendment; per-person existence (29/29, 26/26) is not in doubt |
-| Personal delay outside hBCI | fails in every form | — (negative) |
+| Personal delay outside hBCI | not shown in any form | — (inconclusive: P10.2 shows hBCI also fails at FineMI's coupling strength) |
 
 ## Claim 4 — downstream EEG-only task (5 attempts) — refuted in every form; nothing to correct.
 
@@ -75,4 +75,4 @@ Negative results:
 - Claim 4;
 - fMRI supervision improving fNIRS;
 - frozen cross-lab transfer;
-- personal delay outside hBCI.
+- the personal delay outside hBCI is not shown, and is inconclusive rather than negative (P10.2).

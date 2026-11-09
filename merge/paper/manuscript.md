@@ -79,7 +79,7 @@ All main analyses use ridge regression; regularisation is chosen by internal cro
 
 Each test's pass rule was written into a dated analysis plan before the test was run. Tests rerun after a first look are labelled as amendments.
 
-The five claims were attacked over up to five rounds. We therefore apply a Bonferroni correction within each claim family over **all** attempts at that claim (8, 14, 13, 5 and 4 attempts). Results that pass only nominally are reported as such.
+The five claims were attacked over up to five rounds. We therefore apply a Bonferroni correction within each claim family over **all** attempts at that claim (8, 16, 13, 5 and 4 attempts). Results that pass only nominally are reported as such.
 
 ## 3. Results
 
@@ -144,7 +144,7 @@ Transfer to the independent lab (FineMI) failed under every harmonisation we tri
 - paradigm-window and montage matching;
 - a CBSI target.
 
-A calibrated variant gave a small gain (+0.020 [+0.004, +0.039]; 5/5 seeds positive). It is **nominal**: p = 0.017, which does not survive correction for 14 cross-lab attempts.
+A calibrated variant gave a small gain (+0.020 [+0.004, +0.039]; 5/5 seeds positive). It is **nominal**: p = 0.017, which does not survive correction for 16 cross-lab attempts.
 
 ### 3.5 Classical neurovascular coupling, reproducible within person (Claim 3; Figs. 2–3)
 
@@ -165,7 +165,7 @@ The *shape* of a person's coupling kernel was reproducible beyond the task in al
 Outside hBCI the peak delay itself did not repeat. This is not explained by recording length. Cut to the length
 of a mental-workload recording, hBCI still showed a reproducible delay (34% vs 19% chance, p = 0.03), and FineMI
 has more data per person than hBCI. The coupling was weaker outside hBCI: median peak r was 0.19 in hBCI, 0.14 in
-mental workload and 0.05 in FineMI.
+mental workload and 0.05 in FineMI. When hBCI recordings were degraded with added noise to FineMI's coupling strength, their delay no longer repeated (10% vs 16% chance). The FineMI delay result is therefore inconclusive rather than negative.
 
 Infra-slow EEG itself followed HbO by 1–2 s in both TU Berlin cohorts (29/29 and 26/26 people). That is the
 reverse of the neurovascular order and consistent with a vascular or blood–brain-barrier origin of the
@@ -184,7 +184,7 @@ positively into the second TU Berlin cohort. It is therefore not an artefact of 
 The inversion was symmetric. A kernel learned on FineMI was negative on hBCI (r = −0.029 [−0.056, −0.000]).
 A candidate common factor is the overall EEG power level: averaged over all bands and electrodes, EEG power correlated
 negatively with global HbO at TU Berlin (hBCI −0.038 [−0.055, −0.022]) and positively in FineMI
-(+0.044 [+0.023, +0.067], 15/18 people). These correlations are small, the mental-workload estimate (−0.035 [−0.077, +0.008]) includes zero, and the prediction was written after the inverted kernels had been seen, so this is a candidate explanation only. [TODO: P10.1 result.] The
+(+0.044 [+0.023, +0.067], 15/18 people). These correlations are small, the mental-workload estimate (−0.035 [−0.077, +0.008]) includes zero, and the prediction was written after the inverted kernels had been seen, so we tested it directly. Removing the broadband term reduced the inversion (paired difference +0.017 [+0.007, +0.027]) but did not remove it (r = −0.036 [−0.053, −0.021]). The broadband term therefore explains only part of the inversion. The
 person-specific coupling shape is shared within each lab. The sign of the broadband term, which is plausibly
 systemic, tied to the amplifier or reference, or tied to the paradigm, differs between labs.
 
@@ -201,7 +201,7 @@ band power gives 0.61, infra-slow EEG features 0.70–0.76.
 - **Main message.** The haemodynamic information in scalp EEG sits in a band that standard preprocessing removes. Cross-modal work that high-pass filters EEG at 0.5–1 Hz cannot find it.
 - **Two signals, two orders.** Infra-slow potentials *follow* HbO by 1–2 s; band power *leads* local HbO by about 6 s. This fits two mechanisms: a vascular or BBB potential that tracks blood volume, and classical neurovascular coupling.
 - **Personalisation is the practical route.** Cross-person and cross-lab models are weak or fail. Two calibration runs give EEG-only monitoring whose reliability is known in advance.
-- **Lab specificity.** The inversion of the coupling kernel is broadband and symmetric. An opposite-signed relation between overall EEG power and global HbO in the two labs is a candidate cause, not an established one [TODO: P10.1]. It points to differences in hardware, reference or systemic physiology, not to one frequency band. Kernels should be calibrated per site.
+- **Lab specificity.** The inversion of the coupling kernel is broadband and symmetric. An opposite-signed relation between overall EEG power and global HbO in the two labs accounts for only part of it; the remaining band-power pattern is inverted as well. It points to differences in hardware, reference or systemic physiology, not to one frequency band. Kernels should be calibrated per site.
 - **Limitations:**
   - two labs only;
   - a possible participant overlap between the TU Berlin cohorts;

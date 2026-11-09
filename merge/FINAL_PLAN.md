@@ -1344,6 +1344,35 @@ Interpretation rule:
 
 This is a diagnostic and cannot pass Claim 3.
 
+### P10 results — 2026-11-09
+
+**P10.1 Claim 2: broadband term removed or isolated (frozen hBCI kernel, global HbO)**
+
+| Kernel | hBCI -> mental workload (reference) | hBCI -> FineMI (primary) |
+|---|---|---|
+| all features (P7.2 check) | +0.098 [+0.071, +0.124], beat null 54% | −0.053 [−0.071, −0.034], 2/18 > 0, beat null 0% |
+| broadband removed | +0.073 [+0.041, +0.104], beat null 42% | **−0.036 [−0.053, −0.021]**, 2/18 > 0, beat null 0% |
+| broadband only | +0.087 [+0.035, +0.134], beat null 46% | −0.053 [−0.074, −0.031], 2/18 > 0, beat null 6% |
+| paired, removed − all | −0.025 [−0.041, −0.007] | +0.017 [+0.007, +0.027] |
+| calibrated gain, removed | +0.034 [−0.001, +0.076], 15/26, sign-flip p 0.052 | +0.008 [−0.004, +0.021], 8/18, negative gain 72%, sign-flip p 0.12 |
+
+Rule outcome: **the broadband explanation is NOT SUPPORTED.** Part (ii) holds: the broadband-only kernel is negative with CI < 0. Part (i) fails: removing the term improves transfer (paired CI > 0), but the kernel stays reliably negative. The broadband term accounts for about a third of the inversion, and the remaining band-power pattern is inverted as well.
+
+**Claim 2 primary FAILS** (P7.2 rule), and the secondary calibrated form FAILS as well, at +0.008 against +0.020 for the all-feature P8.3 kernel. Neither result approaches α = 0.0031.
+
+**P10.2 Claim 3 diagnostic: hBCI degraded to the other cohorts' coupling strength**
+
+| Level | c | achieved median peak r (target) | delay within 2 s | chance | p | delay |
+|---|---|---|---|---|---|---|
+| mental workload (3 runs × 626 s) | 0.5 | 0.105 (0.135) | 24% | 16% | 0.18 | not reproducible |
+| **FineMI** (6 uncut runs) | 2 | **0.054 (0.053)** | **10%** | 16% | 0.88 | **not reproducible** |
+
+Rule outcome: at FineMI's coupling strength the hBCI delay no longer repeats, so **the FineMI delay result is inconclusive (underpowered), not negative**. The study cannot tell whether a personal delay exists in FineMI. The same reading applies to mental workload, with less force: no grid value reached its target, and the chosen level (0.105) is weaker than mental workload's actual coupling (0.135).
+
+Limits:
+- Added noise is not the same as weaker physiological coupling.
+- The peak-r statistic has a positive floor from taking a maximum over lags (about 0.035–0.045 at large c), and FineMI's 0.053 is close to it.
+
 ## What will NOT be done
 
 - No change of band edges, targets or metric after seeing T1/T2.
