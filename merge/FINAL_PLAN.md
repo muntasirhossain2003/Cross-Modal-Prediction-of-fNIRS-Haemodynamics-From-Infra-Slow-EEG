@@ -1311,6 +1311,39 @@ Diagnostic outcome: **the declared prediction holds.**
 
 Plausible sources are differences in amplifier and reference, in electrode impedance or motion, or in how systemic physiology (arousal, blood pressure) drives both signals in the two paradigms. These data cannot separate them. Practical consequence: band-power -> haemodynamics kernels must be calibrated per site (P8.3) and cannot be frozen across labs.
 
+### Corrections to the P9 write-up (2026-11-09)
+
+The P9 text above is left as written. Three of its readings were too strong:
+1. P9.4 does not show that broadband power *explains* the inversion. It shows small correlations of opposite sign, the MW interval includes zero, and the prediction was declared after the inverted kernels of P7.2 / P9.2 had been seen, so it is weak independent evidence. Whether removing the broadband term removes the inversion was not tested. P10.1 tests it.
+2. "The MW and FineMI delay results stand as negative, not underpowered" (P9.1) is too strong. P9.1 matched recording length only, not coupling strength, and hBCI agreement fell from 66% to 34% at the MW length. P10.2 tests coupling strength.
+3. The ledger's Bonferroni correction counts attempts, not individual p-values; a sensitivity line was added to `TEST_LEDGER.md`.
+
+## P10 — sixth round: tests of the two P9 explanations (declared 2026-11-09, before running any P10 test)
+
+### P10.1 — Claim 2: does removing the broadband term remove the inversion?
+
+The P7.2 model is refitted on hBCI (band power, global HbO, same lags and alpha grid) in two forms:
+- **broadband-removed:** within each lag block, the per-second mean over all z-scored band-power features is subtracted from every feature;
+- **broadband-only:** that per-second mean alone, one feature per lag.
+
+Scores are the P7.2 score on FineMI (primary) and mental workload (reference), with a per-person paired comparison to the all-feature kernel.
+
+The broadband explanation is called **supported** only if both hold in FineMI: (i) the broadband-removed kernel beats the all-feature kernel (bootstrap 95% CI of the paired difference > 0) and its own CI includes or exceeds 0; (ii) the broadband-only kernel has mean r < 0 with CI < 0.
+
+Claim 2 test: the broadband-removed kernel, hBCI -> FineMI, under the P7.2 rule (primary) and the P8.3 calibrated rule (secondary). These are cross-lab attempts 15 and 16, so α = 0.05 / 16 = 0.0031 for the one-sided sign-flip p. A pass above that threshold is reported as nominal.
+
+### P10.2 — Claim 3 diagnostic: is the delay failure a coupling-strength effect?
+
+hBCI local HbO is degraded by adding a circularly shifted copy of itself, H' = H + c · roll(H), with one random shift of at least 60 s per run. This keeps the spectrum and channel structure but is uncoupled from EEG.
+
+The value of c is chosen separately for two targets, the median peak local r of MW (0.135, with hBCI cut to 3 runs × 626 s) and of FineMI (0.053, 6 uncut runs). It comes from the grid 0.5, 1, 1.5, 2, 3, 4, 6, 8 and is the value whose median full-data peak r over all 29 people is closest to the target. Only peak r is used, never delay agreement. The P8.1 smoothed-delay statistics are then computed at that c.
+
+Interpretation rule:
+- If the hBCI delay stays reproducible under the P8.1 rule at the FineMI-matched strength, weak coupling alone does not explain FineMI's failure, and its delay really is less stable.
+- If not, the FineMI delay result is **inconclusive (underpowered)**, not negative. The same applies to MW at its level.
+
+This is a diagnostic and cannot pass Claim 3.
+
 ## What will NOT be done
 
 - No change of band edges, targets or metric after seeing T1/T2.

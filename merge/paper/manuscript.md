@@ -21,7 +21,7 @@ We find four results for practical use and for physiology:
 - Classical neurovascular coupling is reproducible within person: EEG band power predicts local HbO about 6 s later in all 29 people of the largest cohort, and the coupling persists after the task response is removed.
 - The coupling kernel generalises across people within a laboratory but not between laboratories, where its sign is inverted in all frequency bands.
 
-Every test was preregistered in an internal analysis plan before it was run. We report all attempts, including
+Pass rules were written into a dated internal analysis plan before each test was run; this was not a public preregistration, and tests amended after a first look are labelled. We report all attempts, including
 negative results: fMRI supervision does not improve fNIRS prediction, the learned haemodynamic code gives no
 benefit for downstream decoding, and models frozen in one laboratory do not transfer to another. We apply
 correction for multiplicity across all attempts.
@@ -32,7 +32,7 @@ correction for multiplicity across all attempts.
 1. Multimodal EEG–haemodynamic fusion; the promise of "virtual haemodynamics" from EEG alone [CITE].
 2. Prior cross-modal prediction (EEG -> fNIRS / BOLD) reports small effects that are mostly within person [CITE]. Standard EEG preprocessing applies a 0.5–1 Hz high-pass filter [CITE].
 3. Infra-slow (< 0.1–0.5 Hz) scalp potentials relate to BOLD, to vascular and blood–brain-barrier potentials, and to arousal [CITE]. They are rarely used, because DC-coupled amplifiers are needed.
-4. Contribution: a preregistered, multi-cohort test of five claims; what holds, what does not, and why.
+4. Contribution: a multi-cohort test of five claims under a dated internal analysis plan; what holds, what does not, and why.
 
 ## 2. Methods
 
@@ -75,7 +75,7 @@ All main analyses use ridge regression; regularisation is chosen by internal cro
 
 **Task-response removal.** The cue-locked average response of each condition is subtracted from both signals before the analysis.
 
-### 2.4 Preregistration and multiplicity
+### 2.4 Analysis plan and multiplicity
 
 Each test's pass rule was written into a dated analysis plan before the test was run. Tests rerun after a first look are labelled as amendments.
 
@@ -182,9 +182,9 @@ inversion was broadband: each of theta, alpha, beta and gamma alone transferred 
 positively into the second TU Berlin cohort. It is therefore not an artefact of one band.
 
 The inversion was symmetric. A kernel learned on FineMI was negative on hBCI (r = −0.029 [−0.056, −0.000]).
-Its common factor is the overall EEG power level: averaged over all bands and electrodes, EEG power correlated
+A candidate common factor is the overall EEG power level: averaged over all bands and electrodes, EEG power correlated
 negatively with global HbO at TU Berlin (hBCI −0.038 [−0.055, −0.022]) and positively in FineMI
-(+0.044 [+0.023, +0.067], 15/18 people). This sign was predicted before the analysis was run. The
+(+0.044 [+0.023, +0.067], 15/18 people). These correlations are small, the mental-workload estimate (−0.035 [−0.077, +0.008]) includes zero, and the prediction was written after the inverted kernels had been seen, so this is a candidate explanation only. [TODO: P10.1 result.] The
 person-specific coupling shape is shared within each lab. The sign of the broadband term, which is plausibly
 systemic, tied to the amplifier or reference, or tied to the paradigm, differs between labs.
 
@@ -201,7 +201,7 @@ band power gives 0.61, infra-slow EEG features 0.70–0.76.
 - **Main message.** The haemodynamic information in scalp EEG sits in a band that standard preprocessing removes. Cross-modal work that high-pass filters EEG at 0.5–1 Hz cannot find it.
 - **Two signals, two orders.** Infra-slow potentials *follow* HbO by 1–2 s; band power *leads* local HbO by about 6 s. This fits two mechanisms: a vascular or BBB potential that tracks blood volume, and classical neurovascular coupling.
 - **Personalisation is the practical route.** Cross-person and cross-lab models are weak or fail. Two calibration runs give EEG-only monitoring whose reliability is known in advance.
-- **Lab specificity.** The inversion of the coupling kernel is broadband and symmetric. It follows an opposite-signed relation between overall EEG power and global HbO in the two labs. It points to differences in hardware, reference or systemic physiology, not to one frequency band. Kernels should be calibrated per site.
+- **Lab specificity.** The inversion of the coupling kernel is broadband and symmetric. An opposite-signed relation between overall EEG power and global HbO in the two labs is a candidate cause, not an established one [TODO: P10.1]. It points to differences in hardware, reference or systemic physiology, not to one frequency band. Kernels should be calibrated per site.
 - **Limitations:**
   - two labs only;
   - a possible participant overlap between the TU Berlin cohorts;

@@ -4,9 +4,14 @@ Written 2026-11-08, after round P9. Every confirmatory test was declared in `FIN
 This ledger asks which positive results survive when one counts **every attempt** made at the same claim, across
 all rounds. Diagnostics (T-series, P9.1, P9.2, P9.4) are not counted as attempts, because they cannot pass a claim.
 
-The correction is a **Bonferroni correction within each claim family**: α = 0.05 / (number of attempts at that claim). It is conservative,
-because the attempts reuse the same data and are positively correlated. Results that survive it are robust to the
-garden of forking paths. Results that pass only nominally are reported as nominal or exploratory.
+The correction is a **Bonferroni correction within each claim family**: α = 0.05 / (number of attempts at that claim). Attempts reuse the same data, which makes
+this conservative. But an attempt often contains several cohort or condition tests, and counting attempts rather than
+individual p-values makes it **lenient** in that respect. It is not a guarantee against forking paths. Results that pass only
+nominally are reported as nominal or exploratory.
+
+**Sensitivity, counting cohorts as well as attempts** (attempts × 3 cohorts): Claim 3 α ≈ 0.0013, Claim 5 α ≈ 0.0042. The FineMI
+task-removed kernel (p 0.00097) and the mental-workload reliability (p ≈ 0.003) then survive only narrowly and should be
+described as borderline. hBCI results (p ≤ 0.0003) and FineMI reliability are unaffected.
 
 ## Claim 1 — cross-modal shared space (8 attempts: P2.1, P3.1, P3.1b, P3.1c, P4.1, P5.1, P5.1b, P6.3; α = 0.0063)
 
