@@ -80,6 +80,16 @@ Within lab: 3 attempts (P3.2, P7.2-MW, P8.3-MW reference), α = 0.017. Across la
 | Uncued windows, FineMI | +0.124 [0.082, 0.174], slow p ≈ 5e-6 | **yes** |
 | Uncued windows, third lab (exploratory) | slow −0.003, difference −0.007 [−0.023, 0.007] | **no** |
 
+## P14 — stress tests of the claims that hold (own family: 12 tests, α = 0.0042)
+
+| Result | Evidence | Survives? |
+|---|---|---|
+| Claim 2, hBCI -> MW without the closest pairs | +0.217, p 0.0005 | **yes** |
+| Claim 2, no cues | +0.201, p 0.0002 | **yes** |
+| Claim 5, no cues (raw and gain, 3 cohorts, 6 tests) | ρ 0.79–0.87, p ≤ 1.4e-5 for raw and ≤ 6.7e-6 for gain | **yes, all 6** (raw and gain are not independent here) |
+| Claim 5, third lab (raw and gain) | ρ 0.29 and 0.30, n = 15 | **no** |
+| Claim 1, no cues (MW, FineMI) | fNIRS 0.134, 0.175; fMRI 0.065; p 0.0001 | **yes, both** |
+
 ## Bottom line for the paper
 
 Results that survive the correction across all attempts:

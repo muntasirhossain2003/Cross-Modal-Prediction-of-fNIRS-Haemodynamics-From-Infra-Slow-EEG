@@ -1518,6 +1518,29 @@ The aim is to find out whether Claims 1, 2 and 5 survive their main weaknesses. 
 
 **Reading of the outcome, fixed now.** A claim that fails one of these is narrowed in the write-up and not retested. Claim 5 "does not need cue alignment" requires hBCI plus at least one other cohort to pass, as in P5.4. The third-lab result is reported separately. Claim 1's fMRI side cannot be made fresh with the data on disk, and this round does not change that.
 
+### P14 result (2026-11-10)
+
+α = 0.0042 (12 tests). A first Mendeley build crashed on a coding error (it called the P13 data function); that was fixed before any Mendeley P14 result existed. No rule changed.
+
+| Test | Result | Own rule | Survives α |
+|---|---|---|---|
+| P14.1 hBCI → MW without the closest pairs | +0.217 [0.119, 0.305], p 0.0005, 21 MW people | **pass** | yes |
+| P14.2 hBCI → MW, no cues | +0.201 [0.128, 0.276], p 0.0002 | **pass** | yes |
+| P14.3 Claim 5, no cues, raw | hBCI ρ 0.85 [0.66, 0.94], MW 0.83 [0.64, 0.93], FineMI 0.84 [0.57, 0.93] | **pass** (all 3) | yes |
+| P14.3 Claim 5, no cues, gain | hBCI ρ 0.79 [0.51, 0.93], MW 0.87 [0.69, 0.95], FineMI 0.85 [0.55, 0.97] | **pass** (all 3) | yes |
+| P14.4 Claim 5, third lab, raw | ρ 0.29 [−0.31, 0.73], n = 15 | fail | no |
+| P14.4 Claim 5, third lab, gain | ρ 0.30 [−0.30, 0.78], n = 15 | fail | no |
+| P14.5 Claim 1, no cues, MW | fNIRS 0.134 [0.094, 0.177], fMRI 0.065, cost bounds +0.003 and −0.005 | **pass** | yes |
+| P14.5 Claim 1, no cues, FineMI | fNIRS 0.175 [0.136, 0.222], fMRI 0.065, cost bounds 0.000 and −0.003 | **pass** | yes |
+
+**P14.1 details.** The control is valid: even runs identify the same person from odd runs in 97% (hBCI) and 100% (MW) of people, and the run with nobody excluded reproduces P3.2 exactly (0.2052). T = 0.68. Five cross-cohort pairs are mutual best matches above T, with similarity 0.69–0.78, against a median of 0.94 for the same person within a session. They are the same five as the top-5 list. About 7 of the 754 cross-cohort pairs would exceed a 99th percentile by chance, so this count does not show that people are shared, and it cannot rule that out either.
+
+**Limits.** The windows are not aligned to cues but still contain task periods. HbO only. In no-cue windows a person's own mean response is close to zero, so the raw and gain forms of P14.3 give nearly the same score: they are not independent evidence. In the third lab test accuracy is low (mean r 0.05), and the confidence interval on ρ is wide with 15 people. The Claim 1 fMRI side is unchanged, and fMRI supervision still does not help fNIRS (joint 0.134 against 0.130 with shuffled fMRI in MW).
+
+**P14.6 (post hoc, not counted).** Third-lab band-power delay median +7 s (IQR 0 to 11.5), Wilcoxon p 0.023, inside the P6.4 physiological range.
+
+**Reading.** Claims 1, 2 and 5 do not depend on cue alignment. Claim 2 within-lab transfer does not rest on the most similar people across cohorts. Claim 5 does not reach its rule in the third lab, so it remains shown in two labs only.
+
 ## What will NOT be done
 
 - No change of band edges, targets or metric after seeing T1/T2.

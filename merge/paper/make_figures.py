@@ -385,4 +385,34 @@ axes[0].set_ylabel("cross-person r with HbO (95% CI)")
 axes[0].legend(fontsize=7.5, loc="upper right")
 save(fig, "fig16_method_check")
 
+# Fig 17 — stress tests of the claims that hold
+C17, R17 = RJ("nvc_held_claim5.json"), RJ("calib_reliability_results.json")
+O17, T17, E17 = RJ("nvc_held_overlap.json"), RJ("nvc_held_claim2.json"), RJ("external_claim2_results.json")
+fig, axes = plt.subplots(1, 2, figsize=(7.8, 3.0))
+ax = axes[0]
+for i, (c, n) in enumerate((("hbci", "hBCI"), ("mental_workload", "Mental\nworkload"), ("finemi", "FineMI"), ("mendeley", "Third lab"))):
+    if c in R17:
+        ax.plot([i - 0.12] * 2, R17[c]["ci95"], color=NEUTRAL, lw=2)
+        ax.plot(i - 0.12, R17[c]["spearman_score_vs_minus_error"], "s", ms=6, color=NEUTRAL, mec=SURF, mew=1.2, label="cue-aligned" if i == 0 else None)
+    q = C17[c]["raw"]
+    ax.plot([i + 0.12] * 2, q["ci"], color="#2a78d6", lw=2)
+    ax.plot(i + 0.12, q["rho"], "o", ms=6, color="#2a78d6", mec=SURF, mew=1.2, label="no cue alignment" if i == 0 else None)
+ax.axhline(0, color=INK2, lw=0.8, ls="--")
+ax.set_xticks(range(4), ["hBCI", "Mental\nworkload", "FineMI", "Third lab"], fontsize=8)
+ax.set_ylabel("calibration score vs later accuracy (Spearman, 95% CI)", fontsize=8)
+ax.legend(fontsize=7.5, loc="lower left")
+ax.grid(axis="x", visible=False)
+ax = axes[1]
+rows = [("Original", E17["hbci_to_mental_workload"]), ("Closest pairs\nremoved", O17["hbci_to_mw_excluded"]), ("No cue\nalignment", T17["hbci_to_mental_workload"])]
+for i, (n, v) in enumerate(rows):
+    ax.plot([i, i], [v["ci_low"], v["ci_high"]], color="#2a78d6", lw=2)
+    ax.plot(i, v["r_subject"], "o", ms=7, color="#2a78d6", mec=SURF, mew=1.2)
+    ax.text(i + 0.1, v["r_subject"], f"{v['r_subject']:+.3f}", va="center", fontsize=7.5, color=INK)
+ax.axhline(0, color=INK2, lw=0.8, ls="--")
+ax.set_xticks(range(3), [r[0] for r in rows], fontsize=8)
+ax.set_xlim(-0.4, 2.6)
+ax.set_ylabel("hBCI to mental workload: r (95% CI)", fontsize=8)
+ax.grid(axis="x", visible=False)
+save(fig, "fig17_stress_tests")
+
 print("figures written to", OUT)

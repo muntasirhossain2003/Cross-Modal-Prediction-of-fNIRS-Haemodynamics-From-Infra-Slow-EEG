@@ -46,6 +46,16 @@ LC["run_pair"] = hook2
 BP["run_pair_bp"] = hook2
 
 
+def mendeley_people():
+    M12 = M13["M12"]
+    for sid in M12["INCL"]:
+        x, names, hbo, hbr, n_fs, q = M12["load_person"](M12["ALL_S"][sid])
+        yield sid, [hook2(e, 200.0, h, n_fs, 0.0) for e, h, _ in M12["segments"](x, hbo, hbr, n_fs, q["offset"])]
+
+
+GENS = dict(GENS, mendeley=mendeley_people)
+
+
 def npz(name):
     z = np.load(CACHE / f"{name}.npz")
     return {k: z[k] for k in z.files}

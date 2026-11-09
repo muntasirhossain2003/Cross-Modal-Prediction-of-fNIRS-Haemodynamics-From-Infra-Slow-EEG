@@ -1,0 +1,11 @@
+{
+ "n": 15,
+ "median_delay_s": 7.0,
+ "iqr": [
+  0.0,
+  11.5
+ ],
+ "wilcoxon_p": 0.022764511782760583,
+ "physiological": true,
+ "note": "post hoc, not counted"
+}

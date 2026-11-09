@@ -68,7 +68,8 @@ def replace_block(src, start, end, new):
 
 CUT = {"continuous_lag": "rng = np.random.default_rng(SEED)\nres = {}", "nvc_bandpower": "COHORTS = tuple(", "nvc_residual": "if MODE in (",
        "nvc_transfer2": "CAL_SEEDS = [", "nvc_bands": "rng = np.random.default_rng(SEED)", "calibration": "def run_cohort",
-       "nvc_delay_smooth": "rng = np.random.default_rng(1337)", "nvc_mendeley": 'if MODE == "coupling":'}
+       "nvc_delay_smooth": "rng = np.random.default_rng(1337)", "nvc_mendeley": 'if MODE == "coupling":',
+       "nvc_method_check": 'if ARGS != ["merge"]:', "external_claim2": "D = {k: load(k) for k in CACHES}"}
 
 
 def script(name):
@@ -77,6 +78,8 @@ def script(name):
     default = mode.group(1) if mode else "all"
     s = s.replace('ARGS = sys.argv[1:] or ["merge"]', 'ARGS = list(ARGS) or ["merge"]')
     s = s.replace('LC["run_pair"] = hook\nBP["run_pair_bp"] = hook', 'LC["HOOK"]["run_pair"] = hook')
+    s = s.replace('LC["run_pair"] = hook2\nBP["run_pair_bp"] = hook2', 'LC["HOOK"]["run_pair"] = hook2')
+    s = s.replace('HERE / "results" / "external_claim2_results.json"', 'Path("analysis_p2_p4/results/external_claim2_results.json")')
     s = re.sub(r'^MODE = sys\.argv.*\n', "", s, flags=re.M)
     s = re.sub(r'^SHARD = .*sys\.argv.*\n', "", s, flags=re.M)
     s = re.sub(r'^sys\.argv = .*\n', "", s, flags=re.M)
@@ -136,6 +139,7 @@ SECTIONS = [
                                          ("nvc_snr", ['nvc_snr(MODE="calibrate")', 'nvc_snr(MODE="pick")', 'nvc_snr(MODE="shard")', 'nvc_snr(MODE="merge")']), ("nvc_woody", ["nvc_woody()"])]),
     ("12b. Confirmation in a third lab (P12)", [("nvc_mendeley", ['nvc_mendeley(MODE="sync")', 'nvc_mendeley(MODE="coupling")', 'nvc_mendeley(MODE="founding")', 'nvc_mendeley(MODE="transfer")', 'nvc_mendeley(MODE="merge")'])]),
     ("12c. Can the third-lab method see the advantage? (P13)", [("nvc_method_check", ['nvc_method_check(ARGS=("hbci", "mental_workload", "finemi", "mendeley"))', "nvc_method_check()"])]),
+    ("12d. Stress tests of the claims that hold (P14)", [("nvc_held", ['nvc_held(MODE="build")', 'nvc_held(MODE="overlap")', 'nvc_held(MODE="claim2")', 'nvc_held(MODE="claim5")', 'nvc_held(MODE="claim3")', 'run_with_env(claim1_fresh, FNIRS_COHORT="mental_workload", UNCUED="1")', 'run_with_env(claim1_fresh, FNIRS_COHORT="finemi", UNCUED="1")', 'nvc_held(MODE="merge")'])]),
     ("13. Claim 4: downstream task", [("downstream_repr", ['run_with_env(downstream_repr, N_LAB="0")'])]),
     ("14. Claim 5: calibration and reliability", [("calibration", ["calibration()", 'run_with_env(calibration, TARGET="local")']),
                                                   ("calib_reliability", ["calib_reliability()", 'run_with_env(calib_reliability, TARGET="local")']), ("trial_reliability", ["trial_reliability()"])]),
@@ -225,7 +229,7 @@ figs = re.sub(r"\bOUT\b", "FIG_OUT", figs)
 figs = re.sub(r'\nprint\("figures written to".*\n', "\n", figs)
 _parts = re.split(r"^# Fig (\d+) .*$", figs, flags=re.M)
 _prelude, FIGS = _parts[0], {int(_parts[i]): _parts[i + 1] for i in range(1, len(_parts), 2)}
-FNAME = {1: ("fig1_slow_band", 420), 2: ("fig2_coupling_lag", 520), 3: ("fig3_kernel_repro", 640), 4: ("fig4_kernel_transfer", 560), 5: ("fig5_deployment_reliability", 640), 6: ("fig6_slow_bands", 520), 7: ("fig7_person_matrix", 420), 8: ("fig8_calibration_runs", 500), 9: ("fig9_cross_lab", 620), 10: ("fig10_delay_halves", 860), 11: ("fig11_band_sign", 540), 12: ("fig12_downstream", 560), 13: ("fig13_multiplicity", 620), 14: ("fig14_reliability_people", 720), 15: ("fig15_third_lab", 780), 16: ("fig16_method_check", 780)}
+FNAME = {1: ("fig1_slow_band", 420), 2: ("fig2_coupling_lag", 520), 3: ("fig3_kernel_repro", 640), 4: ("fig4_kernel_transfer", 560), 5: ("fig5_deployment_reliability", 640), 6: ("fig6_slow_bands", 520), 7: ("fig7_person_matrix", 420), 8: ("fig8_calibration_runs", 500), 9: ("fig9_cross_lab", 620), 10: ("fig10_delay_halves", 860), 11: ("fig11_band_sign", 540), 12: ("fig12_downstream", 560), 13: ("fig13_multiplicity", 620), 14: ("fig14_reliability_people", 720), 15: ("fig15_third_lab", 780), 16: ("fig16_method_check", 780), 17: ("fig17_stress_tests", 780)}
 
 
 def draw(n):
@@ -333,6 +337,11 @@ RES["nvc_method_check"] = ("""d = J("nvc_method_check_results.json")
 print(f"P12.1 method passes in {d['P13.1_passes_of_3']} of 3 established cohorts. Third-lab rerun differs from P12.1 by at most {d['mendeley_reproduces_P12.1_max_abs_diff']:.0e}.")
 table([[{**COH, "mendeley": "Third lab"}[c], k, f"{v[k]['slow']['mean_r']:+.3f} {ci(*v[k]['slow']['ci'])}", f"{v[k]['bandpower']['mean_r']:+.3f}", f"{v[k]['diff']['mean']:+.3f} {ci(*v[k]['diff']['ci'])}", "pass" if v[k]["pass"] else "fail"] for c, v in d["cohorts"].items() for k in ("continuous", "windowed")], ["Cohort", "Method", "Slow EEG", "Band power", "Slow − band power", "Rule (α = 0.0071)"])
 """ + draw(16), "**Result and Figure 16.** The P12.1 method recovers the slow-EEG advantage in only one of the three established cohorts, so the third-lab test is uninformative. Windows that are not aligned to cues recover it in all three. The third-lab window row is exploratory.")
+RES["nvc_held"] = ("""d = J("nvc_held_results.json")
+print(f"Fingerprint control ok: {d['control_ok']}. Threshold {d['threshold_T']:.2f}; highest cross-cohort similarity {d['max_cross_similarity']:.2f}. Flagged pairs: {len(d['candidates'])}. With nobody excluded the transfer reproduces the saved value: {d['reproduction'][0] == d['reproduction'][1]}.")
+table([[t["test"], t["what"], f"{t['value']:+.3f}", f"{t['p']:.1e}", "pass" if t["pass"] else "fail", "yes" if t["survives_alpha"] else "no"] for t in d["tests"]], ["Test", "What", "Value", "p", "Own rule", f"Survives α = {d['alpha']:.4f}"])
+print("Post hoc, not counted (third-lab delay):", d["claim3_post_hoc"])
+""" + draw(17), "**Result and Figure 17.** Claims 1, 2 and 5 hold without cue alignment, and within-lab transfer holds without the closest pairs. Claim 5 does not reach its rule in the third lab. Value is r for transfer and Claim 1, and Spearman ρ for Claim 5.")
 RES["nvc_woody"] = ('d = J("nvc_woody_results.json")\ntable([[k, f"{v[\'agree_2s\']:.0%}", f"{v[\'chance\']:.0%}", f"{v[\'p_agree\']:.4f}", f"{v[\'median_delay_s\']:+.1f} s"] for k, v in d.items() if isinstance(v, dict)], ["Data", "Halves agree within 2 s", "Chance", "p", "Median delay"])\nprint("Estimator passes its positive control:", d["estimator_valid"])', "**Result.** The estimator fails its positive control, so its mental-workload and FineMI rows are descriptive only and the personal delay there stays inconclusive.")
 for _n, _k in (("replicate_finemi", 6), ("person_specific", 7), ("calibration", 8), ("nvc_bands", 9), ("nvc_snr", 10), ("nvc_broadband", 11), ("downstream_repr", 12), ("calib_reliability", 14)):
     RES[_n] = (RES[_n][0] + "\n" + draw(_k), RES[_n][1] + f" Figure {_k} is shown below.")
@@ -371,6 +380,7 @@ DESCRIBE = {
     "nvc_woody": "One attempt at a more sensitive delay estimator (template alignment), which must first recover the delay in degraded hBCI. Needs the output of `nvc_kernel` and `nvc_snr`. Output: `nvc_woody_results.json`. Rerun name: `nvc_woody`.",
     "nvc_mendeley": "Confirmation on a cohort from a third lab (Mendeley Learning Capability), not used in the main analysis (an early band-power baseline had been run on it). Nothing is tuned on it: all rules were written down first. Output: `nvc_mendeley_results.json`, `nvc_mendeley_founding.json`, `nvc_mendeley_transfer.json`. Rerun name: `nvc_mendeley`.",
     "nvc_method_check": "Checks the method used in the third-lab test. Runs the P12.1 code on the three established cohorts, and the original window analysis on 30 s windows not aligned to cues, in all four cohorts. Needs `nvc_mendeley_sync.json` and `nvc_mendeley_founding.json` from `nvc_mendeley`. Output: `nvc_method_check_*.json`. Rerun name: `nvc_method_check`.",
+    "nvc_held": "Stress tests of the claims that hold: EEG fingerprints to look for people shared between the two TU Berlin cohorts, and Claims 1, 2 and 5 on 30 s windows not aligned to cues, plus Claim 5 in the third lab. `build` writes window files into `neurovascnet_merge_v1_cache/p14_windows/` (it adds a folder and overwrites nothing else). Needs the output of `nvc_mendeley`. Output: `nvc_held_*.json`, `claim1_fresh_*_uncued_results.json`. Rerun name: `nvc_held`.",
     "downstream_repr": "Claim 4. Task decoding from EEG-predicted haemodynamics compared with PCA and random-projection codes of the same size. Output: `downstream_repr_nlab0_results.json`. Rerun name: `downstream_repr`.",
     "calibration": "Deployment test. After `k` calibration runs with EEG and fNIRS together, does a person's EEG-only model beat replaying their own average response? Run on raw and local HbO. Output: `calibration_results.json`, `calibration_results_local.json`. Rerun name: `calibration`.",
     "calib_reliability": "Claim 5, per person. Does a person's score on their two calibration runs predict how well the model works on their later runs? Output: `calib_reliability_results.json`, `calib_reliability_local_results.json`. Rerun name: `calib_reliability`.",
