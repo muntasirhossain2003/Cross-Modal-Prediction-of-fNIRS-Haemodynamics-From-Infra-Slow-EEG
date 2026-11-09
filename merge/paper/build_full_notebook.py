@@ -148,12 +148,31 @@ for i in (2, 4, 5, 6, 8, 9, 10, 11, 13, 19):
 assert not defined & set(names), defined & set(names)
 assert not defined & {"NB_OUT", "RUN", "should", "run_with_env"}
 
-C = [md("# NeuroVascNet: full analysis (infra-slow protocol)"), md("## 1. Environment"), code(clean(pipeline(PIPE.cells[2]))),
+C = [md("""# NeuroVascNet: full analysis (infra-slow protocol)
+
+**Run All shows every current result from the saved files in `analysis_p2_p4/results/`. Nothing is recomputed.**
+
+**To rerun an analysis:** go to the `HOW TO RERUN` block in section 2 (Settings). Every analysis has a `# RERUN` line under its code with its name.
+
+Open this notebook from the `merge/` folder. Rerunning needs the datasets in `dataset/` and the caches in `merge/neurovascnet_merge_v1_cache/`, neither of which is in git."""),
+     md("## 1. Environment"), code(clean(pipeline(PIPE.cells[2]))),
      md("## 2. Settings"),
      code('''from pathlib import Path
 
-RUN = set()    # analyses to recompute, e.g. {"calibration"}; {"all"} = everything (many hours). Empty = show saved results.
+# ======================= HOW TO RERUN =======================
+# RUN = set()              show the saved results, recompute nothing (default)
+# RUN = {"calibration"}    rerun one analysis (names: see the "# RERUN" lines below each analysis)
+# RUN = {"calibration", "nvc_kernel"}    rerun several
+# RUN = {"all"}            rerun everything, one after another (rough estimate: a day or more)
+#
+# New results are written to merge/_nb_run/ and shown in the tables below.
+# The saved results in analysis_p2_p4/results/ are never changed.
+#
+# PROJECT_ROOT must be the folder that holds dataset/ and merge/.
+# Keep BUILD_CACHES = False: True overwrites the 60 GB cache in merge/neurovascnet_merge_v1_cache/, which is not in git.
+RUN = set()
 BUILD_CACHES = False
+PROJECT_ROOT = Path.cwd().parent
 NB_OUT = Path("_nb_run")
 NB_OUT.mkdir(exist_ok=True)'''),
      code(clean(pipeline(PIPE.cells[4]))), code(clean(pipeline(PIPE.cells[5]))), code(clean(pipeline(PIPE.cells[6]))),
@@ -181,7 +200,7 @@ def run_with_env(fn, **env):
 for title, scripts in SECTIONS:
     C.append(md(f"## {title}"))
     for n, calls in scripts:
-        run = ("\n\n\nif should(\"" + n + "\"):\n" + "\n".join("    " + c for c in calls)) if calls else ""
+        run = ("\n\n\n# RERUN: set RUN = {\"" + n + "\"} in section 2\nif should(\"" + n + "\"):\n" + "\n".join("    " + c for c in calls)) if calls else ""
         C.append(code(script(n) + run))
 
 src = (HERE / "build_results_notebook.py").read_text(encoding="utf-8")
@@ -197,6 +216,11 @@ assert a in s
 s = s.replace(a, 'where = lambda f: NB_OUT / f if RUN and (NB_OUT / f).exists() else R / f\n')
 C += [md("## 15. Figures"), code(clean(figs)), md("# Results"), code(s)]
 C += ns["C"][2:]
+
+for c in C:
+    if c.cell_type == "code":
+        c.source = re.sub(r'r"G:\\research_bio_medical\\([^"]*)"', lambda m: 'f"{PROJECT_ROOT}/' + m.group(1).replace("\\", "/") + '"', c.source)
+        assert "research_bio_medical" not in c.source, c.source[:80]
 
 nb = nbf.v4.new_notebook(cells=C, metadata={"kernelspec": {"display_name": "Python 3", "language": "python", "name": "python3"}})
 out = M / "NeuroVascNet_Full.ipynb"
