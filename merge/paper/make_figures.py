@@ -399,8 +399,7 @@ for i, (c, n) in enumerate((("hbci", "hBCI"), ("mental_workload", "Mental\nworkl
     ax.plot(i + 0.12, q["rho"], "o", ms=6, color="#2a78d6", mec=SURF, mew=1.2, label="no cue alignment" if i == 0 else None)
 ax.axhline(0, color=INK2, lw=0.8, ls="--")
 ax.set_xticks(range(4), ["hBCI", "Mental\nworkload", "FineMI", "Third lab"], fontsize=8)
-ax.set_ylabel("calibration vs later score
-(Spearman, 95% CI)", fontsize=8)
+ax.set_ylabel("calibration vs later score (Spearman)", fontsize=8)
 ax.legend(fontsize=7.5, loc="lower left")
 ax.grid(axis="x", visible=False)
 ax = axes[1]
