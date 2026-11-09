@@ -57,17 +57,28 @@ Within lab: 3 attempts (P3.2, P7.2-MW, P8.3-MW reference), α = 0.017. Across la
 | Person-level calibrated reliability (P5.4) | Spearman hBCI 0.68 (p ≈ 5e-5), MW 0.56 (p ≈ 0.003), FineMI 0.90 (p < 1e-6) | **yes, all three cohorts** |
 | Trial-level reliability | fails | — (negative) |
 
+## P12 — third-lab confirmation (own family: 6 tests, α = 0.0083; fresh data, n = 15)
+
+| Result | Evidence | Survives? |
+|---|---|---|
+| Band-power coupling exists | 9/15 beat their null | **yes** (declared rule) |
+| Slow EEG predicts HbO and beats band power | slow p 0.013; difference −0.008 | **no — fails** |
+| Kernel repeats | p 0.10 | **no** |
+| Personal delay repeats | p 0.15 | **no** |
+| Frozen hBCI kernel transfers | −0.027 | **no — fails** |
+| Calibrated hBCI kernel transfers | −0.037 | **no — fails** |
+
 ## Bottom line for the paper
 
 Results that survive the correction across all attempts:
-1. Infra-slow EEG predicts fNIRS across people in three cohorts. These are the founding results (T1/T2, R, P4); they were tested once each and have p ≪ 0.001.
+1. Infra-slow EEG predicts fNIRS across people in three cohorts. These are the founding results (T1/T2, R, P4); they were tested once each and have p ≪ 0.001. **The slow-EEG advantage did not replicate in the third-lab cohort (P12.1).**
 2. One EEG-derived shared space serves fNIRS and fMRI (Claim 1, shared-space form).
 3. Within-lab external validation (Claim 2, TU Berlin cohorts).
 4. Classical band-power -> HbO coupling in hBCI, with a reproducible personal kernel and a reproducible personal delay of about 6 s (EEG first). The kernel is also reproducible beyond the task in FineMI (Claim 3).
 5. Person-level reliability from two calibration runs (Claim 5).
 
 Results that must be labelled **nominal** in the paper:
-- the cross-lab calibrated transfer (P8.3);
+- the cross-lab calibrated transfer (P8.3), which was also not reproduced in the third lab (P12.6);
 - MW kernel reproducibility;
 - the FineMI raw-data kernel.
 

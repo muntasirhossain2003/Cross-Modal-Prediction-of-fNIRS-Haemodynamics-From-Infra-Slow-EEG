@@ -15,6 +15,8 @@ band power gives r = 0.006–0.045, and with the conventional filter r = 0.019. 
 strongly person-specific, and it keeps a local component after the systemic (global) haemodynamic signal is
 removed.
 
+In a further cohort from a third laboratory (15 people, declared in advance), slow EEG was no better than band power (r = 0.057 vs 0.065), so the infra-slow advantage is not universal. Coupling was present there, but the frozen and calibrated models did not transfer.
+
 We find four results for practical use and for physiology:
 - One EEG-derived linear space predicts both fNIRS and fMRI (27 people) in people not seen in training, at no cost to either output.
 - Two calibration runs of simultaneous EEG–fNIRS are enough to monitor a person with EEG alone, beating that person's own average response in all three cohorts. The calibration-run score predicts how well this will work later (Spearman ρ 0.56–0.90).
@@ -195,6 +197,10 @@ standard, data-scarce and representation-only forms. A PCA code of the same infr
 (hBCI motor imagery: PCA 0.760 vs virtual haemodynamics 0.697). The benefit comes from the infra-slow band itself:
 band power gives 0.61, infra-slow EEG features 0.70–0.76.
 
+### 3.8 Confirmation in a third laboratory
+
+All rules were fixed before any EEG–fNIRS relation was computed on this cohort (implicit-learning task, Nihon Kohden EEG, Hitachi fNIRS; 15 of 30 people passed the sync and length rules). One of six tests passed (α = 0.0083). Band-power coupling was present (9/15 people beat their null; median delay +7 s, EEG first). Slow EEG predicted global HbO weakly (r = 0.057 [0.014, 0.103], p = 0.013, above α) and was no better than band power (r = 0.065; difference −0.008 [−0.075, +0.052]). Kernel reproducibility (p = 0.10) and delay reproducibility (33% vs 19% chance, p = 0.15) failed, as did frozen (r = −0.027) and calibrated (−0.037) transfer of the hBCI kernel.
+
 ## 4. Discussion
 
 [TODO: expand]
@@ -203,7 +209,7 @@ band power gives 0.61, infra-slow EEG features 0.70–0.76.
 - **Personalisation is the practical route.** Cross-person and cross-lab models are weak or fail. Two calibration runs give EEG-only monitoring whose reliability is known in advance.
 - **Lab specificity.** The inversion of the coupling kernel is broadband and symmetric. An opposite-signed relation between overall EEG power and global HbO in the two labs accounts for only part of it; the remaining band-power pattern is inverted as well. It points to differences in hardware, reference or systemic physiology, not to one frequency band. Kernels should be calibrated per site.
 - **Limitations:**
-  - two labs only;
+  - the infra-slow advantage held in two labs and did not replicate in a third (15 people, different task and hardware);
   - a possible participant overlap between the TU Berlin cohorts;
   - the fMRI arm comes from one study family;
   - most results use one seed (ridge analyses are deterministic up to bootstrap resampling);

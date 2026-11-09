@@ -1,6 +1,6 @@
 # NeuroVascNet: results against the five blueprint claims
 
-Status as of 2026-11-09 (after round P10). The multiplicity check across all attempts is in `TEST_LEDGER.md`. Every test below had its pass rule written in `merge/FINAL_PLAN.md` before it was
+Status as of 2026-11-09 (after round P12, a confirmation on a fresh third-lab cohort). The multiplicity check across all attempts is in `TEST_LEDGER.md`. Every test below had its pass rule written in `merge/FINAL_PLAN.md` before it was
 run. Post-hoc amendments are labelled as such. Scripts and raw result files are in `merge/analysis_p2_p4/`.
 
 ## Data used
@@ -10,6 +10,7 @@ run. Post-hoc amendments are labelled as such. Scripts and raw result files are 
 | TU Berlin hBCI (motor imagery + mental arithmetic) | 29 | EEG + fNIRS | primary fNIRS cohort |
 | TU Berlin mental workload (n-back) | 26 | EEG + fNIRS | second fNIRS cohort / external set |
 | FineMI (multi-joint upper-limb motor imagery) | 18 | EEG + fNIRS | third fNIRS cohort (different lab) |
+| Mendeley Learning Capability (implicit learning; third lab, confirmation only, P12) | 30 (15 pass the sync and length rules) | EEG + fNIRS | confirmation cohort |
 | ds002336 (motor imagery neurofeedback, XP1) | 10 | EEG + fMRI | fMRI arm |
 | ds002338 (motor imagery neurofeedback, XP2, downloaded 2026-11-07) | 17 | EEG + fMRI | fMRI arm |
 
@@ -31,6 +32,8 @@ These properties replicate in all three cohorts:
 - **Not ocular.** EOG channels carry little or nothing.
 - **Person-specific.** A person's own model predicts their data far better than other people's do: identification 93%, 62% and 83%.
 - **Local component.** A local haemodynamic part remains after the global (systemic) signal is removed: HbO local r 0.07–0.16.
+
+**Third-lab confirmation (P12, declared before any EEG–fNIRS relation was computed): 1 of 6 tests pass, n = 15.** Band-power coupling exists there (9/15 beat their null, EEG first by a median of 7 s). The founding result does not replicate: slow EEG is no better than band power (+0.057 vs +0.065). The kernel and delay do not repeat, and frozen and calibrated cross-lab transfer both fail. The infra-slow finding must be stated for the cohorts where it was shown, not as a general property of scalp EEG.
 
 ## Scorecard against the blueprint
 
@@ -61,7 +64,7 @@ The gain grows with more calibration runs (hBCI: +0.118 at k = 1, +0.258 at k = 
 
 **Infra-slow EEG is a person-specific, calibratable proxy of cortical haemodynamics that standard EEG
 preprocessing discards.** The paper would rest on four results:
-- replication in three cohorts from two labs;
+- replication in three cohorts from two labs, with a failed replication of the slow-EEG advantage in a third lab (P12, n = 15);
 - a reproducible 1–2 s delay in which slow EEG follows HbO;
 - classical neurovascular coupling: EEG band power leads local HbO by 6 s in every hBCI person, reproducibly, beyond the task response. The person's coupling kernel is reproducible beyond the task in all three cohorts (P7.1); the precise personal delay only in hBCI;
 - transfer between the two cohorts from the same lab, and a calibrated cross-lab transfer of the band-power coupling kernel (small, sign-inverted in the other lab);

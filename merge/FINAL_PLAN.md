@@ -1432,6 +1432,24 @@ A result that fails any part is reported as failed, and nominal p-values are lab
 
 **P12 amendment (2026-11-09, written after the first launch crashed and before any P12 result was looked at).** Six of the 15 included people have factory amplifier labels in `Raw_*.edf` (`EEG X1`, `EEG PG1`, ...) instead of electrode names. The dataset's own `Truncated_*.edf` for the same person lists the real names in the same channel order, so names are now taken from it by position. The declaration's "31 scalp channels" was a miscount: after the same exclusions there are 32. Runs started with the wrong labels were stopped and their output deleted without being inspected. Inclusions, sync rules, tests and alpha are unchanged. The sync check reads only `DC09`, so it is not affected.
 
+### P12 results — 2026-11-09 (third lab, 15 of 30 people pass the declared sync and length rules; α = 0.0083)
+
+| Test | Result | Rule outcome |
+|---|---|---|
+| P12.1 founding | slow EEG +0.057 [+0.014, +0.103], p 0.013, 11/15 > 0; band power +0.065 [+0.016, +0.115], p 0.012; slow − band power −0.008 [−0.075, +0.052] | **FAIL** |
+| P12.2 coupling exists | 60% (9/15) beat their null; median delay +7 s, EEG first, IQR [0, 11.5]; median peak local r 0.10 | **PASS** |
+| P12.3 kernel repeats | median d +0.10, Wilcoxon p 0.10 | **FAIL** |
+| P12.4 delay repeats | 33% within 2 s (chance 19%), p 0.15 | **FAIL** |
+| P12.5 frozen hBCI kernel | −0.027 [−0.059, +0.009], 5/15 > 0, beat null 7%, p 0.91 | **FAIL** |
+| P12.6 calibrated hBCI kernel | −0.037 [−0.093, +0.004], 7/15 better, negative gain 60%, p 0.92 | **FAIL** |
+
+**Rule outcome: 1 of 6 passes.** What this changes:
+1. **The founding result does not generalise to this lab.** Slow EEG and band power carry about the same information here, unlike the TU Berlin cohorts. "The EEG information about haemodynamics lies almost entirely below 0.5 Hz" must be limited to the cohorts where it was shown.
+2. **Neurovascular coupling exists in a third lab** with EEG leading, in the direction of the hBCI result.
+3. **Cross-lab transfer fails again.** The calibrated gain seen in FineMI (P8.3, nominal) is not reproduced here; the estimate is negative, which makes that nominal result weaker still.
+
+Limits: 15 people, a different task (implicit learning), different hardware, and "runs" that are consecutive segments of one recording. 14 of the 15 are from the no-implicit-learning group. A failure with n = 15 is weak evidence of absence, but this was the declared test and the verdict stands. **Stroop stays reserved and unused.**
+
 ## What will NOT be done
 
 - No change of band edges, targets or metric after seeing T1/T2.

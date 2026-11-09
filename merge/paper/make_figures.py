@@ -335,4 +335,35 @@ for ax, (c, (lab, col)) in zip(axes, COH.items()):
 axes[0].set_ylabel("accuracy on later runs (r)", fontsize=8)
 save(fig, "fig14_reliability_people")
 
+# Fig 15 — confirmation in a third lab
+F15, TR15, T15 = RJ("nvc_mendeley_founding.json"), RJ("nvc_mendeley_transfer.json")["frozen"], RJ("nvc_transfer_results.json")
+R15 = {"Mental workload": RJ("replication_results.json")["R1"], "FineMI": RJ("replication_finemi_results.json")["R1"]}
+rows15 = [(n, r["slow_lt0.5"]["r_subject"], r["slow_lt0.5"]["ci"], r["bandpower_1-45"]["r_subject"], r["bandpower_1-45"]["ci"]) for n, r in R15.items()]
+rows15.append(("Third lab (P12)", F15["slow"]["mean_r"], F15["slow"]["ci"], F15["bandpower"]["mean_r"], F15["bandpower"]["ci"]))
+fig, axes = plt.subplots(1, 2, figsize=(7.8, 3.0))
+ax = axes[0]
+for i, (n, a, ca, b, cb) in enumerate(rows15):
+    ax.plot([i - 0.12] * 2, ca, color="#2a78d6", lw=2)
+    ax.plot(i - 0.12, a, "o", ms=6, color="#2a78d6", mec=SURF, mew=1.2, label="slow EEG (< 0.5 Hz)" if i == 0 else None)
+    ax.plot([i + 0.12] * 2, cb, color=NEUTRAL, lw=2)
+    ax.plot(i + 0.12, b, "s", ms=6, color=NEUTRAL, mec=SURF, mew=1.2, label="band power" if i == 0 else None)
+ax.axhline(0, color=INK2, lw=0.8, ls="--")
+ax.set_xticks(range(3), [r[0] for r in rows15], fontsize=8)
+ax.set_ylabel("cross-person r with HbO (95% CI)")
+ax.legend(fontsize=7.5, loc="upper right")
+ax.grid(axis="x", visible=False)
+ax = axes[1]
+rows = [("Mental workload\n(same lab)", T15["hbci_to_mental_workload"]), ("FineMI", T15["hbci_to_finemi"]), ("Third lab (P12)", TR15)]
+for i, (n, v) in enumerate(rows):
+    col = "#2a78d6" if v["ci"][0] > 0 else "#eb6834"
+    ax.plot([i, i], v["ci"], color=col, lw=2)
+    ax.plot(i, v["mean_r"], "o", ms=7, color=col, mec=SURF, mew=1.2)
+    ax.text(i + 0.1, v["mean_r"], f"{v['mean_r']:+.3f}", va="center", fontsize=7.5, color=INK)
+ax.axhline(0, color=INK2, lw=0.8, ls="--")
+ax.set_xticks(range(3), [r[0] for r in rows], fontsize=8)
+ax.set_xlim(-0.4, 2.6)
+ax.set_ylabel("frozen hBCI kernel: r (95% CI)")
+ax.grid(axis="x", visible=False)
+save(fig, "fig15_third_lab")
+
 print("figures written to", OUT)

@@ -41,8 +41,9 @@ rep = J("downstream_repr_nlab0_results.json")["hbci_MI_left_right (primary)"]["m
 rel = J("calib_reliability_results.json")
 cal = t2["calibrated | finemi"]
 table([
+ ["Founding: infra-slow EEG", "Slow EEG beats band power in hBCI, mental workload and FineMI; not in the third lab (P12: 0.057 vs 0.065, n = 15)", "<b>Holds in two labs; not replicated in a third.</b>"],
  ["1. Shared fNIRS + fMRI space", f"fNIRS MW {c1m['fnirs']['joint']['r_subject']:.3f}, FineMI {c1f['fnirs']['joint']['r_subject']:.3f}; fMRI {c1m['fmri']['joint']['r_subject']:.3f}", "<b>Holds</b> (shared-space form). fMRI supervision does not improve fNIRS."],
- ["2. External validation", f"Same lab {ext['r_subject']:+.3f} {ci(ext['ci_low'], ext['ci_high'])}; other lab, calibrated {cal['diff']:+.3f} {ci(*cal['ci'])}", "<b>Holds within lab.</b> Cross-lab: frozen fails, calibrated nominal only."],
+ ["2. External validation", f"Same lab {ext['r_subject']:+.3f} {ci(ext['ci_low'], ext['ci_high'])}; other lab, calibrated {cal['diff']:+.3f} {ci(*cal['ci'])}", "<b>Holds within lab.</b> Cross-lab: frozen fails, calibrated nominal in FineMI and not reproduced in the third lab."],
  ["3. Delay / coupling", f"hBCI {bp['hbci']['frac_beating_null']:.0%} beat null, delay {bp['hbci']['median_delay_s']:+.0f} s (EEG first); delay repeats {sm['hbci | raw']['agree_2s']:.0%} vs {sm['hbci | raw']['chance']:.0%} chance", "<b>Holds in hBCI.</b> Kernel shape repeats in other cohorts; precise delay there is inconclusive."],
  ["4. Downstream EEG-only task", f"Virtual haemodynamics {rep['V']:.3f} vs PCA {rep['PC']:.3f}", "<b>Refuted.</b>"],
  ["5. Calibrated reliability", "Spearman " + ", ".join(f"{COH[c]} {rel[c]['spearman_score_vs_minus_error']:.2f}" for c in COH), "<b>Holds per person</b>; fails per trial."],
@@ -150,7 +151,7 @@ for fam, name, p in items:
     rows.append([fam, name, f"{p:.1e}", n, f"{a:.4f}", "yes" if p < a else "<b>no</b>", "yes" if p < b else "<b>no</b>"])
 table(rows, ["Family", "Result", "p", "Attempts", "α", "Survives", "Survives if cohorts counted too (×3)"])'''))
 
-C.append(md("## Latest round (P10)"))
+C.append(md("## Latest rounds (P10, P12)"))
 C.append(code('''if not where("nvc_broadband_results.json").exists():
     print("P10.1 still running: no result yet.")
 else:
@@ -162,7 +163,14 @@ if not where("nvc_snr_results.json").exists():
     print("P10.2 still running: no result yet.")
 else:
     d = J("nvc_snr_results.json")
-    table([[k, f"{v['agree_2s']:.0%} vs {v['chance']:.0%}", f"{v['p_agree']:.4f}", "yes" if v["reproducible"] else "no"] for k, v in d.items() if k.startswith("hbci at")], ["Level", "Delay repeats", "p", "Reproducible"])'''))
+    table([[k, f"{v['agree_2s']:.0%} vs {v['chance']:.0%}", f"{v['p_agree']:.4f}", "yes" if v["reproducible"] else "no"] for k, v in d.items() if k.startswith("hbci at")], ["Level", "Delay repeats", "p", "Reproducible"])
+m, f_, t_ = J("nvc_mendeley_results.json"), J("nvc_mendeley_founding.json"), J("nvc_mendeley_transfer.json")
+table([["P12.1 slow EEG (vs band power)", f"{f_['slow']['mean_r']:+.3f} ({f_['bandpower']['mean_r']:+.3f})", "pass" if f_["pass"] else "fail"],
+       ["P12.2 coupling exists", f"{m['P12.2 coupling']['frac_beating_null']:.0%} beat null", "pass" if m["P12.2 coupling"]["pass"] else "fail"],
+       ["P12.3 kernel repeats", f"p {m['P12.3 kernel']['wilcoxon_p']:.3f}", "pass" if m["P12.3 kernel"]["pass"] else "fail"],
+       ["P12.4 delay repeats", f"{m['P12.4 delay']['agree_2s']:.0%} vs {m['P12.4 delay']['chance']:.0%}", "pass" if m["P12.4 delay"]["pass"] else "fail"],
+       ["P12.5 frozen transfer", f"{t_['frozen']['mean_r']:+.3f}", "pass" if t_["frozen"]["pass_all"] else "fail"],
+       ["P12.6 calibrated transfer", f"{t_['calibrated']['diff']:+.3f}", "pass" if t_["calibrated"]["pass_all"] else "fail"]], ["Third-lab test", "Result", "Rule"])'''))
 
 nb = nbf.v4.new_notebook(cells=C, metadata={"kernelspec": {"display_name": "Python 3", "language": "python", "name": "python3"}})
 out = Path(__file__).parent.parent / "NeuroVascNet_Results.ipynb"
