@@ -245,7 +245,7 @@ for label, g in (("raw HbO", J("calibration_results.json")), ("local HbO", J("ca
     for c, n in COH.items():
         for k in range(1, 6):
             v = g[c]["gains"].get(f"k{k}_personal_minus_baseline")
-            if v and v.get("mean") is not None and v["mean"] == v["mean"]:
+            if v and v.get("n", 0) >= 10:
                 rows.append([label, n, k, f"{v['mean']:+.3f}", ci(*v["ci"]), f"{v['n_positive']}/{v['n']}"])
 table(rows, ["Target", "Cohort", "Calibration runs", "Gain over own mean", "95% CI", "People better"])"""
 
