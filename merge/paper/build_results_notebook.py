@@ -151,7 +151,7 @@ for fam, name, p in items:
     rows.append([fam, name, f"{p:.1e}", n, f"{a:.4f}", "yes" if p < a else "<b>no</b>", "yes" if p < b else "<b>no</b>"])
 table(rows, ["Family", "Result", "p", "Attempts", "α", "Survives", "Survives if cohorts counted too (×3)"])'''))
 
-C.append(md("## Latest rounds (P10, P12, P13, P14)"))
+C.append(md("## Latest rounds (P10, P12, P13, P14, P15)"))
 C.append(code('''if not where("nvc_broadband_results.json").exists():
     print("P10.1 still running: no result yet.")
 else:
@@ -174,7 +174,10 @@ table([["P12.1 slow EEG (vs band power)", f"{f_['slow']['mean_r']:+.3f} ({f_['ba
 q13 = J("nvc_method_check_results.json")
 table([[{**COH, "mendeley": "Third lab"}[c], k, f"{v[k]['slow']['mean_r']:+.3f}", f"{v[k]['bandpower']['mean_r']:+.3f}", f"{v[k]['diff']['mean']:+.3f} {ci(*v[k]['diff']['ci'])}", "pass" if v[k]["pass"] else "fail"] for c, v in q13["cohorts"].items() for k in ("continuous", "windowed")], ["P13 cohort", "Method", "Slow EEG", "Band power", "Slow − band power", "Rule (α = 0.0071)"])
 p14 = J("nvc_held_results.json")
-table([[t["test"], t["what"], f"{t['value']:+.3f}", f"{t['p']:.1e}", "pass" if t["pass"] else "fail", "yes" if t["survives_alpha"] else "no"] for t in p14["tests"]], ["P14 test", "What", "Value", "p", "Own rule", "Survives α = 0.0042"])'''))
+table([[t["test"], t["what"], f"{t['value']:+.3f}", f"{t['p']:.1e}", "pass" if t["pass"] else "fail", "yes" if t["survives_alpha"] else "no"] for t in p14["tests"]], ["P14 test", "What", "Value", "p", "Own rule", "Survives α = 0.0042"])
+p15 = J("nvc_more_results.json")
+table([[t["test"], f"{t['value']:+.3f}", f"{t['p']:.1e}", "pass" if t["pass"] else "fail", "yes" if t["survives_alpha"] else "no"] for t in p15["tests"]], ["P15 test", "Value", "p", "Own rule", "Survives α = 0.0033"])
+fig("fig18_improvement", 640)'''))
 
 nb = nbf.v4.new_notebook(cells=C, metadata={"kernelspec": {"display_name": "Python 3", "language": "python", "name": "python3"}})
 out = Path(__file__).parent.parent / "NeuroVascNet_Results.ipynb"

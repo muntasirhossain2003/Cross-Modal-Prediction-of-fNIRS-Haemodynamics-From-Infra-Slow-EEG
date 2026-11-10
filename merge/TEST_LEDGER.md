@@ -90,6 +90,15 @@ Within lab: 3 attempts (P3.2, P7.2-MW, P8.3-MW reference), α = 0.017. Across la
 | Claim 5, third lab (raw and gain) | ρ 0.29 and 0.30, n = 15 | **no** |
 | Claim 1, no cues (MW, FineMI) | fNIRS 0.134, 0.175; fMRI 0.065; p 0.0001 | **yes, both** |
 
+## P15 — improving the claims that hold (own family: 15 tests, α = 0.0033)
+
+| Result | Evidence | Survives? |
+|---|---|---|
+| Claim 2, Pool better than both single sources (2 target cohorts, 4 tests) | MW: −0.011 and +0.018; hBCI: +0.097 and +0.004 | 1 of 4 (hBCI target, Pool − MW only). **Neither target improved** |
+| Claim 3, HbR peak later than HbO (4 cohorts) | +1, −2, −3, −8 s; all CI include 0 | **no, all 4** (intervals too wide to resolve 1–2 s) |
+| Claim 5, mapping beats a constant in an unseen cohort (4 cohorts) | error gain +0.060, +0.052, +0.051, +0.097 | **3 of 4** (MW p 0.017 does not); the third-lab gain is cohort level |
+| Claim 5, partial ρ after two quality measures (3 cohorts) | 0.84, 0.83, 0.69 | **yes, all 3** |
+
 ## Bottom line for the paper
 
 Results that survive the correction across all attempts:
@@ -97,7 +106,7 @@ Results that survive the correction across all attempts:
 2. One EEG-derived shared space serves fNIRS and fMRI (Claim 1, shared-space form).
 3. Within-lab external validation (Claim 2, TU Berlin cohorts).
 4. Classical band-power -> HbO coupling in hBCI, with a reproducible personal kernel and a reproducible personal delay of about 6 s (EEG first). The kernel is also reproducible beyond the task in FineMI (Claim 3).
-5. Person-level reliability from two calibration runs (Claim 5).
+5. Person-level reliability from two calibration runs (Claim 5), not explained by signal amplitude or EEG power (P15.4).
 
 Results that must be labelled **nominal** in the paper:
 - the cross-lab calibrated transfer (P8.3), which was also not reproduced in the third lab (P12.6);

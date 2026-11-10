@@ -48,6 +48,7 @@ they `exec` part of another script (for example `trf_delay.py` reads `continuous
 | P12 third-lab confirmation | `nvc_mendeley.py` | `sync`, `coupling K N`, `founding`, `transfer`, `merge`; needs `nvc_transfer2.py` |
 | P13 method check of P12.1 | `nvc_method_check.py` | cohort names, or `merge`; needs `nvc_mendeley.py`; env `THREADS`, `SMOKE` |
 | P14 stress tests of Claims 1, 2, 5 | `nvc_held.py`, `claim1_fresh.py` | `build` (env `P14_COHORTS`), `overlap`, `claim2`, `claim5`, `claim3`, `merge`; Claim 1: env `UNCUED=1 FNIRS_COHORT=...`; needs `nvc_method_check.py`, `external_claim2.py` |
+| P15 improving the claims that hold | `nvc_more.py` | `claim2`, `claim5`, `claim3 COHORT K N` (shards; env `NSURR`, `SMOKE`), `merge`; needs `external_claim2.py`, `nvc_bandpower.py`, `nvc_mendeley.py` and the P14 windows | `nvc_more_{results,claim2,claim5}.json`, `shards/nvc_more_hbr_*.json` |
 | Paper figures | `../paper/make_figures.py` | reads the result JSONs and shard files here |
 
 New scripts write their JSON next to themselves; the copies in `results/` are the reported ones.

@@ -109,12 +109,25 @@ def script(name):
         assert "def hbci_people" in s
         s = re.sub(r'(?<!def )\brun_pair\(', 'HOOK["run_pair"](', s)
         s = s.replace("def hbci_people", 'HOOK = {"run_pair": run_pair}\n\n\ndef hbci_people', 1)
+        for a, b in (("            hbo, _ = beer_lambert(lo, hi)\n", '            hbo, hbr_ = beer_lambert(lo, hi)\n            if HOOK.get("stack_hbr"):\n                hbo = np.concatenate([np.asarray(hbo, float), np.asarray(hbr_, float)], 0)\n'),
+                     ("        hbo = np.asarray(cn.oxy.x, float).T\n", '        hbo = np.asarray(cn.oxy.x, float).T\n        if HOOK.get("stack_hbr"):\n            hbo = np.concatenate([hbo, np.asarray(cn.deoxy.x, float).T], 0)\n')):
+            assert a in s, a
+            s = s.replace(a, b)
     if name == "nvc_bandpower":
+        a = '                hbo = hb.get_data(picks=[i for i, c in enumerate(hb.ch_names) if c.endswith("hbo")])\n'
+        assert a in s
+        s = s.replace(a, a + '                if ns["HOOK"].get("stack_hbr"):\n                    hbo = np.concatenate([hbo, hb.get_data(picks=[i for i, c in enumerate(hb.ch_names) if c.endswith("hbr")])], 0)\n')
         s = s.replace('ns["run_pair"] = run_pair_bp', 'ns["HOOK"]["run_pair"] = run_pair_bp')
         s = re.sub(r'(?<!def )(?<![\w"])run_pair_bp\(', 'ns["HOOK"]["run_pair"](', s)
     if name == "nvc_transfer":
         s = s.replace('NS["run_pair_bp"] = run_pair_tr', 'inner["HOOK"]["run_pair"] = run_pair_tr')
         s = re.sub(r'^inner\["run_pair"\] = run_pair_tr.*\n', "", s, flags=re.M)
+    if name == "nvc_more":
+        s = s.replace("ARGV = sys.argv[2:]", "ARGV = list(ARGS)").replace('R = HERE / "results"', 'R = Path("analysis_p2_p4/results")')
+        s, ok = replace_block(s, r"^def load_bp", r"^    return g", 'def load_bp():\n    g = nvc_bandpower(LIB=True)\n    g["ns"]["HOOK"]["stack_hbr"] = True\n    return g')
+        assert ok
+        s, ok = replace_block(s, r'^\s*sys\.argv = \[sys\.argv\[0\], "none"\]', r"exec\(s_, M12\)", "M12 = nvc_mendeley(LIB=True)")
+        assert ok
     if name in CUT:
         assert CUT[name] in s, (name, CUT[name])
         s = s.replace(CUT[name], "if LIB:\n    return locals()\n\n" + CUT[name], 1)
@@ -140,6 +153,7 @@ SECTIONS = [
     ("12b. Confirmation in a third lab (P12)", [("nvc_mendeley", ['nvc_mendeley(MODE="sync")', 'nvc_mendeley(MODE="coupling")', 'nvc_mendeley(MODE="founding")', 'nvc_mendeley(MODE="transfer")', 'nvc_mendeley(MODE="merge")'])]),
     ("12c. Can the third-lab method see the advantage? (P13)", [("nvc_method_check", ['nvc_method_check(ARGS=("hbci", "mental_workload", "finemi", "mendeley"))', "nvc_method_check()"])]),
     ("12d. Stress tests of the claims that hold (P14)", [("nvc_held", ['nvc_held(MODE="build")', 'nvc_held(MODE="overlap")', 'nvc_held(MODE="claim2")', 'nvc_held(MODE="claim5")', 'nvc_held(MODE="claim3")', 'run_with_env(claim1_fresh, FNIRS_COHORT="mental_workload", UNCUED="1")', 'run_with_env(claim1_fresh, FNIRS_COHORT="finemi", UNCUED="1")', 'nvc_held(MODE="merge")'])]),
+    ("12e. Improving the claims that hold (P15)", [("nvc_more", ['nvc_more(MODE="claim2")', 'nvc_more(MODE="claim5")'] + [f'nvc_more(MODE="claim3", ARGS=("{c}", "0", "1"))' for c in ("hbci", "mental_workload", "finemi", "mendeley")] + ['nvc_more(MODE="merge")'])]),
     ("13. Claim 4: downstream task", [("downstream_repr", ['run_with_env(downstream_repr, N_LAB="0")'])]),
     ("14. Claim 5: calibration and reliability", [("calibration", ["calibration()", 'run_with_env(calibration, TARGET="local")']),
                                                   ("calib_reliability", ["calib_reliability()", 'run_with_env(calib_reliability, TARGET="local")']), ("trial_reliability", ["trial_reliability()"])]),
@@ -229,7 +243,7 @@ figs = re.sub(r"\bOUT\b", "FIG_OUT", figs)
 figs = re.sub(r'\nprint\("figures written to".*\n', "\n", figs)
 _parts = re.split(r"^# Fig (\d+) .*$", figs, flags=re.M)
 _prelude, FIGS = _parts[0], {int(_parts[i]): _parts[i + 1] for i in range(1, len(_parts), 2)}
-FNAME = {1: ("fig1_slow_band", 420), 2: ("fig2_coupling_lag", 520), 3: ("fig3_kernel_repro", 640), 4: ("fig4_kernel_transfer", 560), 5: ("fig5_deployment_reliability", 640), 6: ("fig6_slow_bands", 520), 7: ("fig7_person_matrix", 420), 8: ("fig8_calibration_runs", 500), 9: ("fig9_cross_lab", 620), 10: ("fig10_delay_halves", 860), 11: ("fig11_band_sign", 540), 12: ("fig12_downstream", 560), 13: ("fig13_multiplicity", 620), 14: ("fig14_reliability_people", 720), 15: ("fig15_third_lab", 780), 16: ("fig16_method_check", 780), 17: ("fig17_stress_tests", 780)}
+FNAME = {1: ("fig1_slow_band", 420), 2: ("fig2_coupling_lag", 520), 3: ("fig3_kernel_repro", 640), 4: ("fig4_kernel_transfer", 560), 5: ("fig5_deployment_reliability", 640), 6: ("fig6_slow_bands", 520), 7: ("fig7_person_matrix", 420), 8: ("fig8_calibration_runs", 500), 9: ("fig9_cross_lab", 620), 10: ("fig10_delay_halves", 860), 11: ("fig11_band_sign", 540), 12: ("fig12_downstream", 560), 13: ("fig13_multiplicity", 620), 14: ("fig14_reliability_people", 720), 15: ("fig15_third_lab", 780), 16: ("fig16_method_check", 780), 17: ("fig17_stress_tests", 780), 18: ("fig18_improvement", 640)}
 
 
 def draw(n):
@@ -342,6 +356,13 @@ print(f"Fingerprint control ok: {d['control_ok']}. Threshold {d['threshold_T']:.
 table([[t["test"], t["what"], f"{t['value']:+.3f}", f"{t['p']:.1e}", "pass" if t["pass"] else "fail", "yes" if t["survives_alpha"] else "no"] for t in d["tests"]], ["Test", "What", "Value", "p", "Own rule", f"Survives α = {d['alpha']:.4f}"])
 print("Post hoc, not counted (third-lab delay):", d["claim3_post_hoc"])
 """ + draw(17), "**Result and Figure 17.** Claims 1, 2 and 5 hold without cue alignment, and within-lab transfer holds without the closest pairs. Claim 5 does not reach its rule in the third lab. Value is r for transfer and Claim 1, and Spearman ρ for Claim 5.")
+RES["nvc_more"] = ("""d = J("nvc_more_results.json")
+table([[t["test"], f"{t['value']:+.3f}", f"{t['p']:.1e}", "pass" if t["pass"] else "fail", "yes" if t["survives_alpha"] else "no"] for t in d["tests"]], ["Test", "Value", "p", "Own rule", f"Survives α = {d['alpha']:.4f}"])
+table([[v["target"], f"{v['a_only']:.3f}", f"{v['b_only']:.3f}", f"{v['pool']:.3f}", "yes" if v["improved"] else "no"] for v in d["claim2"].values()], ["Target cohort", "Other cohort only", "Same cohort only", "Pool", "Improved"])
+table([[c, f"{v['hbo_peak_s']:+.0f} s", f"{v['hbr_peak_s']:+.0f} s", f"{v['difference_s']:+.0f} s [{v['ci'][0]:+.0f}, {v['ci'][1]:+.0f}]", "yes" if v["gate"] else "no"] for c, v in d["hbr"].items()], ["Cohort", "HbO peak", "HbR peak", "HbR − HbO (95% CI)", "HbR above surrogates"])
+table([[c, f"{v['mae_mapping']:.3f}", f"{v['mae_constant']:.3f}", f"{v['coverage_80']:.2f}"] for c, v in d["claim5"]["transport"].items()], ["Held-out cohort", "Error, mapping", "Error, constant", "80% coverage"])
+print("Descriptive, delay by cohort:", {c: v["median_s"] for c, v in d["delays_descriptive"].items()})
+""" + draw(18), "**Result and Figure 18.** Pooled training does not improve transfer, and the HbR timing test cannot resolve a 1–2 s effect. The Claim 5 score is not explained by signal amplitude or EEG power, and a mapping from score to accuracy carries over between cohorts, with weaker coverage in mental workload. In the third lab that gain is at cohort level. Value is the difference in r for P15.1, seconds for P15.2, the error gain for P15.3 and partial ρ for P15.4.")
 RES["nvc_woody"] = ('d = J("nvc_woody_results.json")\ntable([[k, f"{v[\'agree_2s\']:.0%}", f"{v[\'chance\']:.0%}", f"{v[\'p_agree\']:.4f}", f"{v[\'median_delay_s\']:+.1f} s"] for k, v in d.items() if isinstance(v, dict)], ["Data", "Halves agree within 2 s", "Chance", "p", "Median delay"])\nprint("Estimator passes its positive control:", d["estimator_valid"])', "**Result.** The estimator fails its positive control, so its mental-workload and FineMI rows are descriptive only and the personal delay there stays inconclusive.")
 for _n, _k in (("replicate_finemi", 6), ("person_specific", 7), ("calibration", 8), ("nvc_bands", 9), ("nvc_snr", 10), ("nvc_broadband", 11), ("downstream_repr", 12), ("calib_reliability", 14)):
     RES[_n] = (RES[_n][0] + "\n" + draw(_k), RES[_n][1] + f" Figure {_k} is shown below.")
@@ -381,6 +402,7 @@ DESCRIBE = {
     "nvc_mendeley": "Confirmation on a cohort from a third lab (Mendeley Learning Capability), not used in the main analysis (an early band-power baseline had been run on it). Nothing is tuned on it: all rules were written down first. Output: `nvc_mendeley_results.json`, `nvc_mendeley_founding.json`, `nvc_mendeley_transfer.json`. Rerun name: `nvc_mendeley`.",
     "nvc_method_check": "Checks the method used in the third-lab test. Runs the P12.1 code on the three established cohorts, and the original window analysis on 30 s windows not aligned to cues, in all four cohorts. Needs `nvc_mendeley_sync.json` and `nvc_mendeley_founding.json` from `nvc_mendeley`. Output: `nvc_method_check_*.json`. Rerun name: `nvc_method_check`.",
     "nvc_held": "Stress tests of the claims that hold: EEG fingerprints to look for people shared between the two TU Berlin cohorts, and Claims 1, 2 and 5 on 30 s windows not aligned to cues, plus Claim 5 in the third lab. `build` writes window files into `neurovascnet_merge_v1_cache/p14_windows/` (it adds a folder and overwrites nothing else). Needs the output of `nvc_mendeley`. Output: `nvc_held_*.json`, `claim1_fresh_*_uncued_results.json`. Rerun name: `nvc_held`.",
+    "nvc_more": "Attempts to improve the claims that hold: training on people from both TU Berlin cohorts, the timing of HbR against HbO, a mapping from the Claim 5 score to predicted accuracy that is tested in a cohort it was not fitted on, and the Claim 5 score after removing two simple quality measures. Rules are in `FINAL_PLAN.md` under P15.",
     "downstream_repr": "Claim 4. Task decoding from EEG-predicted haemodynamics compared with PCA and random-projection codes of the same size. Output: `downstream_repr_nlab0_results.json`. Rerun name: `downstream_repr`.",
     "calibration": "Deployment test. After `k` calibration runs with EEG and fNIRS together, does a person's EEG-only model beat replaying their own average response? Run on raw and local HbO. Output: `calibration_results.json`, `calibration_results_local.json`. Rerun name: `calibration`.",
     "calib_reliability": "Claim 5, per person. Does a person's score on their two calibration runs predict how well the model works on their later runs? Output: `calib_reliability_results.json`, `calib_reliability_local_results.json`. Rerun name: `calib_reliability`.",

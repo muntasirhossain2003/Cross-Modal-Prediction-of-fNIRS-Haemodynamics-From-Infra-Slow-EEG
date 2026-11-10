@@ -1570,6 +1570,40 @@ P14 tested whether Claims 1, 2 and 5 survive their main weaknesses. P15 asks whe
 
 **Reading of the outcome, fixed now.** A failed test is reported and not retuned. The earlier P3.2 result remains the Claim 2 record; Pool is reported as an improvement only if the P15.1 rule is met.
 
+### P15 result (2026-11-10)
+
+α = 0.0033 (15 tests). 8 of 15 pass their own rule and 7 survive α. Reproduction gates held: A only with nobody removed equals the saved P3.2 values in both directions (0.2052 and 0.1768), and the recomputed HbO curves equal the saved P6.4 and P12 curves to rounding (5e-5).
+
+| Test | Result | Own rule | Survives α |
+|---|---|---|---|
+| P15.1 MW target: Pool − hBCI only | −0.011 [−0.018, −0.006], p 0.001 (0.193 vs 0.204) | fail (reliably worse) | no |
+| P15.1 MW target: Pool − MW only | +0.018 [−0.034, +0.065], p 0.48 (0.193 vs 0.175) | fail | no |
+| P15.1 hBCI target: Pool − MW only | +0.097 [0.056, 0.139], p 0.0001 (0.274 vs 0.177) | pass | yes |
+| P15.1 hBCI target: Pool − hBCI only | +0.004 [−0.004, +0.013], p 0.34 (0.274 vs 0.270) | fail | no |
+| P15.2 HbR − HbO peak, hBCI | +1 s [−4, +2] (HbO 3 s, HbR 4 s), p 0.94 | fail | no |
+| P15.2 HbR − HbO peak, MW | −2 s [−5, +4] (8 s, 6 s), p 0.76 | fail | no |
+| P15.2 HbR − HbO peak, FineMI | −3 s [−6, 0] (3 s, 0 s), p 0.075 | fail | no |
+| P15.2 HbR − HbO peak, third lab | −8 s [−13, +3] (11 s, 3 s), p 0.18 | fail | no |
+| P15.3 mapping gain, hBCI | MAE 0.046 vs 0.106, gain +0.060 [0.029, 0.094], p 0.0002 | pass | yes |
+| P15.3 mapping gain, MW | MAE 0.077 vs 0.129, gain +0.052 [0.012, 0.095], p 0.017 | pass | no |
+| P15.3 mapping gain, FineMI | MAE 0.064 vs 0.115, gain +0.051 [0.017, 0.085], p 0.003 | pass | yes |
+| P15.3 mapping gain, third lab | MAE 0.074 vs 0.172, gain +0.097 [0.057, 0.131], p 0.0002 | pass | yes |
+| P15.4 partial ρ, hBCI | 0.84 [0.62, 0.94], p 3.5e-8 | pass | yes |
+| P15.4 partial ρ, MW | 0.83 [0.63, 0.94], p 4.0e-7 | pass | yes |
+| P15.4 partial ρ, FineMI | 0.69 [0.22, 0.89], p 0.0028 | pass | yes |
+
+**P15.1 reading.** Neither target cohort counts as improved. Adding a cohort's own people to the hBCI model makes mental-workload prediction slightly but reliably worse. For hBCI, Pool beats the MW-only model because of hBCI's own people, and adds nothing over them. P3.2 remains the Claim 2 record.
+
+**P15.2 reading.** The timing signature is not supported. All four gates passed (HbR coupling is above its surrogates), so the failure is not a lack of HbR coupling. The confidence intervals are 6 to 16 s wide against an expected difference of 1–2 s, so the test cannot resolve the effect it looks for. This is inconclusive about physiology, not evidence against it. Only hBCI goes in the expected direction.
+
+**P15.3 coverage (descriptive).** 80% interval coverage is 0.90 hBCI, 0.58 MW, 0.83 FineMI and 0.73 third lab. MW falls outside the declared 0.65–0.95 range, so the intervals are not reliable in every cohort. The slopes are close to 1 (0.99–1.02) with intercepts of 0.04–0.07.
+
+**P15.3 limit, computed after seeing the results (post hoc, descriptive).** The comparator in the declared test is the training-cohort mean. Against the held-out cohort's own mean, which a real user would not know, the mapping is still better in hBCI (0.046 vs 0.098), MW (0.077 vs 0.130) and FineMI (0.064 vs 0.087), and worse in the third lab (0.074 vs 0.048). The third-lab gain therefore reflects the score picking up that the cohort as a whole is poorly predicted, and not a ranking of people inside it (P14.4 ρ 0.29 failed).
+
+**P15.4 reading.** The Claim 5 score is not explained by HbO amplitude or EEG power in the calibration runs. In FineMI HbO amplitude does correlate with the score (−0.62) and with later accuracy (−0.61), and the partial ρ falls from 0.84 to 0.69, but it still passes.
+
+**P15.5 (descriptive, not counted).** Median band-power delay, EEG first: hBCI +6 s [3, 7], MW +4 s [1.5, 7.5], FineMI +3 s [−1.5, 5], third lab +7 s [2, 11]. Same sign in four cohorts from three labs. All values had been seen.
+
 ## What will NOT be done
 
 - No change of band edges, targets or metric after seeing T1/T2.

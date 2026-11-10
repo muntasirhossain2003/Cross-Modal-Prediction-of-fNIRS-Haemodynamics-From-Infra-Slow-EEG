@@ -415,4 +415,35 @@ ax.set_ylabel("hBCI to mental workload: r (95% CI)", fontsize=8)
 ax.grid(axis="x", visible=False)
 save(fig, "fig17_stress_tests")
 
+# Fig 18 — attempts to improve the claims that hold
+P18, C18 = RJ("nvc_more_results.json"), RJ("nvc_held_claim5.json")
+fig, axes = plt.subplots(1, 2, figsize=(7.8, 3.2))
+ax = axes[0]
+for c, (n, col) in {**COH, "mendeley": ("Third lab", NEUTRAL)}.items():
+    t = P18["claim5"]["transport"][c]
+    x = np.array([v["cal_score"] for v in C18[c]["raw"]["people"].values()])
+    y = np.array([v["test"] for v in C18[c]["raw"]["people"].values()])
+    ax.scatter(t["intercept"] + t["slope"] * x, y, s=24, color=col, edgecolor=SURF, linewidth=0.6, marker="D" if c == "mendeley" else "o", label=n.split(" (")[0])
+lo, hi = min(ax.get_xlim()[0], ax.get_ylim()[0]), max(ax.get_xlim()[1], ax.get_ylim()[1])
+ax.plot([lo, hi], [lo, hi], color=INK2, lw=0.8, ls="--")
+ax.set_xlim(lo, hi)
+ax.set_ylim(lo, hi)
+ax.set_xlabel("predicted accuracy (mapping fitted on other cohorts)", fontsize=8)
+ax.set_ylabel("measured accuracy on later runs (r)", fontsize=8)
+ax.legend(fontsize=7.5, loc="upper left")
+ax = axes[1]
+N18 = (("hbci", "hBCI"), ("mental_workload", "Mental\nworkload"), ("finemi", "FineMI"), ("mendeley", "Third lab"))
+for i, (c, n) in enumerate(N18):
+    v = P18["hbr"][c]
+    col = "#2a78d6" if v["pass"] else "#eb6834"
+    ax.plot([i, i], v["ci"], color=col, lw=2)
+    ax.plot(i, v["difference_s"], "o", ms=7, color=col, mec=SURF, mew=1.2)
+    ax.text(i + 0.1, v["difference_s"], f"{v['difference_s']:+.0f} s", va="center", fontsize=7.5, color=INK)
+ax.axhline(0, color=INK2, lw=0.8, ls="--")
+ax.set_xticks(range(4), [n for _, n in N18], fontsize=8)
+ax.set_xlim(-0.4, 3.6)
+ax.set_ylabel("HbR peak minus HbO peak, s (95% CI)", fontsize=8)
+ax.grid(axis="x", visible=False)
+save(fig, "fig18_improvement")
+
 print("figures written to", OUT)
