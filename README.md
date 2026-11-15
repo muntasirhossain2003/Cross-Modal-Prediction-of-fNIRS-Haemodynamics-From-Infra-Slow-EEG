@@ -25,7 +25,7 @@ All pass rules were written into a dated plan before each test, and Bonferroni c
 
 ## Repository layout
 
-```
+```text
 pipeline/   Neurovascnet_marge_v1.ipynb   loads all datasets, builds the caches, deep-model comparator
             NeuroVascNet_Results.ipynb    every current result, read from analysis/results/
             NeuroVascNet_Full.ipynb       all analyses as plain functions, with a switch to rerun any of them
@@ -47,11 +47,11 @@ elsewhere, set the environment variable `NVN_DATA` to that folder.
 
 | Cohort | People | Folder in `dataset/` | Source |
 |---|---|---|---|
-| hBCI (TU Berlin): motor imagery, mental arithmetic | 29 | `TU Berlin hBCI EEG+FNRI` | Shin et al. 2017, IEEE TNSRE; http://doc.ml.tu-berlin.de/hBCI |
-| MW (TU Berlin): n-back | 26 | `TU Berlin EEG + NIRS` | Shin et al. 2018, Sci Data; http://doc.ml.tu-berlin.de/simultaneous_EEG_NIRS |
+| hBCI (TU Berlin): motor imagery, mental arithmetic | 29 | `TU Berlin hBCI EEG+FNRI` | Shin et al. 2017, IEEE TNSRE; <http://doc.ml.tu-berlin.de/hBCI> |
+| MW (TU Berlin): n-back | 26 | `TU Berlin EEG + NIRS` | Shin et al. 2018, Sci Data; <http://doc.ml.tu-berlin.de/simultaneous_EEG_NIRS> |
 | FineMI: multi-joint upper-limb motor imagery | 18 | `Multi-joint Upper-Limb EEG+FNIR/FineMI/FineMI` | Yi et al. 2025, Sci Data 12:953 |
 | Learning capability (third laboratory) | 30 (15 used) | `mendeley Simultaneous EEG-fNIRS Data on Learning Capability` | Mendeley Data, doi:10.17632/tsfs9fhn5y.1 |
-| EEG–fMRI motor-imagery neurofeedback | 10 + 17 | `OpenNeuro ds002336`, `OpenNeuro ds002338` | Lioi et al. 2020, Sci Data; https://openneuro.org |
+| EEG–fMRI motor-imagery neurofeedback | 10 + 17 | `OpenNeuro ds002336`, `OpenNeuro ds002338` | Lioi et al. 2020, Sci Data; <https://openneuro.org> |
 
 HEFMI-ICH and OpenNeuro ds002739 are read by the pipeline notebook but were excluded from the paper, because
 their published EEG has no power below 0.5 Hz.
@@ -60,7 +60,7 @@ their published EEG has no power below 0.5 Hz.
 
 Python 3.12 was used. Install the packages with
 
-```
+```bash
 pip install -r requirements.txt
 ```
 
