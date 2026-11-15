@@ -14,7 +14,9 @@ import numpy as np
 import scipy.signal as sps
 from sklearn.linear_model import RidgeCV
 
-ROOT = Path(r"G:\research_bio_medical\merge\neurovascnet_merge_v1_cache")
+REPO = Path(__file__).resolve().parents[1]   # repository root
+
+ROOT = Path(str(REPO / "pipeline/neurovascnet_merge_v1_cache"))
 COHORTS = {"hbci": ROOT / "train_fnirs_a2133f5d6a71ec34", "mental_workload": ROOT / "replication_tuberlin_mw",
            "finemi": ROOT / "replication_finemi"}
 TARGET = os.environ.get("TARGET", "raw")                      # raw | local | global (T2 split, per chromophore)

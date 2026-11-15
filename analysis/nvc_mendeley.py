@@ -5,6 +5,8 @@ import os
 import sys
 from pathlib import Path
 
+REPO = Path(__file__).resolve().parents[1]   # repository root
+
 MODE = sys.argv[1] if len(sys.argv) > 1 else "merge"
 SHARD = (int(sys.argv[2]), int(sys.argv[3])) if MODE == "coupling" else (0, 1)
 sys.argv = [sys.argv[0]]
@@ -26,7 +28,7 @@ LC = NS2["inner"]
 to_1hz, bandpower_1hz, curve, person_p64, run_pair_bp, pair = LC["to_1hz"], BP["bandpower_1hz"], BP["curve"], BP["person"], BP["run_pair_bp"], NS2["pair"]
 LAGS_C, SEED, CH, interpolation_matrix = BP["LAGS"], BP["SEED"], NS2["CH"], NS2["interpolation_matrix"]
 score, calibrated, show, show_cal, ALPHAS, MINSHIFT = (NS2[k] for k in ("score", "calibrated", "show", "show_cal", "ALPHAS", "MINSHIFT"))
-M = Path(r"G:\research_bio_medical\dataset\mendeley Simultaneous EEG-fNIRS Data on Learning Capability")
+M = Path(str(REPO / "dataset/mendeley Simultaneous EEG-fNIRS Data on Learning Capability"))
 DROP = {"DC09", "EEG Mark1", "EEG Mark2", "Events/Markers", "E"}
 SYNC = HERE / "nvc_mendeley_sync.json"
 OUT = HERE / "nvc_mendeley_results.json"

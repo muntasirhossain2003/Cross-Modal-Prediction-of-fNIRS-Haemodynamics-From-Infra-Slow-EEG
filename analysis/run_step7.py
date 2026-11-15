@@ -10,7 +10,9 @@ from pathlib import Path
 import nbformat
 from nbclient import NotebookClient
 
-SRC = Path(r"G:\research_bio_medical\merge\Neurovascnet_marge_v1.ipynb")
+REPO = Path(__file__).resolve().parents[1]   # repository root
+
+SRC = Path(str(REPO / "pipeline/Neurovascnet_marge_v1.ipynb"))
 OUT = Path(__file__).with_name("step7_nofilter_executed.ipynb")
 LAST_CELL = int(sys.argv[1]) if len(sys.argv) > 1 else 25
 

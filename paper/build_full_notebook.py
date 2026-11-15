@@ -1,4 +1,4 @@
-"""Writes ../NeuroVascNet_Full.ipynb: plain code cells in the layout of the merge notebook.
+"""Writes ../pipeline/NeuroVascNet_Full.ipynb: plain code cells in the layout of the merge notebook.
 Pipeline cells are copied from Neurovascnet_marge_v1.ipynb; every analysis script becomes one plain function."""
 import ast
 import io
@@ -10,7 +10,7 @@ import nbformat as nbf
 
 HERE = Path(__file__).parent
 M = HERE.parent
-A = M / "analysis_p2_p4"
+A = M / "analysis"
 md, code = nbf.v4.new_markdown_cell, nbf.v4.new_code_cell
 
 
@@ -77,9 +77,10 @@ def script(name):
     mode = re.search(r'^MODE = sys\.argv\[1\] if len\(sys\.argv\) > 1 else "(\w+)"', s, re.M)
     default = mode.group(1) if mode else "all"
     s = s.replace('ARGS = sys.argv[1:] or ["merge"]', 'ARGS = list(ARGS) or ["merge"]')
+    s = s.replace("REPO = Path(__file__).resolve().parents[1]   # repository root", "REPO = PROJECT_ROOT")
     s = s.replace('LC["run_pair"] = hook\nBP["run_pair_bp"] = hook', 'LC["HOOK"]["run_pair"] = hook')
     s = s.replace('LC["run_pair"] = hook2\nBP["run_pair_bp"] = hook2', 'LC["HOOK"]["run_pair"] = hook2')
-    s = s.replace('HERE / "results" / "external_claim2_results.json"', 'Path("analysis_p2_p4/results/external_claim2_results.json")')
+    s = s.replace('HERE / "results" / "external_claim2_results.json"', 'Path("../analysis/results/external_claim2_results.json")')
     s = re.sub(r'^MODE = sys\.argv.*\n', "", s, flags=re.M)
     s = re.sub(r'^SHARD = .*sys\.argv.*\n', "", s, flags=re.M)
     s = re.sub(r'^sys\.argv = .*\n', "", s, flags=re.M)
@@ -123,7 +124,7 @@ def script(name):
         s = s.replace('NS["run_pair_bp"] = run_pair_tr', 'inner["HOOK"]["run_pair"] = run_pair_tr')
         s = re.sub(r'^inner\["run_pair"\] = run_pair_tr.*\n', "", s, flags=re.M)
     if name == "nvc_more":
-        s = s.replace("ARGV = sys.argv[2:]", "ARGV = list(ARGS)").replace('R = HERE / "results"', 'R = Path("analysis_p2_p4/results")')
+        s = s.replace("ARGV = sys.argv[2:]", "ARGV = list(ARGS)").replace('R = HERE / "results"', 'R = Path("../analysis/results")')
         s, ok = replace_block(s, r"^def load_bp", r"^    return g", 'def load_bp():\n    g = nvc_bandpower(LIB=True)\n    g["ns"]["HOOK"]["stack_hbr"] = True\n    return g')
         assert ok
         s, ok = replace_block(s, r'^\s*sys\.argv = \[sys\.argv\[0\], "none"\]', r"exec\(s_, M12\)", "M12 = nvc_mendeley(LIB=True)")
@@ -159,7 +160,7 @@ SECTIONS = [
                                                   ("calib_reliability", ["calib_reliability()", 'run_with_env(calib_reliability, TARGET="local")']), ("trial_reliability", ["trial_reliability()"])]),
 ]
 
-PIPE = nbf.read(M / "Neurovascnet_marge_v1.ipynb", as_version=4)
+PIPE = nbf.read(M / "pipeline" / "Neurovascnet_marge_v1.ipynb", as_version=4)
 assert "EEG_FILTER = True" in PIPE.cells[4].source
 PIPE.cells[4].source = PIPE.cells[4].source.replace("EEG_FILTER = True", "EEG_FILTER = False")
 _c6 = PIPE.cells[6].source.split("\n")
@@ -177,13 +178,13 @@ assert not defined & {"NB_OUT", "RUN", "should", "run_with_env"}
 
 C = [md("""# NeuroVascNet: full analysis (infra-slow protocol)
 
-**Run All shows every current result from the saved files in `analysis_p2_p4/results/`. Nothing is recomputed.**
+**Run All shows every current result from the saved files in `analysis/results/`. Nothing is recomputed.**
 
 **To rerun everything:** in section 2 (Settings), change `RUN = set()` to `RUN = ALL`, then Run All.
 
 **To rerun one analysis:** go to the `HOW TO RERUN` block in section 2. Every analysis has a `# RERUN` line under its code with its name.
 
-Open this notebook from the `merge/` folder. Rerunning needs the datasets in `dataset/` and the caches in `merge/neurovascnet_merge_v1_cache/`, neither of which is in git."""),
+Open this notebook from the `pipeline/` folder. Rerunning needs the datasets in `dataset/` and the caches in `pipeline/neurovascnet_merge_v1_cache/`, neither of which is in git."""),
      md("## 1. Environment"), code(clean(pipeline(PIPE.cells[2]))),
      md("## 2. Settings: `RUN = ALL` is set here"),
      code('''from pathlib import Path
@@ -194,11 +195,11 @@ Open this notebook from the `merge/` folder. Rerunning needs the datasets in `da
 # RUN = {"calibration", "nvc_kernel"}    rerun several
 # RUN = ALL                rerun everything, one after another (rough estimate: a day or more)
 #
-# New results are written to merge/_nb_run/ and shown in the tables below.
-# The saved results in analysis_p2_p4/results/ are never changed.
+# New results are written to pipeline/_nb_run/ and shown in the tables below.
+# The saved results in analysis/results/ are never changed.
 #
-# PROJECT_ROOT must be the folder that holds dataset/ and merge/.
-# Keep BUILD_CACHES = False: True overwrites the 60 GB cache in merge/neurovascnet_merge_v1_cache/, which is not in git.
+# PROJECT_ROOT must be the folder that holds dataset/ and pipeline/.
+# Keep BUILD_CACHES = False: True overwrites the 60 GB cache in pipeline/neurovascnet_merge_v1_cache/, which is not in git.
 ALL = {"all"}
 RUN = set()
 BUILD_CACHES = False
@@ -231,9 +232,9 @@ src = (HERE / "build_results_notebook.py").read_text(encoding="utf-8")
 ns = {"__file__": str(HERE / "build_results_notebook.py")}
 exec(src[:src.index("nb = nbf.v4.new_notebook(")], ns)
 figs = (HERE / "make_figures.py").read_text(encoding="utf-8")
-assert 'HERE = Path(__file__).parent\n' in figs and 'A = HERE.parent / "analysis_p2_p4"\n' in figs
-figs = figs.replace('HERE = Path(__file__).parent\n', 'HERE = Path("paper")\n')
-figs = figs.replace('A = HERE.parent / "analysis_p2_p4"\n', 'A = NB_OUT if "all" in RUN else Path("analysis_p2_p4")\n')
+assert 'HERE = Path(__file__).parent\n' in figs and 'A = HERE.parent / "analysis"\n' in figs
+figs = figs.replace('HERE = Path(__file__).parent\n', 'HERE = Path("../paper")\n')
+figs = figs.replace('A = HERE.parent / "analysis"\n', 'A = NB_OUT if "all" in RUN else Path("../analysis")\n')
 s = ns["C"][1].source
 a = 'where = lambda f: R / f\n'
 assert a in s
@@ -464,7 +465,7 @@ for c in C:
         assert "research_bio_medical" not in c.source, c.source[:80]
 
 nb = nbf.v4.new_notebook(cells=C, metadata={"kernelspec": {"display_name": "Python 3", "language": "python", "name": "python3"}})
-out = M / "NeuroVascNet_Full.ipynb"
+out = M / "pipeline" / "NeuroVascNet_Full.ipynb"
 nbf.write(nb, out)
 total = sum(len(c.source.splitlines()) for c in C if c.cell_type == "code")
 comments = sum(1 for c in C if c.cell_type == "code" for l in c.source.splitlines() if l.strip().startswith("#"))

@@ -1,4 +1,4 @@
-"""Writes ../NeuroVascNet_Results.ipynb (execute it afterwards with nbconvert)."""
+"""Writes ../pipeline/NeuroVascNet_Results.ipynb (execute it afterwards with nbconvert)."""
 from pathlib import Path
 
 import nbformat as nbf
@@ -6,8 +6,8 @@ import nbformat as nbf
 md, code = nbf.v4.new_markdown_cell, nbf.v4.new_code_cell
 C = []
 
-C.append(md("# NeuroVascNet: current results\n\nAll numbers are read from `analysis_p2_p4/results/`. "
-            "Rules and history: `FINAL_PLAN.md`, `TEST_LEDGER.md`."))
+C.append(md("# NeuroVascNet: current results\n\nAll numbers are read from `analysis/results/`. "
+            "Rules and history: `docs/FINAL_PLAN.md`, `docs/TEST_LEDGER.md`."))
 
 C.append(code('''import json
 from pathlib import Path
@@ -17,7 +17,7 @@ import pandas as pd
 from IPython.display import HTML, Image, display
 from scipy import stats
 
-R, FIG = Path("analysis_p2_p4/results"), Path("paper/figures")
+R, FIG = Path("../analysis/results"), Path("../paper/figures")
 where = lambda f: R / f
 J = lambda f: json.loads(where(f).read_text())
 COH = {"hbci": "hBCI", "mental_workload": "Mental workload", "finemi": "FineMI"}
@@ -180,6 +180,6 @@ table([[t["test"], f"{t['value']:+.3f}", f"{t['p']:.1e}", "pass" if t["pass"] el
 fig("fig18_improvement", 640)'''))
 
 nb = nbf.v4.new_notebook(cells=C, metadata={"kernelspec": {"display_name": "Python 3", "language": "python", "name": "python3"}})
-out = Path(__file__).parent.parent / "NeuroVascNet_Results.ipynb"
+out = Path(__file__).parent.parent / "pipeline" / "NeuroVascNet_Results.ipynb"
 nbf.write(nb, out)
 print("wrote", out)

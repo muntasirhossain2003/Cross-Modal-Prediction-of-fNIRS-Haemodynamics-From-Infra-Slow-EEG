@@ -4,6 +4,8 @@ import os
 import sys
 from pathlib import Path
 
+REPO = Path(__file__).resolve().parents[1]   # repository root
+
 sys.argv = [sys.argv[0]]
 HERE = Path(__file__).parent
 src = (HERE / "nvc_bandpower.py").read_text()
@@ -114,7 +116,7 @@ def mw_people(W):
 def finemi_people(W):
     import mne
     mne.set_log_level("ERROR")
-    root = Path(r"G:\research_bio_medical\dataset\Multi-joint Upper-Limb EEG+FNIR\FineMI\FineMI")
+    root = Path(str(REPO / "dataset/Multi-joint Upper-Limb EEG+FNIR/FineMI/FineMI"))
     drop = {"M1", "M2", "CB1", "CB2", "EKG", "EMG", "HEO", "VEO"}
 
     def events(raw):

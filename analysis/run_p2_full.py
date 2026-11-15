@@ -5,7 +5,9 @@ from pathlib import Path
 import nbformat
 from nbclient import NotebookClient
 
-SRC = Path(r"G:\research_bio_medical\merge\Neurovascnet_marge_v1.ipynb")
+REPO = Path(__file__).resolve().parents[1]   # repository root
+
+SRC = Path(str(REPO / "pipeline/Neurovascnet_marge_v1.ipynb"))
 OUT = Path(__file__).with_name("p2_full_executed.ipynb")
 
 nb = nbformat.read(SRC, as_version=4)

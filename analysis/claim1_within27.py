@@ -13,7 +13,9 @@ import numpy as np
 import scipy.signal as sps
 from sklearn.linear_model import RidgeCV
 
-NB = Path(r"G:\research_bio_medical\merge\Neurovascnet_marge_v1.ipynb")
+REPO = Path(__file__).resolve().parents[1]   # repository root
+
+NB = Path(str(REPO / "pipeline/Neurovascnet_marge_v1.ipynb"))
 ROOT = NB.parent / "neurovascnet_merge_v1_cache"
 FNIRS, FMRI = ROOT / "train_fnirs_a2133f5d6a71ec34", ROOT / "train_fmri_56be430c4098b1ee"
 OUT = Path(__file__).with_name("claim1_within_27_" + os.environ.get("FMRI_SET", "pooled") + "_results.json")

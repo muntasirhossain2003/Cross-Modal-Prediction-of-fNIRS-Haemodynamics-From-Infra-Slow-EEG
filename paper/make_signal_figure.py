@@ -18,7 +18,9 @@ import numpy as np
 import scipy.signal as sps
 from sklearn.linear_model import RidgeCV
 
-CACHE = Path(r"G:\research_bio_medical\merge\neurovascnet_merge_v1_cache\train_fnirs_a2133f5d6a71ec34")
+REPO = Path(__file__).resolve().parents[1]   # repository root
+
+CACHE = Path(str(REPO / "pipeline/neurovascnet_merge_v1_cache/train_fnirs_a2133f5d6a71ec34"))
 PERSON, FS, ALPHAS = 20, 200.0, np.logspace(0, 6, 13)
 SHOW_CH = ["FCC3h", "Cz", "FCC4h", "Pz"]
 FOCUS_CH = "Cz"

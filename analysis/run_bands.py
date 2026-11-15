@@ -9,7 +9,9 @@ from pathlib import Path
 import nbformat
 from nbclient import NotebookClient
 
-SRC = Path(r"G:\research_bio_medical\merge\Neurovascnet_marge_v1.ipynb")
+REPO = Path(__file__).resolve().parents[1]   # repository root
+
+SRC = Path(str(REPO / "pipeline/Neurovascnet_marge_v1.ipynb"))
 HERE = Path(__file__).parent
 OUT = HERE / "bands_executed.ipynb"
 

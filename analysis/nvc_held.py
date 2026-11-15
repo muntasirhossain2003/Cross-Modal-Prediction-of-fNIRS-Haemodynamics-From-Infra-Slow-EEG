@@ -4,6 +4,8 @@ import os
 import sys
 from pathlib import Path
 
+REPO = Path(__file__).resolve().parents[1]   # repository root
+
 MODE = sys.argv[1] if len(sys.argv) > 1 else "merge"
 sys.argv = [sys.argv[0], "merge"]
 HERE = Path(__file__).parent
@@ -25,7 +27,7 @@ BP, LC, NS2 = M13["BP"], M13["LC"], M13["NS2"]
 windows, GENS, CH, SEED = M13["windows"], M13["GENS"], NS2["CH"], BP["SEED"]
 subject_level_test, verdict_text, interpolation_matrix = E2["subject_level_test"], E2["verdict_text"], E2["interpolation_matrix"]
 zs_person, demean, ALPHAS = E2["zs_person"], E2["demean"], E2["ALPHAS"]
-CACHE = HERE.parent / "neurovascnet_merge_v1_cache" / "p14_windows"
+CACHE = REPO / "pipeline" / "neurovascnet_merge_v1_cache" / "p14_windows"
 SMOKE = int(os.environ.get("SMOKE", "0"))
 FAMILY = 12
 ALPHA = 0.05 / FAMILY

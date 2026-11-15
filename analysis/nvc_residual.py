@@ -3,6 +3,8 @@ import os
 import sys
 from pathlib import Path
 
+REPO = Path(__file__).resolve().parents[1]   # repository root
+
 MODE = sys.argv[1] if len(sys.argv) > 1 else "all"
 SHARD = (int(sys.argv[2]), int(sys.argv[3])) if MODE == "shard" else (0, 1)
 HERE = Path(__file__).parent
@@ -114,7 +116,7 @@ def mw_people():
 def finemi_people():
     import mne
     mne.set_log_level("ERROR")
-    root = Path(r"G:\research_bio_medical\dataset\Multi-joint Upper-Limb EEG+FNIR\FineMI\FineMI")
+    root = Path(str(REPO / "dataset/Multi-joint Upper-Limb EEG+FNIR/FineMI/FineMI"))
     drop = {"M1", "M2", "CB1", "CB2", "EKG", "EMG", "HEO", "VEO"}
 
     def events(raw):

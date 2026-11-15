@@ -14,8 +14,10 @@ import scipy.io as sio
 import scipy.signal as sps
 from scipy.stats import wilcoxon
 
-NB = Path(r"G:\research_bio_medical\merge\Neurovascnet_marge_v1.ipynb")
-MW = Path(r"G:\research_bio_medical\dataset\TU Berlin EEG + NIRS")
+REPO = Path(__file__).resolve().parents[1]   # repository root
+
+NB = Path(str(REPO / "pipeline/Neurovascnet_marge_v1.ipynb"))
+MW = Path(str(REPO / "dataset/TU Berlin EEG + NIRS"))
 OUT = Path(__file__).with_name("continuous_lag_results.json")
 MAXLAG, MINSHIFT, NSURR, SEED = 20, 60, 200, 1337
 EOG = ("VEOG", "HEOG")

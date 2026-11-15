@@ -13,7 +13,9 @@ import numpy as np
 import scipy.signal as sps
 from sklearn.linear_model import RidgeCV
 
-NB = Path(r"G:\research_bio_medical\merge\Neurovascnet_marge_v1.ipynb")
+REPO = Path(__file__).resolve().parents[1]   # repository root
+
+NB = Path(str(REPO / "pipeline/Neurovascnet_marge_v1.ipynb"))
 ROOT = NB.parent / "neurovascnet_merge_v1_cache"
 CACHES = {"hbci": ROOT / "train_fnirs_a2133f5d6a71ec34", "mental_workload": ROOT / "replication_tuberlin_mw", "finemi": ROOT / ("replication_finemi" + os.environ.get("FINEMI_TAG", "") + ("_lm" if os.environ.get("REREF") else ""))}
 EA = bool(os.environ.get("EA"))                        # P5.2b Euclidean alignment

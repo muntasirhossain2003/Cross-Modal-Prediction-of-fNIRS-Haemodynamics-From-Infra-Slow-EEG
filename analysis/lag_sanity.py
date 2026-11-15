@@ -9,6 +9,8 @@ from pathlib import Path
 import numpy as np
 import scipy.signal as sps
 
+REPO = Path(__file__).resolve().parents[1]   # repository root
+
 sys.argv = [sys.argv[0]]
 HERE = Path(__file__).parent
 src = (HERE / "continuous_lag.py").read_text()
@@ -65,7 +67,7 @@ for s in range(1, 6):
           f"flipped lag {out[-1][0]} peak |r| {out[-1][1]:.3f}")
 
 print("3. marker-locked averages (hBCI cache, all trials)")
-C = Path(r"G:\research_bio_medical\merge\neurovascnet_merge_v1_cache\train_fnirs_a2133f5d6a71ec34")
+C = Path(str(REPO / "pipeline/neurovascnet_merge_v1_cache/train_fnirs_a2133f5d6a71ec34"))
 eeg = np.load(C / "eeg.npy", mmap_mode="r")
 hemo = np.load(C / "hemo.npy")
 tid = np.load(C / "task_ids.npy")

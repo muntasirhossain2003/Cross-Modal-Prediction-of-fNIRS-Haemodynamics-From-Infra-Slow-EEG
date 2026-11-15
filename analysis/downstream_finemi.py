@@ -14,7 +14,9 @@ from sklearn.linear_model import LogisticRegression, RidgeCV
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
 
-ROOT = Path(r"G:\research_bio_medical\merge\neurovascnet_merge_v1_cache")
+REPO = Path(__file__).resolve().parents[1]   # repository root
+
+ROOT = Path(str(REPO / "pipeline/neurovascnet_merge_v1_cache"))
 CACHES = {"finemi": ROOT / "replication_finemi"}
 OUT = Path(__file__).with_name("downstream_finemi_results.json")
 FS, SEED, TMIN = 200.0, 1337, -2.0

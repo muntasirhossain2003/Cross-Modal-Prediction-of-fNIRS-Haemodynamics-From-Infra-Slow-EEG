@@ -1,4 +1,4 @@
-"""Paper figures for NeuroVascNet. Reads the result JSONs in ../analysis_p2_p4 (and shard files); numbers that exist
+"""Paper figures for NeuroVascNet. Reads the result JSONs in ../analysis (and shard files); numbers that exist
 only in RESULTS_SUMMARY.md tables are typed in below with their source section noted."""
 import glob
 import json
@@ -10,10 +10,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 HERE = Path(__file__).parent
-A = HERE.parent / "analysis_p2_p4"
+A = HERE.parent / "analysis"
 OUT = HERE / "figures"
 OUT.mkdir(exist_ok=True)
-SAVED = HERE.parent / "analysis_p2_p4" / "results"
+SAVED = HERE.parent / "analysis" / "results"
 
 
 def RJ(name):
@@ -38,7 +38,7 @@ def boot_ci(v, rng=np.random.default_rng(1337), n=5000):
 
 def shards(pattern):
     d = {}
-    roots = (A, HERE.parent / "analysis_p2_p4", SAVED / "shards")
+    roots = (A, HERE.parent / "analysis", SAVED / "shards")
     files = next((g for g in (glob.glob(str(r / pattern)) for r in roots) if g), [])
     for f in sorted(files):
         d.update(json.loads(Path(f).read_text()))

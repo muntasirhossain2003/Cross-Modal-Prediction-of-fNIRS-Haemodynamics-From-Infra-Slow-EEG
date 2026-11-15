@@ -4,6 +4,8 @@ import os
 import sys
 from pathlib import Path
 
+REPO = Path(__file__).resolve().parents[1]   # repository root
+
 MODE = sys.argv[1] if len(sys.argv) > 1 else "merge"
 ARGV = sys.argv[2:]
 sys.argv = [sys.argv[0], "merge"]
@@ -83,7 +85,7 @@ if MODE == "claim2":
 
 if MODE == "claim5":
     C5 = json.loads((R / "nvc_held_claim5.json").read_text())
-    Z = HERE.parent / "neurovascnet_merge_v1_cache" / "p14_windows"
+    Z = REPO / "pipeline" / "neurovascnet_merge_v1_cache" / "p14_windows"
     people = {c: {int(k): v for k, v in C5[c]["raw"]["people"].items()} for c in COHORTS}
     xy = {c: (np.array([v["cal_score"] for v in people[c].values()]), np.array([v["test"] for v in people[c].values()])) for c in COHORTS}
     transport = {}

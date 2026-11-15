@@ -15,13 +15,15 @@ import nbformat
 import numpy as np
 import scipy.signal as sps
 
+REPO = Path(__file__).resolve().parents[1]   # repository root
+
 warnings.filterwarnings("ignore")
 mne.set_log_level("ERROR")
-NB = Path(r"G:\research_bio_medical\merge\Neurovascnet_marge_v1.ipynb")
-ROOT = Path(r"G:\research_bio_medical\dataset\Multi-joint Upper-Limb EEG+FNIR\FineMI\FineMI")
+NB = Path(str(REPO / "pipeline/Neurovascnet_marge_v1.ipynb"))
+ROOT = Path(str(REPO / "dataset/Multi-joint Upper-Limb EEG+FNIR/FineMI/FineMI"))
 REREF = os.environ.get("REREF", "")                       # "lm" = linked mastoids (P4.B)
 HWHP = os.environ.get("HWHP", "")                         # "1" = emulate BrainAmp 10 s first-order high-pass (P5.2)
-CACHE = Path(r"G:\research_bio_medical\merge\neurovascnet_merge_v1_cache\replication_finemi"
+CACHE = Path(str(REPO / "pipeline/neurovascnet_merge_v1_cache/replication_finemi")
              + ("_hw" if HWHP else "") + ("_lm" if REREF else ""))
 FS = 200.0
 EOG = ("HEO", "VEO")

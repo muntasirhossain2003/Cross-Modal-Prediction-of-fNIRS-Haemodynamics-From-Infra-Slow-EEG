@@ -13,7 +13,9 @@ import scipy.signal as sps
 from sklearn.linear_model import RidgeCV
 from sklearn.model_selection import LeaveOneGroupOut
 
-CACHE = Path(r"G:\research_bio_medical\merge\neurovascnet_merge_v1_cache\train_fnirs_a2133f5d6a71ec34")
+REPO = Path(__file__).resolve().parents[1]   # repository root
+
+CACHE = Path(str(REPO / "pipeline/neurovascnet_merge_v1_cache/train_fnirs_a2133f5d6a71ec34"))
 OUT = Path(__file__).with_name("lag_results.json")
 FS, SEED, T0, LEN = 200.0, 1337, 8, 22          # fNIRS segment = 1 s bins 8..29
 LAGS = list(range(-8, 9))

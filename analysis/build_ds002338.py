@@ -6,9 +6,11 @@ from pathlib import Path
 import nbformat
 import numpy as np
 
-NB = Path(r"G:\research_bio_medical\merge\Neurovascnet_marge_v1.ipynb")
-ROOT = Path(r"G:\research_bio_medical\dataset\OpenNeuro ds002338")
-CACHE = Path(r"G:\research_bio_medical\merge\neurovascnet_merge_v1_cache\replication_ds002338")
+REPO = Path(__file__).resolve().parents[1]   # repository root
+
+NB = Path(str(REPO / "pipeline/Neurovascnet_marge_v1.ipynb"))
+ROOT = Path(str(REPO / "dataset/OpenNeuro ds002338"))
+CACHE = Path(str(REPO / "pipeline/neurovascnet_merge_v1_cache/replication_ds002338"))
 
 nb = nbformat.read(NB, as_version=4)
 nb.cells[4].source = nb.cells[4].source.replace("EEG_FILTER = True", "EEG_FILTER = False")

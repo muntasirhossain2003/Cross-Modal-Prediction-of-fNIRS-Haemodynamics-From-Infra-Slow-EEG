@@ -12,7 +12,9 @@ import numpy as np
 import scipy.signal as sps
 from scipy.stats import wilcoxon
 
-ROOT = Path(r"G:\research_bio_medical\merge\neurovascnet_merge_v1_cache")
+REPO = Path(__file__).resolve().parents[1]   # repository root
+
+ROOT = Path(str(REPO / "pipeline/neurovascnet_merge_v1_cache"))
 COHORTS = {"hbci": ROOT / "train_fnirs_a2133f5d6a71ec34", "mental_workload": ROOT / "replication_tuberlin_mw"}
 OUT = Path(__file__).with_name("evoked_timing_results.json")
 FS_EEG, FS, TMIN, NSURR, SEED = 200.0, 10.0, -2.0, 200, 1337

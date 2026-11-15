@@ -3,6 +3,8 @@ import os
 import sys
 from pathlib import Path
 
+REPO = Path(__file__).resolve().parents[1]   # repository root
+
 MODE = sys.argv[1] if len(sys.argv) > 1 else "all"          # "shard K N" | "merge" | "all"
 SHARD = (int(sys.argv[2]), int(sys.argv[3])) if MODE == "shard" else (0, 1)
 os.environ["OMP_NUM_THREADS"] = os.environ["OPENBLAS_NUM_THREADS"] = os.environ["MKL_NUM_THREADS"] = "3"
@@ -105,7 +107,7 @@ def person(pairs, rng):
 
 
 def finemi_people():
-    z = np.load(Path("G:/research_bio_medical/merge/neurovascnet_merge_v1_cache/replication_finemi" + os.environ.get("FINEMI_TAG", "") + ("_lm" if os.environ.get("REREF") else "") + "/continuous.npz"))
+    z = np.load(Path(str(REPO / "pipeline/neurovascnet_merge_v1_cache/replication_finemi") + os.environ.get("FINEMI_TAG", "") + ("_lm" if os.environ.get("REREF") else "") + "/continuous.npz"))
     subs = sorted({int(k.split("_")[0][1:]) for k in z.files})
     for s_ in subs:
         runs = sorted({int(k.split("_")[1][1:]) for k in z.files if k.startswith(f"s{s_}_")})
