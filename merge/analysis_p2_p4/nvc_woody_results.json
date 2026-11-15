@@ -1,0 +1,75 @@
+{
+ "control | hbci degraded to finemi strength": {
+  "n": 29,
+  "agree_2s": 0.27586206896551724,
+  "chance": 0.23891625615763545,
+  "p_agree": 0.39376062393760625,
+  "median_delay_s": 4.0,
+  "passes_p05": false,
+  "passes_corrected": false
+ },
+ "control | hbci degraded to mental_workload strength": {
+  "n": 29,
+  "agree_2s": 0.20689655172413793,
+  "chance": 0.22413793103448276,
+  "p_agree": 0.6554344565543445,
+  "median_delay_s": 7.5,
+  "passes_p05": false,
+  "passes_corrected": false
+ },
+ "estimator_valid": false,
+ "hbci | raw": {
+  "n": 29,
+  "agree_2s": 0.6551724137931034,
+  "chance": 0.39285714285714285,
+  "p_agree": 0.0024997500249975004,
+  "median_delay_s": 4.0,
+  "passes_p05": true,
+  "passes_corrected": true
+ },
+ "mental_workload | raw": {
+  "n": 26,
+  "agree_2s": 0.19230769230769232,
+  "chance": 0.26461538461538464,
+  "p_agree": 0.8499150084991501,
+  "median_delay_s": 3.5,
+  "passes_p05": false,
+  "passes_corrected": false
+ },
+ "finemi | raw": {
+  "n": 18,
+  "agree_2s": 0.16666666666666666,
+  "chance": 0.24183006535947704,
+  "p_agree": 0.8487151284871512,
+  "median_delay_s": -4.0,
+  "passes_p05": false,
+  "passes_corrected": false
+ },
+ "hbci | task removed": {
+  "n": 29,
+  "agree_2s": 0.5862068965517241,
+  "chance": 0.3866995073891626,
+  "p_agree": 0.016998300169983,
+  "median_delay_s": 4.0,
+  "passes_p05": true,
+  "passes_corrected": false
+ },
+ "mental_workload | task removed": {
+  "n": 26,
+  "agree_2s": 0.2692307692307692,
+  "chance": 0.24769230769230774,
+  "p_agree": 0.4864513548645136,
+  "median_delay_s": 3.0,
+  "passes_p05": false,
+  "passes_corrected": false
+ },
+ "finemi | task removed": {
+  "n": 18,
+  "agree_2s": 0.3333333333333333,
+  "chance": 0.18300653594771238,
+  "p_agree": 0.09919008099190081,
+  "median_delay_s": -1.0,
+  "passes_p05": false,
+  "passes_corrected": false
+ }
+}

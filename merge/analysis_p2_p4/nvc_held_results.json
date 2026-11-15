@@ -1,0 +1,175 @@
+{
+ "alpha": 0.004166666666666667,
+ "tests": [
+  {
+   "test": "P14.1 Claim 2, shared-people check",
+   "what": "hBCI -> MW",
+   "value": 0.21686544119488047,
+   "p": 0.0004999500049995,
+   "pass": true,
+   "survives_alpha": true
+  },
+  {
+   "test": "P14.2 Claim 2, no cues",
+   "what": "hBCI -> MW",
+   "value": 0.20123948235237893,
+   "p": 0.00019998000199980003,
+   "pass": true,
+   "survives_alpha": true
+  },
+  {
+   "test": "P14.3 Claim 5, no cues",
+   "what": "hbci raw",
+   "value": 0.8536945812807879,
+   "p": 3.93595341677293e-09,
+   "pass": true,
+   "survives_alpha": true
+  },
+  {
+   "test": "P14.3 Claim 5, no cues",
+   "what": "hbci gain",
+   "value": 0.7881773399014776,
+   "p": 3.846455240570751e-07,
+   "pass": true,
+   "survives_alpha": true
+  },
+  {
+   "test": "P14.3 Claim 5, no cues",
+   "what": "mental_workload raw",
+   "value": 0.831111111111111,
+   "p": 1.4596158679968134e-07,
+   "pass": true,
+   "survives_alpha": true
+  },
+  {
+   "test": "P14.3 Claim 5, no cues",
+   "what": "mental_workload gain",
+   "value": 0.8666666666666666,
+   "p": 1.0378727216486522e-08,
+   "pass": true,
+   "survives_alpha": true
+  },
+  {
+   "test": "P14.3 Claim 5, no cues",
+   "what": "finemi raw",
+   "value": 0.8390092879256965,
+   "p": 1.351266247095845e-05,
+   "pass": true,
+   "survives_alpha": true
+  },
+  {
+   "test": "P14.3 Claim 5, no cues",
+   "what": "finemi gain",
+   "value": 0.8534571723426212,
+   "p": 6.681541734969331e-06,
+   "pass": true,
+   "survives_alpha": true
+  },
+  {
+   "test": "P14.4 Claim 5, third lab",
+   "what": "mendeley raw",
+   "value": 0.2928571428571428,
+   "p": 0.289471667212401,
+   "pass": false,
+   "survives_alpha": false
+  },
+  {
+   "test": "P14.4 Claim 5, third lab",
+   "what": "mendeley gain",
+   "value": 0.2964285714285714,
+   "p": 0.28335542843426287,
+   "pass": false,
+   "survives_alpha": false
+  },
+  {
+   "test": "P14.5 Claim 1, no cues",
+   "what": "mental_workload",
+   "value": 0.13446230619857882,
+   "p": 9.999000099990002e-05,
+   "pass": true,
+   "survives_alpha": true
+  },
+  {
+   "test": "P14.5 Claim 1, no cues",
+   "what": "finemi",
+   "value": 0.1754914856683398,
+   "p": 9.999000099990002e-05,
+   "pass": true,
+   "survives_alpha": true
+  }
+ ],
+ "control_ok": true,
+ "candidates": [
+  [
+   3,
+   20,
+   0.7848283052444458
+  ],
+  [
+   13,
+   18,
+   0.7517405152320862
+  ],
+  [
+   18,
+   22,
+   0.6997344493865967
+  ],
+  [
+   21,
+   1,
+   0.6873347163200378
+  ],
+  [
+   27,
+   26,
+   0.7543826699256897
+  ]
+ ],
+ "excluded": {
+  "hbci": [
+   3,
+   13,
+   18,
+   21,
+   27
+  ],
+  "mental_workload": [
+   1,
+   18,
+   20,
+   22,
+   26
+  ]
+ },
+ "reproduction": [
+  0.20521720453780778,
+  0.20521720453780778
+ ],
+ "control": {
+  "hbci": {
+   "identification": 0.9655172413793104,
+   "median_same_person": 0.9395589828491211,
+   "median_other": -0.0272420234978199
+  },
+  "mental_workload": {
+   "identification": 1.0,
+   "median_same_person": 0.9421842098236084,
+   "median_other": -0.05833378806710243
+  }
+ },
+ "threshold_T": 0.6801883816719057,
+ "max_cross_similarity": 0.7848283052444458,
+ "claim5_no_cues_holds": true,
+ "claim3_post_hoc": {
+  "n": 15,
+  "median_delay_s": 7.0,
+  "iqr": [
+   0.0,
+   11.5
+  ],
+  "wilcoxon_p": 0.022764511782760583,
+  "physiological": true,
+  "note": "post hoc, not counted"
+ }
+}

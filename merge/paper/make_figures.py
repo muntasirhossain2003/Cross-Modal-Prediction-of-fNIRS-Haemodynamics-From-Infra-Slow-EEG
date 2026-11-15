@@ -73,7 +73,7 @@ save(fig, "fig1_slow_band")
 # Fig 2 — band-power -> local HbO lag curves (P6.4)
 nvc = shards("nvc_shard_*_of_11.json")
 lags = np.arange(-10, 21)
-fig, ax = plt.subplots(figsize=(5.0, 3.2))
+fig, ax = plt.subplots(figsize=(3.5, 3.0))       # single-column width in the journal layout
 for c, (lab, col) in COH.items():
     C = np.array([v["curve_local"] for v in nvc.values() if v["cohort"] == c])
     m, se = C.mean(0), C.std(0, ddof=1) / np.sqrt(len(C))
@@ -82,9 +82,11 @@ for c, (lab, col) in COH.items():
     k = int(np.argmax(m))
     ax.plot(lags[k], m[k], "o", ms=5, color=col, mec=SURF, mew=1.5)
 ax.axvline(0, color=INK2, lw=0.8, ls="--")
-ax.set_xlabel("lag (s); positive = EEG band power leads HbO")
-ax.set_ylabel("held-out-run r (local HbO)")
-ax.legend(fontsize=7.5, loc="upper right")
+ax.set_xlabel("lag (s); positive = EEG leads HbO", fontsize=8)
+ax.set_ylabel("held-out-run r (local HbO)", fontsize=8)
+ax.tick_params(labelsize=7.5)
+# Legend sits above the axes so it cannot cover the curves.
+ax.legend(fontsize=7, loc="lower left", bbox_to_anchor=(0, 1.02), ncol=1, borderaxespad=0, handlelength=1.8)
 save(fig, "fig2_coupling_lag")
 
 # Fig 3 — kernel reproducibility within person (P7.1): d = k - mean(k_null)
@@ -113,27 +115,27 @@ bd = RJ("nvc_bands_results.json")
 t2 = RJ("nvc_transfer2_results.json")
 lopo_h = tr["within_hbci_lopo"]
 lh_ci = lopo_h["ci"] if "ci" in lopo_h else boot_ci([q["r"] for q in lopo_h["people"].values()]) if "people" in lopo_h else [np.nan] * 2
-rows = [("hBCI -> hBCI, held-out person", lopo_h["mean_r"], lh_ci, "hbci"),
-        ("FineMI -> FineMI, held-out person", bd["lopo | finemi"]["mean_r"], bd["lopo | finemi"]["ci"], "finemi"),
-        ("hBCI -> mental workload (same lab)", tr["hbci_to_mental_workload"]["mean_r"], tr["hbci_to_mental_workload"]["ci"], "mental_workload"),
-        ("hBCI -> FineMI, frozen (other lab)", tr["hbci_to_finemi"]["mean_r"], tr["hbci_to_finemi"]["ci"], "finemi"),
-        ("hBCI -> FineMI, calibrated gain*", t2["calibrated | finemi"]["diff"], t2["calibrated | finemi"]["ci"], "finemi")]
-fig, ax = plt.subplots(figsize=(5.6, 3.1))
+rows = [("hBCI → hBCI, new person", lopo_h["mean_r"], lh_ci, "hbci"),
+        ("FineMI → FineMI, new person", bd["lopo | finemi"]["mean_r"], bd["lopo | finemi"]["ci"], "finemi"),
+        ("hBCI → MW (same lab)", tr["hbci_to_mental_workload"]["mean_r"], tr["hbci_to_mental_workload"]["ci"], "mental_workload"),
+        ("hBCI → FineMI, frozen", tr["hbci_to_finemi"]["mean_r"], tr["hbci_to_finemi"]["ci"], "finemi"),
+        ("hBCI → FineMI, calibrated*", t2["calibrated | finemi"]["diff"], t2["calibrated | finemi"]["ci"], "finemi")]
+fig, ax = plt.subplots(figsize=(3.5, 2.6))       # single-column width in the journal layout
 for i, (lab, m, ci, c) in enumerate(rows[::-1]):
     col = COH[c][1]
     ax.plot(ci, [i, i], color=col, lw=2, solid_capstyle="round")
     ax.plot(m, i, "o", ms=7, color=col, mec=SURF, mew=1.5)
     if m < 0:
-        ax.text(ci[0] - 0.006, i, f"{m:+.3f}", va="center", ha="right", fontsize=7.5, color=INK)
+        ax.text(ci[0] - 0.006, i, f"{m:+.3f}", va="center", ha="right", fontsize=6.8, color=INK)
     else:
-        ax.text(ci[1] + 0.006, i, f"{m:+.3f}", va="center", fontsize=7.5, color=INK)
+        ax.text(ci[1] + 0.006, i, f"{m:+.3f}", va="center", fontsize=6.8, color=INK)
 ax.axvline(0, color=INK2, lw=0.8, ls="--")
-ax.set_yticks(range(len(rows)), [r[0] for r in rows[::-1]], fontsize=8)
-ax.set_xlabel("r with global HbO (95% CI)")
+ax.set_yticks(range(len(rows)), [r[0] for r in rows[::-1]], fontsize=7)
+ax.tick_params(axis="x", labelsize=7)
+ax.set_xlabel("r with global HbO (95% CI)", fontsize=7.5)
 ax.grid(axis="y", visible=False)
-ax.set_xlim(-0.13, 0.23)
-fig.text(0.01, 0.01, "*added to a person's own two-run model; nominal (does not survive multiplicity correction)",
-         fontsize=6.5, color=INK2)
+ax.set_xlim(-0.19, 0.25)
+fig.text(0.01, 0.01, "*added to a person's own two-run model; nominal", fontsize=6, color=INK2)
 save(fig, "fig4_kernel_transfer")
 
 # Fig 5 — deployment value and person-level reliability (RESULTS_SUMMARY deployment table; P5.4)

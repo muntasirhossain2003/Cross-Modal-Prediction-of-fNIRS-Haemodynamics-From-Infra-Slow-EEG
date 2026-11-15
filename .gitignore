@@ -69,3 +69,8 @@ report_build/
 
 # Working folder of NeuroVascNet_Full.ipynb
 merge/_nb_run/
+
+# Journal manuscript (kept private until publication)
+merge/paper/bspc/
+merge/paper/bspc_overleaf/
+merge/paper/bspc_overleaf.zip
