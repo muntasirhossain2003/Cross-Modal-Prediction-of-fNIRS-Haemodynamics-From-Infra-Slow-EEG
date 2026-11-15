@@ -1,0 +1,1236 @@
+{
+ "hbci": {
+  "people": {
+   "1": {
+    "tasks": [
+     {
+      "task": 0,
+      "n_trials": 60,
+      "gfp_peak_s": 10.5,
+      "hbo_peak_s": 5.9,
+      "delay_s": -4.6,
+      "gfp_peak": 0.6617147217079722,
+      "null95": 0.3608333599141789,
+      "evoked_present": true
+     },
+     {
+      "task": 1,
+      "n_trials": 60,
+      "gfp_peak_s": 13.9,
+      "hbo_peak_s": 22.7,
+      "delay_s": 8.799999999999999,
+      "gfp_peak": 0.3982755655112975,
+      "null95": 0.34960520978269854,
+      "evoked_present": true
+     }
+    ],
+    "delay_s": 2.0999999999999996,
+    "evoked_present": true
+   },
+   "2": {
+    "tasks": [
+     {
+      "task": 0,
+      "n_trials": 60,
+      "gfp_peak_s": 14.399999999999999,
+      "hbo_peak_s": 15.7,
+      "delay_s": 1.3000000000000007,
+      "gfp_peak": 0.394799252089427,
+      "null95": 0.2783211524088166,
+      "evoked_present": true
+     },
+     {
+      "task": 1,
+      "n_trials": 60,
+      "gfp_peak_s": 13.8,
+      "hbo_peak_s": 16.8,
+      "delay_s": 3.0,
+      "gfp_peak": 0.37557249023820144,
+      "null95": 0.2712347163163261,
+      "evoked_present": true
+     }
+    ],
+    "delay_s": 2.1500000000000004,
+    "evoked_present": true
+   },
+   "3": {
+    "tasks": [
+     {
+      "task": 0,
+      "n_trials": 60,
+      "gfp_peak_s": 4.7,
+      "hbo_peak_s": 3.9000000000000004,
+      "delay_s": -0.7999999999999998,
+      "gfp_peak": 0.23551908486071127,
+      "null95": 0.2997333981558463,
+      "evoked_present": false
+     },
+     {
+      "task": 1,
+      "n_trials": 60,
+      "gfp_peak_s": 4.5,
+      "hbo_peak_s": 3.0,
+      "delay_s": -1.5,
+      "gfp_peak": 0.13605561752313297,
+      "null95": 0.2592027768623493,
+      "evoked_present": false
+     }
+    ],
+    "delay_s": -1.15,
+    "evoked_present": false
+   },
+   "4": {
+    "tasks": [
+     {
+      "task": 0,
+      "n_trials": 60,
+      "gfp_peak_s": 12.6,
+      "hbo_peak_s": 17.8,
+      "delay_s": 5.200000000000001,
+      "gfp_peak": 0.3487428820734188,
+      "null95": 0.3088697187795041,
+      "evoked_present": true
+     },
+     {
+      "task": 1,
+      "n_trials": 60,
+      "gfp_peak_s": 17.3,
+      "hbo_peak_s": 18.2,
+      "delay_s": 0.8999999999999986,
+      "gfp_peak": 0.1907003623040218,
+      "null95": 0.2893752926366808,
+      "evoked_present": false
+     }
+    ],
+    "delay_s": 3.05,
+    "evoked_present": true
+   },
+   "5": {
+    "tasks": [
+     {
+      "task": 0,
+      "n_trials": 60,
+      "gfp_peak_s": 12.9,
+      "hbo_peak_s": 15.7,
+      "delay_s": 2.799999999999999,
+      "gfp_peak": 0.19679504119240382,
+      "null95": 0.24262291665855393,
+      "evoked_present": false
+     },
+     {
+      "task": 1,
+      "n_trials": 60,
+      "gfp_peak_s": 3.9000000000000004,
+      "hbo_peak_s": 16.4,
+      "delay_s": 12.499999999999998,
+      "gfp_peak": 0.1644191010087086,
+      "null95": 0.26022545353339005,
+      "evoked_present": false
+     }
+    ],
+    "delay_s": 7.649999999999999,
+    "evoked_present": false
+   },
+   "6": {
+    "tasks": [
+     {
+      "task": 0,
+      "n_trials": 60,
+      "gfp_peak_s": 19.7,
+      "hbo_peak_s": 16.2,
+      "delay_s": -3.5,
+      "gfp_peak": 0.37706657866163484,
+      "null95": 0.29723012990181286,
+      "evoked_present": true
+     },
+     {
+      "task": 1,
+      "n_trials": 60,
+      "gfp_peak_s": 5.8,
+      "hbo_peak_s": 17.1,
+      "delay_s": 11.3,
+      "gfp_peak": 0.3222140388849721,
+      "null95": 0.31311286424694146,
+      "evoked_present": true
+     }
+    ],
+    "delay_s": 3.9000000000000004,
+    "evoked_present": true
+   },
+   "7": {
+    "tasks": [
+     {
+      "task": 0,
+      "n_trials": 60,
+      "gfp_peak_s": 18.0,
+      "hbo_peak_s": 15.600000000000001,
+      "delay_s": -2.3999999999999986,
+      "gfp_peak": 0.42260365789050486,
+      "null95": 0.27176224168638863,
+      "evoked_present": true
+     },
+     {
+      "task": 1,
+      "n_trials": 60,
+      "gfp_peak_s": 8.1,
+      "hbo_peak_s": 4.6,
+      "delay_s": -3.5,
+      "gfp_peak": 0.49044592125597725,
+      "null95": 0.2534307392624438,
+      "evoked_present": true
+     }
+    ],
+    "delay_s": -2.9499999999999993,
+    "evoked_present": true
+   },
+   "8": {
+    "tasks": [
+     {
+      "task": 0,
+      "n_trials": 60,
+      "gfp_peak_s": 22.0,
+      "hbo_peak_s": 8.9,
+      "delay_s": -13.1,
+      "gfp_peak": 0.1586227426301225,
+      "null95": 0.23684435677919088,
+      "evoked_present": false
+     },
+     {
+      "task": 1,
+      "n_trials": 60,
+      "gfp_peak_s": 13.7,
+      "hbo_peak_s": 4.7,
+      "delay_s": -9.0,
+      "gfp_peak": 0.1590104375708685,
+      "null95": 0.2604981232893946,
+      "evoked_present": false
+     }
+    ],
+    "delay_s": -11.05,
+    "evoked_present": false
+   },
+   "9": {
+    "tasks": [
+     {
+      "task": 0,
+      "n_trials": 60,
+      "gfp_peak_s": 4.0,
+      "hbo_peak_s": 16.0,
+      "delay_s": 12.0,
+      "gfp_peak": 0.6732440536776394,
+      "null95": 0.31538114099077097,
+      "evoked_present": true
+     },
+     {
+      "task": 1,
+      "n_trials": 60,
+      "gfp_peak_s": 16.7,
+      "hbo_peak_s": 16.0,
+      "delay_s": -0.6999999999999993,
+      "gfp_peak": 0.39305400461996964,
+      "null95": 0.39036732456201584,
+      "evoked_present": true
+     }
+    ],
+    "delay_s": 5.65,
+    "evoked_present": true
+   },
+   "10": {
+    "tasks": [
+     {
+      "task": 0,
+      "n_trials": 60,
+      "gfp_peak_s": 13.4,
+      "hbo_peak_s": 9.1,
+      "delay_s": -4.300000000000001,
+      "gfp_peak": 0.33299018467184854,
+      "null95": 0.253525890113061,
+      "evoked_present": true
+     },
+     {
+      "task": 1,
+      "n_trials": 60,
+      "gfp_peak_s": 7.199999999999999,
+      "hbo_peak_s": 3.0,
+      "delay_s": -4.199999999999999,
+      "gfp_peak": 0.36332250472813366,
+      "null95": 0.24004693245253347,
+      "evoked_present": true
+     }
+    ],
+    "delay_s": -4.25,
+    "evoked_present": true
+   },
+   "11": {
+    "tasks": [
+     {
+      "task": 0,
+      "n_trials": 60,
+      "gfp_peak_s": 15.0,
+      "hbo_peak_s": 13.3,
+      "delay_s": -1.6999999999999993,
+      "gfp_peak": 0.314580472186279,
+      "null95": 0.3191130511784772,
+      "evoked_present": false
+     },
+     {
+      "task": 1,
+      "n_trials": 60,
+      "gfp_peak_s": 18.1,
+      "hbo_peak_s": 14.5,
+      "delay_s": -3.6000000000000014,
+      "gfp_peak": 0.21988122091288442,
+      "null95": 0.35623711742062614,
+      "evoked_present": false
+     }
+    ],
+    "delay_s": -2.6500000000000004,
+    "evoked_present": false
+   },
+   "12": {
+    "tasks": [
+     {
+      "task": 0,
+      "n_trials": 60,
+      "gfp_peak_s": 3.4000000000000004,
+      "hbo_peak_s": 3.5999999999999996,
+      "delay_s": 0.1999999999999993,
+      "gfp_peak": 0.226683956117979,
+      "null95": 0.25510184571056954,
+      "evoked_present": false
+     },
+     {
+      "task": 1,
+      "n_trials": 60,
+      "gfp_peak_s": 14.399999999999999,
+      "hbo_peak_s": 3.3,
+      "delay_s": -11.099999999999998,
+      "gfp_peak": 0.4123625431579667,
+      "null95": 0.32892815639160433,
+      "evoked_present": true
+     }
+    ],
+    "delay_s": -5.449999999999999,
+    "evoked_present": true
+   },
+   "13": {
+    "tasks": [
+     {
+      "task": 0,
+      "n_trials": 60,
+      "gfp_peak_s": 13.3,
+      "hbo_peak_s": 16.4,
+      "delay_s": 3.099999999999998,
+      "gfp_peak": 0.30162551925731723,
+      "null95": 0.2301265687057534,
+      "evoked_present": true
+     },
+     {
+      "task": 1,
+      "n_trials": 60,
+      "gfp_peak_s": 3.5,
+      "hbo_peak_s": 15.3,
+      "delay_s": 11.8,
+      "gfp_peak": 0.23641446136878272,
+      "null95": 0.26499337606792256,
+      "evoked_present": false
+     }
+    ],
+    "delay_s": 7.449999999999999,
+    "evoked_present": true
+   },
+   "14": {
+    "tasks": [
+     {
+      "task": 0,
+      "n_trials": 60,
+      "gfp_peak_s": 12.4,
+      "hbo_peak_s": 15.2,
+      "delay_s": 2.799999999999999,
+      "gfp_peak": 0.24594810352999122,
+      "null95": 0.21414992379211714,
+      "evoked_present": true
+     },
+     {
+      "task": 1,
+      "n_trials": 60,
+      "gfp_peak_s": 5.3,
+      "hbo_peak_s": 16.2,
+      "delay_s": 10.899999999999999,
+      "gfp_peak": 0.27782695101966653,
+      "null95": 0.19567695716073646,
+      "evoked_present": true
+     }
+    ],
+    "delay_s": 6.849999999999999,
+    "evoked_present": true
+   },
+   "15": {
+    "tasks": [
+     {
+      "task": 0,
+      "n_trials": 60,
+      "gfp_peak_s": 17.8,
+      "hbo_peak_s": 17.8,
+      "delay_s": 0.0,
+      "gfp_peak": 0.2764083035662766,
+      "null95": 0.24279938705354218,
+      "evoked_present": true
+     },
+     {
+      "task": 1,
+      "n_trials": 60,
+      "gfp_peak_s": 8.1,
+      "hbo_peak_s": 19.2,
+      "delay_s": 11.1,
+      "gfp_peak": 0.1724131991544504,
+      "null95": 0.272427643548846,
+      "evoked_present": false
+     }
+    ],
+    "delay_s": 5.55,
+    "evoked_present": true
+   },
+   "16": {
+    "tasks": [
+     {
+      "task": 0,
+      "n_trials": 60,
+      "gfp_peak_s": 19.4,
+      "hbo_peak_s": 14.100000000000001,
+      "delay_s": -5.299999999999997,
+      "gfp_peak": 0.21800772694566556,
+      "null95": 0.2597257215778659,
+      "evoked_present": false
+     },
+     {
+      "task": 1,
+      "n_trials": 60,
+      "gfp_peak_s": 14.8,
+      "hbo_peak_s": 3.0,
+      "delay_s": -11.8,
+      "gfp_peak": 0.291047518166046,
+      "null95": 0.2404641943153772,
+      "evoked_present": true
+     }
+    ],
+    "delay_s": -8.549999999999999,
+    "evoked_present": true
+   },
+   "17": {
+    "tasks": [
+     {
+      "task": 0,
+      "n_trials": 60,
+      "gfp_peak_s": 3.5,
+      "hbo_peak_s": 17.3,
+      "delay_s": 13.8,
+      "gfp_peak": 0.5110129045315289,
+      "null95": 0.37454912426654013,
+      "evoked_present": true
+     },
+     {
+      "task": 1,
+      "n_trials": 60,
+      "gfp_peak_s": 18.8,
+      "hbo_peak_s": 2.5999999999999996,
+      "delay_s": -16.200000000000003,
+      "gfp_peak": 0.16508270396537647,
+      "null95": 0.3759325574784327,
+      "evoked_present": false
+     }
+    ],
+    "delay_s": -1.200000000000001,
+    "evoked_present": true
+   },
+   "18": {
+    "tasks": [
+     {
+      "task": 0,
+      "n_trials": 60,
+      "gfp_peak_s": 3.9000000000000004,
+      "hbo_peak_s": 14.899999999999999,
+      "delay_s": 10.999999999999998,
+      "gfp_peak": 0.18949252342184034,
+      "null95": 0.24299417952237085,
+      "evoked_present": false
+     },
+     {
+      "task": 1,
+      "n_trials": 60,
+      "gfp_peak_s": 15.7,
+      "hbo_peak_s": 22.9,
+      "delay_s": 7.199999999999999,
+      "gfp_peak": 0.11450760999887961,
+      "null95": 0.2303675953072171,
+      "evoked_present": false
+     }
+    ],
+    "delay_s": 9.099999999999998,
+    "evoked_present": false
+   },
+   "19": {
+    "tasks": [
+     {
+      "task": 0,
+      "n_trials": 60,
+      "gfp_peak_s": 6.9,
+      "hbo_peak_s": 17.8,
+      "delay_s": 10.9,
+      "gfp_peak": 0.23559231187915802,
+      "null95": 0.31670325708980807,
+      "evoked_present": false
+     },
+     {
+      "task": 1,
+      "n_trials": 60,
+      "gfp_peak_s": 14.5,
+      "hbo_peak_s": 5.0,
+      "delay_s": -9.5,
+      "gfp_peak": 0.3042001813858091,
+      "null95": 0.34295341979344995,
+      "evoked_present": false
+     }
+    ],
+    "delay_s": 0.7000000000000002,
+    "evoked_present": false
+   },
+   "20": {
+    "tasks": [
+     {
+      "task": 0,
+      "n_trials": 60,
+      "gfp_peak_s": 14.0,
+      "hbo_peak_s": 16.1,
+      "delay_s": 2.1000000000000014,
+      "gfp_peak": 0.5893587906377684,
+      "null95": 0.3412447499091602,
+      "evoked_present": true
+     },
+     {
+      "task": 1,
+      "n_trials": 60,
+      "gfp_peak_s": 9.5,
+      "hbo_peak_s": 1.5,
+      "delay_s": -8.0,
+      "gfp_peak": 0.4139981717982769,
+      "null95": 0.38130012656220835,
+      "evoked_present": true
+     }
+    ],
+    "delay_s": -2.9499999999999993,
+    "evoked_present": true
+   },
+   "21": {
+    "tasks": [
+     {
+      "task": 0,
+      "n_trials": 60,
+      "gfp_peak_s": 22.7,
+      "hbo_peak_s": 7.4,
+      "delay_s": -15.299999999999999,
+      "gfp_peak": 0.26684659141147815,
+      "null95": 0.198384056178355,
+      "evoked_present": true
+     },
+     {
+      "task": 1,
+      "n_trials": 60,
+      "gfp_peak_s": 7.5,
+      "hbo_peak_s": 17.7,
+      "delay_s": 10.2,
+      "gfp_peak": 0.1679469271839956,
+      "null95": 0.277121366882482,
+      "evoked_present": false
+     }
+    ],
+    "delay_s": -2.55,
+    "evoked_present": true
+   },
+   "22": {
+    "tasks": [
+     {
+      "task": 0,
+      "n_trials": 60,
+      "gfp_peak_s": 4.4,
+      "hbo_peak_s": 9.5,
+      "delay_s": 5.1,
+      "gfp_peak": 0.2968254680633925,
+      "null95": 0.27099537622933184,
+      "evoked_present": true
+     },
+     {
+      "task": 1,
+      "n_trials": 60,
+      "gfp_peak_s": 15.7,
+      "hbo_peak_s": 25.0,
+      "delay_s": 9.3,
+      "gfp_peak": 0.4374805988281488,
+      "null95": 0.25615876782252145,
+      "evoked_present": true
+     }
+    ],
+    "delay_s": 7.2,
+    "evoked_present": true
+   },
+   "23": {
+    "tasks": [
+     {
+      "task": 0,
+      "n_trials": 60,
+      "gfp_peak_s": 6.9,
+      "hbo_peak_s": 17.4,
+      "delay_s": 10.499999999999998,
+      "gfp_peak": 0.29441206745852305,
+      "null95": 0.39772325719469365,
+      "evoked_present": false
+     },
+     {
+      "task": 1,
+      "n_trials": 60,
+      "gfp_peak_s": 3.9000000000000004,
+      "hbo_peak_s": 15.7,
+      "delay_s": 11.799999999999999,
+      "gfp_peak": 0.1999259511359289,
+      "null95": 0.3339762720853086,
+      "evoked_present": false
+     }
+    ],
+    "delay_s": 11.149999999999999,
+    "evoked_present": false
+   },
+   "24": {
+    "tasks": [
+     {
+      "task": 0,
+      "n_trials": 60,
+      "gfp_peak_s": 3.2,
+      "hbo_peak_s": 16.8,
+      "delay_s": 13.600000000000001,
+      "gfp_peak": 0.36515735572820995,
+      "null95": 0.2782403985739962,
+      "evoked_present": true
+     },
+     {
+      "task": 1,
+      "n_trials": 60,
+      "gfp_peak_s": 18.4,
+      "hbo_peak_s": 16.9,
+      "delay_s": -1.5,
+      "gfp_peak": 0.33674903206202067,
+      "null95": 0.3868013700188081,
+      "evoked_present": false
+     }
+    ],
+    "delay_s": 6.050000000000001,
+    "evoked_present": true
+   },
+   "25": {
+    "tasks": [
+     {
+      "task": 0,
+      "n_trials": 60,
+      "gfp_peak_s": 16.0,
+      "hbo_peak_s": 16.0,
+      "delay_s": 0.0,
+      "gfp_peak": 0.23640173636164566,
+      "null95": 0.22386574939999632,
+      "evoked_present": true
+     },
+     {
+      "task": 1,
+      "n_trials": 60,
+      "gfp_peak_s": 16.2,
+      "hbo_peak_s": 18.8,
+      "delay_s": 2.6000000000000014,
+      "gfp_peak": 0.4967179174398199,
+      "null95": 0.2462241479420767,
+      "evoked_present": true
+     }
+    ],
+    "delay_s": 1.3000000000000007,
+    "evoked_present": true
+   },
+   "26": {
+    "tasks": [
+     {
+      "task": 0,
+      "n_trials": 60,
+      "gfp_peak_s": 4.3,
+      "hbo_peak_s": 14.2,
+      "delay_s": 9.899999999999999,
+      "gfp_peak": 1.1136042387071936,
+      "null95": 0.32939585192701926,
+      "evoked_present": true
+     },
+     {
+      "task": 1,
+      "n_trials": 60,
+      "gfp_peak_s": 13.6,
+      "hbo_peak_s": 0.0,
+      "delay_s": -13.6,
+      "gfp_peak": 0.14459120370230832,
+      "null95": 0.2449442720238381,
+      "evoked_present": false
+     }
+    ],
+    "delay_s": -1.8500000000000005,
+    "evoked_present": true
+   },
+   "27": {
+    "tasks": [
+     {
+      "task": 0,
+      "n_trials": 60,
+      "gfp_peak_s": 12.8,
+      "hbo_peak_s": 16.0,
+      "delay_s": 3.1999999999999993,
+      "gfp_peak": 0.309780576432837,
+      "null95": 0.2685025998213014,
+      "evoked_present": true
+     },
+     {
+      "task": 1,
+      "n_trials": 60,
+      "gfp_peak_s": 6.0,
+      "hbo_peak_s": 9.6,
+      "delay_s": 3.5999999999999996,
+      "gfp_peak": 0.19373227042596647,
+      "null95": 0.23316735703759925,
+      "evoked_present": false
+     }
+    ],
+    "delay_s": 3.3999999999999995,
+    "evoked_present": true
+   },
+   "28": {
+    "tasks": [
+     {
+      "task": 0,
+      "n_trials": 60,
+      "gfp_peak_s": 12.2,
+      "hbo_peak_s": 15.399999999999999,
+      "delay_s": 3.1999999999999993,
+      "gfp_peak": 0.6326855119637539,
+      "null95": 0.2902204145702554,
+      "evoked_present": true
+     },
+     {
+      "task": 1,
+      "n_trials": 60,
+      "gfp_peak_s": 3.7,
+      "hbo_peak_s": 3.5,
+      "delay_s": -0.20000000000000018,
+      "gfp_peak": 0.31921457229277206,
+      "null95": 0.25353597664359034,
+      "evoked_present": true
+     }
+    ],
+    "delay_s": 1.4999999999999996,
+    "evoked_present": true
+   },
+   "29": {
+    "tasks": [
+     {
+      "task": 0,
+      "n_trials": 60,
+      "gfp_peak_s": 5.2,
+      "hbo_peak_s": 5.8,
+      "delay_s": 0.5999999999999996,
+      "gfp_peak": 0.374836496041524,
+      "null95": 0.3602236785505019,
+      "evoked_present": true
+     },
+     {
+      "task": 1,
+      "n_trials": 60,
+      "gfp_peak_s": 22.1,
+      "hbo_peak_s": 16.8,
+      "delay_s": -5.300000000000001,
+      "gfp_peak": 0.30961809958714054,
+      "null95": 0.3097478954195232,
+      "evoked_present": false
+     }
+    ],
+    "delay_s": -2.3500000000000005,
+    "evoked_present": true
+   }
+  },
+  "n_people": 29,
+  "n_evoked_present": 22,
+  "primary_evoked_present": {
+   "n": 22,
+   "median_s": 1.7999999999999996,
+   "iqr_s": [
+    -2.5,
+    5.1375
+   ],
+   "wilcoxon_p": 0.23598806962083863,
+   "n_positive": 13
+  },
+  "all_people": {
+   "n": 29,
+   "median_s": 1.4999999999999996,
+   "iqr_s": [
+    -2.55,
+    5.65
+   ],
+   "wilcoxon_p": 0.17653865948500147,
+   "n_positive": 17
+  },
+  "verdict": "not shown"
+ },
+ "mental_workload": {
+  "people": {
+   "1": {
+    "tasks": [
+     {
+      "task": 0,
+      "n_trials": 27,
+      "gfp_peak_s": 23.0,
+      "hbo_peak_s": 1.5,
+      "delay_s": -21.5,
+      "gfp_peak": 0.3358692646346276,
+      "null95": 0.6801301570527313,
+      "evoked_present": false
+     },
+     {
+      "task": 1,
+      "n_trials": 60,
+      "gfp_peak_s": 8.9,
+      "hbo_peak_s": 0.0,
+      "delay_s": -8.9,
+      "gfp_peak": 0.2841672917330232,
+      "null95": 0.35440092022887876,
+      "evoked_present": false
+     }
+    ],
+    "delay_s": -15.2,
+    "evoked_present": false
+   },
+   "2": {
+    "tasks": [
+     {
+      "task": 0,
+      "n_trials": 27,
+      "gfp_peak_s": 7.0,
+      "hbo_peak_s": 3.8,
+      "delay_s": -3.2,
+      "gfp_peak": 0.9138605455712885,
+      "null95": 0.6050617250246834,
+      "evoked_present": true
+     }
+    ],
+    "delay_s": -3.2,
+    "evoked_present": true
+   },
+   "3": {
+    "tasks": [
+     {
+      "task": 0,
+      "n_trials": 27,
+      "gfp_peak_s": 21.1,
+      "hbo_peak_s": 4.4,
+      "delay_s": -16.700000000000003,
+      "gfp_peak": 0.47173841957537993,
+      "null95": 0.5180564113622974,
+      "evoked_present": false
+     }
+    ],
+    "delay_s": -16.700000000000003,
+    "evoked_present": false
+   },
+   "4": {
+    "tasks": [
+     {
+      "task": 0,
+      "n_trials": 27,
+      "gfp_peak_s": 21.7,
+      "hbo_peak_s": 20.4,
+      "delay_s": -1.3000000000000007,
+      "gfp_peak": 0.4811234316383933,
+      "null95": 0.4659667909733693,
+      "evoked_present": true
+     }
+    ],
+    "delay_s": -1.3000000000000007,
+    "evoked_present": true
+   },
+   "5": {
+    "tasks": [
+     {
+      "task": 0,
+      "n_trials": 27,
+      "gfp_peak_s": 6.199999999999999,
+      "hbo_peak_s": 25.0,
+      "delay_s": 18.8,
+      "gfp_peak": 0.3708638170467505,
+      "null95": 0.49409671647691006,
+      "evoked_present": false
+     }
+    ],
+    "delay_s": 18.8,
+    "evoked_present": false
+   },
+   "6": {
+    "tasks": [
+     {
+      "task": 0,
+      "n_trials": 27,
+      "gfp_peak_s": 3.0999999999999996,
+      "hbo_peak_s": 18.2,
+      "delay_s": 15.1,
+      "gfp_peak": 0.9970257145891034,
+      "null95": 0.6981849135424937,
+      "evoked_present": true
+     }
+    ],
+    "delay_s": 15.1,
+    "evoked_present": true
+   },
+   "7": {
+    "tasks": [
+     {
+      "task": 0,
+      "n_trials": 27,
+      "gfp_peak_s": 4.3,
+      "hbo_peak_s": 3.3,
+      "delay_s": -1.0,
+      "gfp_peak": 0.45177408012349113,
+      "null95": 0.5726344300130087,
+      "evoked_present": false
+     }
+    ],
+    "delay_s": -1.0,
+    "evoked_present": false
+   },
+   "8": {
+    "tasks": [
+     {
+      "task": 0,
+      "n_trials": 27,
+      "gfp_peak_s": 21.0,
+      "hbo_peak_s": 4.4,
+      "delay_s": -16.6,
+      "gfp_peak": 0.5546336033054575,
+      "null95": 0.4439045963418971,
+      "evoked_present": true
+     }
+    ],
+    "delay_s": -16.6,
+    "evoked_present": true
+   },
+   "9": {
+    "tasks": [
+     {
+      "task": 0,
+      "n_trials": 27,
+      "gfp_peak_s": 3.4000000000000004,
+      "hbo_peak_s": 5.2,
+      "delay_s": 1.7999999999999998,
+      "gfp_peak": 0.44229503304047896,
+      "null95": 0.48906677273988103,
+      "evoked_present": false
+     }
+    ],
+    "delay_s": 1.7999999999999998,
+    "evoked_present": false
+   },
+   "10": {
+    "tasks": [
+     {
+      "task": 0,
+      "n_trials": 27,
+      "gfp_peak_s": 17.3,
+      "hbo_peak_s": 25.0,
+      "delay_s": 7.699999999999999,
+      "gfp_peak": 0.5724723548652854,
+      "null95": 0.5147802929541523,
+      "evoked_present": true
+     }
+    ],
+    "delay_s": 7.699999999999999,
+    "evoked_present": true
+   },
+   "11": {
+    "tasks": [
+     {
+      "task": 0,
+      "n_trials": 27,
+      "gfp_peak_s": 8.5,
+      "hbo_peak_s": 6.6,
+      "delay_s": -1.9000000000000004,
+      "gfp_peak": 0.26090179144247905,
+      "null95": 0.3767326390219757,
+      "evoked_present": false
+     }
+    ],
+    "delay_s": -1.9000000000000004,
+    "evoked_present": false
+   },
+   "12": {
+    "tasks": [
+     {
+      "task": 0,
+      "n_trials": 27,
+      "gfp_peak_s": 4.3,
+      "hbo_peak_s": 2.2,
+      "delay_s": -2.0999999999999996,
+      "gfp_peak": 0.5709570701975788,
+      "null95": 0.35083168775291157,
+      "evoked_present": true
+     }
+    ],
+    "delay_s": -2.0999999999999996,
+    "evoked_present": true
+   },
+   "13": {
+    "tasks": [
+     {
+      "task": 0,
+      "n_trials": 27,
+      "gfp_peak_s": 25.0,
+      "hbo_peak_s": 23.2,
+      "delay_s": -1.8000000000000007,
+      "gfp_peak": 0.5278039849214565,
+      "null95": 0.35889105216810124,
+      "evoked_present": true
+     }
+    ],
+    "delay_s": -1.8000000000000007,
+    "evoked_present": true
+   },
+   "14": {
+    "tasks": [
+     {
+      "task": 0,
+      "n_trials": 27,
+      "gfp_peak_s": 13.2,
+      "hbo_peak_s": 3.3,
+      "delay_s": -9.899999999999999,
+      "gfp_peak": 0.9171824028357414,
+      "null95": 0.5773738997038416,
+      "evoked_present": true
+     }
+    ],
+    "delay_s": -9.899999999999999,
+    "evoked_present": true
+   },
+   "15": {
+    "tasks": [
+     {
+      "task": 0,
+      "n_trials": 27,
+      "gfp_peak_s": 2.9000000000000004,
+      "hbo_peak_s": 4.7,
+      "delay_s": 1.7999999999999998,
+      "gfp_peak": 0.4648802873507503,
+      "null95": 0.4105039642194353,
+      "evoked_present": true
+     }
+    ],
+    "delay_s": 1.7999999999999998,
+    "evoked_present": true
+   },
+   "16": {
+    "tasks": [
+     {
+      "task": 0,
+      "n_trials": 27,
+      "gfp_peak_s": 19.6,
+      "hbo_peak_s": 25.0,
+      "delay_s": 5.399999999999999,
+      "gfp_peak": 0.6221399000417182,
+      "null95": 0.4227969622514339,
+      "evoked_present": true
+     }
+    ],
+    "delay_s": 5.399999999999999,
+    "evoked_present": true
+   },
+   "17": {
+    "tasks": [
+     {
+      "task": 0,
+      "n_trials": 27,
+      "gfp_peak_s": 4.5,
+      "hbo_peak_s": 0.0,
+      "delay_s": -4.5,
+      "gfp_peak": 0.47724563389926516,
+      "null95": 0.40456030919467495,
+      "evoked_present": true
+     }
+    ],
+    "delay_s": -4.5,
+    "evoked_present": true
+   },
+   "18": {
+    "tasks": [
+     {
+      "task": 0,
+      "n_trials": 27,
+      "gfp_peak_s": 10.2,
+      "hbo_peak_s": 0.6000000000000001,
+      "delay_s": -9.6,
+      "gfp_peak": 0.520135143262516,
+      "null95": 0.4459439688568648,
+      "evoked_present": true
+     }
+    ],
+    "delay_s": -9.6,
+    "evoked_present": true
+   },
+   "19": {
+    "tasks": [
+     {
+      "task": 0,
+      "n_trials": 27,
+      "gfp_peak_s": 21.6,
+      "hbo_peak_s": 4.0,
+      "delay_s": -17.6,
+      "gfp_peak": 0.9053304945718954,
+      "null95": 0.4621113338795422,
+      "evoked_present": true
+     }
+    ],
+    "delay_s": -17.6,
+    "evoked_present": true
+   },
+   "20": {
+    "tasks": [
+     {
+      "task": 0,
+      "n_trials": 27,
+      "gfp_peak_s": 8.3,
+      "hbo_peak_s": 0.0,
+      "delay_s": -8.3,
+      "gfp_peak": 0.5580250282655413,
+      "null95": 0.5258991842378038,
+      "evoked_present": true
+     }
+    ],
+    "delay_s": -8.3,
+    "evoked_present": true
+   },
+   "21": {
+    "tasks": [
+     {
+      "task": 0,
+      "n_trials": 27,
+      "gfp_peak_s": 3.0,
+      "hbo_peak_s": 1.4,
+      "delay_s": -1.6,
+      "gfp_peak": 0.4309133949438345,
+      "null95": 0.5442386192791363,
+      "evoked_present": false
+     }
+    ],
+    "delay_s": -1.6,
+    "evoked_present": false
+   },
+   "22": {
+    "tasks": [
+     {
+      "task": 0,
+      "n_trials": 27,
+      "gfp_peak_s": 3.2,
+      "hbo_peak_s": 25.0,
+      "delay_s": 21.8,
+      "gfp_peak": 0.5449483682907766,
+      "null95": 0.5047476090449207,
+      "evoked_present": true
+     }
+    ],
+    "delay_s": 21.8,
+    "evoked_present": true
+   },
+   "23": {
+    "tasks": [
+     {
+      "task": 0,
+      "n_trials": 27,
+      "gfp_peak_s": 25.0,
+      "hbo_peak_s": 3.5,
+      "delay_s": -21.5,
+      "gfp_peak": 0.7913020977744689,
+      "null95": 0.4581921646064831,
+      "evoked_present": true
+     }
+    ],
+    "delay_s": -21.5,
+    "evoked_present": true
+   },
+   "24": {
+    "tasks": [
+     {
+      "task": 0,
+      "n_trials": 27,
+      "gfp_peak_s": 6.4,
+      "hbo_peak_s": 24.4,
+      "delay_s": 18.0,
+      "gfp_peak": 0.38676824681266664,
+      "null95": 0.43545289669757226,
+      "evoked_present": false
+     }
+    ],
+    "delay_s": 18.0,
+    "evoked_present": false
+   },
+   "25": {
+    "tasks": [
+     {
+      "task": 0,
+      "n_trials": 27,
+      "gfp_peak_s": 14.3,
+      "hbo_peak_s": 15.5,
+      "delay_s": 1.1999999999999993,
+      "gfp_peak": 0.4817538184496182,
+      "null95": 0.39969777081833735,
+      "evoked_present": true
+     }
+    ],
+    "delay_s": 1.1999999999999993,
+    "evoked_present": true
+   },
+   "26": {
+    "tasks": [
+     {
+      "task": 0,
+      "n_trials": 27,
+      "gfp_peak_s": 1.7999999999999998,
+      "hbo_peak_s": 3.0999999999999996,
+      "delay_s": 1.2999999999999998,
+      "gfp_peak": 0.295752175297472,
+      "null95": 0.5062854735393587,
+      "evoked_present": false
+     }
+    ],
+    "delay_s": 1.2999999999999998,
+    "evoked_present": false
+   }
+  },
+  "n_people": 26,
+  "n_evoked_present": 17,
+  "primary_evoked_present": {
+   "n": 17,
+   "median_s": -2.0999999999999996,
+   "iqr_s": [
+    -9.6,
+    1.7999999999999998
+   ],
+   "wilcoxon_p": 0.243499755859375,
+   "n_positive": 6
+  },
+  "all_people": {
+   "n": 26,
+   "median_s": -1.7000000000000004,
+   "iqr_s": [
+    -9.275,
+    1.7999999999999998
+   ],
+   "wilcoxon_p": 0.3157351649723342,
+   "n_positive": 10
+  },
+  "verdict": "not shown"
+ }
+}

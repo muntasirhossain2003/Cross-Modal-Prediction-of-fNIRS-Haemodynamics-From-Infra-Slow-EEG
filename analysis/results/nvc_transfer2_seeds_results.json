@@ -1,0 +1,1482 @@
+{
+ "calibrated | mental_workload | seed 1": {
+  "personal": 0.06428526009094013,
+  "personal_plus_external": 0.10879292860406983,
+  "external_calibrated": 0.08376165907604373,
+  "diff": 0.04450766851312969,
+  "ci": [
+   0.008134142625136226,
+   0.08792201116142076
+  ],
+  "n_better": 19,
+  "n": 26,
+  "frac_negative_external_gain": 0.15384615384615385,
+  "pass": true,
+  "people": {
+   "mw_VP001": {
+    "personal": 0.32768015669784817,
+    "personal_plus_external": 0.3335340103626855,
+    "external_calibrated": 0.2591050585114926,
+    "external_gain": 0.044825851917266846
+   },
+   "mw_VP002": {
+    "personal": -0.25865757919961646,
+    "personal_plus_external": 0.15669809010696822,
+    "external_calibrated": 0.2030964911123682,
+    "external_gain": 0.3866406977176666
+   },
+   "mw_VP003": {
+    "personal": 0.30131660107509695,
+    "personal_plus_external": 0.29357015519278473,
+    "external_calibrated": -0.05875693503715206,
+    "external_gain": 0.11995675414800644
+   },
+   "mw_VP004": {
+    "personal": 0.3185909858978278,
+    "personal_plus_external": 0.3383493031386042,
+    "external_calibrated": 0.06731518107359384,
+    "external_gain": 0.3422849178314209
+   },
+   "mw_VP005": {
+    "personal": 0.26489684682098064,
+    "personal_plus_external": 0.2993277732979541,
+    "external_calibrated": 0.14658357833941188,
+    "external_gain": 0.10827898979187012
+   },
+   "mw_VP006": {
+    "personal": 0.15364011236961445,
+    "personal_plus_external": 0.3063535713268869,
+    "external_calibrated": 0.2957256863731996,
+    "external_gain": 0.7957439422607422
+   },
+   "mw_VP007": {
+    "personal": -0.10214444600400485,
+    "personal_plus_external": 0.06363652742893396,
+    "external_calibrated": 0.12235350584015128,
+    "external_gain": 0.5821324586868286
+   },
+   "mw_VP008": {
+    "personal": 0.14496287323581053,
+    "personal_plus_external": 0.1686907782679898,
+    "external_calibrated": 0.1449662847672957,
+    "external_gain": 0.2620890438556671
+   },
+   "mw_VP009": {
+    "personal": 0.14178807102934315,
+    "personal_plus_external": 0.26795096782535915,
+    "external_calibrated": 0.23033488430361468,
+    "external_gain": 0.3617668151855469
+   },
+   "mw_VP010": {
+    "personal": -0.07432575458119324,
+    "personal_plus_external": 0.02193994158469335,
+    "external_calibrated": 0.1337038394387523,
+    "external_gain": 0.33073291182518005
+   },
+   "mw_VP011": {
+    "personal": -0.0046593737879392924,
+    "personal_plus_external": 0.18861511461762806,
+    "external_calibrated": 0.2032967584628878,
+    "external_gain": 0.40199968218803406
+   },
+   "mw_VP012": {
+    "personal": -0.15345260532648225,
+    "personal_plus_external": -0.2459261999219013,
+    "external_calibrated": -0.1831792765093872,
+    "external_gain": 0.6485227942466736
+   },
+   "mw_VP013": {
+    "personal": -0.0655131382985891,
+    "personal_plus_external": -0.003189985450083841,
+    "external_calibrated": 0.03694438756238037,
+    "external_gain": 0.8014746904373169
+   },
+   "mw_VP014": {
+    "personal": 0.10530622179723328,
+    "personal_plus_external": 0.051072314135806866,
+    "external_calibrated": -0.16017860215468546,
+    "external_gain": -0.3260132968425751
+   },
+   "mw_VP015": {
+    "personal": 0.1242916805343777,
+    "personal_plus_external": 0.1756357973932774,
+    "external_calibrated": 0.1298864834097695,
+    "external_gain": 0.6756784915924072
+   },
+   "mw_VP016": {
+    "personal": 0.014755138001573385,
+    "personal_plus_external": 0.017555076247791745,
+    "external_calibrated": 0.013936394777951817,
+    "external_gain": 0.11142414808273315
+   },
+   "mw_VP017": {
+    "personal": -0.04730691466554374,
+    "personal_plus_external": -0.008621169043237129,
+    "external_calibrated": 0.022112785256336906,
+    "external_gain": 0.4800863564014435
+   },
+   "mw_VP018": {
+    "personal": 0.08714627839530971,
+    "personal_plus_external": 0.03370318248477533,
+    "external_calibrated": -0.033752197143098184,
+    "external_gain": 0.8876029253005981
+   },
+   "mw_VP019": {
+    "personal": 0.0331500773178511,
+    "personal_plus_external": 0.04252459844603417,
+    "external_calibrated": 0.27908679374033596,
+    "external_gain": 0.023882493376731873
+   },
+   "mw_VP020": {
+    "personal": 0.06281147276674612,
+    "personal_plus_external": 0.15523854524854103,
+    "external_calibrated": 0.19020750498649722,
+    "external_gain": 0.5566420555114746
+   },
+   "mw_VP021": {
+    "personal": 0.09222857732541966,
+    "personal_plus_external": 0.08103050616523513,
+    "external_calibrated": -0.0538230200631825,
+    "external_gain": -0.10095437616109848
+   },
+   "mw_VP022": {
+    "personal": -0.0002810252063887981,
+    "personal_plus_external": -0.0715903121537289,
+    "external_calibrated": -0.10228195826789338,
+    "external_gain": 0.6760610342025757
+   },
+   "mw_VP023": {
+    "personal": 0.04591549214432028,
+    "personal_plus_external": 0.06748811351146972,
+    "external_calibrated": 0.2629910681504485,
+    "external_gain": 0.04800719395279884
+   },
+   "mw_VP024": {
+    "personal": 0.06618089125871185,
+    "personal_plus_external": 0.0768882798220368,
+    "external_calibrated": 0.058622583487786394,
+    "external_gain": -0.2168271541595459
+   },
+   "mw_VP025": {
+    "personal": -0.01418004223642461,
+    "personal_plus_external": 0.0024645145808691446,
+    "external_calibrated": 0.021070296058055864,
+    "external_gain": 0.3090697228908539
+   },
+   "mw_VP026": {
+    "personal": 0.1072761650025609,
+    "personal_plus_external": 0.01567664908844102,
+    "external_calibrated": -0.05156444049979456,
+    "external_gain": -0.19211535155773163
+   }
+  }
+ },
+ "calibrated | mental_workload | seed 2": {
+  "personal": 0.09607703207665337,
+  "personal_plus_external": 0.12278157706726185,
+  "external_calibrated": 0.08028646825345143,
+  "diff": 0.026704544990608488,
+  "ci": [
+   -0.013071827614665594,
+   0.07357005277627253
+  ],
+  "n_better": 15,
+  "n": 26,
+  "frac_negative_external_gain": 0.19230769230769232,
+  "pass": false,
+  "people": {
+   "mw_VP001": {
+    "personal": 0.32768015669784817,
+    "personal_plus_external": 0.3335340103626855,
+    "external_calibrated": 0.2591050585114926,
+    "external_gain": 0.044825851917266846
+   },
+   "mw_VP002": {
+    "personal": -0.25865757919961646,
+    "personal_plus_external": 0.15669809010696822,
+    "external_calibrated": 0.2030964911123682,
+    "external_gain": 0.3866406977176666
+   },
+   "mw_VP003": {
+    "personal": 0.37173738527448635,
+    "personal_plus_external": 0.3589781101973838,
+    "external_calibrated": -0.10374135492605296,
+    "external_gain": 0.3066848814487457
+   },
+   "mw_VP004": {
+    "personal": 0.3756135455520719,
+    "personal_plus_external": 0.3734944634389938,
+    "external_calibrated": 0.061825171958811924,
+    "external_gain": 0.473370224237442
+   },
+   "mw_VP005": {
+    "personal": 0.1004864916209536,
+    "personal_plus_external": 0.13032208153957034,
+    "external_calibrated": 0.10550410167500518,
+    "external_gain": 0.17448091506958008
+   },
+   "mw_VP006": {
+    "personal": 0.15364011236961445,
+    "personal_plus_external": 0.3063535713268869,
+    "external_calibrated": 0.2957256863731996,
+    "external_gain": 0.7957439422607422
+   },
+   "mw_VP007": {
+    "personal": -0.04737236622470304,
+    "personal_plus_external": 0.11238446282978974,
+    "external_calibrated": 0.13809268226882268,
+    "external_gain": 0.5755137205123901
+   },
+   "mw_VP008": {
+    "personal": 0.12733198828940973,
+    "personal_plus_external": 0.06065729573062524,
+    "external_calibrated": 0.0033921726422854125,
+    "external_gain": 0.4559405446052551
+   },
+   "mw_VP009": {
+    "personal": 0.34768112834500053,
+    "personal_plus_external": 0.2536668099337206,
+    "external_calibrated": 0.0208544849310251,
+    "external_gain": 0.8081361651420593
+   },
+   "mw_VP010": {
+    "personal": 0.04705415736821406,
+    "personal_plus_external": 0.11151515273244925,
+    "external_calibrated": 0.16810802750974066,
+    "external_gain": 0.1919313222169876
+   },
+   "mw_VP011": {
+    "personal": -0.0046593737879392924,
+    "personal_plus_external": 0.18861511461762806,
+    "external_calibrated": 0.2032967584628878,
+    "external_gain": 0.40199968218803406
+   },
+   "mw_VP012": {
+    "personal": -0.12947586164870756,
+    "personal_plus_external": -0.2188806175233307,
+    "external_calibrated": -0.18392085874159464,
+    "external_gain": -0.08186228573322296
+   },
+   "mw_VP013": {
+    "personal": -0.0655131382985891,
+    "personal_plus_external": -0.003189985450083841,
+    "external_calibrated": 0.03694438756238037,
+    "external_gain": 0.8014746904373169
+   },
+   "mw_VP014": {
+    "personal": 0.10530622179723328,
+    "personal_plus_external": 0.051072314135806866,
+    "external_calibrated": -0.16017860215468546,
+    "external_gain": -0.3260132968425751
+   },
+   "mw_VP015": {
+    "personal": 0.31078518098680447,
+    "personal_plus_external": 0.4303306857099069,
+    "external_calibrated": 0.357079559459229,
+    "external_gain": 0.3857851028442383
+   },
+   "mw_VP016": {
+    "personal": 0.026664124307197813,
+    "personal_plus_external": 0.04606819190998277,
+    "external_calibrated": 0.056278709417043576,
+    "external_gain": 0.033909983932971954
+   },
+   "mw_VP017": {
+    "personal": -0.05807698180888608,
+    "personal_plus_external": -0.033639954603432436,
+    "external_calibrated": 0.16078777734891228,
+    "external_gain": 0.12215691804885864
+   },
+   "mw_VP018": {
+    "personal": 0.08714627839530971,
+    "personal_plus_external": 0.03370318248477533,
+    "external_calibrated": -0.033752197143098184,
+    "external_gain": 0.8876029253005981
+   },
+   "mw_VP019": {
+    "personal": -0.018104840889640123,
+    "personal_plus_external": -0.015698533463867594,
+    "external_calibrated": -0.006601279629587687,
+    "external_gain": 0.6154918074607849
+   },
+   "mw_VP020": {
+    "personal": 0.23650019367468283,
+    "personal_plus_external": 0.08515859306258092,
+    "external_calibrated": 0.0361746358087845,
+    "external_gain": 0.8696619272232056
+   },
+   "mw_VP021": {
+    "personal": 0.09222857732541966,
+    "personal_plus_external": 0.08103050616523513,
+    "external_calibrated": -0.0538230200631825,
+    "external_gain": -0.10095437616109848
+   },
+   "mw_VP022": {
+    "personal": 0.09891173490852509,
+    "personal_plus_external": 0.1463438498854205,
+    "external_calibrated": 0.22327133932898527,
+    "external_gain": 0.12058894336223602
+   },
+   "mw_VP023": {
+    "personal": 0.04591549214432028,
+    "personal_plus_external": 0.06748811351146972,
+    "external_calibrated": 0.2629910681504485,
+    "external_gain": 0.04800719395279884
+   },
+   "mw_VP024": {
+    "personal": 0.06618089125871185,
+    "personal_plus_external": 0.0768882798220368,
+    "external_calibrated": 0.058622583487786394,
+    "external_gain": -0.2168271541595459
+   },
+   "mw_VP025": {
+    "personal": 0.05172315053270452,
+    "personal_plus_external": 0.04375056619716532,
+    "external_calibrated": 0.029879231738523592,
+    "external_gain": 0.3159342408180237
+   },
+   "mw_VP026": {
+    "personal": 0.1072761650025609,
+    "personal_plus_external": 0.01567664908844102,
+    "external_calibrated": -0.05156444049979456,
+    "external_gain": -0.19211535155773163
+   }
+  }
+ },
+ "calibrated | mental_workload | seed 3": {
+  "personal": 0.10051115915339492,
+  "personal_plus_external": 0.1365983490012776,
+  "external_calibrated": 0.07413099355375682,
+  "diff": 0.03608718984788268,
+  "ci": [
+   0.011297974646488065,
+   0.06349588129183603
+  ],
+  "n_better": 18,
+  "n": 26,
+  "frac_negative_external_gain": 0.11538461538461539,
+  "pass": true,
+  "people": {
+   "mw_VP001": {
+    "personal": 0.32768015669784817,
+    "personal_plus_external": 0.3335340103626855,
+    "external_calibrated": 0.2591050585114926,
+    "external_gain": 0.044825851917266846
+   },
+   "mw_VP002": {
+    "personal": 0.0897157847286164,
+    "personal_plus_external": 0.13472973358357704,
+    "external_calibrated": 0.21039877747432054,
+    "external_gain": 0.22683069109916687
+   },
+   "mw_VP003": {
+    "personal": 0.30131660107509695,
+    "personal_plus_external": 0.29357015519278473,
+    "external_calibrated": -0.05875693503715206,
+    "external_gain": 0.11995675414800644
+   },
+   "mw_VP004": {
+    "personal": 0.3185909858978278,
+    "personal_plus_external": 0.3383493031386042,
+    "external_calibrated": 0.06731518107359384,
+    "external_gain": 0.3422849178314209
+   },
+   "mw_VP005": {
+    "personal": 0.02028163007529631,
+    "personal_plus_external": 0.010172422187337635,
+    "external_calibrated": -0.036834483347520534,
+    "external_gain": 0.3832477927207947
+   },
+   "mw_VP006": {
+    "personal": 0.12710708678331836,
+    "personal_plus_external": 0.2967681107908876,
+    "external_calibrated": 0.26934942974920856,
+    "external_gain": 0.8306793570518494
+   },
+   "mw_VP007": {
+    "personal": -0.10214444600400485,
+    "personal_plus_external": 0.06363652742893396,
+    "external_calibrated": 0.12235350584015128,
+    "external_gain": 0.5821324586868286
+   },
+   "mw_VP008": {
+    "personal": 0.14674839799592024,
+    "personal_plus_external": 0.19850937801433685,
+    "external_calibrated": 0.14539660744579094,
+    "external_gain": 0.25528454780578613
+   },
+   "mw_VP009": {
+    "personal": 0.14178807102934315,
+    "personal_plus_external": 0.26795096782535915,
+    "external_calibrated": 0.23033488430361468,
+    "external_gain": 0.3617668151855469
+   },
+   "mw_VP010": {
+    "personal": -0.07432575458119324,
+    "personal_plus_external": 0.02193994158469335,
+    "external_calibrated": 0.1337038394387523,
+    "external_gain": 0.33073291182518005
+   },
+   "mw_VP011": {
+    "personal": -0.10878678045998721,
+    "personal_plus_external": 0.0644623295080688,
+    "external_calibrated": 0.15124031773999808,
+    "external_gain": 0.5014683604240417
+   },
+   "mw_VP012": {
+    "personal": 0.16041234358252326,
+    "personal_plus_external": 0.195285329042054,
+    "external_calibrated": 0.13323555563099812,
+    "external_gain": 0.02088034711778164
+   },
+   "mw_VP013": {
+    "personal": 0.1747891518218225,
+    "personal_plus_external": 0.26118966245793085,
+    "external_calibrated": 0.2301824496052336,
+    "external_gain": 0.5109809637069702
+   },
+   "mw_VP014": {
+    "personal": 0.10530622179723328,
+    "personal_plus_external": 0.051072314135806866,
+    "external_calibrated": -0.16017860215468546,
+    "external_gain": -0.3260132968425751
+   },
+   "mw_VP015": {
+    "personal": 0.1242916805343777,
+    "personal_plus_external": 0.1756357973932774,
+    "external_calibrated": 0.1298864834097695,
+    "external_gain": 0.6756784915924072
+   },
+   "mw_VP016": {
+    "personal": 0.014755138001573385,
+    "personal_plus_external": 0.017555076247791745,
+    "external_calibrated": 0.013936394777951817,
+    "external_gain": 0.11142414808273315
+   },
+   "mw_VP017": {
+    "personal": 0.12210678265443797,
+    "personal_plus_external": 0.13933495591449438,
+    "external_calibrated": 0.09687255031203441,
+    "external_gain": 0.28360530734062195
+   },
+   "mw_VP018": {
+    "personal": 0.08714627839530971,
+    "personal_plus_external": 0.03370318248477533,
+    "external_calibrated": -0.033752197143098184,
+    "external_gain": 0.8876029253005981
+   },
+   "mw_VP019": {
+    "personal": 0.0328269277761985,
+    "personal_plus_external": 0.07224652090568924,
+    "external_calibrated": 0.08232253247066758,
+    "external_gain": 0.39118656516075134
+   },
+   "mw_VP020": {
+    "personal": 0.06281147276674612,
+    "personal_plus_external": 0.15523854524854103,
+    "external_calibrated": 0.19020750498649722,
+    "external_gain": 0.5566420555114746
+   },
+   "mw_VP021": {
+    "personal": -0.02806852752896771,
+    "personal_plus_external": -0.05121023476649577,
+    "external_calibrated": -0.10729707440605588,
+    "external_gain": 0.14329801499843597
+   },
+   "mw_VP022": {
+    "personal": -0.0002810252063887981,
+    "personal_plus_external": -0.0715903121537289,
+    "external_calibrated": -0.10228195826789338,
+    "external_gain": 0.6760610342025757
+   },
+   "mw_VP023": {
+    "personal": 0.19465444893619022,
+    "personal_plus_external": 0.16317896160683962,
+    "external_calibrated": 0.026104960344601694,
+    "external_gain": 0.40037402510643005
+   },
+   "mw_VP024": {
+    "personal": 0.37609731831068355,
+    "personal_plus_external": 0.3676083692927356,
+    "external_calibrated": 0.027768153603994976,
+    "external_gain": -0.21720241010189056
+   },
+   "mw_VP025": {
+    "personal": -0.01418004223642461,
+    "personal_plus_external": 0.0024645145808691446,
+    "external_calibrated": 0.021070296058055864,
+    "external_gain": 0.3090697228908539
+   },
+   "mw_VP026": {
+    "personal": 0.012650235144870299,
+    "personal_plus_external": 0.01622151202536776,
+    "external_calibrated": -0.11427740002264461,
+    "external_gain": -0.04448259249329567
+   }
+  }
+ },
+ "calibrated | mental_workload | seed 4": {
+  "personal": 0.11085759940565326,
+  "personal_plus_external": 0.14564075672024884,
+  "external_calibrated": 0.06159529366212979,
+  "diff": 0.034783157314595595,
+  "ci": [
+   0.005669673068885807,
+   0.06525500690360282
+  ],
+  "n_better": 15,
+  "n": 26,
+  "frac_negative_external_gain": 0.19230769230769232,
+  "pass": true,
+  "people": {
+   "mw_VP001": {
+    "personal": 0.34553287721164205,
+    "personal_plus_external": 0.352368087775332,
+    "external_calibrated": 0.0795818987425131,
+    "external_gain": 0.30945250391960144
+   },
+   "mw_VP002": {
+    "personal": 0.24798887696868602,
+    "personal_plus_external": 0.230392115292633,
+    "external_calibrated": 0.024362979647109227,
+    "external_gain": 0.6109966039657593
+   },
+   "mw_VP003": {
+    "personal": 0.4698541865527282,
+    "personal_plus_external": 0.44794794142854083,
+    "external_calibrated": -0.1857500696812565,
+    "external_gain": -0.16221526265144348
+   },
+   "mw_VP004": {
+    "personal": 0.10761215019779269,
+    "personal_plus_external": 0.14322367605269096,
+    "external_calibrated": 0.1543998124460622,
+    "external_gain": 0.2985023260116577
+   },
+   "mw_VP005": {
+    "personal": 0.02028163007529631,
+    "personal_plus_external": 0.010172422187337635,
+    "external_calibrated": -0.036834483347520534,
+    "external_gain": 0.3832477927207947
+   },
+   "mw_VP006": {
+    "personal": 0.12710708678331836,
+    "personal_plus_external": 0.2967681107908876,
+    "external_calibrated": 0.26934942974920856,
+    "external_gain": 0.8306793570518494
+   },
+   "mw_VP007": {
+    "personal": -0.04737236622470304,
+    "personal_plus_external": 0.11238446282978974,
+    "external_calibrated": 0.13809268226882268,
+    "external_gain": 0.5755137205123901
+   },
+   "mw_VP008": {
+    "personal": 0.12733198828940973,
+    "personal_plus_external": 0.06065729573062524,
+    "external_calibrated": 0.0033921726422854125,
+    "external_gain": 0.4559405446052551
+   },
+   "mw_VP009": {
+    "personal": 0.34768112834500053,
+    "personal_plus_external": 0.2536668099337206,
+    "external_calibrated": 0.0208544849310251,
+    "external_gain": 0.8081361651420593
+   },
+   "mw_VP010": {
+    "personal": 0.04705415736821406,
+    "personal_plus_external": 0.11151515273244925,
+    "external_calibrated": 0.16810802750974066,
+    "external_gain": 0.1919313222169876
+   },
+   "mw_VP011": {
+    "personal": -0.10878678045998721,
+    "personal_plus_external": 0.0644623295080688,
+    "external_calibrated": 0.15124031773999808,
+    "external_gain": 0.5014683604240417
+   },
+   "mw_VP012": {
+    "personal": -0.12947586164870756,
+    "personal_plus_external": -0.2188806175233307,
+    "external_calibrated": -0.18392085874159464,
+    "external_gain": -0.08186228573322296
+   },
+   "mw_VP013": {
+    "personal": -0.0655131382985891,
+    "personal_plus_external": -0.003189985450083841,
+    "external_calibrated": 0.03694438756238037,
+    "external_gain": 0.8014746904373169
+   },
+   "mw_VP014": {
+    "personal": 0.43575947945433746,
+    "personal_plus_external": 0.4201441013522333,
+    "external_calibrated": -0.07433366312721895,
+    "external_gain": 0.09750834107398987
+   },
+   "mw_VP015": {
+    "personal": 0.1242916805343777,
+    "personal_plus_external": 0.1756357973932774,
+    "external_calibrated": 0.1298864834097695,
+    "external_gain": 0.6756784915924072
+   },
+   "mw_VP016": {
+    "personal": -0.005731179673751529,
+    "personal_plus_external": -0.006024663269274615,
+    "external_calibrated": -0.0016716538541557782,
+    "external_gain": 0.12825541198253632
+   },
+   "mw_VP017": {
+    "personal": -0.04730691466554374,
+    "personal_plus_external": -0.008621169043237129,
+    "external_calibrated": 0.022112785256336906,
+    "external_gain": 0.4800863564014435
+   },
+   "mw_VP018": {
+    "personal": 0.18313246814233144,
+    "personal_plus_external": 0.33878627485525975,
+    "external_calibrated": 0.3236624179260005,
+    "external_gain": 0.36404433846473694
+   },
+   "mw_VP019": {
+    "personal": 0.0328269277761985,
+    "personal_plus_external": 0.07224652090568924,
+    "external_calibrated": 0.08232253247066758,
+    "external_gain": 0.39118656516075134
+   },
+   "mw_VP020": {
+    "personal": 0.06281147276674612,
+    "personal_plus_external": 0.15523854524854103,
+    "external_calibrated": 0.19020750498649722,
+    "external_gain": 0.5566420555114746
+   },
+   "mw_VP021": {
+    "personal": 0.09222857732541966,
+    "personal_plus_external": 0.08103050616523513,
+    "external_calibrated": -0.0538230200631825,
+    "external_gain": -0.10095437616109848
+   },
+   "mw_VP022": {
+    "personal": 0.09891173490852509,
+    "personal_plus_external": 0.1463438498854205,
+    "external_calibrated": 0.22327133932898527,
+    "external_gain": 0.12058894336223602
+   },
+   "mw_VP023": {
+    "personal": 0.19465444893619022,
+    "personal_plus_external": 0.16317896160683962,
+    "external_calibrated": 0.026104960344601694,
+    "external_gain": 0.40037402510643005
+   },
+   "mw_VP024": {
+    "personal": 0.25615384535698543,
+    "personal_plus_external": 0.2513356777157347,
+    "external_calibrated": 0.06360820013476476,
+    "external_gain": -0.12254639714956284
+   },
+   "mw_VP025": {
+    "personal": -0.04738112661980306,
+    "personal_plus_external": 0.11965595859672237,
+    "external_calibrated": 0.1445863669561793,
+    "external_gain": 0.09705226123332977
+   },
+   "mw_VP026": {
+    "personal": 0.012650235144870299,
+    "personal_plus_external": 0.01622151202536776,
+    "external_calibrated": -0.11427740002264461,
+    "external_gain": -0.04448259249329567
+   }
+  }
+ },
+ "calibrated | mental_workload | seed 5": {
+  "personal": 0.11394929466388234,
+  "personal_plus_external": 0.1396885572825783,
+  "external_calibrated": 0.05563679847642738,
+  "diff": 0.025739262618695954,
+  "ci": [
+   -0.004110586342051972,
+   0.057288007914123244
+  ],
+  "n_better": 15,
+  "n": 26,
+  "frac_negative_external_gain": 0.15384615384615385,
+  "pass": false,
+  "people": {
+   "mw_VP001": {
+    "personal": 0.34553287721164205,
+    "personal_plus_external": 0.352368087775332,
+    "external_calibrated": 0.0795818987425131,
+    "external_gain": 0.30945250391960144
+   },
+   "mw_VP002": {
+    "personal": 0.24798887696868602,
+    "personal_plus_external": 0.230392115292633,
+    "external_calibrated": 0.024362979647109227,
+    "external_gain": 0.6109966039657593
+   },
+   "mw_VP003": {
+    "personal": 0.4698541865527282,
+    "personal_plus_external": 0.44794794142854083,
+    "external_calibrated": -0.1857500696812565,
+    "external_gain": -0.16221526265144348
+   },
+   "mw_VP004": {
+    "personal": 0.3185909858978278,
+    "personal_plus_external": 0.3383493031386042,
+    "external_calibrated": 0.06731518107359384,
+    "external_gain": 0.3422849178314209
+   },
+   "mw_VP005": {
+    "personal": 0.02028163007529631,
+    "personal_plus_external": 0.010172422187337635,
+    "external_calibrated": -0.036834483347520534,
+    "external_gain": 0.3832477927207947
+   },
+   "mw_VP006": {
+    "personal": 0.12710708678331836,
+    "personal_plus_external": 0.2967681107908876,
+    "external_calibrated": 0.26934942974920856,
+    "external_gain": 0.8306793570518494
+   },
+   "mw_VP007": {
+    "personal": -0.10214444600400485,
+    "personal_plus_external": 0.06363652742893396,
+    "external_calibrated": 0.12235350584015128,
+    "external_gain": 0.5821324586868286
+   },
+   "mw_VP008": {
+    "personal": 0.14496287323581053,
+    "personal_plus_external": 0.1686907782679898,
+    "external_calibrated": 0.1449662847672957,
+    "external_gain": 0.2620890438556671
+   },
+   "mw_VP009": {
+    "personal": 0.14178807102934315,
+    "personal_plus_external": 0.26795096782535915,
+    "external_calibrated": 0.23033488430361468,
+    "external_gain": 0.3617668151855469
+   },
+   "mw_VP010": {
+    "personal": -0.07432575458119324,
+    "personal_plus_external": 0.02193994158469335,
+    "external_calibrated": 0.1337038394387523,
+    "external_gain": 0.33073291182518005
+   },
+   "mw_VP011": {
+    "personal": -0.10878678045998721,
+    "personal_plus_external": 0.0644623295080688,
+    "external_calibrated": 0.15124031773999808,
+    "external_gain": 0.5014683604240417
+   },
+   "mw_VP012": {
+    "personal": -0.15345260532648225,
+    "personal_plus_external": -0.2459261999219013,
+    "external_calibrated": -0.1831792765093872,
+    "external_gain": 0.6485227942466736
+   },
+   "mw_VP013": {
+    "personal": 0.1747891518218225,
+    "personal_plus_external": 0.26118966245793085,
+    "external_calibrated": 0.2301824496052336,
+    "external_gain": 0.5109809637069702
+   },
+   "mw_VP014": {
+    "personal": 0.10530622179723328,
+    "personal_plus_external": 0.051072314135806866,
+    "external_calibrated": -0.16017860215468546,
+    "external_gain": -0.3260132968425751
+   },
+   "mw_VP015": {
+    "personal": 0.206063688376719,
+    "personal_plus_external": 0.15539274501080036,
+    "external_calibrated": 0.08625570818634246,
+    "external_gain": 0.7233415842056274
+   },
+   "mw_VP016": {
+    "personal": -0.005731179673751529,
+    "personal_plus_external": -0.006024663269274615,
+    "external_calibrated": -0.0016716538541557782,
+    "external_gain": 0.12825541198253632
+   },
+   "mw_VP017": {
+    "personal": 0.12210678265443797,
+    "personal_plus_external": 0.13933495591449438,
+    "external_calibrated": 0.09687255031203441,
+    "external_gain": 0.28360530734062195
+   },
+   "mw_VP018": {
+    "personal": 0.01469071723814592,
+    "personal_plus_external": 0.16135751777828106,
+    "external_calibrated": 0.20843739087856838,
+    "external_gain": 0.6169617176055908
+   },
+   "mw_VP019": {
+    "personal": -0.018104840889640123,
+    "personal_plus_external": -0.015698533463867594,
+    "external_calibrated": -0.006601279629587687,
+    "external_gain": 0.6154918074607849
+   },
+   "mw_VP020": {
+    "personal": 0.23650019367468283,
+    "personal_plus_external": 0.08515859306258092,
+    "external_calibrated": 0.0361746358087845,
+    "external_gain": 0.8696619272232056
+   },
+   "mw_VP021": {
+    "personal": -0.02806852752896771,
+    "personal_plus_external": -0.05121023476649577,
+    "external_calibrated": -0.10729707440605588,
+    "external_gain": 0.14329801499843597
+   },
+   "mw_VP022": {
+    "personal": 0.1954044961914059,
+    "personal_plus_external": 0.24387032073873136,
+    "external_calibrated": 0.15965853001540786,
+    "external_gain": 0.22838880121707916
+   },
+   "mw_VP023": {
+    "personal": 0.03932210393801739,
+    "personal_plus_external": 0.049018329835772326,
+    "external_calibrated": 0.041405228685904995,
+    "external_gain": 0.4520987272262573
+   },
+   "mw_VP024": {
+    "personal": 0.37609731831068355,
+    "personal_plus_external": 0.3676083692927356,
+    "external_calibrated": 0.027768153603994976,
+    "external_gain": -0.21720241010189056
+   },
+   "mw_VP025": {
+    "personal": -0.01418004223642461,
+    "personal_plus_external": 0.0024645145808691446,
+    "external_calibrated": 0.021070296058055864,
+    "external_gain": 0.3090697228908539
+   },
+   "mw_VP026": {
+    "personal": 0.181088576203592,
+    "personal_plus_external": 0.17161627273219215,
+    "external_calibrated": -0.0029640644868028426,
+    "external_gain": -0.15401946008205414
+   }
+  }
+ },
+ "calibrated | finemi | seed 1": {
+  "personal": 0.0036719198226678493,
+  "personal_plus_external": 0.03490679394464178,
+  "external_calibrated": 0.036217692946570165,
+  "diff": 0.031234874121973937,
+  "ci": [
+   0.0004686135454051644,
+   0.07059719861936058
+  ],
+  "n_better": 13,
+  "n": 18,
+  "frac_negative_external_gain": 0.7222222222222222,
+  "pass": true,
+  "people": {
+   "finemi_s01": {
+    "personal": 0.034500827486493225,
+    "personal_plus_external": -0.03348437111777858,
+    "external_calibrated": -0.0738823253526473,
+    "external_gain": 0.2238316386938095
+   },
+   "finemi_s02": {
+    "personal": -0.053806120558244984,
+    "personal_plus_external": 0.014429490451076507,
+    "external_calibrated": 0.12467026355108884,
+    "external_gain": -0.1142473816871643
+   },
+   "finemi_s03": {
+    "personal": 0.0771200133542983,
+    "personal_plus_external": 0.08882903780066127,
+    "external_calibrated": 0.07993125593098974,
+    "external_gain": -0.07451951503753662
+   },
+   "finemi_s04": {
+    "personal": -0.04741030381199079,
+    "personal_plus_external": -0.032489815330888294,
+    "external_calibrated": 0.003421347938817477,
+    "external_gain": 0.16152410209178925
+   },
+   "finemi_s05": {
+    "personal": 0.015034935966415898,
+    "personal_plus_external": -0.029400910366538347,
+    "external_calibrated": -0.07298163372692139,
+    "external_gain": 0.14929603040218353
+   },
+   "finemi_s06": {
+    "personal": 0.040618088428209805,
+    "personal_plus_external": 0.029528694788259025,
+    "external_calibrated": 0.02530572744067312,
+    "external_gain": 0.17426536977291107
+   },
+   "finemi_s07": {
+    "personal": -0.02177292111880373,
+    "personal_plus_external": -0.034580068918374056,
+    "external_calibrated": -0.03131140027443258,
+    "external_gain": -0.7396188974380493
+   },
+   "finemi_s08": {
+    "personal": -0.02382060644922645,
+    "personal_plus_external": -0.016629717351019525,
+    "external_calibrated": 0.07826297519201579,
+    "external_gain": -0.048696260899305344
+   },
+   "finemi_s09": {
+    "personal": -0.021330910756604867,
+    "personal_plus_external": 0.06751657480417637,
+    "external_calibrated": 0.08493520090379848,
+    "external_gain": -0.043445054441690445
+   },
+   "finemi_s10": {
+    "personal": 0.08127417355794987,
+    "personal_plus_external": 0.1017981272116236,
+    "external_calibrated": 0.07028188977321961,
+    "external_gain": -0.2606663405895233
+   },
+   "finemi_s11": {
+    "personal": 0.0975739858690391,
+    "personal_plus_external": 0.09865488124580518,
+    "external_calibrated": 0.03646681611604727,
+    "external_gain": -0.39315974712371826
+   },
+   "finemi_s12": {
+    "personal": 0.06587787256115611,
+    "personal_plus_external": 0.04763926689962429,
+    "external_calibrated": -0.06831391600792171,
+    "external_gain": 0.14192095398902893
+   },
+   "finemi_s13": {
+    "personal": 0.008548283966600288,
+    "personal_plus_external": 0.04082126394925393,
+    "external_calibrated": 0.040697146032613964,
+    "external_gain": -0.3106597363948822
+   },
+   "finemi_s14": {
+    "personal": -0.018359797861587885,
+    "personal_plus_external": 0.01175452135460715,
+    "external_calibrated": 0.04636680742336093,
+    "external_gain": -0.3400907516479492
+   },
+   "finemi_s15": {
+    "personal": -0.046380934617067944,
+    "personal_plus_external": -0.04090323561856934,
+    "external_calibrated": 0.007824121899387085,
+    "external_gain": -0.036053214222192764
+   },
+   "finemi_s16": {
+    "personal": 0.04354990773861481,
+    "personal_plus_external": 0.056325682367865955,
+    "external_calibrated": 0.03947578606370173,
+    "external_gain": -0.24649058282375336
+   },
+   "finemi_s17": {
+    "personal": -0.1291554167878204,
+    "personal_plus_external": 0.15092797544810851,
+    "external_calibrated": 0.15409704416094253,
+    "external_gain": -0.4022298753261566
+   },
+   "finemi_s18": {
+    "personal": -0.03596652015940907,
+    "personal_plus_external": 0.1075848933856585,
+    "external_calibrated": 0.10667136597352943,
+    "external_gain": -0.3947959840297699
+   }
+  }
+ },
+ "calibrated | finemi | seed 2": {
+  "personal": 0.018940008904609163,
+  "personal_plus_external": 0.03378493306860168,
+  "external_calibrated": 0.04072554059790197,
+  "diff": 0.014844924163992523,
+  "ci": [
+   0.004270913667448062,
+   0.024848710429013484
+  ],
+  "n_better": 15,
+  "n": 18,
+  "frac_negative_external_gain": 0.7777777777777778,
+  "pass": true,
+  "people": {
+   "finemi_s01": {
+    "personal": -0.04211119439294017,
+    "personal_plus_external": -0.023623795628388122,
+    "external_calibrated": 0.03919865562676029,
+    "external_gain": -0.1530473679304123
+   },
+   "finemi_s02": {
+    "personal": 0.07329370785600677,
+    "personal_plus_external": 0.1079611155538988,
+    "external_calibrated": 0.08954401692496337,
+    "external_gain": -0.5299637317657471
+   },
+   "finemi_s03": {
+    "personal": 0.026070560370998336,
+    "personal_plus_external": 0.06659446887922783,
+    "external_calibrated": 0.05754237472331878,
+    "external_gain": -0.5426136255264282
+   },
+   "finemi_s04": {
+    "personal": -0.02091510023834418,
+    "personal_plus_external": -0.019410789509731307,
+    "external_calibrated": 0.016822424790016745,
+    "external_gain": 0.03413839638233185
+   },
+   "finemi_s05": {
+    "personal": 0.015034935966415898,
+    "personal_plus_external": -0.029400910366538347,
+    "external_calibrated": -0.07298163372692139,
+    "external_gain": 0.14929603040218353
+   },
+   "finemi_s06": {
+    "personal": -0.021851311735911125,
+    "personal_plus_external": -0.018111005521089688,
+    "external_calibrated": 0.03924886590050872,
+    "external_gain": 0.023156777024269104
+   },
+   "finemi_s07": {
+    "personal": -0.013996540552590558,
+    "personal_plus_external": -0.015321089809193307,
+    "external_calibrated": -0.037807860757054765,
+    "external_gain": 0.014353361912071705
+   },
+   "finemi_s08": {
+    "personal": 0.029440183666281004,
+    "personal_plus_external": 0.03834379423072972,
+    "external_calibrated": 0.031131806857390792,
+    "external_gain": -0.4260976314544678
+   },
+   "finemi_s09": {
+    "personal": -0.015618781582592835,
+    "personal_plus_external": 0.03619583193109519,
+    "external_calibrated": 0.04735913520310597,
+    "external_gain": -0.3802731931209564
+   },
+   "finemi_s10": {
+    "personal": 0.022895855604043443,
+    "personal_plus_external": 0.03903940647442959,
+    "external_calibrated": 0.0352814754483773,
+    "external_gain": -0.3636970520019531
+   },
+   "finemi_s11": {
+    "personal": 0.05222953904164708,
+    "personal_plus_external": 0.05858836150964892,
+    "external_calibrated": 0.04968486659965246,
+    "external_gain": -0.3535829186439514
+   },
+   "finemi_s12": {
+    "personal": 0.024639884398588045,
+    "personal_plus_external": 0.02730617742828611,
+    "external_calibrated": 0.056734820705759456,
+    "external_gain": -0.026774251833558083
+   },
+   "finemi_s13": {
+    "personal": 0.03471268041383022,
+    "personal_plus_external": 0.05029057006182023,
+    "external_calibrated": 0.07023758878744168,
+    "external_gain": -0.05219427868723869
+   },
+   "finemi_s14": {
+    "personal": -0.018359797861587885,
+    "personal_plus_external": 0.01175452135460715,
+    "external_calibrated": 0.04636680742336093,
+    "external_gain": -0.3400907516479492
+   },
+   "finemi_s15": {
+    "personal": -0.01580651985361391,
+    "personal_plus_external": -0.01973793067089969,
+    "external_calibrated": -0.014596204315679338,
+    "external_gain": -0.2540903091430664
+   },
+   "finemi_s16": {
+    "personal": 0.09390727294170548,
+    "personal_plus_external": 0.10019783272013305,
+    "external_calibrated": 0.05747406990376824,
+    "external_gain": -0.012732692994177341
+   },
+   "finemi_s17": {
+    "personal": 0.10492178235680878,
+    "personal_plus_external": 0.13668287155057163,
+    "external_calibrated": 0.10693839579075544,
+    "external_gain": -0.662914514541626
+   },
+   "finemi_s18": {
+    "personal": 0.01243300388422057,
+    "personal_plus_external": 0.060779365046222646,
+    "external_calibrated": 0.11488012487671077,
+    "external_gain": -0.3483233153820038
+   }
+  }
+ },
+ "calibrated | finemi | seed 3": {
+  "personal": 0.021095750753364673,
+  "personal_plus_external": 0.04448432736432266,
+  "external_calibrated": 0.05088128205806655,
+  "diff": 0.023388576610957983,
+  "ci": [
+   0.010069766431100961,
+   0.038540991208149696
+  ],
+  "n_better": 14,
+  "n": 18,
+  "frac_negative_external_gain": 0.7777777777777778,
+  "pass": true,
+  "people": {
+   "finemi_s01": {
+    "personal": -0.005115896146576752,
+    "personal_plus_external": 0.028289919227728787,
+    "external_calibrated": 0.04030554351797647,
+    "external_gain": -0.18094874918460846
+   },
+   "finemi_s02": {
+    "personal": 0.014171196284004386,
+    "personal_plus_external": 0.0954131825577466,
+    "external_calibrated": 0.09259882802981717,
+    "external_gain": -0.5721389651298523
+   },
+   "finemi_s03": {
+    "personal": 0.05746866627069436,
+    "personal_plus_external": 0.07511140981881136,
+    "external_calibrated": 0.05348010128483288,
+    "external_gain": -0.38345006108283997
+   },
+   "finemi_s04": {
+    "personal": -0.056542131343230106,
+    "personal_plus_external": -0.011414748182999203,
+    "external_calibrated": 0.008156406391734174,
+    "external_gain": 0.10532087087631226
+   },
+   "finemi_s05": {
+    "personal": -0.0032698375311481925,
+    "personal_plus_external": -0.000500973457388749,
+    "external_calibrated": 0.009431988555909371,
+    "external_gain": -0.5006718039512634
+   },
+   "finemi_s06": {
+    "personal": -0.03496384892165388,
+    "personal_plus_external": -0.026140042872396158,
+    "external_calibrated": 0.03338557166377531,
+    "external_gain": 0.07466313242912292
+   },
+   "finemi_s07": {
+    "personal": -0.02177292111880373,
+    "personal_plus_external": -0.034580068918374056,
+    "external_calibrated": -0.03131140027443258,
+    "external_gain": -0.7396188974380493
+   },
+   "finemi_s08": {
+    "personal": 0.10929856648446848,
+    "personal_plus_external": 0.1226062791059604,
+    "external_calibrated": 0.0659256367662588,
+    "external_gain": -0.11390359699726105
+   },
+   "finemi_s09": {
+    "personal": -0.016899817689207668,
+    "personal_plus_external": 0.05640743638321286,
+    "external_calibrated": 0.06260715262397203,
+    "external_gain": -0.27206477522850037
+   },
+   "finemi_s10": {
+    "personal": 0.10573800726624819,
+    "personal_plus_external": 0.14829946686657225,
+    "external_calibrated": 0.09947919754337121,
+    "external_gain": -0.12341143190860748
+   },
+   "finemi_s11": {
+    "personal": 0.033224186855349946,
+    "personal_plus_external": 0.034672352365705573,
+    "external_calibrated": 0.10780904140612868,
+    "external_gain": -0.010353825986385345
+   },
+   "finemi_s12": {
+    "personal": -0.010365083487391919,
+    "personal_plus_external": -0.012748465101050568,
+    "external_calibrated": 0.05755811883980842,
+    "external_gain": 0.026206400245428085
+   },
+   "finemi_s13": {
+    "personal": 0.011968231747314447,
+    "personal_plus_external": 0.02787232481754788,
+    "external_calibrated": 0.05286902018252332,
+    "external_gain": -0.21656452119350433
+   },
+   "finemi_s14": {
+    "personal": 0.00834434884855472,
+    "personal_plus_external": -0.0023582254618810233,
+    "external_calibrated": -0.08769333864226798,
+    "external_gain": 0.022357648238539696
+   },
+   "finemi_s15": {
+    "personal": 0.03037382507513442,
+    "personal_plus_external": 0.029193011066248286,
+    "external_calibrated": 0.004865085607581005,
+    "external_gain": -0.03622628375887871
+   },
+   "finemi_s16": {
+    "personal": 0.08408778528311134,
+    "personal_plus_external": 0.08818336464913441,
+    "external_calibrated": 0.05176294392499221,
+    "external_gain": -0.06844539940357208
+   },
+   "finemi_s17": {
+    "personal": 0.10945857605466258,
+    "personal_plus_external": 0.12280868366777004,
+    "external_calibrated": 0.17309035516188376,
+    "external_gain": -0.062470242381095886
+   },
+   "finemi_s18": {
+    "personal": -0.03548034037096655,
+    "personal_plus_external": 0.05960298602545907,
+    "external_calibrated": 0.12154282446133363,
+    "external_gain": -0.20939874649047852
+   }
+  }
+ },
+ "calibrated | finemi | seed 4": {
+  "personal": 0.002386817342143,
+  "personal_plus_external": 0.026522350172206825,
+  "external_calibrated": 0.052571456304794026,
+  "diff": 0.024135532830063824,
+  "ci": [
+   0.011866431686424343,
+   0.039844151475383796
+  ],
+  "n_better": 16,
+  "n": 18,
+  "frac_negative_external_gain": 0.8333333333333334,
+  "pass": true,
+  "people": {
+   "finemi_s01": {
+    "personal": -0.001452101491821664,
+    "personal_plus_external": 0.020619735143118448,
+    "external_calibrated": 0.03246153187266817,
+    "external_gain": -0.22106711566448212
+   },
+   "finemi_s02": {
+    "personal": 0.02676596919849618,
+    "personal_plus_external": 0.05581122202967279,
+    "external_calibrated": 0.07367749140766056,
+    "external_gain": -0.5448943972587585
+   },
+   "finemi_s03": {
+    "personal": 0.04615626634897846,
+    "personal_plus_external": 0.06248396033349166,
+    "external_calibrated": 0.07332980878344465,
+    "external_gain": -0.1518026739358902
+   },
+   "finemi_s04": {
+    "personal": -0.061386721118765454,
+    "personal_plus_external": -0.05356418134288127,
+    "external_calibrated": 0.009978215882172426,
+    "external_gain": 0.07815265655517578
+   },
+   "finemi_s05": {
+    "personal": -0.06815648039313653,
+    "personal_plus_external": -0.05336819975117777,
+    "external_calibrated": 0.05417012348491588,
+    "external_gain": -0.07953133434057236
+   },
+   "finemi_s06": {
+    "personal": -0.03496384892165388,
+    "personal_plus_external": -0.026140042872396158,
+    "external_calibrated": 0.03338557166377531,
+    "external_gain": 0.07466313242912292
+   },
+   "finemi_s07": {
+    "personal": -0.034425507609622014,
+    "personal_plus_external": -0.06111589180405628,
+    "external_calibrated": -0.052148250712604226,
+    "external_gain": 0.2255331128835678
+   },
+   "finemi_s08": {
+    "personal": -0.022183626376836886,
+    "personal_plus_external": -0.01430167118448425,
+    "external_calibrated": 0.07128335631951546,
+    "external_gain": -0.06399308890104294
+   },
+   "finemi_s09": {
+    "personal": -0.09614634164336137,
+    "personal_plus_external": 0.02912903063742058,
+    "external_calibrated": 0.056892484478444784,
+    "external_gain": -0.27551761269569397
+   },
+   "finemi_s10": {
+    "personal": 0.022895855604043443,
+    "personal_plus_external": 0.03903940647442959,
+    "external_calibrated": 0.0352814754483773,
+    "external_gain": -0.3636970520019531
+   },
+   "finemi_s11": {
+    "personal": 0.05532725468493035,
+    "personal_plus_external": 0.07804811776755653,
+    "external_calibrated": 0.07651765744249528,
+    "external_gain": -0.1437409520149231
+   },
+   "finemi_s12": {
+    "personal": 0.055036747811012775,
+    "personal_plus_external": 0.060780788278829524,
+    "external_calibrated": 0.053858545789602766,
+    "external_gain": -0.04693378880620003
+   },
+   "finemi_s13": {
+    "personal": 0.03577021865056052,
+    "personal_plus_external": 0.06919841854671398,
+    "external_calibrated": 0.06250659002729114,
+    "external_gain": -0.11521673947572708
+   },
+   "finemi_s14": {
+    "personal": 0.0010839258608191828,
+    "personal_plus_external": 0.047059439883852694,
+    "external_calibrated": 0.06554470948469424,
+    "external_gain": -0.1711752712726593
+   },
+   "finemi_s15": {
+    "personal": -0.020606584428562086,
+    "personal_plus_external": -0.026699327223119827,
+    "external_calibrated": -0.017975964545095913,
+    "external_gain": -0.278579443693161
+   },
+   "finemi_s16": {
+    "personal": 0.01996452425368729,
+    "personal_plus_external": 0.03637938153605052,
+    "external_calibrated": 0.04592055431609309,
+    "external_gain": -0.14528924226760864
+   },
+   "finemi_s17": {
+    "personal": 0.021619207978429682,
+    "personal_plus_external": 0.06550289298650316,
+    "external_calibrated": 0.15730706770042543,
+    "external_gain": -0.21836616098880768
+   },
+   "finemi_s18": {
+    "personal": 0.097663953751376,
+    "personal_plus_external": 0.1485392236601989,
+    "external_calibrated": 0.11429524464241618,
+    "external_gain": -0.35074761509895325
+   }
+  }
+ },
+ "calibrated | finemi | seed 5": {
+  "personal": 0.02017074461604389,
+  "personal_plus_external": 0.040319604048933866,
+  "external_calibrated": 0.043120567594372106,
+  "diff": 0.02014885943288996,
+  "ci": [
+   0.004251322376075493,
+   0.03633551615812469
+  ],
+  "n_better": 16,
+  "n": 18,
+  "frac_negative_external_gain": 0.8888888888888888,
+  "pass": true,
+  "people": {
+   "finemi_s01": {
+    "personal": -0.07328360641444547,
+    "personal_plus_external": 0.025297659947195423,
+    "external_calibrated": 0.03633457577283891,
+    "external_gain": -0.17845334112644196
+   },
+   "finemi_s02": {
+    "personal": 0.06783943409110094,
+    "personal_plus_external": 0.10906717305611331,
+    "external_calibrated": 0.10528311166199346,
+    "external_gain": -0.39999547600746155
+   },
+   "finemi_s03": {
+    "personal": 0.08680277109946205,
+    "personal_plus_external": 0.1082645721053538,
+    "external_calibrated": 0.06554723995697344,
+    "external_gain": -0.24827735126018524
+   },
+   "finemi_s04": {
+    "personal": -0.056542131343230106,
+    "personal_plus_external": -0.011414748182999203,
+    "external_calibrated": 0.008156406391734174,
+    "external_gain": 0.10532087087631226
+   },
+   "finemi_s05": {
+    "personal": 0.04998289948585438,
+    "personal_plus_external": 0.050572531903186814,
+    "external_calibrated": 0.019154691456688317,
+    "external_gain": -0.3146781027317047
+   },
+   "finemi_s06": {
+    "personal": 0.07590629007349664,
+    "personal_plus_external": 0.07093074012943314,
+    "external_calibrated": -0.04402807847568701,
+    "external_gain": -0.06125840172171593
+   },
+   "finemi_s07": {
+    "personal": -0.015563611028966058,
+    "personal_plus_external": -0.007072541423439699,
+    "external_calibrated": 0.00021466380200915505,
+    "external_gain": -0.3571111857891083
+   },
+   "finemi_s08": {
+    "personal": 0.0005098435331292895,
+    "personal_plus_external": 0.027712566036954323,
+    "external_calibrated": 0.045012134873125345,
+    "external_gain": -0.36131542921066284
+   },
+   "finemi_s09": {
+    "personal": -0.00863539179924036,
+    "personal_plus_external": 0.04700715245175537,
+    "external_calibrated": 0.05101629061616266,
+    "external_gain": -0.3509780764579773
+   },
+   "finemi_s10": {
+    "personal": 0.08127417355794987,
+    "personal_plus_external": 0.1017981272116236,
+    "external_calibrated": 0.07028188977321961,
+    "external_gain": -0.2606663405895233
+   },
+   "finemi_s11": {
+    "personal": 0.033224186855349946,
+    "personal_plus_external": 0.034672352365705573,
+    "external_calibrated": 0.10780904140612868,
+    "external_gain": -0.010353825986385345
+   },
+   "finemi_s12": {
+    "personal": 0.07546861167722194,
+    "personal_plus_external": -0.0029090329828140664,
+    "external_calibrated": -0.0674842712121645,
+    "external_gain": 0.09102439135313034
+   },
+   "finemi_s13": {
+    "personal": 0.011968231747314447,
+    "personal_plus_external": 0.02787232481754788,
+    "external_calibrated": 0.05286902018252332,
+    "external_gain": -0.21656452119350433
+   },
+   "finemi_s14": {
+    "personal": -0.00563135913450552,
+    "personal_plus_external": 0.016465231270100557,
+    "external_calibrated": 0.040116406078054584,
+    "external_gain": -0.32590174674987793
+   },
+   "finemi_s15": {
+    "personal": -0.04397694442084133,
+    "personal_plus_external": -0.03979055506103144,
+    "external_calibrated": 0.003388160483323214,
+    "external_gain": -0.06378786265850067
+   },
+   "finemi_s16": {
+    "personal": 0.007224692494215035,
+    "personal_plus_external": 0.015493030149467046,
+    "external_calibrated": 0.040504668244038526,
+    "external_gain": -0.1262696236371994
+   },
+   "finemi_s17": {
+    "personal": 0.09694718249905371,
+    "personal_plus_external": 0.13196693704597906,
+    "external_calibrated": 0.11694578368946562,
+    "external_gain": -0.7093915343284607
+   },
+   "finemi_s18": {
+    "personal": -0.020441869884129316,
+    "personal_plus_external": 0.019819352040677928,
+    "external_calibrated": 0.1250484819982705,
+    "external_gain": -0.24307306110858917
+   }
+  }
+ }
+}

@@ -1,0 +1,454 @@
+{
+ "S0001": {
+  "shift": 2,
+  "offset": -43.30400000000009,
+  "mad": 0.023999999999915644,
+  "frac_within": 1.0,
+  "drift_s": 0.0015217749765099597,
+  "n_events": 1435,
+  "group": "No Implicit Learning",
+  "n_fs": 10.0,
+  "overlap_s": 2268.6,
+  "excluded": [],
+  "n_te": 1438,
+  "n_tn": 1435
+ },
+ "S0002": {
+  "shift": 2,
+  "offset": -41.29599999999999,
+  "mad": 0.028000000000076852,
+  "frac_within": 1.0,
+  "drift_s": 0.004231730572527681,
+  "n_events": 585,
+  "group": "No Implicit Learning",
+  "n_fs": 10.0,
+  "overlap_s": 967.0039999999999,
+  "excluded": [],
+  "n_te": 587,
+  "n_tn": 585
+ },
+ "S0003": {
+  "shift": 2,
+  "offset": -64.52150000000006,
+  "mad": 0.02650000000005548,
+  "frac_within": 1.0,
+  "drift_s": 0.001590406778134934,
+  "n_events": 1364,
+  "group": "No Implicit Learning",
+  "n_fs": 10.0,
+  "overlap_s": 2156.4000000000005,
+  "excluded": [],
+  "n_te": 1367,
+  "n_tn": 1364
+ },
+ "S0004": {
+  "shift": 3,
+  "offset": -74.70800000000008,
+  "mad": 0.027999999999792635,
+  "frac_within": 0.9979064898813678,
+  "drift_s": 0.0010196768374157728,
+  "n_events": 1433,
+  "group": "No Implicit Learning",
+  "n_fs": 10.0,
+  "overlap_s": 2258.4,
+  "excluded": [],
+  "n_te": 1437,
+  "n_tn": 1433
+ },
+ "S0006": {
+  "shift": 2,
+  "offset": -61.131,
+  "mad": 0.029000000000024784,
+  "frac_within": 1.0,
+  "drift_s": 0.006007629218167665,
+  "n_events": 809,
+  "group": "No Implicit Learning",
+  "n_fs": 10.0,
+  "overlap_s": 1308.6,
+  "excluded": [],
+  "n_te": 812,
+  "n_tn": 809
+ },
+ "S0007": {
+  "shift": 3,
+  "offset": -72.476,
+  "mad": 0.024999999999977263,
+  "frac_within": 0.9800362976406534,
+  "drift_s": 0.018477418380754784,
+  "n_events": 551,
+  "group": "No Implicit Learning",
+  "n_fs": 10.0,
+  "overlap_s": 896.4,
+  "excluded": [
+   "short"
+  ],
+  "n_te": 555,
+  "n_tn": 551
+ },
+ "S0008": {
+  "shift": 2,
+  "offset": -60.128000000000014,
+  "mad": 0.02400000000000091,
+  "frac_within": 1.0,
+  "drift_s": 0.0014132831905655507,
+  "n_events": 244,
+  "group": "No Implicit Learning",
+  "n_fs": 10.0,
+  "overlap_s": 493.37199999999996,
+  "excluded": [
+   "short"
+  ],
+  "n_te": 246,
+  "n_tn": 244
+ },
+ "S0009": {
+  "shift": 2,
+  "offset": -59.91599999999994,
+  "mad": 0.02500000000009095,
+  "frac_within": 1.0,
+  "drift_s": 0.000547711357548053,
+  "n_events": 1435,
+  "group": "No Implicit Learning",
+  "n_fs": 10.0,
+  "overlap_s": 2263.2,
+  "excluded": [],
+  "n_te": 1438,
+  "n_tn": 1435
+ },
+ "S0012": {
+  "shift": 3,
+  "offset": -37.97199999999998,
+  "mad": 0.09500000000002728,
+  "frac_within": 0.5536062378167641,
+  "drift_s": 0.021867379583845548,
+  "n_events": 1026,
+  "group": "No Implicit Learning",
+  "n_fs": 10.0,
+  "overlap_s": 1652.228,
+  "excluded": [
+   "match"
+  ],
+  "n_te": 1029,
+  "n_tn": 1026
+ },
+ "S0013": {
+  "shift": 1,
+  "offset": -70.82400000000007,
+  "mad": 0.028999999999996362,
+  "frac_within": 0.9153976311336718,
+  "drift_s": 0.013947472039149034,
+  "n_events": 591,
+  "group": "No Implicit Learning",
+  "n_fs": 10.0,
+  "overlap_s": 987.4759999999999,
+  "excluded": [],
+  "n_te": 592,
+  "n_tn": 592
+ },
+ "S0015": {
+  "shift": 2,
+  "offset": -41.132000000000005,
+  "mad": 0.02400000000000091,
+  "frac_within": 1.0,
+  "drift_s": 0.0076366119701987145,
+  "n_events": 1435,
+  "group": "No Implicit Learning",
+  "n_fs": 10.0,
+  "overlap_s": 2261.8,
+  "excluded": [],
+  "n_te": 1438,
+  "n_tn": 1435
+ },
+ "S0016": {
+  "shift": 2,
+  "offset": -54.142999999999915,
+  "mad": 0.024999999999977263,
+  "frac_within": 1.0,
+  "drift_s": 0.009241626006165404,
+  "n_events": 1439,
+  "group": "No Implicit Learning",
+  "n_fs": 10.0,
+  "overlap_s": 2264.4,
+  "excluded": [],
+  "n_te": 1442,
+  "n_tn": 1439
+ },
+ "S0017": {
+  "shift": 2,
+  "offset": -173.356,
+  "mad": 0.024999999999863576,
+  "frac_within": 1.0,
+  "drift_s": 0.01633572880035672,
+  "n_events": 1197,
+  "group": "No Implicit Learning",
+  "n_fs": 10.0,
+  "overlap_s": 2277.8,
+  "excluded": [],
+  "n_te": 1200,
+  "n_tn": 1197
+ },
+ "S0018": {
+  "shift": 2,
+  "offset": -41.38299999999987,
+  "mad": 0.02300000000009561,
+  "frac_within": 1.0,
+  "drift_s": 0.010412369595918847,
+  "n_events": 1438,
+  "group": "No Implicit Learning",
+  "n_fs": 10.0,
+  "overlap_s": 2267.3,
+  "excluded": [],
+  "n_te": 1441,
+  "n_tn": 1438
+ },
+ "S0019": {
+  "shift": 2,
+  "offset": -56.608000000000004,
+  "mad": 0.030999999999998806,
+  "frac_within": 1.0,
+  "drift_s": 0.0024930800378939466,
+  "n_events": 95,
+  "group": "No Implicit Learning",
+  "n_fs": 10.0,
+  "overlap_s": 190.392,
+  "excluded": [
+   "short"
+  ],
+  "n_te": 97,
+  "n_tn": 95
+ },
+ "S0020": {
+  "shift": 2,
+  "offset": -39.76800000000003,
+  "mad": 0.02500000000009095,
+  "frac_within": 1.0,
+  "drift_s": 0.005431068210413059,
+  "n_events": 1437,
+  "group": "No Implicit Learning",
+  "n_fs": 10.0,
+  "overlap_s": 2262.6,
+  "excluded": [],
+  "n_te": 1440,
+  "n_tn": 1437
+ },
+ "S0022": {
+  "shift": 3,
+  "offset": -41.936999999999955,
+  "mad": 0.03999999999990678,
+  "frac_within": 0.8115501519756839,
+  "drift_s": 0.02540524113864251,
+  "n_events": 329,
+  "group": "No Implicit Learning",
+  "n_fs": 10.0,
+  "overlap_s": 562.0630000000001,
+  "excluded": [
+   "match",
+   "short"
+  ],
+  "n_te": 332,
+  "n_tn": 329
+ },
+ "S0024": {
+  "shift": 2,
+  "offset": -41.827,
+  "mad": 0.02800000000002001,
+  "frac_within": 0.8923829489867225,
+  "drift_s": 0.0010185868112557728,
+  "n_events": 1431,
+  "group": "No Implicit Learning",
+  "n_fs": 10.0,
+  "overlap_s": 2259.8999999999996,
+  "excluded": [
+   "match"
+  ],
+  "n_te": 1436,
+  "n_tn": 1431
+ },
+ "S0026": {
+  "shift": 2,
+  "offset": -44.81899999999996,
+  "mad": 0.026999999999816282,
+  "frac_within": 1.0,
+  "drift_s": 0.011363965373121232,
+  "n_events": 1439,
+  "group": "No Implicit Learning",
+  "n_fs": 10.0,
+  "overlap_s": 2268.9,
+  "excluded": [],
+  "n_te": 1442,
+  "n_tn": 1439
+ },
+ "S0028": {
+  "shift": 2,
+  "offset": -43.725000000000136,
+  "mad": 0.023999999999887223,
+  "frac_within": 1.0,
+  "drift_s": 0.002755090040800212,
+  "n_events": 1437,
+  "group": "No Implicit Learning",
+  "n_fs": 10.0,
+  "overlap_s": 2267.2,
+  "excluded": [],
+  "n_te": 1440,
+  "n_tn": 1437
+ },
+ "S0029": {
+  "shift": 2,
+  "offset": -42.282999999999994,
+  "mad": 0.019500000000007844,
+  "frac_within": 1.0,
+  "drift_s": 0.0012267618010426418,
+  "n_events": 158,
+  "group": "No Implicit Learning",
+  "n_fs": 10.0,
+  "overlap_s": 289.917,
+  "excluded": [
+   "short"
+  ],
+  "n_te": 160,
+  "n_tn": 158
+ },
+ "S0005": {
+  "shift": 2,
+  "offset": -51.51299999999995,
+  "mad": 0.024000000000008015,
+  "frac_within": 1.0,
+  "drift_s": 0.015993378047710394,
+  "n_events": 558,
+  "group": "Yes Implicit Learning",
+  "n_fs": 10.0,
+  "overlap_s": 890.9,
+  "excluded": [
+   "short"
+  ],
+  "n_te": 561,
+  "n_tn": 558
+ },
+ "S0010": {
+  "shift": 2,
+  "offset": -51.69799999999998,
+  "mad": 0.023999999999972488,
+  "frac_within": 1.0,
+  "drift_s": 0.007925286362549855,
+  "n_events": 495,
+  "group": "Yes Implicit Learning",
+  "n_fs": 10.0,
+  "overlap_s": 791.3,
+  "excluded": [
+   "short"
+  ],
+  "n_te": 498,
+  "n_tn": 495
+ },
+ "S0011": {
+  "shift": 2,
+  "offset": -41.22399999999993,
+  "mad": 0.024499999999989086,
+  "frac_within": 1.0,
+  "drift_s": 0.006541577573777602,
+  "n_events": 632,
+  "group": "Yes Implicit Learning",
+  "n_fs": 10.0,
+  "overlap_s": 998.3,
+  "excluded": [],
+  "n_te": 635,
+  "n_tn": 632
+ },
+ "S0014": {
+  "shift": 2,
+  "offset": -42.06999999999999,
+  "mad": 0.03299999999995862,
+  "frac_within": 0.817477096546864,
+  "drift_s": 0.0028072598354569323,
+  "n_events": 1419,
+  "group": "Yes Implicit Learning",
+  "n_fs": 10.0,
+  "overlap_s": 2263.4,
+  "excluded": [
+   "match"
+  ],
+  "n_te": 1421,
+  "n_tn": 1429
+ },
+ "S0021": {
+  "shift": 3,
+  "offset": -117.72299999999996,
+  "mad": 0.025000000000005684,
+  "frac_within": 0.9941634241245136,
+  "drift_s": 0.011747385831540669,
+  "n_events": 514,
+  "group": "Yes Implicit Learning",
+  "n_fs": 10.0,
+  "overlap_s": 844.177,
+  "excluded": [
+   "short"
+  ],
+  "n_te": 517,
+  "n_tn": 514
+ },
+ "S0023": {
+  "shift": 1,
+  "offset": -41.006000000000014,
+  "mad": 0.029999999999930083,
+  "frac_within": 0.9194214876033058,
+  "drift_s": 0.01229235914772886,
+  "n_events": 484,
+  "group": "Yes Implicit Learning",
+  "n_fs": 10.0,
+  "overlap_s": 809.294,
+  "excluded": [
+   "short"
+  ],
+  "n_te": 485,
+  "n_tn": 484
+ },
+ "S0025": {
+  "shift": 2,
+  "offset": -43.95100000000002,
+  "mad": 0.04299999999989268,
+  "frac_within": 0.7651146629603892,
+  "drift_s": 0.04922004414409997,
+  "n_events": 1439,
+  "group": "Yes Implicit Learning",
+  "n_fs": 10.0,
+  "overlap_s": 2266.1,
+  "excluded": [
+   "match"
+  ],
+  "n_te": 1441,
+  "n_tn": 1439
+ },
+ "S0027": {
+  "shift": 2,
+  "offset": -57.12399999999997,
+  "mad": 0.027000000000043656,
+  "frac_within": 1.0,
+  "drift_s": 0.03879147941150052,
+  "n_events": 201,
+  "group": "Yes Implicit Learning",
+  "n_fs": 10.0,
+  "overlap_s": 357.576,
+  "excluded": [
+   "short"
+  ],
+  "n_te": 203,
+  "n_tn": 201
+ },
+ "S0030": {
+  "shift": 3,
+  "offset": -56.762,
+  "mad": 2.07950000000001,
+  "frac_within": 0.032362459546925564,
+  "drift_s": 0.15729668575811218,
+  "n_events": 618,
+  "group": "Yes Implicit Learning",
+  "n_fs": 10.0,
+  "overlap_s": 1012.9000000000001,
+  "excluded": [
+   "mad",
+   "match"
+  ],
+  "n_te": 621,
+  "n_tn": 618
+ }
+}

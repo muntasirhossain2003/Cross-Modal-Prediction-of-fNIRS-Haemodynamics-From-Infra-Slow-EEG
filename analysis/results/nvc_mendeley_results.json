@@ -1,0 +1,26 @@
+{
+ "n": 15,
+ "P12.2 coupling": {
+  "frac_beating_null": 0.6,
+  "median_delay_s": 7.0,
+  "iqr_delay_s": [
+   0.0,
+   11.5
+  ],
+  "median_peak_r": 0.10153513331501889,
+  "pass": true
+ },
+ "P12.3 kernel": {
+  "median_d": 0.10164207748695106,
+  "median_k": 0.0837611140047698,
+  "wilcoxon_p": 0.1038818359375,
+  "pass": false
+ },
+ "P12.4 delay": {
+  "agree_2s": 0.3333333333333333,
+  "chance": 0.1904761904761905,
+  "p_agree": 0.15398460153984603,
+  "median_delay_s": 9.0,
+  "pass": false
+ }
+}

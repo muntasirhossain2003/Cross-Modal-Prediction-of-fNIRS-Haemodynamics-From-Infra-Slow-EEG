@@ -1,0 +1,54 @@
+{
+ "hbci_to_mental_workload": {
+  "r_subject": 0.20521720453780778,
+  "ci_low": 0.1283410503422504,
+  "ci_high": 0.28534715592859067,
+  "null_mean": -0.0008266893930331695,
+  "p_pairing": 0.000999000999000999,
+  "p_signflip": 0.00019998000199980003,
+  "n_subjects": 26,
+  "n_positive": 20,
+  "verdict": "detectable",
+  "alpha": 1000.0,
+  "claim2_pass": true,
+  "r_HbO": 0.23928460479787217,
+  "r_HbR": 0.06501435259330009,
+  "calibration_k2": {
+   "baseline": 0.23863937652134773,
+   "personal": 0.34673996227478204,
+   "hybrid_external": 0.17693695240040347,
+   "frozen_external": 0.1756548024236318,
+   "hybrid_minus_baseline": -0.06170242412094422,
+   "hybrid_minus_baseline_ci": [
+    -0.18571356120936666,
+    0.06154462708312953
+   ]
+  }
+ },
+ "mental_workload_to_hbci": {
+  "r_subject": 0.17678715514036714,
+  "ci_low": 0.14304434177765016,
+  "ci_high": 0.2106752018881243,
+  "null_mean": 0.0002498723888984757,
+  "p_pairing": 0.000999000999000999,
+  "p_signflip": 9.999000099990002e-05,
+  "n_subjects": 29,
+  "n_positive": 28,
+  "verdict": "detectable",
+  "alpha": 1000.0,
+  "claim2_pass": true,
+  "r_HbO": 0.20021186045078262,
+  "r_HbR": 0.034952125920239906,
+  "calibration_k2": {
+   "baseline": 0.0961591540505464,
+   "personal": 0.3425137009572888,
+   "hybrid_external": 0.3066579185971877,
+   "frozen_external": 0.09703882283467284,
+   "hybrid_minus_baseline": 0.2104987645466413,
+   "hybrid_minus_baseline_ci": [
+    0.16528929262745234,
+    0.2591500862298525
+   ]
+  }
+ }
+}

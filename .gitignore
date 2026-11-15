@@ -60,5 +60,18 @@ neurovascnet_outputs_local/
 outputs/
 .claude/settings.local.json
 
+# Merged notebook cache and run outputs (regenerable; *.npy arrays are GB-scale)
+neurovascnet_merge_v1_cache/
+neurovascnet_merge_v1_outputs/
+
 # Report build intermediates (regenerate with scripts/build_report_pdf.py)
 report_build/
+
+# Working folder of NeuroVascNet_Full.ipynb
+pipeline/_nb_run/
+
+# Journal manuscript (kept private until publication)
+paper/bspc/
+merge/paper/bspc/
+paper/bspc_overleaf/
+paper/bspc_overleaf.zip

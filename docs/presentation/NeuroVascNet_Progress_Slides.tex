@@ -1,0 +1,384 @@
+% NeuroVascNet progress slides: Muntasir and Maisha
+% Four slides each, in order: done so far, found, current challenges, novelty.
+% Compile with pdflatex (Overleaf works out of the box).
+\documentclass[aspectratio=169,11pt]{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[most]{tcolorbox}
+\usepackage{booktabs}
+
+% ---------------------------------------------------------------- look
+\usetheme{default}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}{%
+  \hfill\scriptsize\insertframenumber\,/\,\inserttotalframenumber\hspace{1.2em}\vspace{0.8em}}
+\definecolor{accent}{HTML}{2A78D6}
+\definecolor{ink}{HTML}{1A1A1A}
+\setbeamercolor{frametitle}{fg=ink,bg=white}
+\setbeamerfont{frametitle}{size=\Large}
+\setbeamercolor{normal text}{fg=ink}
+\setbeamercolor{itemize item}{fg=accent}
+\setbeamertemplate{itemize items}[circle]
+\setlength{\leftmargini}{1.2em}
+
+\newtcolorbox{slidebox}{enhanced, colback=white, colframe=accent!80!black,
+  boxrule=0.9pt, arc=1pt, left=8pt, right=8pt, top=6pt, bottom=6pt, width=\textwidth}
+\newcommand{\colhead}[1]{\textbf{#1}\par\vspace{2pt}}
+
+\title{NeuroVascNet: Where We Are}
+\subtitle{Can EEG tell us what the blood flow in the brain is doing?}
+\author{Muntasir Hossain \and Maisha}
+\date{October 2026}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+% ================================================================ MUNTASIR
+\begin{frame}{Muntasir Experiment}
+\begin{slidebox}
+\begin{itemize}\setlength{\itemsep}{5pt}
+  \item Before building any model, I checked the data itself: 610 recordings across our 4 datasets.
+  \item That check showed HEFMI's fNIRS was mostly heartbeat and breathing, so I switched training to the cleaner TU Berlin dataset.
+  \item I built one EEG model that learns from fNIRS and fMRI together, and a second one that learns from fNIRS alone, to compare them fairly.
+  \item Every test uses people the model has never seen, with chance-level controls.
+  \item In HEFMI, I compared 20 stroke (ICH) patients with 17 healthy people: how strongly and how quickly EEG and blood signals are linked, plus four checks for recording problems.
+\end{itemize}
+\end{slidebox}
+\end{frame}
+
+\begin{frame}{Muntasir Found}
+\begin{slidebox}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\colhead{What worked}
+\begin{itemize}\setlength{\itemsep}{4pt}
+  \item EEG can predict fNIRS in new people, but only a little (r = 0.16), and only with clean data.
+  \item Measured directly from the data, the delay between brain activity and blood flow is about 6 seconds, and it stays the same for a person across sessions.
+  \item After a simple calibration, the model's confidence numbers are honest on average.
+  \item Stroke patients' HbO and HbR move together more tightly than healthy people's (0.81 vs 0.64). The EEG--blood link itself was the same in both groups.
+\end{itemize}
+\end{column}
+\begin{column}{0.48\textwidth}
+\colhead{What didn't}
+\begin{itemize}\setlength{\itemsep}{4pt}
+  \item Adding fMRI did not help. Random fMRI data gave the same result as real fMRI.
+  \item On a different dataset it predicts almost nothing (r = 0.01).
+  \item The delay the model learns just follows the limits we set it.
+  \item Its confidence can't pick out which predictions are wrong.
+  \item Splitting the data the usual way made our score look almost twice as good as it really is.
+\end{itemize}
+\end{column}
+\end{columns}
+\end{slidebox}
+\end{frame}
+
+\begin{frame}{Muntasir Current Challenges}
+\begin{slidebox}
+\begin{itemize}\setlength{\itemsep}{5pt}
+  \item No public dataset records the same people with EEG, fNIRS and fMRI, so the two blood signals never meet in the data.
+  \item The fMRI dataset has only 10 people, which is very little to learn from.
+  \item The outside datasets differ in electrodes, task and data quality all at once, so I can't tell which one breaks the model.
+  \item The stroke result might come from how light passes through an injured head, not from the brain. I still need to rule that out.
+  \item I haven't fully confirmed that EEG and blood recordings are perfectly lined up in time.
+\end{itemize}
+\end{slidebox}
+\end{frame}
+
+\begin{frame}{Muntasir Novelty Concern}
+\begin{slidebox}
+\begin{itemize}\setlength{\itemsep}{5pt}
+  \item As far as I know, this is the first fair test of whether training with fMRI on top of fNIRS helps an EEG model. It doesn't.
+  \item Checking data quality first predicts whether this kind of model can work at all: clean data gave r = 0.16, noisy data gave nothing.
+  \item We show how much a common shortcut in testing inflates results.
+  \item We measure the brain-to-blood delay directly, and show why the model's own delay estimate can't be trusted.
+  \item A possible new marker for stroke patients, still to be confirmed.
+\end{itemize}
+\end{slidebox}
+\end{frame}
+
+% ================================================================ MAISHA
+\begin{frame}{Maisha Experiment}
+\begin{slidebox}
+\begin{itemize}\setlength{\itemsep}{5pt}
+  \item I rebuilt the pipeline independently, training on HEFMI fNIRS and ds002336 fMRI.
+  \item I fixed the validation split: the old one had put only stroke patients into validation.
+  \item I added safety checks: a test of whether global signal regression helps, unit and timing checks, and a rule that stops the notebook from claiming more than the data shows.
+  \item I tested every person separately (leave one person out) and tried calibrating the model to each new person.
+  \item I repeated the whole run 5 times with different random seeds to see how stable the results are.
+\end{itemize}
+\end{slidebox}
+\end{frame}
+
+\begin{frame}{Maisha Found}
+\begin{slidebox}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{0.48\textwidth}
+\colhead{What worked}
+\begin{itemize}\setlength{\itemsep}{4pt}
+  \item EEG and fNIRS really are linked inside each person (r = 0.09, well above chance).
+  \item Within our own dataset, the confidence score does put good predictions ahead of bad ones, in all 5 runs.
+  \item Global signal regression throws away real signal, so I turned it off.
+\end{itemize}
+\end{column}
+\begin{column}{0.48\textwidth}
+\colhead{What didn't}
+\begin{itemize}\setlength{\itemsep}{4pt}
+  \item For a new person, the model does no better than guessing that person's usual level.
+  \item Adding fMRI made things worse in 4 out of 5 runs.
+  \item Nothing carried over to the other datasets, and there the confidence score gets it backwards.
+  \item Personalising helped, but mostly because it learned the person's average, not because of EEG.
+\end{itemize}
+\end{column}
+\end{columns}
+\end{slidebox}
+\end{frame}
+
+\begin{frame}{Maisha Current Challenges}
+\begin{slidebox}
+\begin{itemize}\setlength{\itemsep}{5pt}
+  \item The fNIRS data I train on is mostly body noise, which limits everything I can find.
+  \item I only have 7 people to validate on (3 for fMRI), so results change from run to run.
+  \item In half of the data splits, the timing between EEG and blood flow didn't look right, so I can't make timing claims yet.
+  \item The "refuse to answer" rule works in one run and fails in the next.
+  \item Each run takes about an hour and a half on our GPU, so testing ideas is slow.
+\end{itemize}
+\end{slidebox}
+\end{frame}
+
+\begin{frame}{Maisha Novelty Concern}
+\begin{slidebox}
+\begin{itemize}\setlength{\itemsep}{5pt}
+  \item My pipeline is built separately from Muntasir's and reaches the same negative results, so they are not one pipeline's mistake.
+  \item With 30 people, I can show the EEG--blood link is personal: it exists, but doesn't transfer between people.
+  \item A simple check that shows how little EEG adds when personalising the model.
+  \item A set of safeguards that keep the notebook honest about what it can claim.
+  \item I found and fixed a split that would have mixed up patients and healthy people.
+\end{itemize}
+\end{slidebox}
+\end{frame}
+
+% ================================================================ DATASETS
+\begin{frame}{The Data We Used}
+\begin{slidebox}
+\small
+We both used the same four public datasets (about 85 GB in total), but not in the same roles. Before trusting any result, we checked each one.
+\vspace{6pt}
+
+\footnotesize
+\begin{tabular}{@{}p{0.19\textwidth}p{0.29\textwidth}p{0.21\textwidth}p{0.23\textwidth}@{}}
+\toprule
+\textbf{Dataset} & \textbf{What it has} & \textbf{Muntasir used it for} & \textbf{Maisha used it for} \\
+\midrule
+TU Berlin hBCI & EEG + fNIRS, 29 people & training & testing (new dataset) \\
+HEFMI-ICH & EEG + fNIRS, 37 people (20 stroke patients) & testing + stroke study & training and validation \\
+ds002336 & EEG + fMRI, 10 people & training & training and validation \\
+ds002739 & EEG + fMRI, 24 people & testing (new dataset) & testing (new dataset) \\
+\bottomrule
+\end{tabular}
+\end{slidebox}
+\end{frame}
+
+% ---------------------------------------------------------------- TU Berlin
+\begin{frame}{Dataset 1: TU Berlin hBCI (EEG + fNIRS) -- the data}
+\begin{slidebox}
+\scriptsize
+\begin{columns}[T,onlytextwidth]
+\begin{column}{0.485\textwidth}
+\colhead{\small The recording}
+\begin{tabular}{@{}p{0.3\linewidth}p{0.66\linewidth}@{}}
+\toprule
+Type & EEG and fNIRS recorded at the same time; a brain--computer interface study \\
+Size & 7.1 GB \\
+Participants & 29 healthy adults, no patients \\
+Classes & 4: left vs right hand imagery; mental arithmetic vs rest \\
+Trials & 3 sessions per task, 20 trials each: 120 per person, 3,480 in total \\
+Conditions & seated at a screen; cue, about 10 s of task, then 15--17 s rest \\
+\bottomrule
+\end{tabular}
+\end{column}
+\begin{column}{0.485\textwidth}
+\colhead{\small Signals and windows}
+\begin{tabular}{@{}p{0.3\linewidth}p{0.66\linewidth}@{}}
+\toprule
+EEG & 30 electrodes (plus eye channels), 200 Hz, finer 10-5 positions (no C3/C4) \\
+fNIRS & 36 channels, 2 wavelengths (760/850 nm), 10 Hz, raw light \\
+Frequencies & EEG up to 45 Hz; fNIRS 0.01--0.2 Hz \\
+Trial window & 30 s ($-$2 to +28 s around the cue): 6,000 EEG and 300 fNIRS samples \\
+Alignment & both devices share the same event markers; windows cut at matching cue times \\
+Model output & HbO and HbR: 72 signals $\times$ 300 time points \\
+\bottomrule
+\end{tabular}
+\end{column}
+\end{columns}
+\end{slidebox}
+\end{frame}
+
+\begin{frame}{Dataset 1: TU Berlin hBCI -- what we found}
+\begin{slidebox}
+\small
+\textbf{How we used it:} Muntasir trained on it; Maisha only tested on it.
+\begin{itemize}\setlength{\itemsep}{3pt}
+  \item The cleanest fNIRS data we have: it repeats well across trials (0.50) and behaves like a real brain response.
+  \item Most optodes were touching the skin properly (about 78\% of channels).
+  \item Its electrodes sit in different places from HEFMI's, so we had to estimate the missing ones.
+  \item Its values were in different units from HEFMI's (thousands of times larger), so we converted them.
+  \item Because it came as raw light, we did the conversion to HbO and HbR ourselves.
+  \item A different 26-person TU Berlin dataset had been mixed up with this one early on; we caught it.
+\end{itemize}
+\end{slidebox}
+\end{frame}
+
+% ---------------------------------------------------------------- HEFMI
+\begin{frame}{Dataset 2: HEFMI-ICH (EEG + fNIRS) -- the data}
+\begin{slidebox}
+\scriptsize
+\begin{columns}[T,onlytextwidth]
+\begin{column}{0.485\textwidth}
+\colhead{\small The recording}
+\begin{tabular}{@{}p{0.3\linewidth}p{0.66\linewidth}@{}}
+\toprule
+Type & EEG and fNIRS recorded at the same time; a clinical study \\
+Size & 13.2 GB \\
+Participants & 37: 17 healthy, 20 patients after a brain bleed (ICH) \\
+Classes & 2: left vs right hand imagery \\
+Trials & 3 sessions, 15 per hand per session: 90 per person, 2,940 used \\
+Conditions & same protocol for patients and healthy people \\
+\bottomrule
+\end{tabular}
+\end{column}
+\begin{column}{0.485\textwidth}
+\colhead{\small Signals and windows}
+\begin{tabular}{@{}p{0.3\linewidth}p{0.66\linewidth}@{}}
+\toprule
+EEG & 32 electrodes, 256 Hz, standard 10-20 positions (C3, C4 present) \\
+fNIRS & 90 channels, 11 Hz, already converted to HbO and HbR \\
+Frequencies & EEG 0.5--45 Hz; fNIRS 0.01--0.2 Hz \\
+Trial window & 30 s, resampled to 200 Hz EEG and 10 Hz fNIRS \\
+Alignment & files come already cut into trials, EEG and fNIRS together, but without event times \\
+Model output & HbO and HbR: 180 signals $\times$ 300 time points (Maisha also 4 summary numbers) \\
+\bottomrule
+\end{tabular}
+\end{column}
+\end{columns}
+\end{slidebox}
+\end{frame}
+
+\begin{frame}{Dataset 2: HEFMI-ICH -- what we found}
+\begin{slidebox}
+\small
+\textbf{How we used it:} Muntasir tested on it and compared patients with healthy people; Maisha trained on it (30 people) and validated on 7.
+\begin{itemize}\setlength{\itemsep}{3pt}
+  \item The fNIRS signal is mostly heartbeat and breathing, not brain activity, and it barely repeats across trials (0.08).
+  \item Our early cleaning steps made it even worse.
+  \item The original validation split had only patients in it; Maisha rebuilt it with both groups.
+  \item The electrode names were missing, so we recovered them from the dataset's own code.
+  \item With no event times, some checks were impossible.
+  \item Timing looked fine for the training people but not for the validation people.
+\end{itemize}
+\end{slidebox}
+\end{frame}
+
+% ---------------------------------------------------------------- ds002336
+\begin{frame}{Dataset 3: ds002336 (EEG + fMRI) -- the data}
+\begin{slidebox}
+\scriptsize
+\begin{columns}[T,onlytextwidth]
+\begin{column}{0.485\textwidth}
+\colhead{\small The recording}
+\begin{tabular}{@{}p{0.3\linewidth}p{0.66\linewidth}@{}}
+\toprule
+Type & EEG recorded inside an MRI scanner; a neurofeedback study \\
+Size & 19.3 GB \\
+Participants & 10 healthy adults, no patients \\
+Classes & rest vs motor imagery blocks \\
+Tasks & motor localiser, imagery before and after training, three neurofeedback runs \\
+Trials & up to 100 per run; 384 used (Maisha 305 training + 124 validation) \\
+\bottomrule
+\end{tabular}
+\end{column}
+\begin{column}{0.485\textwidth}
+\colhead{\small Signals and windows}
+\begin{tabular}{@{}p{0.3\linewidth}p{0.66\linewidth}@{}}
+\toprule
+EEG & 64 electrodes at 5,000 Hz, cleaned of scanner noise, resampled to 200 Hz \\
+fMRI & whole brain, one scan every 2 s (0.5 Hz), averaged into brain regions \\
+Frequencies & EEG 0.5--45 Hz; fMRI 0.008--0.15 Hz \\
+Trial window & 30 s: 6,000 EEG samples and 15 brain scans \\
+Alignment & the scanner writes a marker into the EEG at every scan, so each scan matches an exact EEG sample \\
+Model output & BOLD signal per brain region $\times$ 15 time points \\
+\bottomrule
+\end{tabular}
+\end{column}
+\end{columns}
+\end{slidebox}
+\end{frame}
+
+\begin{frame}{Dataset 3: ds002336 -- what we found}
+\begin{slidebox}
+\small
+\textbf{How we used it:} the only fMRI training set for both of us; Maisha also kept 3 people back for validation.
+\begin{itemize}\setlength{\itemsep}{3pt}
+  \item The raw EEG was buried under scanner noise about 500 times bigger than the brain signal; our own clean-up brought it back to normal levels.
+  \item A few recordings had no matching partner file or were completely flat, so we dropped them (52 good pairs left).
+  \item People barely moved their heads, which is good.
+  \item The motor brain response is weak, and part of it is just a visual response to the cue.
+  \item With only 10 people, most of what looked like prediction was the model recognising who the person was.
+\end{itemize}
+\end{slidebox}
+\end{frame}
+
+% ---------------------------------------------------------------- ds002739
+\begin{frame}{Dataset 4: ds002739 (EEG + fMRI) -- the data}
+\begin{slidebox}
+\scriptsize
+\begin{columns}[T,onlytextwidth]
+\begin{column}{0.485\textwidth}
+\colhead{\small The recording}
+\begin{tabular}{@{}p{0.3\linewidth}p{0.66\linewidth}@{}}
+\toprule
+Type & EEG recorded inside an MRI scanner; a decision-making study \\
+Size & 45.4 GB (our largest) \\
+Participants & 24 healthy adults, aged 20--32, no patients \\
+Classes & no motor classes: decide which way dots move, then rate confidence \\
+Runs & 48 (two per person) \\
+Trials & 4,678 used (Maisha 2,448) \\
+\bottomrule
+\end{tabular}
+\end{column}
+\begin{column}{0.485\textwidth}
+\colhead{\small Signals and windows}
+\begin{tabular}{@{}p{0.3\linewidth}p{0.66\linewidth}@{}}
+\toprule
+EEG & 64 electrodes recorded at 5,000 Hz; shared already cleaned at 1,000 Hz; no electrode names \\
+fMRI & one scan every 2 s (0.5 Hz), 70 $\times$ 70 $\times$ 32 voxels, averaged into brain regions \\
+Frequencies & EEG 0.5--40 Hz (filtered by the authors) \\
+Trial window & 30 s: 15 brain scans per window \\
+Alignment & event times from the dataset; EEG channels matched only by their order \\
+Model output & BOLD signal per brain region $\times$ 15 time points \\
+\bottomrule
+\end{tabular}
+\end{column}
+\end{columns}
+\end{slidebox}
+\end{frame}
+
+\begin{frame}{Dataset 4: ds002739 -- what we found}
+\begin{slidebox}
+\small
+\textbf{How we used it:} an unseen fMRI test set for both of us, never used for training.
+\begin{itemize}\setlength{\itemsep}{3pt}
+  \item The best image quality of all our data.
+  \item But it is a decision task, not a motor task, so it tests a different kind of brain activity from what we trained on.
+  \item The quick decisions give only a small, inconsistent blood response.
+  \item Without electrode names, we could only match channels by their order.
+  \item One of our automatic quality rules wrongly flagged almost everyone, because the authors had already filtered the data. We reported it rather than quietly changing the rule.
+\end{itemize}
+\end{slidebox}
+\end{frame}
+
+\end{document}
