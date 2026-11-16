@@ -132,8 +132,8 @@ and `pipeline/_nb_run/` (output of reruns).
 ## Installation
 
 ```bash
-git clone https://github.com/muntasirhossain2003/NeuroVascNet.git
-cd NeuroVascNet
+git clone https://github.com/muntasirhossain2003/Cross-Modal-Prediction-of-fNIRS-Haemodynamics-From-Infra-Slow-EEG.git
+cd Cross-Modal-Prediction-of-fNIRS-Haemodynamics-From-Infra-Slow-EEG
 python -m venv .venv && source .venv/bin/activate    # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 ```
@@ -229,7 +229,7 @@ The citation will be added once the manuscript is published. Until then, please 
 @misc{jany_neurovascnet,
   author       = {Jany, Rafsan and Hossain, Muntasir and Rahman, Maisha},
   title        = {{NeuroVascNet}: Cross-Modal Prediction of {fNIRS} Haemodynamics From Infra-Slow {EEG}},
-  howpublished = {\url{https://github.com/muntasirhossain2003/NeuroVascNet}},
+  howpublished = {\url{https://github.com/muntasirhossain2003/Cross-Modal-Prediction-of-fNIRS-Haemodynamics-From-Infra-Slow-EEG}},
   note         = {Code and results; manuscript under review}
 }
 ```
