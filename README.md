@@ -3,6 +3,7 @@
 **Cross-modal prediction of fNIRS and fMRI haemodynamics from infra-slow scalp EEG**
 
 ![Python](https://img.shields.io/badge/python-3.12-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
 ![Modalities](https://img.shields.io/badge/modalities-EEG%20%7C%20fNIRS%20%7C%20fMRI-informational)
 ![Status](https://img.shields.io/badge/manuscript-under%20review-lightgrey)
 
@@ -29,6 +30,7 @@ for the study
 10. [Limitations](#limitations)
 11. [Citation](#citation)
 12. [Authors and acknowledgements](#authors-and-acknowledgements)
+13. [License](#license)
 
 ---
 
@@ -247,3 +249,10 @@ The citation will be added once the manuscript is published. Until then, please 
 We thank the groups that recorded and shared the datasets used here: TU Berlin (hBCI and mental workload), the
 FineMI authors, the authors of the learning-capability dataset, and the authors of OpenNeuro ds002336 and
 ds002338. Questions about the code can be raised as a GitHub issue.
+
+---
+
+## License
+
+The code in this repository is released under the [MIT License](LICENSE). The datasets are not part of this
+repository and remain under the licences set by their original authors.
