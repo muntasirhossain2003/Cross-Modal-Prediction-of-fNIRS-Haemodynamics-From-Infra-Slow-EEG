@@ -1,7 +1,7 @@
-# Neurovascnet_marge_v1: what is in the notebook, and what to check before running it
+# CrossModal_InfraSlowEEG_fNIRS_fMRI: what is in the notebook, and what to check before running it
 
-**Notebook:** `Neurovascnet_marge_v1.ipynb` (47 cells, 27 code)
-**Plain-Python copy for reviewing:** `Neurovascnet_marge_v1_export.py` (same code, cells marked `# %% [code cell K | notebook cell N]`)
+**Notebook:** `CrossModal_InfraSlowEEG_fNIRS_fMRI.ipynb` (47 cells, 27 code)
+**Plain-Python copy for reviewing:** `CrossModal_InfraSlowEEG_fNIRS_fMRI_export.py` (same code, cells marked `# %% [code cell K | notebook cell N]`)
 **Built from:** `NeuroVascNet_FINAL_muntasir.ipynb` (base) + `NeuroVascNet_v3_1_maisha_RUNNABLE_v2_3_IMPROVED1.ipynb`, following `NeuroVascNet_Merge_Plan.md`, then corrected after `CODEX_AUDIT_REPORT.md`.
 
 **Status:** every cell runs top to bottom on synthetic data in both encoder settings. It has **not** been run on the real datasets. Section 4 lists what must be checked on the machine that has them.

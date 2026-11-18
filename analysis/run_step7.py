@@ -12,7 +12,7 @@ from nbclient import NotebookClient
 
 REPO = Path(__file__).resolve().parents[1]   # repository root
 
-SRC = Path(str(REPO / "pipeline/Neurovascnet_marge_v1.ipynb"))
+SRC = Path(str(REPO / "pipeline/CrossModal_InfraSlowEEG_fNIRS_fMRI.ipynb"))
 OUT = Path(__file__).with_name("step7_nofilter_executed.ipynb")
 LAST_CELL = int(sys.argv[1]) if len(sys.argv) > 1 else 25
 

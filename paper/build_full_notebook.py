@@ -1,5 +1,5 @@
-"""Writes ../pipeline/NeuroVascNet_Full.ipynb: plain code cells in the layout of the merge notebook.
-Pipeline cells are copied from Neurovascnet_marge_v1.ipynb; every analysis script becomes one plain function."""
+"""Writes ../pipeline/NeuroVascNet_Full.ipynb: plain code cells in the layout of the cross-modal pipeline notebook.
+Pipeline cells are copied from CrossModal_InfraSlowEEG_fNIRS_fMRI.ipynb; every analysis script becomes one plain function."""
 import ast
 import io
 import re
@@ -160,7 +160,7 @@ SECTIONS = [
                                                   ("calib_reliability", ["calib_reliability()", 'run_with_env(calib_reliability, TARGET="local")']), ("trial_reliability", ["trial_reliability()"])]),
 ]
 
-PIPE = nbf.read(M / "pipeline" / "Neurovascnet_marge_v1.ipynb", as_version=4)
+PIPE = nbf.read(M / "pipeline" / "CrossModal_InfraSlowEEG_fNIRS_fMRI.ipynb", as_version=4)
 assert "EEG_FILTER = True" in PIPE.cells[4].source
 PIPE.cells[4].source = PIPE.cells[4].source.replace("EEG_FILTER = True", "EEG_FILTER = False")
 _c6 = PIPE.cells[6].source.split("\n")
@@ -411,7 +411,7 @@ DESCRIBE = {
     "build_finemi": "Builds the FineMI epoch cache from the raw files (plain, linked-mastoid and emulated-hardware versions). Runs only when `BUILD_CACHES = True`.",
 }
 PIPE_TEXT = {2: "Checks the Python packages (installs any that are missing), then sets the random seed and the device.",
-             4: "Settings from the merge notebook: dataset paths and pipeline options. `EEG_FILTER = False` keeps the infra-slow band.",
+             4: "Settings from the cross-modal pipeline notebook: dataset paths and pipeline options. `EEG_FILTER = False` keeps the infra-slow band.",
              5: "Builds the configuration object and the run identifiers from those settings.",
              6: "Checks that each dataset folder exists. On a machine without the datasets it prints `[BAD]`; this does not matter when only viewing results.",
              8: "Shared signal helpers: filtering, resampling, montage interpolation, z-scoring, baseline correction and the Beer-Lambert conversion.",
