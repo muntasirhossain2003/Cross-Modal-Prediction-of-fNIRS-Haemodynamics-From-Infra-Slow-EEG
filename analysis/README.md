@@ -2,7 +2,7 @@
 
 These are copies of the scripts that produced the results in `docs/FINAL_PLAN.md` and
 `docs/RESULTS_SUMMARY.md`. The raw result files are in `results/`. The scripts read the notebook caches in
-`pipeline/neurovascnet_merge_v1_cache/`, and several of them execute cells of `pipeline/main_experiment.ipynb` to
+`pipeline/neurovascnet_merge_v1_cache/`, and several of them execute cells of `pipeline/CrossModal_InfraSlowEEG_fNIRS_fMRI.ipynb` to
 reuse its loaders and statistics. A few scripts expect sibling scripts to sit in the same folder, because
 they `exec` part of another script (for example `trf_delay.py` reads `continuous_lag.py`).
 

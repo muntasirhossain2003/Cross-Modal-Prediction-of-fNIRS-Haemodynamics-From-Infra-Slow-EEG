@@ -19,7 +19,7 @@ REPO = Path(__file__).resolve().parents[1]   # repository root
 
 warnings.filterwarnings("ignore")
 mne.set_log_level("ERROR")
-NB = Path(str(REPO / "pipeline/main_experiment.ipynb"))
+NB = Path(str(REPO / "pipeline/CrossModal_InfraSlowEEG_fNIRS_fMRI.ipynb"))
 ROOT = Path(str(REPO / "dataset/Multi-joint Upper-Limb EEG+FNIR/FineMI/FineMI"))
 REREF = os.environ.get("REREF", "")                       # "lm" = linked mastoids (P4.B)
 HWHP = os.environ.get("HWHP", "")                         # "1" = emulate BrainAmp 10 s first-order high-pass (P5.2)

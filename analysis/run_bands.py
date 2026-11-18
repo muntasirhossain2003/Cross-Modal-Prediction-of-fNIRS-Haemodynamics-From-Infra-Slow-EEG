@@ -11,7 +11,7 @@ from nbclient import NotebookClient
 
 REPO = Path(__file__).resolve().parents[1]   # repository root
 
-SRC = Path(str(REPO / "pipeline/main_experiment.ipynb"))
+SRC = Path(str(REPO / "pipeline/CrossModal_InfraSlowEEG_fNIRS_fMRI.ipynb"))
 HERE = Path(__file__).parent
 OUT = HERE / "bands_executed.ipynb"
 

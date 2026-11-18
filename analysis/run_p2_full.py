@@ -7,7 +7,7 @@ from nbclient import NotebookClient
 
 REPO = Path(__file__).resolve().parents[1]   # repository root
 
-SRC = Path(str(REPO / "pipeline/main_experiment.ipynb"))
+SRC = Path(str(REPO / "pipeline/CrossModal_InfraSlowEEG_fNIRS_fMRI.ipynb"))
 OUT = Path(__file__).with_name("p2_full_executed.ipynb")
 
 nb = nbformat.read(SRC, as_version=4)

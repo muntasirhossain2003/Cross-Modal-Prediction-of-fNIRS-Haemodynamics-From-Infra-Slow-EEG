@@ -8,7 +8,7 @@ import numpy as np
 
 REPO = Path(__file__).resolve().parents[1]   # repository root
 
-NB = Path(str(REPO / "pipeline/main_experiment.ipynb"))
+NB = Path(str(REPO / "pipeline/CrossModal_InfraSlowEEG_fNIRS_fMRI.ipynb"))
 ROOT = Path(str(REPO / "dataset/OpenNeuro ds002338"))
 CACHE = Path(str(REPO / "pipeline/neurovascnet_merge_v1_cache/replication_ds002338"))
 

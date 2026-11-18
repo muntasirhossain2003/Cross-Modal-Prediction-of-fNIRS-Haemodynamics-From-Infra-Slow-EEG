@@ -112,7 +112,7 @@ because their published EEG contains no power below 0.5 Hz.
 ```text
 NeuroVascNet/
 ├── pipeline/                    Data loading, caches and the deep comparator
-│   ├── main_experiment.ipynb    loads every dataset, builds the epoch caches
+│   ├── CrossModal_InfraSlowEEG_fNIRS_fMRI.ipynb    loads every dataset, builds the epoch caches
 │   ├── NeuroVascNet_Results.ipynb     all current results, read from analysis/results/
 │   └── NeuroVascNet_Full.ipynb        every analysis as a function, with a switch to rerun any of them
 ├── analysis/                    One script per pre-declared test (named by plan step, e.g. P5.1)
@@ -149,7 +149,7 @@ runs on a CPU.
 Open `pipeline/NeuroVascNet_Results.ipynb`. It reads the saved files in `analysis/results/`.
 
 **2. Build the caches (datasets needed).**
-Run `pipeline/main_experiment.ipynb` from the `pipeline/` folder; it writes
+Run `pipeline/CrossModal_InfraSlowEEG_fNIRS_fMRI.ipynb` from the `pipeline/` folder; it writes
 `pipeline/neurovascnet_merge_v1_cache/`. Then build the additional cohorts:
 
 ```bash
