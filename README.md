@@ -114,9 +114,9 @@ because their published EEG contains no power below 0.5 Hz.
 ```text
 NeuroVascNet/
 ├── pipeline/                    Data loading, caches and the deep comparator
-│   ├── CrossModal_InfraSlowEEG_fNIRS_fMRI.ipynb    loads every dataset, builds the epoch caches
-│   ├── NeuroVascNet_Results.ipynb     all current results, read from analysis/results/
-│   └── NeuroVascNet_Full.ipynb        every analysis as a function, with a switch to rerun any of them
+│   ├── CrossModal_InfraSlowEEG_fNIRS_fMRI.ipynb     loads every dataset, builds the epoch caches
+│   ├── CrossModal_InfraSlowEEG_Results.ipynb        all current results, read from analysis/results/
+│   └── CrossModal_InfraSlowEEG_Full_Analysis.ipynb  every analysis as a function, with a switch to rerun any of them
 ├── analysis/                    One script per pre-declared test (named by plan step, e.g. P5.1)
 │   └── results/                       saved JSON results
 ├── paper/                       Scripts that draw the manuscript figures
@@ -148,7 +148,7 @@ runs on a CPU.
 ## Reproducing the results
 
 **1. Inspect the results (no data needed).**
-Open `pipeline/NeuroVascNet_Results.ipynb`. It reads the saved files in `analysis/results/`.
+Open `pipeline/CrossModal_InfraSlowEEG_Results.ipynb`. It reads the saved files in `analysis/results/`.
 
 **2. Build the caches (datasets needed).**
 Run `pipeline/CrossModal_InfraSlowEEG_fNIRS_fMRI.ipynb` from the `pipeline/` folder; it writes
@@ -169,7 +169,7 @@ python analysis/nvc_bandpower.py                          # lagged band-power co
 ```
 
 Alternatively, set `RUN = {"calibration"}` (or `RUN = ALL`, a day or more) in section 2 of
-`pipeline/NeuroVascNet_Full.ipynb`.
+`pipeline/CrossModal_InfraSlowEEG_Full_Analysis.ipynb`.
 
 **4. Redraw the figures.**
 

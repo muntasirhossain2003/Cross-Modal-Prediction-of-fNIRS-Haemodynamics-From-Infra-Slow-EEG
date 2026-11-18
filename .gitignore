@@ -67,7 +67,7 @@ neurovascnet_merge_v1_outputs/
 # Report build intermediates (regenerate with scripts/build_report_pdf.py)
 report_build/
 
-# Working folder of NeuroVascNet_Full.ipynb
+# Working folder of CrossModal_InfraSlowEEG_Full_Analysis.ipynb
 pipeline/_nb_run/
 
 # Journal manuscript (kept private until publication)

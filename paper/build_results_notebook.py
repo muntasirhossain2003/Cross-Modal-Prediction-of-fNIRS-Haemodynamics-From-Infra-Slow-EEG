@@ -1,4 +1,4 @@
-"""Writes ../pipeline/NeuroVascNet_Results.ipynb (execute it afterwards with nbconvert)."""
+"""Writes ../pipeline/CrossModal_InfraSlowEEG_Results.ipynb (execute it afterwards with nbconvert)."""
 from pathlib import Path
 
 import nbformat as nbf
@@ -180,6 +180,6 @@ table([[t["test"], f"{t['value']:+.3f}", f"{t['p']:.1e}", "pass" if t["pass"] el
 fig("fig18_improvement", 640)'''))
 
 nb = nbf.v4.new_notebook(cells=C, metadata={"kernelspec": {"display_name": "Python 3", "language": "python", "name": "python3"}})
-out = Path(__file__).parent.parent / "pipeline" / "NeuroVascNet_Results.ipynb"
+out = Path(__file__).parent.parent / "pipeline" / "CrossModal_InfraSlowEEG_Results.ipynb"
 nbf.write(nb, out)
 print("wrote", out)

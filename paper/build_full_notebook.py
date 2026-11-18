@@ -1,4 +1,4 @@
-"""Writes ../pipeline/NeuroVascNet_Full.ipynb: plain code cells in the layout of the cross-modal pipeline notebook.
+"""Writes ../pipeline/CrossModal_InfraSlowEEG_Full_Analysis.ipynb: plain code cells in the layout of the cross-modal pipeline notebook.
 Pipeline cells are copied from CrossModal_InfraSlowEEG_fNIRS_fMRI.ipynb; every analysis script becomes one plain function."""
 import ast
 import io
@@ -465,7 +465,7 @@ for c in C:
         assert "research_bio_medical" not in c.source, c.source[:80]
 
 nb = nbf.v4.new_notebook(cells=C, metadata={"kernelspec": {"display_name": "Python 3", "language": "python", "name": "python3"}})
-out = M / "pipeline" / "NeuroVascNet_Full.ipynb"
+out = M / "pipeline" / "CrossModal_InfraSlowEEG_Full_Analysis.ipynb"
 nbf.write(nb, out)
 total = sum(len(c.source.splitlines()) for c in C if c.cell_type == "code")
 comments = sum(1 for c in C if c.cell_type == "code" for l in c.source.splitlines() if l.strip().startswith("#"))
