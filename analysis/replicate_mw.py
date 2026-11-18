@@ -22,7 +22,7 @@ from sklearn.model_selection import LeaveOneGroupOut
 
 REPO = Path(__file__).resolve().parents[1]   # repository root
 
-NB = Path(str(REPO / "pipeline/Neurovascnet_marge_v1.ipynb"))
+NB = Path(str(REPO / "pipeline/main_experiment.ipynb"))
 ROOT = Path(str(REPO / "dataset/TU Berlin EEG + NIRS"))
 CACHE = Path(str(REPO / "pipeline/neurovascnet_merge_v1_cache/replication_tuberlin_mw"))
 HERE = Path(__file__).parent

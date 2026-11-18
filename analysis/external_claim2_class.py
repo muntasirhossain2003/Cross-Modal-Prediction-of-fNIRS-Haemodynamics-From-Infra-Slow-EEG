@@ -15,7 +15,7 @@ from sklearn.linear_model import RidgeCV
 
 REPO = Path(__file__).resolve().parents[1]   # repository root
 
-NB = Path(str(REPO / "pipeline/Neurovascnet_marge_v1.ipynb"))
+NB = Path(str(REPO / "pipeline/main_experiment.ipynb"))
 ROOT = NB.parent / "neurovascnet_merge_v1_cache"
 CACHES = {"hbci": ROOT / "train_fnirs_a2133f5d6a71ec34", "mental_workload": ROOT / "replication_tuberlin_mw"}
 OUT = Path(__file__).with_name("external_claim2_class_results.json")

@@ -1,8 +1,8 @@
 # Analysis scripts for FINAL_PLAN P2–P4
 
-These are copies of the scripts that produced the results in `merge/FINAL_PLAN.md` and
-`merge/RESULTS_SUMMARY.md`. The raw result files are in `results/`. The scripts read the notebook caches in
-`merge/neurovascnet_merge_v1_cache/`, and several of them execute cells of `Neurovascnet_marge_v1.ipynb` to
+These are copies of the scripts that produced the results in `docs/FINAL_PLAN.md` and
+`docs/RESULTS_SUMMARY.md`. The raw result files are in `results/`. The scripts read the notebook caches in
+`pipeline/neurovascnet_merge_v1_cache/`, and several of them execute cells of `pipeline/main_experiment.ipynb` to
 reuse its loaders and statistics. A few scripts expect sibling scripts to sit in the same folder, because
 they `exec` part of another script (for example `trf_delay.py` reads `continuous_lag.py`).
 
